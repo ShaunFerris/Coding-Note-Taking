@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Git and Github.md",
+                "file": "Basic Git Commands.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Git and Github.md",
+                "file": "Basic Git Commands.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Git and Github.md",
+                "file": "Basic Git Commands.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Git and Github.md"
+                "file": "Basic Git Commands.md"
               }
             }
           }
@@ -148,10 +148,10 @@
   },
   "active": "af1f02c0fe13ab82",
   "lastOpenFiles": [
+    "Git and Github.md",
     "Basic Git Commands.md",
     "2023-03-22.md",
     "Untitled.canvas",
-    "Git and Github.md",
     "Remote Branch.md"
   ]
 }
