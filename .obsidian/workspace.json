@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basic Git Commands.md",
+                "file": "Git and Github.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bad33a6724b457ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "JavaScript Basics.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Basic Git Commands.md",
+                "file": "JavaScript Basics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Basic Git Commands.md",
+                "file": "JavaScript Basics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Basic Git Commands.md"
+                "file": "JavaScript Basics.md"
               }
             }
           }
@@ -146,12 +159,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "af1f02c0fe13ab82",
+  "active": "bad33a6724b457ad",
   "lastOpenFiles": [
     "Git and Github.md",
+    "JavaScript Basics.md",
     "Basic Git Commands.md",
+    "Remote Branch.md",
     "2023-03-22.md",
-    "Untitled.canvas",
-    "Remote Branch.md"
+    "Untitled.canvas"
   ]
 }
