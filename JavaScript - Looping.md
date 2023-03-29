@@ -1,7 +1,7 @@
 #javascript #whileloops #forloops 
 
 ## While loops
-While loops in JS work pretty much as you'd expect, and follow the same basic formatting rules as  if statements [[JavaScript Basics]]:
+While loops in JS work pretty much as you'd expect, and follow the same basic formatting rules as  if statements [[JavaScript - Basics]]:
 ```
 let i = 0;
 while (i < 5) {
