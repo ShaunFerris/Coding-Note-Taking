@@ -1,3 +1,5 @@
+#git #github #devops
+
 Git is a system for tracking changes in documents, across multiple versions and with multiple people being able to edit the documents on different machines.
 
 ### Git Terminology
