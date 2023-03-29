@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python - Structural Pattern Matching.md",
+                "file": "JavaScript - Switch statements.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Python - Structural Pattern Matching.md",
+                "file": "JavaScript - Switch statements.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Python - Structural Pattern Matching.md",
+                "file": "JavaScript - Switch statements.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Python - Structural Pattern Matching.md"
+                "file": "JavaScript - Switch statements.md"
               }
             }
           }
@@ -161,11 +161,11 @@
   },
   "active": "4e1dbedd1e263d61",
   "lastOpenFiles": [
-    "JavaScript - Switch statements.md",
     "JavaScript Basics.md",
+    "JavaScript - Switch statements.md",
     "Python - Structural Pattern Matching.md",
-    "Git and Github.md",
     "Basic Git Commands.md",
+    "Git and Github.md",
     "Remote Branch.md",
     "2023-03-22.md",
     "Untitled.canvas"
