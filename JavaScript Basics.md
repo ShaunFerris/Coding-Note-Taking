@@ -15,6 +15,8 @@ Most datatypes behave roughly the same way as in python, eg strings are still im
 Hello world in JS is basically the same as python, but the print function is replaced with `console.log()`.
 
 ## Operators in JS
+The assignment operator in JS is the same as in python.
+
 == in JS is a loose equality, where types are not checked, eg: `1 == '1'` will return true. === is strict and will type check before checking equality. The inequality operator `!=` is also loose and will convert types in the same way. Strict inequality is `!==`.
 
 Types can be checked with the `typeof` operator, similar to the `type()` function in python.

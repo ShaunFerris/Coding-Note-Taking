@@ -1,3 +1,5 @@
+#python #advancedconcepts
+
 The equivalent to [[JavaScript - Switch statements]], added in Python 3.10.
 For the full docs on this relatively new feature, see [PEP 622](https://peps.python.org/pep-0622/).
 
