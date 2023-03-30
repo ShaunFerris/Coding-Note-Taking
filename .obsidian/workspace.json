@@ -42,9 +42,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "08a593c96fb84127",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Dynamic Programming.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -110,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JavaScript - Basics.md",
+                "file": "Dynamic Programming.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JavaScript - Basics.md",
+                "file": "Dynamic Programming.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaScript - Basics.md"
+                "file": "Dynamic Programming.md"
               }
             }
           }
@@ -171,11 +183,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d8cfcb20baad148a",
+  "active": "08a593c96fb84127",
   "lastOpenFiles": [
+    "Pasted image 20230330151003.png",
+    "JavaScript - Basics.md",
+    "Dynamic Programming.md",
     "JavaScript - Objects.md",
     "JavaScript - Switch statements.md",
-    "JavaScript - Basics.md",
     "Basic Git Commands.md",
     "Git and Github.md",
     "Python - Structural Pattern Matching.md",
