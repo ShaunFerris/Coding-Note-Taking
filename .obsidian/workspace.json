@@ -20,18 +20,6 @@
             }
           },
           {
-            "id": "c99383cb768d45f5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "JavaScript - Basics.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "286ff1e66b6c8e01",
             "type": "leaf",
             "state": {
@@ -49,14 +37,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Git and Github.md",
+                "file": "JavaScript - Basics.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -122,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Git and Github.md",
+                "file": "JavaScript - Basics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Git and Github.md",
+                "file": "JavaScript - Basics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Git and Github.md"
+                "file": "JavaScript - Basics.md"
               }
             }
           }
@@ -185,14 +173,14 @@
   },
   "active": "d8cfcb20baad148a",
   "lastOpenFiles": [
-    "JavaScript - Basics.md",
-    "Python - Structural Pattern Matching.md",
+    "JavaScript - Objects.md",
     "JavaScript - Switch statements.md",
+    "JavaScript - Basics.md",
+    "Basic Git Commands.md",
+    "Git and Github.md",
+    "Python - Structural Pattern Matching.md",
     "JavaScript - Looping.md",
     "Bash.md",
-    "JavaScript - Objects.md",
-    "Git and Github.md",
-    "Basic Git Commands.md",
     "Remote Branch.md",
     "2023-03-22.md",
     "Untitled.canvas"
