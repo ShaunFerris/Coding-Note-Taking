@@ -2,6 +2,9 @@
 
 Initial notes for this section are coming from a basic transcription of [this](https://www.youtube.com/watch?v=6z4ePR7YYa8) video by SimonDev.
 
+## TLDR:
+Dynamic programming is just breaking down a problem into sub-problems, and saving or pre-computing answers to those sub-problems.
+
 Example explanation from the video: 
 Your boss asks you to watch seasons 1 and 2 of rick and morty, and count how many times rick burps. You figure you can do this in about 2 days. Your boss catches up with you in about 2 days and says actually, you need to count burps for seasons 2 and 3 instead. You say you can have that done by the end of today. **Why is this second task of the same size going to be done so much faster?** Obviously, because you have your season 2 notes from the first task you did, and can just focus only on the new work this time around.
 
