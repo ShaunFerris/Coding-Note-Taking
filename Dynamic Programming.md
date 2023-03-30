@@ -53,3 +53,30 @@ The bottom up approach starts further away from the problem, solving small, easy
 ## Solving problems dynamically
 Start by breaking down a problem into sub problems, then see if those can be further broken down into sub problems. Then imagine solving sub problems with function calls and look for ones that might be performing essentially the same task in a given state and implement memoization. The below diagram illustrates this idea, with nodes on the tree representing sub problems being solved with function calls and the orange arrows representing nodes that are computing the same thing at some point.
 ![[Pasted image 20230330151003.png]]
+And here is an example of this kind of solution map for dynamic programming applied to computing the fibonnaci sequence:
+![[Pasted image 20230330151418.png]]
+And here is the solution to this problem in JS for illustration:
+```
+const memoizer = {};
+
+function fib(i) {
+	const key = '' + i;
+	if (key in memoizer) {
+		return memoizer[key];
+	}
+
+	if (i == 0) {
+		return 0;
+	} else if (i == 1) {
+		return 1;
+	}
+
+	const result = fib(i  - 1) + fib(1 - 2);
+	memoizer[key] = result;
+	return result;
+}
+
+function calculateFibonnaci(i) {
+	return fib(i);
+}
+```
