@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dynamic Programming.md",
+                "file": "JavaScript - Looping.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Dynamic Programming.md",
+                "file": "JavaScript - Looping.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Dynamic Programming.md",
+                "file": "JavaScript - Looping.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Dynamic Programming.md"
+                "file": "JavaScript - Looping.md"
               }
             }
           }
@@ -185,10 +185,10 @@
   },
   "active": "08a593c96fb84127",
   "lastOpenFiles": [
+    "Dynamic Programming.md",
     "Pasted image 20230330151418.png",
     "Pasted image 20230330151003.png",
     "JavaScript - Basics.md",
-    "Dynamic Programming.md",
     "JavaScript - Objects.md",
     "JavaScript - Switch statements.md",
     "Basic Git Commands.md",
