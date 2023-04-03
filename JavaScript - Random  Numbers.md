@@ -1,3 +1,5 @@
+#javascript #math #random #numbers #basics
+
 The builtin JS function `Math.random()` returns a random decimal number between 0 and 1 exclusive (ie can be zero but cannot be one). This function is extended to produce other kinds of random number in JS, rather than using a range adjusted function like pythons `random.randint()`.
 
 To generate random whole numbers in JS you would typically use and expression like:

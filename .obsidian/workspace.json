@@ -73,7 +73,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "JavaScript - Random  Numbers.md",
+                "file": "JavaScript - The Ternary Operator.md",
                 "mode": "source",
                 "source": false
               }
@@ -146,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JavaScript - Random  Numbers.md",
+                "file": "JavaScript - The Ternary Operator.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JavaScript - Random  Numbers.md",
+                "file": "JavaScript - The Ternary Operator.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaScript - Random  Numbers.md"
+                "file": "JavaScript - The Ternary Operator.md"
               }
             }
           }
@@ -209,9 +209,10 @@
   },
   "active": "e0fc0ae44872df71",
   "lastOpenFiles": [
-    "Basic Recursion.md",
     "JavaScript - Random  Numbers.md",
     "JavaScript - Basics.md",
+    "JavaScript - The Ternary Operator.md",
+    "Basic Recursion.md",
     "JavaScript - Looping.md",
     "Dynamic Programming.md",
     "Pasted image 20230330151418.png",
