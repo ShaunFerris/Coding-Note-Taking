@@ -25,7 +25,7 @@ for (let i = 0; i <= 10; i++) {
 }
 ```
 
-### For of loops
+### for...of loops
 You can also implement for loops in javascript that match up with the default way of doing for loops in python, where each iteration of the loop is an operation on each element of an iterable object in order. This is done with a for...of loop, eg:
 ```
 const array1 = ['a', 'b', 'c'];
@@ -37,4 +37,17 @@ for (const element of array1) {
 // Expected output: "a"
 // Expected output: "b"
 // Expected output: "c"
+```
+
+### do...while loops
+Do...while loops will always do one pass of the code in the loop, and then continue until the loop condition is no longer true.
+In the following example, the array will contain 5 after code execution where in  a normal for loop it would be empty:
+```
+const myArray = []
+let i = 5;
+do {
+	myArray.push(i);
+	i++;
+	
+} while (i < 5);
 ```
