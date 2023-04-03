@@ -40,8 +40,10 @@ While the spread operator unpacks every member of the array into a comma separat
 ```js
 const [a, b] = [1, 2, 3, 4, 5, 7];
 console.log(a, b);
-
 //The console would display the values 1 and 2.
+const [a, b, , , c] = [1, 2, 3, 4, 5, 7];
+console.log(a, b, c);
+//The console would display the values 1, 2 and 5
 ```
 
 ### Array destructuring via rest elements
