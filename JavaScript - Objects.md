@@ -2,7 +2,7 @@
 
 Objects in JS allow for complex and flexible data structures. They allow arbitrary combinations of strings, numbers, booleans, arrays, functions and objects.
 
-Objects are decalred as constants and contain properties. Properties is the name used for the variable data stored in an object. The data stored as properties in a JS object is assigned by a colon instead of an assignment operator, and functionally JS objects are very similar to python dictionaries.
+Objects are decalred as constants and contain properties. Properties is the name used for the variable data stored in an object. The data stored as properties in a JS object is assigned by a colon instead of an assignment operator, and functionally JS objects are very similar to python dictionaries. The below is an example of an object constructor statement:
 ```js
 const cat {
 	name : "Whiskers",
@@ -30,3 +30,26 @@ console.log(car1.make);
 ```
 
 Other advanced objects topics added in ES6 include [[JavaScript - Object Destructuring]]
+
+## Declaring functions inside objects
+When defining functions within objects in ES5, we have to use the keyword `function` as follows:
+
+```js
+const person = {
+  name: "Taylor",
+  sayHello: function() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
+```
+
+With ES6, you can remove the `function` keyword and colon altogether when defining functions in objects. Here's an example of this syntax:
+
+```js
+const person = {
+  name: "Taylor",
+  sayHello() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
+```

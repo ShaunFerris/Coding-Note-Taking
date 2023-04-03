@@ -1,4 +1,4 @@
-#javascript #operators #syntax #blockformatting
+#javascript #operators #syntax #blockformatting #strings #int
 
 Refer to Javascript as JS from here on in. These JS notes will often refer to the differences between JS and python as python was my first language and as such is my main frame of reference.
 
@@ -48,3 +48,13 @@ This section will cover the basic upgrades to structure and sytax that arrived w
 As previously mentioned, the let keyword was added with ES6, allowing variables to be declared with block scope, rather than defaulting to global scope as when defined with the var keyword.
 
 When you use the const decalration, you are declaring a variable that cannot be reassigned, however const variables are still mutable, so a const list could be modified in place, for example with a push operation. To make a variable immutable and thus fully constant, ES6 added the Object.freeze() function.
+
+## Modules
+To make functions or variables from one piece of JS code available to another JS or HTML script, the must be exported from their main script like so:
+```js
+export {addFunction, subtractFunction};
+```
+They can then be imported with the syntax:
+```js
+import {addFunction, subtractFunction} from './mathFunctions.js';
+```

@@ -20,12 +20,36 @@
             }
           },
           {
+            "id": "edee94658340617f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "JavaScript - ES6 Objects and the Class Keyword.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "060d24fd25ae307c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "JavaScript - Object Destructuring.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "1c65729b0268f763",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "JavaScript - Template Literals.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +122,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JavaScript - Object Destructuring.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +138,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JavaScript - Object Destructuring.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,9 +159,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "JavaScript - Object Destructuring.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -159,19 +179,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "060d24fd25ae307c",
+  "active": "f077a6a720e6164e",
   "lastOpenFiles": [
-    "JavaScript.md",
-    "JavaScript - Object Destructuring.md",
-    "JavaScript - The Rest Function and Handling Multiple Function Args.md",
+    "JavaScript - Basics.md",
+    "JavaScript - Modules.md",
+    "JavaScript - ES6 Objects and the Class Keyword.md",
     "JavaScript - Objects.md",
+    "JavaScript - Template Literals.md",
+    "JavaScript - Object Destructuring.md",
+    "JavaScript.md",
+    "JavaScript - The Rest Function and Handling Multiple Function Args.md",
     "README.md",
     "Python - Structural Pattern Matching.md",
     "JavaScript - The Ternary Operator.md",
     "JavaScript - Switch statements.md",
     "JavaScript - Random  Numbers.md",
     "JavaScript - Looping.md",
-    "JavaScript - Basics.md",
     "Git and Github.md",
     "Dynamic Programming.md",
     "Basic Recursion.md",
