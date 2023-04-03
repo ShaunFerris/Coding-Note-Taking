@@ -40,3 +40,11 @@ if (num > 10) {
 	return "10 or less";
 }
 ```
+
+## ES6 basics
+ES6 stands for **ECMAScript 6**. ECMAScript was created to standardize JavaScript, and ES6 is the 6th version of ECMAScript, it was published in 2015, and is also known as ECMAScript 2015.
+This section will cover the basic upgrades to structure and sytax that arrived with ES6, more advanded ES6 topics will get their own notes but will be hashtagged with #ES6 .
+
+As previously mentioned, the let keyword was added with ES6, allowing variables to be declared with block scope, rather than defaulting to global scope as when defined with the var keyword.
+
+When you use the const decalration, you are declaring a variable that cannot be reassigned, however const variables are still mutable, so a const list could be modified in place, for example with a push operation. To make a variable immutable and thus fully constant, ES6 added the Object.freeze() function.
