@@ -66,9 +66,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e0fc0ae44872df71",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "JavaScript - Random  Numbers.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -134,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Basic Recursion.md",
+                "file": "JavaScript - Random  Numbers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Basic Recursion.md",
+                "file": "JavaScript - Random  Numbers.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Basic Recursion.md"
+                "file": "JavaScript - Random  Numbers.md"
               }
             }
           }
@@ -195,10 +207,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7e44aa9db35f5088",
+  "active": "e0fc0ae44872df71",
   "lastOpenFiles": [
-    "JavaScript - Basics.md",
     "Basic Recursion.md",
+    "JavaScript - Random  Numbers.md",
+    "JavaScript - Basics.md",
     "JavaScript - Looping.md",
     "Dynamic Programming.md",
     "Pasted image 20230330151418.png",
