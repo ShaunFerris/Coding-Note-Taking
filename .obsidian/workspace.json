@@ -32,18 +32,6 @@
             }
           },
           {
-            "id": "d8cfcb20baad148a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "JavaScript - Basics.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "08a593c96fb84127",
             "type": "leaf",
             "state": {
@@ -68,12 +56,24 @@
             }
           },
           {
-            "id": "e0fc0ae44872df71",
+            "id": "d8cfcb20baad148a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "JavaScript - The Ternary Operator.md",
+                "file": "JavaScript - Basics.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e98c2691cf7d657a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Annonymous Functions.md",
                 "mode": "source",
                 "source": false
               }
@@ -109,7 +109,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#functions",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -146,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JavaScript - The Ternary Operator.md",
+                "file": "Annonymous Functions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JavaScript - The Ternary Operator.md",
+                "file": "Annonymous Functions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaScript - The Ternary Operator.md"
+                "file": "Annonymous Functions.md"
               }
             }
           }
@@ -207,11 +207,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e0fc0ae44872df71",
+  "active": "e98c2691cf7d657a",
   "lastOpenFiles": [
-    "JavaScript - Random  Numbers.md",
     "JavaScript - Basics.md",
+    "Annonymous Functions.md",
     "JavaScript - The Ternary Operator.md",
+    "JavaScript - Random  Numbers.md",
     "Basic Recursion.md",
     "JavaScript - Looping.md",
     "Dynamic Programming.md",
