@@ -1,5 +1,6 @@
 #javascript #ES6 #functions 
 
+## The rest function
 The rest function, denoted as `...args` works in a similar manner to `*args` in python, allowing a function to take multiple values as argument. When you use the rest function, args are passed as an array that can then be accessed in the function. It also allows us to use the map() filter() or reduce() functions to operate on the args without manually checking the array.
 
 ## Functions that work well on arg arrays
@@ -46,4 +47,11 @@ const sumWithInitial = array1.reduce(
 
 console.log(sumWithInitial);
 // Expected output: 10
+```
+
+## The spread operator
+The spread operator is similar to the rest function, and denoted by `...array`. It is used when to unpack an array into comma seperated values, and is useful when you want to for example provide values from an array to a function that cannot take an array as arg but can take many values:
+```
+const myArray = [6, 89, 3, 45]
+const maximus = Math.max(...myArray);
 ```
