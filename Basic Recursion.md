@@ -7,7 +7,7 @@ A recursive function in computer science, is one that is expressed in terms of i
 More broadly, recursion is a method of solving problems where the solution depends on solutions to smaller instances of the same problem.
 
 Imagine having a task requiring you to **multiply the first n elements of an array and return the final product**. You could use a for loop as in this example:
-```
+```js
 // Approach A - Looping
 function multiply(arr, n) {
 	let product = 1;
@@ -18,7 +18,7 @@ function multiply(arr, n) {
 }
 ```
 Or the problem can be solved recursively:
-```
+```js
 // Approach B - Recursion
 function multiply(arr, n) {
 	if (n <= 0) {

@@ -26,7 +26,7 @@ In computer science, a problem is said to have overlapping subproblems if the pr
 ## Memoization
 Memoization is essentially an optimization, wherby we avoid having to compute the same thing over and over again. This means caching the returned result of some function, so that if the same function is ever called again with the same parameters, you can simply return the previously cached result.
 Example in JS:
-```
+```js
 // Example function
 function computeStuffSlowly(stuff) {
 	// Do a bunch of calculation
@@ -59,7 +59,7 @@ Start by breaking down a problem into sub problems, then see if those can be fur
 And here is an example of this kind of solution map for dynamic programming applied to computing the fibonnaci sequence:
 ![[Pasted image 20230330151418.png]]
 And here is the solution to this problem in JS for illustration:
-```
+```js
 const memoizer = {};
 
 function fib(i) {

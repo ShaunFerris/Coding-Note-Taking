@@ -3,7 +3,7 @@
 Switch statements are an alternative structure to complex if/else logic, useful for selecting from many possible cases which you want to respond to by running different code. In python 3.10 and greater, the equivalent is [[Python - Structural Pattern Matching]], also called match case statements.
 
 The general structure of switch statements is below, they follow the same basic rules for formatting as if else statements and most other JS code blocks, but use colons for each case [[JavaScript - Basics]]:
-```
+```js
 switch (lowerCaseLetter) {
 	case "a":
 		console.log("A");

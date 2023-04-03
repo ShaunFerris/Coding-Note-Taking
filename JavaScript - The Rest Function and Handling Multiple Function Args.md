@@ -8,7 +8,7 @@ Below will follow a short explanation of the map filter and reduce functions, wh
 
 ### map()
 The map function is a method called on arrays that takes a callback function as it's arg, and returns a new array where each element is the result of the callback function being called on the corresponding element of the original array. For example:
-```
+```js
 const array1 = [1, 4, 9, 16];
 
 // Pass a function to map
@@ -20,7 +20,7 @@ console.log(map1);
 
 ### filter()
 The **`filter()`** method creates a [shallow copy](https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy) of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
-```
+```js
 const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
 
 const result = words.filter(word => word.length > 6);
@@ -35,7 +35,7 @@ The **`reduce()`** method executes a user-supplied "reducer" callback function o
 The first time that the callback is run there is no "return value of the previous calculation". If supplied, an initial value may be used in its place. Otherwise the array element at index 0 is used as the initial value and iteration starts from the next element (index 1 instead of index 0).
 
 Perhaps the easiest-to-understand case for `reduce()` is to return the sum of all the elements in an array:
-```
+```js
 const array1 = [1, 2, 3, 4];
 
 // 0 + 1 + 2 + 3 + 4
@@ -51,7 +51,7 @@ console.log(sumWithInitial);
 
 ## The spread operator
 The spread operator is similar to the rest function, and denoted by `...array`. It is used when to unpack an array into comma seperated values, and is useful when you want to for example provide values from an array to a function that cannot take an array as arg but can take many values:
-```
+```js
 const myArray = [6, 89, 3, 45]
 const maximus = Math.max(...myArray);
 ```

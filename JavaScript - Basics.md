@@ -33,7 +33,7 @@ Increments of one in JS are done with `++` and decrements of one can be done wit
 
 ## if/else statement structure in JS
 Where python uses only indentation to delimit code blocks, and colons to indicate the start of a block, JS uses curly braces to encapsulate code blocks like if statements. Similar style and structure will be used in while loops, for loops, function definitions etc:
-```
+```js
 if (num > 10) {
 	return "Bigger than 10;"
 } else {

@@ -11,7 +11,7 @@ Ternary operations are frequently used as an alternative to if...else statements
 
 ## Chaining ternary operations
 Ternary operations can be chained together to check multple condition as in the example below. This expression has been formatted across multiple lines for readability, but is technically a single line of code:
-```
+```js
 function findGreaterOrEqual(a, b) {
 	return (a === b) ? "a and b are equal"
 		: (a > b) "a is greater"

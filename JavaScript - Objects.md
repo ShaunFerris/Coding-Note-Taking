@@ -3,7 +3,7 @@
 Objects in JS allow for complex and flexible data structures. They allow arbitrary combinations of strings, numbers, booleans, arrays, functions and objects.
 
 Objects are decalred as constants and contain properties. Properties is the name used for the variable data stored in an object. The data stored as properties in a JS object is assigned by a colon instead of an assignment operator, and functionally JS objects are very similar to python dictionaries.
-```
+```js
 const cat {
 	name : "Whiskers",
 	legs : 4,
@@ -16,7 +16,7 @@ The `.hasOwnProperty(propName)` method is built in to JS objects and returns Tru
 
 ## Object instancing
 The ability to create new instances of an object was added in ES6 with the new keyword.
-```
+```js
 function Car(make, model, year) {
   this.make = make;
   this.model = model;

@@ -20,7 +20,7 @@
             }
           },
           {
-            "id": "4cc6f37722c99a57",
+            "id": "060d24fd25ae307c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -30,21 +30,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "060d24fd25ae307c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "JavaScript - The Rest Function and Handling Multiple Function Args.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -110,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JavaScript - The Rest Function and Handling Multiple Function Args.md",
+                "file": "JavaScript - Object Destructuring.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JavaScript - The Rest Function and Handling Multiple Function Args.md",
+                "file": "JavaScript - Object Destructuring.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JavaScript - The Rest Function and Handling Multiple Function Args.md"
+                "file": "JavaScript - Object Destructuring.md"
               }
             }
           }
@@ -173,23 +161,23 @@
   },
   "active": "060d24fd25ae307c",
   "lastOpenFiles": [
-    "JavaScript - Object Destructuring.md",
-    "README.md",
     "JavaScript - The Rest Function and Handling Multiple Function Args.md",
     "JavaScript - Objects.md",
-    "Annonymous Functions.md",
-    "JavaScript - Basics.md",
+    "README.md",
+    "Python - Structural Pattern Matching.md",
     "JavaScript - The Ternary Operator.md",
+    "JavaScript - Switch statements.md",
     "JavaScript - Random  Numbers.md",
-    "Basic Recursion.md",
+    "JavaScript - Object Destructuring.md",
     "JavaScript - Looping.md",
+    "JavaScript - Basics.md",
+    "Git and Github.md",
     "Dynamic Programming.md",
+    "Basic Recursion.md",
+    "Basic Git Commands.md",
+    "Annonymous Functions.md",
     "Pasted image 20230330151418.png",
     "Pasted image 20230330151003.png",
-    "JavaScript - Switch statements.md",
-    "Basic Git Commands.md",
-    "Git and Github.md",
-    "Python - Structural Pattern Matching.md",
     "Bash.md",
     "Remote Branch.md",
     "2023-03-22.md",

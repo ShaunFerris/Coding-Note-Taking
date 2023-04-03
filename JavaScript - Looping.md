@@ -2,7 +2,7 @@
 
 ## While loops
 While loops in JS work pretty much as you'd expect, and follow the same basic formatting rules as  if statements [[JavaScript - Basics]]:
-```
+```js
 let i = 0;
 while (i < 5) {
 	i++;
@@ -18,7 +18,7 @@ For loops in JS are written in a way that exposes their inner workings much more
 
 ### Example for loop - push  numbers 0 to 10 to an array
 NOTE: the push method is the JS equivalent of pythons append.
-```
+```js
 const ourArray = []
 for (let i = 0; i <= 10; i++) {
 	ourArray.push(i);
@@ -27,7 +27,7 @@ for (let i = 0; i <= 10; i++) {
 
 ### for...of loops
 You can also implement for loops in javascript that match up with the default way of doing for loops in python, where each iteration of the loop is an operation on each element of an iterable object in order. This is done with a for...of loop, eg:
-```
+```js
 const array1 = ['a', 'b', 'c'];
 
 for (const element of array1) {
@@ -42,7 +42,7 @@ for (const element of array1) {
 ### do...while loops
 Do...while loops will always do one pass of the code in the loop, and then continue until the loop condition is no longer true.
 In the following example, the array will contain 5 after code execution where in  a normal for loop it would be empty:
-```
+```js
 const myArray = []
 let i = 5;
 do {
