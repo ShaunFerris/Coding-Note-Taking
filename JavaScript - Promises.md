@@ -1,3 +1,5 @@
+#javascript #ES6 #webdevSpecific 
+
 Promises in JS are exactly what they sound like, they are code blocks that promise to do something, usually in an uncertain amount of time, and the promise tracks the state of it's objective as either **pending**, **fulfilled** or **rejected**.
 
 Promises are most useful in regards to asynchronous processes or web requests. Indicating what to do when the task is finished.
