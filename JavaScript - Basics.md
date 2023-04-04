@@ -58,3 +58,7 @@ They can then be imported with the syntax:
 ```js
 import {addFunction, subtractFunction} from './mathFunctions.js';
 ```
+To import the entire contents of a file, use the syntax below:
+```js
+import * as myMathModule from "./math_functions.js";
+```
