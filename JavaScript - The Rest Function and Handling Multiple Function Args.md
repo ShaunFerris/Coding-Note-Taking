@@ -1,5 +1,7 @@
 #javascript #ES6 #functions 
 
+There are alot of similarities in form and function between this topic and [[JavaScript - Object Destructuring]].
+
 ## The rest function
 The rest function, denoted as `...args` works in a similar manner to `*args` in python, allowing a function to take multiple values as argument. When you use the rest function, args are passed as an array that can then be accessed in the function. It also allows us to use the map() filter() or reduce() functions to operate on the args without manually checking the array.
 

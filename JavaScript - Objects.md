@@ -29,7 +29,7 @@ console.log(car1.make);
 // Expected output: "Eagle"
 ```
 
-Other advanced objects topics added in ES6 include [[JavaScript - Object Destructuring]]
+Other advanced objects topics added in ES6 include [[JavaScript - Object Destructuring]] and [[JavaScript - ES6 Objects and the Class Keyword]].
 
 ## Declaring functions inside objects
 When defining functions within objects in ES5, we have to use the keyword `function` as follows:

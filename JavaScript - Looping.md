@@ -51,3 +51,6 @@ do {
 	
 } while (i < 5);
 ```
+
+### Recursive solutions
+For loops (iterative solutions) can often be replaced with recursive solutions. See [[Basic Recursion]].
