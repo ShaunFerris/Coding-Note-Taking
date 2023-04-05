@@ -178,6 +178,19 @@ let checkPass = /(?=\w{3,6})(?=\D*\d)/;
 checkPass.test(password);
 ```
 
+## Check for mixed grouping of characters
+Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses `()`.
+
+If you want to find either `Penguin` or `Pumpkin` in a string, you can use the following Regular Expression: `/P(engu|umpk)in/g`
+
+Then check whether the desired string groups are in the test string by using the `test()` method.
+```js
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr);
+```
+The `test` method here would return `true`.
+
 ## Capture Groups
 Say you want to match a word that occurs multiple times like below.
 ```js
@@ -198,15 +211,18 @@ repeatStr.match(repeatRegex); // Returns ["row row row", "row"]
 ```
 Using the `.match()` method on a string will return an array with the matched substring, along with its captured groups.
 
-## Check for mixed grouping of characters
-Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses `()`.
-
-If you want to find either `Penguin` or `Pumpkin` in a string, you can use the following Regular Expression: `/P(engu|umpk)in/g`
-
-Then check whether the desired string groups are in the test string by using the `test()` method.
+### Search and replace with capture groups
+You can search and replace text in a string using `.replace()` on a string. The inputs for `.replace()` is first the regex pattern you want to search for. The second parameter is the string to replace the match or a function to do something.
 ```js
-let testStr = "Pumpkin";
-let testRegex = /P(engu|umpk)in/;
-testRegex.test(testStr);
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue");
 ```
-The `test` method here would return `true`.
+The `replace` call would return the string `The sky is blue.`.
+
+You can also access capture groups in the replacement string with dollar signs (`$`).
+```js
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+```
+The `replace` call would return the string `Camp Code`.
+
