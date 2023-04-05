@@ -53,4 +53,4 @@ do {
 ```
 
 ### Recursive solutions
-For loops (iterative solutions) can often be replaced with recursive solutions. See [[Basic Recursion]].
+For loops (iterative solutions) can often be replaced with recursive solutions. See [[General - Basic Recursion]].
