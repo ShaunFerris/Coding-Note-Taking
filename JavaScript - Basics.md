@@ -2,6 +2,8 @@
 
 Refer to Javascript as JS from here on in. These JS notes will often refer to the differences between JS and python as python was my first language and as such is my main frame of reference.
 
+JavaScript recognizes seven primitive (immutable) data types: `Boolean`, `Null`, `Undefined`, `Number`, `String`, `Symbol` (new with ES6), and `BigInt` (new with ES2020), and one type for mutable items: `Object`. Note that in JavaScript, arrays are technically a type of object.
+
 Standard variable naming is different in JS than in python. Where python uses snake case for variables and caps for constant variables, JS uses camel case eg: thisIsMyVariable for all variables, and constants are differentiated by decalaration, which python does not have.
 
 All pieces of code that are intended to be executed are ended with a  semi-colon.
