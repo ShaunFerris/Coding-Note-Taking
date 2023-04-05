@@ -1,4 +1,4 @@
-#git #github #devops
+#git #github #devops #skills 
 
 ### Getting a new or existing project from your computer to github
 The first thing to do is create a git hub repo from your browser, this is going to be the remote branch of the git repo. Copy the https URL for the repo to clipboard for later use.
