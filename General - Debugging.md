@@ -18,4 +18,5 @@ Most of these are easily caught by the idea and easily noticeable by paying atte
 - Spelling mistakes in variable names - throw a reference error
 - Unclosed parentheses
 - Mixed usage of single and double quotes for strings
+- Missing parentheses for a function call
 
