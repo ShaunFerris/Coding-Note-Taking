@@ -5,7 +5,12 @@ These notes cover some fundamentals of JS arrays and python lists in a mostly la
 ## Basics
 Lists in python are the same as arrays in JS. In both languages these datastructures are **mutable**, meaning you can alter a given element in place without needing to assign the result to a new variable or reference. 
 
+Lists are sequential collections of other data. Each element in a list can be any standard data type or data structure. **Lists are mutable, but have a fixed order.**
+
+## Indexing
 Elements in a list are indexed in sequential numerical order starting from 0. An element at a given index in a list, say 5, can be referenced or operated on directly with the syntax `my_list[5] = 3`.
 
 ### Python specific - Advanced indexing with slices
 In python, you can do more advanced slicing of lists with the general syntax `my_list[start : end : step]` where the start is the index to start the slice, the end is where to stop **non-inclusively** and the step is how many to jump by. The step is 1 by default, but it can be useful if you want to look at every second value, or to go backwards through the list by settin step to -1.
+
+## Methods to add and remove data
