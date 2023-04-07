@@ -11,7 +11,7 @@ const myFunction = function(arg) {
 ```
 With arrow functionality the same function can be written like this:
 ```js
-const myFunction(arg) = (arg) => {
+const myFunction = (arg) => {
 	//do this;
 	return;
 }
