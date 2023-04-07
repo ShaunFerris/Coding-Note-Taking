@@ -11,6 +11,9 @@ const tekkenCharacter = {
   human: true
 };
 ```
+
+The most important difference between python dictionaries and JS objects is that from python 3.7 onwards, dicts are ordered by insertion order. In JS objects do not maintain ordering and a values position in the object is only tied to it's key.
+
 Another important note is that dot notation works for accessing object properties in JS, but not python, python requires bracket notation. This is because JS objects also fill the role of classes, but in python this functionality is more clearly separated.
 
 ## Reassigning values in objects and dicts
@@ -24,3 +27,25 @@ The same can be achieved in python using the in keyword: `print(key in my_dict)`
 To get a keys value from a python dict you can use the `my_dict.get(key)` method. This method is also very useful for counting when supplied with a default value. 
 
 If you want to check if a key is in a dict, then add it if it's not and add one to it's value use `my_dict[key] = my_dict.get(key, 0) + 1`
+
+## Listing object keys
+### Js
+We can also generate an array which contains all the keys stored in an object with the `Object.keys()` method. This method takes an object as the argument and returns an array of strings representing each property in the object. Again, there will be no specific order to the entries in the array.
+
+### Python
+The `keys()` method returns a view object. The view object contains the keys of the dictionary, as a list.
+```python
+car = {  
+  "brand": "Ford",  
+  "model": "Mustang",  
+  "year": 1964  
+}  
+  
+x = car.keys()  
+  
+print(x)
+```
+The above will return an object containing the keys as a list:
+```python
+dict_keys(['brand', 'model', 'year'])
+```
