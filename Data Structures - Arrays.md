@@ -101,28 +101,31 @@ If omitted, the array elements are converted to strings, then sorted according t
 
 If `compareFn` is supplied, all non-`undefined` array elements are sorted according to the return value of the compare function (all `undefined` elements are sorted to the end of the array, with no call to `compareFn`).
 
-<figure class="table-container"><table>
-  <thead>
-    <tr>
-      <th><code>compareFn(a, b)</code> return value</th>
-      <th>sort order</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>&gt; 0</td>
-      <td>sort <code>a</code> after <code>b</code>, e.g. <code>[b, a]</code></td>
-    </tr>
-    <tr>
-      <td>&lt; 0</td>
-      <td>sort <code>a</code> before <code>b</code>, e.g. <code>[a, b]</code></td>
-    </tr>
-    <tr>
-      <td>=== 0</td>
-      <td>keep original order of <code>a</code> and <code>b</code></td>
-    </tr>
-  </tbody>
-</table></figure>
+<figure class="table-container">
+  <table border="1">
+    <thead>
+      <tr>
+        <th><code>compareFn(a, b)</code> return value</th>
+        <th>sort order</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&gt; 0</td>
+        <td>sort <code>a</code> after <code>b</code>, e.g. <code>[b, a]</code></td>
+      </tr>
+      <tr>
+        <td>&lt; 0</td>
+        <td>sort <code>a</code> before <code>b</code>, e.g. <code>[a, b]</code></td>
+      </tr>
+      <tr>
+        <td>=== 0</td>
+        <td>keep original order of <code>a</code> and <code>b</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
 So the required statement with a return function to sort an array of numbers in ascending order is:
 ```js
 arr.sort((a, b) => a - b);
