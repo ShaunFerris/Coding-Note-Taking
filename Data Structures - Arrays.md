@@ -74,3 +74,83 @@ b.extend(a)
 # b is [10, 1, 2, 3, 4]
 ```
  To create a copy of an array in python, use the copy or deepcopy method from the copy module.
+
+## Sorting arrays
+### JS
+[For more detail on the js sort method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+In JS you use the sort method to sort an array. It will sort the list in place, rather making a copy or deepcopy. To sort into a new array object, copy it before sorting like this:
+```js
+const numbers = [3, 1, 4, 1, 5];
+// [...numbers] creates a shallow copy, so sort() does not mutate the original
+const sorted = [...numbers].sort((a, b) => a - b);
+sorted[0] = 10;
+console.log(numbers[0]); // 3
+```
+The **`sort()`** method sorts the elements of an array _[in place](https://en.wikipedia.org/wiki/In-place_algorithm)_ and returns the reference to the same array, now sorted. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values. **This means it will not sort in numerical order by default.**
+
+The syntax of the sort method is:
+```js
+sort()
+//or
+sort(compareFn)
+```
+The optional compareFn argument is a function that defines the sort order. The return value should be a number whose positivity indicates the relative order of the two elements. The function is called with the following arguments, `a` and `b`, the first and second elements to compare.
+
+If omitted, the array elements are converted to strings, then sorted according to each character's Unicode code point value.
+
+If `compareFn` is supplied, all non-`undefined` array elements are sorted according to the return value of the compare function (all `undefined` elements are sorted to the end of the array, with no call to `compareFn`).
+
+<figure class="table-container"><table>
+  <thead>
+    <tr>
+      <th><code>compareFn(a, b)</code> return value</th>
+      <th>sort order</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&gt; 0</td>
+      <td>sort <code>a</code> after <code>b</code>, e.g. <code>[b, a]</code></td>
+    </tr>
+    <tr>
+      <td>&lt; 0</td>
+      <td>sort <code>a</code> before <code>b</code>, e.g. <code>[a, b]</code></td>
+    </tr>
+    <tr>
+      <td>=== 0</td>
+      <td>keep original order of <code>a</code> and <code>b</code></td>
+    </tr>
+  </tbody>
+</table></figure>
+So the required statement with a return function to sort an array of numbers in ascending order is:
+```js
+arr.sort((a, b) => a - b);
+```
+
+### Python
+In python the default mode of the sort method will sort a numerical list in ascending order.
+
+The syntax of the `sort()` method is:
+```python
+list.sort(key=..., reverse=...)
+```
+Alternatively, you can also use Python's built-in [sorted()](https://www.programiz.com/python-programming/methods/built-in/sorted) function for the same purpose.
+```python
+sorted(list, key=..., reverse=...)
+```
+By default, `sort()` doesn't require any extra parameters. However, it has two optional parameters:
+
+-   **reverse** - If `True`, the sorted list is reversed (or sorted in Descending order)
+-   **key** - function that serves as a key for the sort comparison
+
+The `sort()` method doesn't return any value. Rather, it changes the original list.
+If you want a function to return the sorted list rather than change the original list, use `sorted()`.
+
+If you want your own implementation for sorting, the `sort()` method also accepts a `key` function as an optional parameter.
+
+Based on the results of the key function, you can sort the given list.
+```python
+list.sort(key=len)
+```
+In the above case the function to sort by is the built in `len()` function, and the array will be sorted by element length. You can also use functions that you have defined or lambda functions here.
