@@ -39,6 +39,9 @@ for (const element of array1) {
 // Expected output: "c"
 ```
 
+### for...in loops
+Similar to for...of loops, for...in loops iterate over iterable objects, but where for...of loops iterate over the values, for...in loops iterate over the keys. In objects (dicts) this is straightforward. In lists this means that the loop will iterate over the indexes of each entry.
+
 ### do...while loops
 Do...while loops will always do one pass of the code in the loop, and then continue until the loop condition is no longer true.
 In the following example, the array will contain 5 after code execution where in  a normal for loop it would be empty:
