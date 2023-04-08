@@ -1,5 +1,7 @@
 #datastructures #arrays #lists #javascript #python #mutabletypes
 
+For a more technical look at how arrays work in memory and a good lead in to [[Data Structures - Linked Lists]], see [[Data Structures - Arrays - How They Work]].
+
 These notes cover some fundamentals of JS arrays and python lists in a mostly language agnostic fashion. The terms list and array will be used interchangably. When language specific instances occur I will try to list the relevant methods in both languages.
 
 ## Basics
