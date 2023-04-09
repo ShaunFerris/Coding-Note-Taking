@@ -1,4 +1,4 @@
-#datastructures #memory #optimization #highlevelconcepts 
+#datastructures #memory #optimization #highlevelconcepts #arrays 
 
 For a look at how to actually use arrays, the basic fundamentals of what they are, and some common useful methods for them in both python and JS, see [[Data Structures - Using Arrays]].
 
