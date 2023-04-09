@@ -2,6 +2,8 @@
 
 Initial notes for this section are coming from a basic transcription of [this](https://www.youtube.com/watch?v=6z4ePR7YYa8) video by SimonDev.
 
+Dynamic programming solutions to problems, particularly top-down solutions, are often recursive. For an overview of recursion and recursive solutions to problems, see [[General - Basic Recursion]].
+
 ## TLDR:
 Dynamic programming is just breaking down a problem into sub-problems, and saving or pre-computing answers to those sub-problems.
 

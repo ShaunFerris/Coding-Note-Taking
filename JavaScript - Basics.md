@@ -42,6 +42,7 @@ if (num > 10) {
 	return "10 or less";
 }
 ```
+More advanced flow contorl statements can be created using [[JavaScript - The Ternary Operator]].
 
 ## ES6 basics
 ES6 stands for **ECMAScript 6**. ECMAScript was created to standardize JavaScript, and ES6 is the 6th version of ECMAScript, it was published in 2015, and is also known as ECMAScript 2015.

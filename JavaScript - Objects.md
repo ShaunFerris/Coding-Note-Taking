@@ -53,3 +53,7 @@ const person = {
   }
 };
 ```
+
+## Object methods in JS
+Objects in JS can have methods like classes in python. Even objects created without the class keyword in JS can have methods.
+
