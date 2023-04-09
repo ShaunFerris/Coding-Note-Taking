@@ -97,7 +97,8 @@ sort()
 //or
 sort(compareFn)
 ```
-The optional compareFn argument is a function that defines the sort order. The return value should be a number whose positivity indicates the relative order of the two elements. The function is called with the following arguments, `a` and `b`, the first and second elements to compare.
+The optional compareFn argument is a function that defines the sort order. It is written as an anonymous function using `a` and `b` as the args: [[General - Annonymous Functions]].
+The return value should be a number whose positivity indicates the relative order of the two elements. The function is called with the following arguments, `a` and `b`, the first and second elements to compare.
 
 If omitted, the array elements are converted to strings, then sorted according to each character's Unicode code point value.
 

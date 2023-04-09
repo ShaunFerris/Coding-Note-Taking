@@ -47,6 +47,7 @@ console.log(a, b, c);
 ```
 
 ### Array destructuring via rest elements
+[[JavaScript - The Rest Function and Handling Multiple Function Args]]
 In some situations involving array destructuring, we might want to collect the rest of the elements into a separate array.
 
 The result is similar to `Array.prototype.slice()`, as shown below:

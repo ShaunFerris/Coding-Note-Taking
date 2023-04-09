@@ -26,3 +26,5 @@ When there is no function body (`//do this` in the above example) and only a ret
 const myFunction = (x) => x + 5
 ```
 
+[[JavaScript - The Rest Function and Handling Multiple Function Args]] The rest function can also be applied to anonymous functions in js.
+
