@@ -84,3 +84,8 @@ But linked lists are very flexible, and each node can be allocated between the u
 
 ## Why would I ever choose linked lists over an array?
 The canned reponse is to say: "You evalutate your needs, and if you need to do lots of insertions or deletions then go for a linked list." This is pretty much right but in most cases an array will still work fine and a linked list is more of a slight optimization to implement if you need the resources.
+
+## Other resources
+For a great overview of linked lists in python, icluding how to implement your own and how to use the pre-written implementation in the collections module, see: [This](https://realpython.com/linked-lists-python/#introducing-collectionsdeque)
+
+For details of implementing them in JS, see [this]()https://www.freecodecamp.org/news/implementing-a-linked-list-in-javascript/
