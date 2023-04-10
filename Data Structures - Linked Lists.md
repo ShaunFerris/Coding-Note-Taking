@@ -57,3 +57,30 @@ treverse_linked_list(node3)
 
 Both of these pieces of code use a loop, where we print or otherwise access the data of the current node, before updating the current node with the pointer in the what was previously the current node. This loop continues until the current node is set to null by the base node signifying we have gone off the end of the linked list.
 
+### Other operations in linked lists
+So this is how linked list traversal is done. But how do we search in a linked list? We simply traverse the list and check each nodes data value for the one we want, and stop when we hit it. 
+
+If we look at deleting something from the linked list, it gets a little more interesting, This is acheived by simply changing the next address in the node before the item to delete, and pointing it to the item after the one to delete. Now the target node is effectively out of the list. Inserting a new item anywhere in the list is essentially the exact same but in reverse. You allocate a new node for the new data, change the previous nodes next pointer to point to the new node, and have the new node point to the next one in the list. 
+![[Pasted image 20230410114444.png]]
+
+## Directly comparing linked lists to arrays
+Arrays and linked lists can be compared along two dimensions, performance and memory usage.
+
+### Traversal
+Although it is true that for both linked lists and arrays, traversal is just going from one entry to the next, for linked lists we must consider that the next node could be literally anywhere in memory as they are not contiguous. This means the pre-fetcher may not be able to cache it for you ahead of time, so there is a potential for a cache miss on every single element. This means even if you are traversing the same number of steps, the array is just easier and faster for the cpu to access. 
+
+### Random access
+Say a random number generator is used to generate an element to access, like it says give me hte fourth element of the array. This is also easier for arrays, because you just take the base plus the index of the desired element and access that memory. With linked lists this is very hard, because you have to traverse the list from the start everytime you search for an element.
+
+### Insertion and deletion
+This is where things get more interesting for linked lists. For arrays, unless you are inserting or deleting from the very end of the array, you are going to have to perform lots of operations to shuffle around the contents to preserve it's order. With linked lists, you always have the same operations to delete or insert an element **once you have traversed to that element.** This means that as long as you have a fast method for traversing to a given node on the linked list, insertion and deletion are efficient and in the right curcumstances is way way faster than for an array. Specifically inserting at the beginning is always much faster for LLs than arrays.
+
+### Memory
+Memory wise, linked lists are pretty neat. Unless your array implementation is dynamic and allocates more space than is needed, the memory block will pretty much always represent the array without any extra overhead. Linked lists on the other hand have each node storing an address too, so tend to use a little more memory. 
+
+**However,** lets say you have a small, fixed amount of memory, and you've already done a bunch of allocations to it. If you were to try to allocate an array to this block of memory, you pretty much can't:
+![[Pasted image 20230410115945.png]]
+But linked lists are very flexible, and each node can be allocated between the used sections of memory in your pre-allocated block. So although it techinically uses more memory, there is a flexibility there. 
+
+## Why would I ever choose linked lists over an array?
+The canned reponse is to say: "You evalutate your needs, and if you need to do lots of insertions or deletions then go for a linked list." This is pretty much right but in most cases an array will still work fine and a linked list is more of a slight optimization to implement if you need the resources.
