@@ -1,4 +1,4 @@
-#algorithms #algorithmoptimization #highlevelconcepts
+#algorithms #algorithmoptimization #highlevelconcepts #paradigms 
 
 Initial notes for this section are coming from a basic transcription of [this](https://www.youtube.com/watch?v=6z4ePR7YYa8) video by SimonDev.
 
