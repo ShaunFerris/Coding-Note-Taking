@@ -336,3 +336,37 @@ If you have an instance `let duck = new Bird();` and you call `duck.eat()`, this
 2.  `Bird` => Is `eat()` defined here? => Yes. Execute it and stop searching.
 3.  `Animal` => `eat()` is also defined, but JavaScript stopped searching before reaching this level.
 4.  Object => JavaScript stopped searching before reaching this level.
+
+## Mixins
+As you have seen, behavior is shared through inheritance. However, there are cases when inheritance is not the best solution. Inheritance does not work well for unrelated objects like `Bird` and `Airplane`. They can both fly, but a `Bird` is not a type of `Airplane` and vice versa.
+
+For unrelated objects, it's better to use mixins. A mixin allows other objects to use a collection of functions.
+```js
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+```
+The `flyMixin` takes any object and gives it the `fly` method.
+
+## Closure
+In the previous challenge, `bird` had a public property `name`. It is considered public because it can be accessed and changed outside of `bird`'s definition.
+```js
+bird.name = "Duffy";
+```
+Therefore, any part of your code can easily change the name of `bird` to any value. Think about things like passwords and bank accounts being easily changeable by any part of your codebase. That could cause a lot of issues.
+
+The simplest way to make this public property private is by creating a variable within the constructor function. This changes the scope of that variable to be within the constructor function versus available globally. This way, the variable can only be accessed and changed by methods also within the constructor function.
+```js
+function Bird() {
+  let hatchedEgg = 10;
+
+  this.getHatchedEggCount = function() { 
+    return hatchedEgg;
+  };
+}
+let ducky = new Bird();
+ducky.getHatchedEggCount();
+```
+Here `getHatchedEggCount` is a privileged method, because it has access to the private variable `hatchedEgg`. This is possible because `hatchedEgg` is declared in the same context as `getHatchedEggCount`. In JavaScript, a function always has access to the context in which it was created. This is called `closure`.
