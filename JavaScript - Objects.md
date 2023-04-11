@@ -223,3 +223,87 @@ function joinBirdFraternity(candidate) {
 ```
 **Note:** Since the `constructor` property can be overwritten (which will be covered in the next two challenges) it’s generally better to use the `instanceof` method to check the type of an object.
 
+## Objects and prototypes
+Just like people inherit genes from their parents, an object inherits its `prototype` directly from the constructor function that created it. For example, here the `Bird` constructor creates the `duck` object:
+```js
+function Bird(name) {
+  this.name = name;
+}
+
+let duck = new Bird("Donald");
+```
+`duck` inherits its `prototype` from the `Bird` constructor function. You can show this relationship with the `isPrototypeOf` method:
+```js
+Bird.prototype.isPrototypeOf(duck);
+```
+This would return `true`.
+
+All objects in JavaScript (with a few exceptions) have a `prototype`. Also, an object’s `prototype` itself is an object.
+```js
+function Bird(name) {
+  this.name = name;
+}
+
+typeof Bird.prototype;
+```
+Because a `prototype` is an object, a `prototype` can have its own `prototype`! In this case, the `prototype` of `Bird.prototype` is `Object.prototype`:
+```js
+Object.prototype.isPrototypeOf(Bird.prototype);
+```
+How is this useful? You may recall the `hasOwnProperty` method from a previous challenge:
+```js
+let duck = new Bird("Donald");
+duck.hasOwnProperty("name");
+```
+The `hasOwnProperty` method is defined in `Object.prototype`, which can be accessed by `Bird.prototype`, which can then be accessed by `duck`. This is an example of the `prototype` chain. In this `prototype` chain, `Bird` is the `supertype` for `duck`, while `duck` is the `subtype`. `Object` is a `supertype` for both `Bird` and `duck`. `Object` is a `supertype` for all objects in JavaScript. Therefore, any object can use the `hasOwnProperty` method.
+
+## Object inheritance
+There's a principle in programming called Don't Repeat Yourself (DRY). The reason repeated code is a problem is because any change requires fixing code in multiple places. This usually means more work for programmers and more room for errors.
+
+Notice in the example below that the `describe` method is shared by `Bird` and `Dog`:
+```js
+Bird.prototype = {
+  constructor: Bird,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+Dog.prototype = {
+  constructor: Dog,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
+The `describe` method is repeated in two places. The code can be edited to follow the DRY principle by creating a `supertype` (or parent) called `Animal`:
+```js
+function Animal() { };
+
+Animal.prototype = {
+  constructor: Animal, 
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
+Since `Animal` includes the `describe` method, you can remove it from `Bird` and `Dog`:
+```js
+Bird.prototype = {
+  constructor: Bird
+};
+
+Dog.prototype = {
+  constructor: Dog
+};
+```
+ To actually give the animal objects describe method to instances of Dog or bird you need to let them inherit the method from the animal prototype.
+```js
+Bird.prototype = Object.create(Animal.prototype);
+```
+Remember that the `prototype` is like the "recipe" for creating an object. In a way, the recipe for `Bird` now includes all the key "ingredients" from `Animal`.
+```js
+let duck = new Bird("Donald");
+duck.eat();
+```
+`duck` inherits all of `Animal`'s properties, including the `eat` method.
