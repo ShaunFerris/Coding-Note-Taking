@@ -64,4 +64,19 @@ After using this command, subsequent `git push` commands will use the specified 
 
 Additionally, when you run `git status`, Git will display the tracking information for the current branch, including the upstream branch that has been set with the `-u` flag.
 
-### 
+### Submit your changes for review
+Now if you go to your fork of the repo on github you should see a compare and pull request button like below:
+
+![](https://camo.githubusercontent.com/ca3b1cefece5f3b9b3435020e6a357ca024cda5bd2b1e140a15170fcd1ec5381/68747470733a2f2f6669727374636f6e747269627574696f6e732e6769746875622e696f2f6173736574732f526561646d652f636f6d706172652d616e642d70756c6c2e706e67)
+Click that button to open a pull request. If your request is approved then the original owner has agreed with your changes and they will be merged into the original repo. 
+
+### Keep up with changes to the master repo in your fork
+In order to continue contributing to the work on a longer term basis, you need a way too keep your forked version of the repository up to date with any changes that other people make to it.
+This is achieved by adding a second remote to your local repo. After initially cloning your fork of the repo, your local project has one remote, called origin, which is your fork. To update your local repo with changes from the owner, create a second remote called upstream, and then pull from it.
+```bash
+$ git remote add upstream <original-owners-repo-addresss>
+git pull upstream
+```
+
+Here is a diagram to clarify the situation slightly:
+![](https://i.stack.imgur.com/cEJjT.png)
