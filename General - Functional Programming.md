@@ -20,3 +20,10 @@ When functions are passed in to or returned from another function, then those fu
 One of the core principles of functional programming is to not change things. Changes lead to bugs. It's easier to prevent bugs knowing that your functions don't change anything, including the function arguments or any global variable.
 
 Another principle of functional programming is to always declare your dependencies explicitly. This means if a function depends on a variable or object being present, then pass that variable or object directly into the function as an argument.
+
+Some solid concepts to be aware of when thinkning about functional programming:
+1.  Don't alter a variable or object - create new variables and objects and return them if need be from a function. Hint: using something like `const newArr = arrVar`, where `arrVar` is an array will simply create a reference to the existing variable and not a copy. So changing a value in `newArr` would change the value in `arrVar`.
+    
+2.  Declare function parameters - any computation inside a function depends only on the arguments passed to the function, and not on any global object or variable.
+
+For a more in depth look at functional programming in practice with specific reference to JS, see [[JavaScript - Higher Order Functions and Fucntions as First Class Objects]].
