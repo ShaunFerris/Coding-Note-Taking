@@ -1,6 +1,8 @@
 #javascript #functions #fucntionalprogramming #paradigms 
 
 As its name suggests, functional programming is centered around a theory of functions.
+The use of higher order functions is closely linked to functional programming as a paradigm:
+[[General - Functional Programming]].
 
 It would make sense to be able to pass them as arguments to other functions, and return a function from another function. Functions are considered first class objects in JavaScript, which means they can be used like any other object. They can be saved in variables, stored in an object, or passed as function arguments.
 
