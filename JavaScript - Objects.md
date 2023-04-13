@@ -1,6 +1,6 @@
 #javascript #objects #oop #datastructures #dictionaries #paradigms 
 
-Objects in JS allow for complex and flexible data structures. They allow arbitrary combinations of strings, numbers, booleans, arrays, functions and objects. Objects are used as the JS implementation of dictionaries (Hash tables, see [[Data Structures - Hash Tables]]). Object constructors, discussed later in this note, are also the equivalent of class definitions, although class definitions using the class keyword were also added in ES6, see [[JavaScript - ES6 Objects and the Class Keyword]].
+Objects in JS allow for complex and flexible data structures. They allow arbitrary combinations of strings, numbers, booleans, arrays, functions and objects. Objects are used as the JS implementation of dictionaries (Hash tables, see [[Data Structures - Hash Tables Dictionaries and Associative Arrays]]). Object constructors, discussed later in this note, are also the equivalent of class definitions, although class definitions using the class keyword were also added in ES6, see [[JavaScript - ES6 Objects and the Class Keyword]].
 
 Objects are decalred as constants and contain properties. Properties is the name used for the variable data stored in an object. The data stored as properties in a JS object is assigned by a colon instead of an assignment operator, and functionally JS objects are very similar to python dictionaries. The below is an example of an object constructor statement:
 ```js

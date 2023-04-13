@@ -53,5 +53,5 @@ There are situations where arrays are pretty bad. Finding an element in an array
 Inserting or removing items in an array from anywhere except the end also gets progressively slower and slower the further you get from the end. Say you want to remove the second to last item in an array, you simply copy the last item to the second to last slot, and then mark the array as being one slot smaller. It follows then that if you have to do an operation at the beginning, you are now required to do a lot more operations. Every slot between the one you are working on and the end of the array will need to be modified due to the contiguous nature of memory allocation for the array.
 
 ## How to improve on the weaknesses of arrays?
-More complex data structures! Like [[Data Structures - Linked Lists]] or [[Data Structures - Hash Tables]]
+More complex data structures! Like [[Data Structures - Linked Lists]] or [[Data Structures - Hash Tables Dictionaries and Associative Arrays]]
 However it is not possible to understand these more complex structures without a solid understanding of how arrays work.
