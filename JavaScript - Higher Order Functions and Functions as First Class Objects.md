@@ -1,4 +1,4 @@
-#javascript #functions #fucntionalprogramming #paradigms 
+#javascript #functions #fucntionalprogramming #paradigms #arrays 
 
 As its name suggests, functional programming is centered around a theory of functions.
 The use of higher order functions is closely linked to functional programming as a paradigm:
@@ -49,3 +49,4 @@ console.log(usersUnder30);
 ```
 The console would display the value `[ { name: 'Amy', age: 20 }, { name: 'camperCat', age: 10 } ]`.
 
+### The reduce method
