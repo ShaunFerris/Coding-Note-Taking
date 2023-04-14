@@ -6,6 +6,8 @@ There are alot of similarities in form and function between this topic and [[Jav
 The rest function, denoted as `...args` works in a similar manner to `*args` in python, allowing a function to take multiple values as argument. When you use the rest function, args are passed as an array that can then be accessed in the function. It also allows us to use the map() filter() or reduce() functions to operate on the args without manually checking the array.
 
 ## Functions that work well on arg arrays
+The functions talked about here are also discussed in [[JavaScript - Higher Order Functions and Functions as First Class Objects]].
+
 Below will follow a short explanation of the map filter and reduce functions, which are all methods to be called on arrays and work great when used inside a function written to take multiple args with the rest function.
 
 ### map()
@@ -57,3 +59,5 @@ The spread operator is similar to the rest function, and denoted by `...array`. 
 const myArray = [6, 89, 3, 45]
 const maximus = Math.max(...myArray);
 ```
+
+The spread operator is also discussed in [[Data Structures - Using Arrays]] along with it's python counterpart the splat operator.
