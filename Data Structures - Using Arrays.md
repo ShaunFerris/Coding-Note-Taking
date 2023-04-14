@@ -160,3 +160,7 @@ Based on the results of the key function, you can sort the given list.
 list.sort(key=len)
 ```
 In the above case the function to sort by is the built in `len()` function, and the array will be sorted by element length. You can also use functions that you have defined or lambda functions here.
+
+## Higher order array functions
+### Javascript
+Notes on higher order js array functions are here: [[JavaScript - Higher Order Functions and Functions as First Class Objects]].
