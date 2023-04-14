@@ -1,4 +1,4 @@
-#javascript #functions #fucntionalprogramming #paradigms #arrays 
+#javascript #functions #functionalprogramming #paradigms #arrays  
 
 As its name suggests, functional programming is centered around a theory of functions.
 The use of higher order functions is closely linked to functional programming as a paradigm:

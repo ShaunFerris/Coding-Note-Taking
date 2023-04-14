@@ -164,3 +164,6 @@ In the above case the function to sort by is the built in `len()` function, and 
 ## Higher order array functions
 ### Javascript
 Notes on higher order js array functions are here: [[JavaScript - Higher Order Functions and Functions as First Class Objects]].
+
+### Python
+The higher order functions discussed in the linked js notes above, in particular map, filter and reduce, also exist in python [[Python - Map, Filter and Reduce Functions]]
