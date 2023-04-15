@@ -26,7 +26,7 @@ Some solid concepts to be aware of when thinkning about functional programming:
     
 2.  Declare function parameters - any computation inside a function depends only on the arguments passed to the function, and not on any global object or variable.
 
-For a more in depth look at functional programming in practice with specific reference to JS, see [[JavaScript - Higher Order Functions and Functions as First Class Objects]].
+For a more in depth look at functional programming in practice with specific reference to JS, see [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]].
 
 For higher order functions in python see [[Python - Map, Filter and Reduce Functions]].
 

@@ -86,3 +86,29 @@ const usersObj = users.reduce((obj, user) => {
 console.log(usersObj);
 ```
 The console would display the value `{ John: 34, Amy: 20, camperCat: 10 }`.
+
+### The every  method
+The `every` method works with arrays to check if _every_ element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
+
+For example, the following code would check if every element in the `numbers` array is less than 10:
+```js
+const numbers = [1, 5, 8, 0, 10, 11];
+
+numbers.every(function(currentValue) {
+  return currentValue < 10;
+});
+```
+The `every` method would return `false` here.
+
+### The some method
+The `some` method works with arrays to check if _any_ element passes a particular test. It returns a Boolean value - `true` if any of the values meet the criteria, `false` if not.
+
+For example, the following code would check if any element in the `numbers` array is less than 10:
+```js
+const numbers = [10, 50, 8, 220, 110, 11];
+
+numbers.some(function(currentValue) {
+  return currentValue < 10;
+});
+```
+The `some` method would return `true`.
