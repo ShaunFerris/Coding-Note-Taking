@@ -33,7 +33,7 @@ For higher order functions in python see [[Python - Map, Filter and Reduce Funct
 More info on array functions that are relevant to functional programming paradigms:
 [[Data Structures - Using Arrays]].
 
-## Currying functions
+## Currying functions and partial application of functions
 The _arity_ of a function is the number of arguments it requires. **Currying** a function means to **convert a function of N arity into N functions of arity 1.**
 
 In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
