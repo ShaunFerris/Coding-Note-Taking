@@ -49,6 +49,24 @@ console.log(usersUnder30);
 ```
 The console would display the value `[ { name: 'Amy', age: 20 }, { name: 'camperCat', age: 10 } ]`.
 
+A more advanced example of use for the filter method is presented below. Notice how the callback function of reduce returns true or false for different conditions, and when true the current element of the array will be added to the output array.
+```js
+function whatIsInAName(collection, source) {
+  const keys = Object.keys(source);
+  return collection.filter(function(obj) {
+    for (const key of keys) {
+      if (!obj.hasOwnProperty(key) ||
+        obj[key] !== source[key]) return false
+    }
+    return true
+  });
+}
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+
+//output: [{ first: "Tybalt", last: "Capulet" }]
+```
+
 ### The reduce method
 `Array.prototype.reduce()`, or simply `reduce()`, is the most general of all array operations in JavaScript. You can solve almost any array processing problem using the `reduce` method.
 
