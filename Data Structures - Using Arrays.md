@@ -167,3 +167,21 @@ Notes on higher order js array functions are here: [[JavaScript - Higher Order A
 
 ### Python
 The higher order functions discussed in the linked js notes above, in particular map, filter and reduce, also exist in python [[Python - Map, Filter and Reduce Functions]]
+
+## Flaten an multidimensional array
+Sometimes you have a multidimensional array and want to convert it to a single array that contains al the elements in the same order they appeared. This is called flattening.
+
+### Javascript
+In JS this is very easy, as you simply call the flat method:
+```js
+let list2D = [[1,2,3],[4],[5,6],[7,8,9]]
+let list1D = list2D.flat()
+```
+The list1D variable will now contain: `[1,2,3,4,5,6,7,8,9]`.
+The flat method also accepts a depth parameter, which indicates how many levels deep to flatten. It defaults to one, and must be set higher to fully flatten arrays with more than 2 layers of nesting.
+
+### Python
+In python, the most pythonic way to flatten multidimensional arrays is with list comprehension:
+```python
+list_1D = [item for sub_list in list_2D for item in sub_list]
+```
