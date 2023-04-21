@@ -1,11 +1,29 @@
 #paradigms #highlevelconcepts #algorithms #functions 
 
-Functional programming is a style of programming where solutions are simple, isolated functions, without any side effects outside of the function scope: `INPUT -> PROCESS -> OUTPUT`
+Functional programming is a style of programming where solutions are simple, isolated functions, without any side effects outside of the function scope: `INPUT -> PROCESS -> OUTPUT`. 
 
 Functional programming is about:
 1.  Isolated functions - there is no dependence on the state of the program, which includes global variables that are subject to change
 2.  Pure functions - the same input always gives the same output
 3.  Functions with limited side effects - any changes, or mutations, to the state of the program outside the function are carefully controlled
+
+In a functional program, input data flows through a series of functions, with the output of one function being piped into another. Control flow logic can be implemented to decided what data goes into what function, but this is not the key feature. Functional programming tries to avoid mutable data types and state changes as much as possible. 
+
+Other core features of functional programming include the following:
+
+-   The use of recursion ([[General - Basic Recursion]]) rather than loops or other structures as a primary flow control structure
+-   A focus on lists ([[Data Structures - Using Arrays]]) or arrays processing
+-   A focus on _what_ is to be computed rather than on _how_ to compute it
+-   The use of pure functions that avoid **side effects**
+-   The use of higher order functions ([[JavaScript - Higher Order Array Functions and Functions as First Class Objects]])
+
+JavaScript and python are both multi-paradigm languages and support a functional style with tools such as:
+-   Functions as [first-class objects](https://realpython.com/primer-on-python-decorators/#first-class-objects)
+-   [Recursion](https://realpython.com/python-recursion/) capabilities
+-   Anonymous functions with [`lambda`](https://realpython.com/python-lambda/) in python and arrow functions in JS
+-   [Iterators](https://docs.python.org/3/glossary.html#term-iterator) and [generators](https://realpython.com/introduction-to-python-generators/)
+-   Standard modules like [`functools`](https://docs.python.org/3/library/functools.html#module-functools) and [`itertools`](https://realpython.com/python-itertools/) - Python specific
+-   Tools like [`map()`](https://docs.python.org/3/library/functions.html#map), [`filter()`](https://docs.python.org/3/library/functions.html#filter), [`reduce()`](https://docs.python.org/3/library/functools.html#functools.reduce), [`sum()`](https://realpython.com/python-sum-function/), [`len()`](https://realpython.com/len-python-function/), [`any()`](https://realpython.com/any-python/), [`all()`](https://realpython.com/python-all/), [`min()`, `max()`](https://realpython.com/python-min-and-max/), and so on
 
 ## Functional programming terminology
 Callbacks are the functions that are slipped or passed into another function to decide the invocation of that function. You may have seen them passed to other methods, for example in `filter`, the callback function tells JavaScript the criteria for how to filter an array.
