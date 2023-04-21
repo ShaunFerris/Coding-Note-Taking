@@ -106,6 +106,8 @@ console.log(usersObj);
 The console would display the value `{ John: 34, Amy: 20, camperCat: 10 }`.
 
 ### The every  method
+This is the equivalent of the `all` method for lists in python.
+
 The `every` method works with arrays to check if _every_ element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
 
 For example, the following code would check if every element in the `numbers` array is less than 10:
@@ -119,6 +121,8 @@ numbers.every(function(currentValue) {
 The `every` method would return `false` here.
 
 ### The some method
+This is the JS equivalent of the `any` method for lists in python.
+
 The `some` method works with arrays to check if _any_ element passes a particular test. It returns a Boolean value - `true` if any of the values meet the criteria, `false` if not.
 
 For example, the following code would check if any element in the `numbers` array is less than 10:
@@ -130,3 +134,4 @@ numbers.some(function(currentValue) {
 });
 ```
 The `some` method would return `true`.
+
