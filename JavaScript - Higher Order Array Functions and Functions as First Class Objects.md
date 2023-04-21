@@ -106,7 +106,7 @@ console.log(usersObj);
 The console would display the value `{ John: 34, Amy: 20, camperCat: 10 }`.
 
 ### The every  method
-This is the equivalent of the `all` method for lists in python.
+This is the equivalent of the `all` function for lists in python. Note though that any and all in python are functions that accept a list or generator whereas some and every in JS are methods from the list prototype that accept callbacks.
 
 The `every` method works with arrays to check if _every_ element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
 
@@ -121,7 +121,7 @@ numbers.every(function(currentValue) {
 The `every` method would return `false` here.
 
 ### The some method
-This is the JS equivalent of the `any` method for lists in python.
+This is the JS equivalent of the `any` function for lists in python. Note though that any and all in python are functions that accept a list or generator whereas some and every in JS are methods from the list prototype that accept callbacks.
 
 The `some` method works with arrays to check if _any_ element passes a particular test. It returns a Boolean value - `true` if any of the values meet the criteria, `false` if not.
 
