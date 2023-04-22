@@ -46,7 +46,7 @@ Some solid concepts to be aware of when thinkning about functional programming:
 
 For a more in depth look at functional programming in practice with specific reference to JS, see [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]].
 
-For higher order functions in python see [[Python - Map, Filter and Reduce Functions]].
+For higher order functions in python see [[Python - Map, Filter and Reduce Functions]], and [[Python - Functools]]
 
 More info on array functions that are relevant to functional programming paradigms:
 [[Data Structures - Using Arrays]].
