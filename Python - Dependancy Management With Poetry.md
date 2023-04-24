@@ -61,8 +61,15 @@ demo-package
 └── tests
     └── __init__.py
 ```
- The `pyproject.toml` file is most important here, as it is the file that will orchestrate the project and mange dependancies. Initially it will look like this:
-```bash
+The `demo-package` folder contains two files: `pyproject.toml` and `README.md`, as well as two packages: `demo-package` to store the source code files and `tests` to store the test files.
+
+### pyproject.toml
+A quick aside on toml files. TOML stands for Tom's Obvious Minimal Language, in reference to it's creator and files with the .toml extension are written in this format. It is designed as a human readable language system specifically for config files for projects. TOML is designed to map unambiguously to a hash-table, with table names in square brackets and following key-value pairs on a single line per entry.
+
+The `pyproject.toml` file is most important in the initial file structure of our project, as it is the file that will orchestrate the project and mange dependancies.  
+
+Initially it will look like this:
+```toml
 [tool.poetry]
 name = "demo-package"
 version = "0.1.0"
@@ -79,8 +86,26 @@ python = "^3.7"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api" 
 ```
-Poetry assumes your package contains a package with the same name as `tool.poetry.name` located in the root of your project. If this is not the case, populate [`tool.poetry.packages`](https://python-poetry.org/docs/pyproject/#packages) to specify your packages and their locations.
+The `pyproject.toml` file has three tables by default: `tool.poetry`, `tool.poetry.dependencies`, and `build-system`.
 
-Similarly, the traditional `MANIFEST.in` file is replaced by the `tool.poetry.readme`, `tool.poetry.include`, and `tool.poetry.exclude` sections. `tool.poetry.exclude` is additionally implicitly populated by your `.gitignore`. For full documentation on the project format, see the [pyproject section](https://python-poetry.org/docs/pyproject/) of the documentation.
+The `tool.poetry` table in the `pyproject.toml` file has multiple key/value pairs, with `name`, `version`, `description`, and `authors` being required while others are optional.
 
-Poetry will require you to explicitly specify what versions of Python you intend to support, and its universal locking will guarantee that your project is installable (and all dependencies claim support for) all supported Python versions.
+### tool.poetry
+Poetry assumes that a package with the same name as the `tool.poetry.name` specified in the `pyproject.toml` file is located at the root of the project. But if the package location is different, the packages and their locations can be specified in the `tool.poetry.packages` key.
+
+### tool.poetry.dependancies
+```toml
+[tool.poetry.dependencies]
+python = "^3.11"
+```
+In the `tool.poetry.dependencies` table, it is mandatory to declare the Python version for which the package is compatible.
+
+### build-system
+```toml
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+```
+The last table, `build-system`, has two keys – `requires` and `build-backend`. The `requires` key is a list of dependencies required to build the package, while the `build-backend` key is the Python object used to perform the build process.
+
+TOML is Poetry's preferred configuration format, and starting from version 3.11, Python provides the `tomllib` module for parsing TOML files.
