@@ -44,3 +44,43 @@ curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 -
 poetry completions bash >> ~/.bash_completion
 ```
 
+Note that there other aspects that can be manipulated with a more advanced install of poetry. Information on this, and information on installin poetry and it's terminal completions on windows or systems not using bash can be found [here](https://python-poetry.org/docs/).
+
+## Basic usage of poetry
+Pulling from the official poetry docs, we will walk through how to create a basic poetry project, and what that actually does for us. Let's call our project `demo-package`. The first step is to run the following in terminal:
+```bash
+poetry new demo-package
+```
+This will create the following file structure at the file-system location we were in with the terminal:
+```bash
+demo-package
+├── pyproject.toml
+├── README.md
+├── demo-package
+│   └── __init__.py
+└── tests
+    └── __init__.py
+```
+ The `pyproject.toml` file is most important here, as it is the file that will orchestrate the project and mange dependancies. Initially it will look like this:
+```bash
+[tool.poetry]
+name = "demo-package"
+version = "0.1.0"
+description = ""
+authors = ["Shaun Ferris <slb.ferris@gmail.com>"]
+readme = "README.md"
+packages = [{include = "demo-package"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api" 
+```
+Poetry assumes your package contains a package with the same name as `tool.poetry.name` located in the root of your project. If this is not the case, populate [`tool.poetry.packages`](https://python-poetry.org/docs/pyproject/#packages) to specify your packages and their locations.
+
+Similarly, the traditional `MANIFEST.in` file is replaced by the `tool.poetry.readme`, `tool.poetry.include`, and `tool.poetry.exclude` sections. `tool.poetry.exclude` is additionally implicitly populated by your `.gitignore`. For full documentation on the project format, see the [pyproject section](https://python-poetry.org/docs/pyproject/) of the documentation.
+
+Poetry will require you to explicitly specify what versions of Python you intend to support, and its universal locking will guarantee that your project is installable (and all dependencies claim support for) all supported Python versions.
