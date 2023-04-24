@@ -145,4 +145,12 @@ poetry add <dependancy name>
 ```
 This will download and install the dependancy, set the version constraints, and mofify the `pyproject.toml` file to reflect the changes.
 
+## The poetry.lock file
+This file is an exacting record of all the dependancies for your project, including the version used, that versions hash, and if they have since been removed or updated. Think of it like a ledger of dependancies and their changes over the course of the project. It is important to **make sure that this file is commited to version control** so that other users can be certain that they are using the same versions of dependant packages that you used in dev and testing.
 
+To create a `requirements.txt` file from the `poetry. lock` file run the command:
+```bash
+poetry export --output requirements.txt
+```
+
+## Package structure
