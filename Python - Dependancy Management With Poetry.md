@@ -118,6 +118,10 @@ Instead of creating a new project, Poetry can be used to ‘initialise’ a pre-
 cd pre-existing-project
 poetry init
 ```
+You can then add dependencies with:
+```bash
+poetry add <dependancy name>
+```
 
 ## Poetry and virtual environment management
 Poetry simplifies the creation of virtual environments for your projects. To create a virtual environment for our `demo-package` library, navigate to the project directory and run the `env use` command:
@@ -135,6 +139,10 @@ poetry env use /usr/bin/python3.10.6
 Poetry will detect and respect the use of pre-existing virtual envirionments in a project that are already externally activated. This feature is intended for cases where you wish to opt-out of poetrys built in environment management and take care of it yourself. To take advantage of this, simply activate a virtual environment using your preferred method or tooling, before running any Poetry commands that expect to manipulate an environment.
 
 ## Configuring dependancies
-
+In a fresh poetry project add the dependancies you know you will be using for the project using the same syntax as earlier when we were adding the dependancies of a pre-exisiting project initialized with poetry:
+```bash
+poetry add <dependancy name>
+```
+This will download and install the dependancy, set the version constraints, and mofify the `pyproject.toml` file to reflect the changes.
 
 
