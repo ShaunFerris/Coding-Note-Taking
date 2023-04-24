@@ -46,7 +46,7 @@ poetry completions bash >> ~/.bash_completion
 
 Note that there other aspects that can be manipulated with a more advanced install of poetry. Information on this, and information on installin poetry and it's terminal completions on windows or systems not using bash can be found [here](https://python-poetry.org/docs/).
 
-## Basic usage of poetry
+## Basic usage of poetry - create a new project
 Pulling from the official poetry docs, we will walk through how to create a basic poetry project, and what that actually does for us. Let's call our project `demo-package`. The first step is to run the following in terminal:
 ```bash
 poetry new demo-package
@@ -109,3 +109,32 @@ build-backend = "poetry.core.masonry.api"
 The last table, `build-system`, has two keys – `requires` and `build-backend`. The `requires` key is a list of dependencies required to build the package, while the `build-backend` key is the Python object used to perform the build process.
 
 TOML is Poetry's preferred configuration format, and starting from version 3.11, Python provides the `tomllib` module for parsing TOML files.
+
+## Basic usage of poetry - initialize in a pre-existing project
+We have covered how to create a new project in poetry and what the shape of it's file structure looks like, but what if we have already begun a project and now wish to use poetry to manage it and get it ready for widespread release?
+
+Instead of creating a new project, Poetry can be used to ‘initialise’ a pre-populated directory. To interactively create a `pyproject.toml` file in directory `pre-existing-project`:
+```bash
+cd pre-existing-project
+poetry init
+```
+
+## Poetry and virtual environment management
+Poetry simplifies the creation of virtual environments for your projects. To create a virtual environment for our `demo-package` library, navigate to the project directory and run the `env use` command:
+```bash
+poetry env use /full/path/to/python
+```
+
+The `/full/path/to/python` specifies the full path to the Python executable.
+
+For example, in mint:
+```bash
+poetry env use /usr/bin/python3.10.6
+```
+
+Poetry will detect and respect the use of pre-existing virtual envirionments in a project that are already externally activated. This feature is intended for cases where you wish to opt-out of poetrys built in environment management and take care of it yourself. To take advantage of this, simply activate a virtual environment using your preferred method or tooling, before running any Poetry commands that expect to manipulate an environment.
+
+## Configuring dependancies
+
+
+
