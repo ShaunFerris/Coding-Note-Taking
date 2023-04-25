@@ -18,6 +18,9 @@ Most datatypes behave roughly the same way as in python, eg strings are still im
 ## Hello world!
 Hello world in JS is basically the same as python, but the print function is replaced with `console.log()`.
 
+## Wierd Quirks
+JS was kind of a slapdash language in it's early days, and as a result still retains some quirky behavior, like allowing you to divide by zero, or multiply a string by an empty list. To avoid these you can either be aware of this behavior and dilligently avoid writing code that lets JS attempt wierd things, or you can use TypeScript. Typescript is a JS superset with typechecking and exceptions for things like dividing by zero.
+
 ## Operators in JS
 The assignment operator in JS is the same as in python.
 
@@ -64,4 +67,19 @@ import {addFunction, subtractFunction} from './mathFunctions.js';
 To import the entire contents of a file, use the syntax below:
 ```js
 import * as myMathModule from "./math_functions.js";
+```
+
+## Math
+Some common math operations that are available in python through operators are accessed in JS by methods of the Math prototype. Some examples of commmon operations are shown below, for more advanced uses of Math methods, see the [docs.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
+
+### Math.sqrt
+Takes one arg that is a positive number or zero and returns the square root. If a negative number is supplied, the function will retrun NaN.
+```js
+Math.sqrt(-1); // NaN
+Math.sqrt(-0); // -0
+Math.sqrt(0); // 0
+Math.sqrt(1); // 1
+Math.sqrt(2); // 1.414213562373095
+Math.sqrt(9); // 3
+Math.sqrt(Infinity); // Infinity
 ```
