@@ -83,3 +83,27 @@ Math.sqrt(2); // 1.414213562373095
 Math.sqrt(9); // 3
 Math.sqrt(Infinity); // Infinity
 ```
+
+### Math.PI
+This is a static data property of the Math prototype that gives the value of PI to 15 dp.
+```bash
+function calculateCircumference(radius) {
+  return Math.PI * (radius + radius);
+}
+
+calculateCircumference(1); // 6.283185307179586
+```
+
+### Math.round()
+The **`Math.round()`** static method returns the value of a number rounded to the nearest integer.
+```bash
+Math.round(-Infinity); // -Infinity
+Math.round(-20.51); // -21
+Math.round(-20.5); // -20
+Math.round(-0.1); // -0
+Math.round(0); // 0
+Math.round(20.49); // 20
+Math.round(20.5); // 21
+Math.round(42); // 42
+Math.round(Infinity); // Infinity
+```
