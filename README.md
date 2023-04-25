@@ -7,4 +7,9 @@ Feel free to make use of these notes for your own study and learning. To view th
 ## TODO
 - Write notes on basic uses of the PDB
 - Finish introduction to hash tables
+- Finish Poetry notes
+
+## TO COME
 - Start note on big O and time complexity
+- Basic JS project structure
+- HTML canvas tag animations
