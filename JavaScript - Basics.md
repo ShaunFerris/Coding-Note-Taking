@@ -131,3 +131,19 @@ Math.pow(-7, 2); // 49 (squares are positive)
 Math.pow(-7, 3); // -343 (cubes can be negative)
 Math.pow(-7, 0.5); // NaN (negative numbers don't have a real square root)
 ```
+
+## What's next
+For more advanced notes on topics in JS:
+- [[JavaScript - REGEX]]
+- [[JavaScript - Objects]]
+- [[JavaScript - Looping]]
+- [[JavaScript - Promises]]
+- [[JavaScript - Random  Numbers]]
+- [[JavaScript - Template Literals]]
+- [[JavaScript - Switch statements]]
+- [[JavaScript - The Ternary Operator]]
+- [[JavaScript - Object Destructuring]]
+- [[JavaScript - ES6 Objects and the Class Keyword]]
+- [[JavaScript - Immediately Invoked Function Expression]]
+- [[JavaScript - The Rest Function and Handling Multiple Function Args]]
+- [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]]
