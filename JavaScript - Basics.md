@@ -86,7 +86,7 @@ Math.sqrt(Infinity); // Infinity
 
 ### Math.PI
 This is a static data property of the Math prototype that gives the value of PI to 15 dp.
-```bash
+```js
 function calculateCircumference(radius) {
   return Math.PI * (radius + radius);
 }
@@ -96,7 +96,7 @@ calculateCircumference(1); // 6.283185307179586
 
 ### Math.round()
 The **`Math.round()`** static method returns the value of a number rounded to the nearest integer.
-```bash
+```js
 Math.round(-Infinity); // -Infinity
 Math.round(-20.51); // -21
 Math.round(-20.5); // -20
@@ -106,4 +106,28 @@ Math.round(20.49); // 20
 Math.round(20.5); // 21
 Math.round(42); // 42
 Math.round(Infinity); // Infinity
+```
+
+### Math.pow()
+The **`Math.pow()`** static method returns the value of a base raised to a power. That is
+```js
+// Simple cases
+Math.pow(7, 2); // 49
+Math.pow(7, 3); // 343
+Math.pow(2, 10); // 1024
+
+// Fractional exponents
+Math.pow(4, 0.5); // 2 (square root of 4)
+Math.pow(8, 1 / 3); // 2 (cube root of 8)
+Math.pow(2, 0.5); // 1.4142135623730951 (square root of 2)
+Math.pow(2, 1 / 3); // 1.2599210498948732 (cube root of 2)
+
+// Signed exponents
+Math.pow(7, -2); // 0.02040816326530612 (1/49)
+Math.pow(8, -1 / 3); // 0.5
+
+// Signed bases
+Math.pow(-7, 2); // 49 (squares are positive)
+Math.pow(-7, 3); // -343 (cubes can be negative)
+Math.pow(-7, 0.5); // NaN (negative numbers don't have a real square root)
 ```
