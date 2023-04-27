@@ -55,5 +55,7 @@ do {
 } while (i < 5);
 ```
 
+An advanced way to use while loops that can replace some do...while loops in some situations is to use `while(i--)` to execute the loop code until i hits zero. For this to work, you muxt make sure that i is initialized as a positive number. This trick works because 0 is evaluated as falsy in JS, so the condition will evaluate to true and decrement i, until it hits zero.
+
 ### Recursive solutions
 For loops (iterative solutions) can often be replaced with recursive solutions. See [[General - Basic Recursion]].
