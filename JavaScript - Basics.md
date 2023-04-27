@@ -19,7 +19,7 @@ Most datatypes behave roughly the same way as in python, eg strings are still im
 Hello world in JS is basically the same as python, but the print function is replaced with `console.log()`.
 
 ## Wierd Quirks
-JS was kind of a slapdash language in it's early days, and as a result still retains some quirky behavior, like allowing you to divide by zero, or multiply a string by an empty list. To avoid these you can either be aware of this behavior and dilligently avoid writing code that lets JS attempt wierd things, or you can use TypeScript. Typescript is a JS superset with typechecking and exceptions for things like dividing by zero.
+JS was kind of a slapdash language in it's early days, and as a result still retains some quirky behavior, like allowing you to divide by zero, or multiply a string by an empty list. To avoid these you can either be aware of this behavior and dilligently avoid writing code that lets JS attempt wierd things, or you can use TypeScript. Typescript is a JS superset with typechecking and exceptions for things like dividing by zero. For some more specifics, see [[JavaScript - Weird Stuff]].
 
 ## Operators in JS
 The assignment operator in JS is the same as in python.
