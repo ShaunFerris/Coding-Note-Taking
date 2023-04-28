@@ -153,4 +153,32 @@ To create a `requirements.txt` file from the `poetry. lock` file run the command
 poetry export --output requirements.txt
 ```
 
-## Package structure
+## Testing and deployment
+The file strucutre created earlier with poetry init is fairly self explanatory, your package files go into the package folder of the same name, and the tests go in the tests directory.
+
+Tests can be managed with the pytest module of the standard library, through poetry buy running:
+```bash
+poetry run pytest -v
+```
+
+After testing, but before you can distribute the package, you need to build it out using:
+```bash
+poetry build
+
+//output will be something like this:
+
+Building demo-package (0.1.0)
+  - Building sdist
+  - Built demo-package-0.1.0.tar.gz
+  - Building wheel
+  - Built demo-package-0.1.0-py3-none-any.whl
+```
+Poetry uses the information specified in the `pyproject.toml` file such as project name, version, and dependencies to package the project in two different formats – sdist and wheel. The wheel distributions are pre-compiled packages that can be installed quickly, whereas source distributions contain the raw source code and require compilation.
+
+To publish your library, you will need to [properly configure your PyPI credentials](https://python-poetry.org/docs/repositories/#configuring-credentials), as Poetry will publish the library to PyPI by default.
+
+Once the library is packaged, you can use the `publish` command to publish it.
+```bash
+poetry publish
+```
+After executing the `poetry publish` command, your package will be published on the Python Package Index (PyPI), which makes it available for installation through Poetry.
