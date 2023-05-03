@@ -2,11 +2,6 @@
 
 This note serves as the hub for front-end web design related topics, and as the jumping off point for learning about HTML, CSS and eventually front-end frameworks like react.js.
 
-## HTML and CSS
-HTML stands for HperText Markup Language and is the standard markup language for documents designed to be displayed in a web browser. Web browsers recieve an html document either from a server or from local storage, and render the webpage based on the html instructions. The html describes semantically the structure and contents of the web page, by describing elements of the webpage such as paragraphs and headings, delineated with tags.
-
-CSS stands cascading style sheets, and is an accessory language to HTML, describing the presentation of the elements listed in the html document.
-
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.
 
