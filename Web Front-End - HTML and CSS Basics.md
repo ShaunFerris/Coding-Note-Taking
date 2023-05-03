@@ -2,8 +2,17 @@
 
 This note serves as the hub for front-end web design related topics, and as the jumping off point for learning about HTML, CSS and eventually front-end frameworks like react.js.
 
+## HTML and CSS
+HTML stands for HperText Markup Language and is the standard markup language for documents designed to be displayed in a web browser. Web browsers recieve an html document either from a server or from local storage, and render the webpage based on the html instructions. The html describes semantically the structure and contents of the web page, by describing elements of the webpage such as paragraphs and headings, delineated with tags.
+
+CSS stands cascading style sheets, and is an accessory language to HTML, describing the presentation of the elements listed in the html document.
+
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.
 
 When you type an address into your browser and hit enter, the webiste is then loaded in your browser, but what is actually happening behind the scenes boils down to a series of client-server communications, the client being your browser, and the server being some machine, somewhere in the world, that is hosting the files which make up the website you want to see.
 
+What happens first, is that the client makes a request for the `index.html` file of the target website, and the server sends it. The client browser then reads in the file, and creates something called the DOM, or Document Object Model.
+
+### The DOM
+The Document Object Model (DOM) is a data representation of all of the building blocks of the page and their structure. So paragraphs, images, divs and headings are all represented in the DOM. It is essentially a programming interface for web documents, allowing them to be interacted with via code.
