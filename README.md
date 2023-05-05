@@ -9,6 +9,7 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [ ] Finish introduction to hash tables
 - [x] Finish Poetry notes
 - [x] Finish HTML and CSS basics
+- [ ] Finish notes on the DOM
 
 ## TO COME
 - Start note on big O and time complexity
