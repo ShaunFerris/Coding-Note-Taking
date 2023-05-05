@@ -26,3 +26,44 @@ Include every Bootstrap JavaScript plugin and dependency with one of our two bun
 ```html
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 ```
+
+## Basic usage
+A few very basic use-cases of bootstrap will be outlined here to give the general idea of how bootstraps css and js are invoked. More detailed notes may be added in the future, otherwise look at the docs.
+
+### Containers
+Once you have included bootstrap in your project, you can get started with basic implementation. A good first step is to use one of bootstraps containers. 
+
+Containers are the most basic layout element in Bootstrap and are **required when using the default grid system**. Containers are used to contain, pad, and (sometimes) center the content within them. While containers _can_ be nested, most layouts do not require a nested container.
+
+Bootstrap comes with three different containers:
+-   `.container`, which sets a `max-width` at each responsive breakpoint
+-   `.container-fluid`, which is `width: 100%` at all breakpoints
+-   `.container-{breakpoint}`, which is `width: 100%` until the specified breakpoint
+
+Invoke these containers by adding the desired container-name as the class of a div. Wrapping all the content of your page in a simple fluid container div will keep the content at 100% width at any screen size. Using a .container div would keep the max width the same until a viewport size breakpoint is hit, then change it.
+
+### Responsive images
+Another simple use is to make images scale with parent element. This can be achieved by simply adding the `.img-responsive` class to the `<img>` element.
+
+### Responsive text centering
+You can make sure that heading text stays centered at any viewport size by giving the element the `text-center` class.
+
+### Use Bootstrap button styling
+Bootstrap has its own styles for `button` elements, which look much better than the plain HTML ones. Include these in your work by giving a button element the `btn` and `btn-default` classes.
+
+Normally, your `button` elements with the `btn` and `btn-default` classes are only as wide as the text that they contain. For example:
+```html
+<button class="btn btn-default">Submit</button>
+```
+This button would only be as wide as the word `Submit`.
+
+By making them block elements with the additional class of `btn-block`, your button will stretch to fill your page's entire horizontal space and any elements following it will flow onto a "new line" below the block.
+```html
+<button class="btn btn-default btn-block">Submit</button>
+```
+This button would take up 100% of the available width.
+`btn-danger`, `btn-primary` and `btn-info` are options to replace `btn-default` that give you other `btn-info`color options.
+
+## More bootstrap
+For more notes on bootstrap see these entries:
+[[Bootstrap - The Grid System]]
