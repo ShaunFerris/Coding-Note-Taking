@@ -66,5 +66,5 @@ This button would take up 100% of the available width.
 
 ## More bootstrap
 For more notes on bootstrap see these entries:![[Pasted image 20230506130159.png]]
-[[Bootstrap - The Grid System]]
-[[Bootstrap - Font Awesome Icons]]
+[[Web Front-End - Bootstrap - The Grid System]]
+[[Web Front-End - Font Awesome Icons]]
