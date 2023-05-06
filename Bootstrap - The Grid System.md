@@ -1,4 +1,4 @@
-#frontend #frontend-libs #javascript #webdevSpecific 
+#frontend #frontend-libs #webdevSpecific 
 
 Bootstrap uses a responsive 12-column grid system, which makes it easy to put elements into rows and specify each element's relative width. Most of Bootstrap's classes can be applied to a `div` element.
 
@@ -30,3 +30,4 @@ But if you wrap all three buttons in a div with the row class, and then each but
 </div>
 ```
 ![[Pasted image 20230506125002.png]]
+This is a small demonstration of the power of the grid system, grouping things together in rows and using columns to decide how much of the row they occupy relative to each other at any given viewport size.

@@ -1,4 +1,4 @@
-#javascript #python #functions #arrowfunctions #lambdafunctions #ES6
+#javascript #python #functions #arrowfunctions #lambdafunctions #ES6 #general
 
 Added in ES6, arrow functions are the syntax used for short, annonymous function definintions, typically intended for one use, like lambda functions in python.
 

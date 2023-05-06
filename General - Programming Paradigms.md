@@ -1,4 +1,4 @@
-#highlevelconcepts #functions #objects #skills #oop #fucntionalprogramming
+#highlevelconcepts #functions #objects #skills #oop #fucntionalprogramming #general
 
 Programming paradigms are a way to classify programming languages based on their features, and more boradly are sets of rules for approaching problem solving in programming.
 

@@ -1,4 +1,4 @@
-#frontend #frontend-libs #javascript #webdevSpecific 
+#frontend #frontend-libs #webdevSpecific 
 
 ## What is BootStrap?
 Bootstrap is a free and open source front-end framework for building resposive web-pages and applications. In this context, responsive simply means that the page or app is capable of adapting to many different device sizes and viewports.
@@ -65,5 +65,6 @@ This button would take up 100% of the available width.
 `btn-danger`, `btn-primary` and `btn-info` are options to replace `btn-default` that give you other `btn-info`color options.
 
 ## More bootstrap
-For more notes on bootstrap see these entries:
+For more notes on bootstrap see these entries:![[Pasted image 20230506130159.png]]
 [[Bootstrap - The Grid System]]
+[[Bootstrap - Font Awesome Icons]]
