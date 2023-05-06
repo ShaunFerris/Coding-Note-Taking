@@ -29,3 +29,4 @@ But if you wrap all three buttons in a div with the row class, and then each but
 	</div>
 </div>
 ```
+![[Pasted image 20230506125002.png]]
