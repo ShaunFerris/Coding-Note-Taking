@@ -12,7 +12,6 @@ HTML uses tags to define the structure of a web page. A tag consists of an openi
 
 ### Intermediate Level Use with Examples
 Intermediate level use of HTML can involve creating more complex layouts and elements, such as forms, tables, and lists. For example, to create a form in HTML, you can use the `<form>` element and its associated attributes, such as `action` and `method`, along with input fields such as `<input>` and `<textarea>`. Here's an example:
-
 ```html
 <form action="/submit-form" method="post">
   <label for="name">Name:</label>
@@ -24,6 +23,7 @@ Intermediate level use of HTML can involve creating more complex layouts and ele
   <button type="submit">Send</button>
 </form>
 ```
+The basic things to remember about HTML syntax are to delineate the document with elements, elements are created with tags, and each tag can have an id and a class to identify it in the css or js. Ids must be unique among elements, but classes can be shared among many elements.
 
 ### Further Reading
 If you're interested in learning more about HTML, check out the following resources:
@@ -40,7 +40,6 @@ CSS uses selectors to target HTML elements and apply styles to them. A CSS rule 
 
 ### Intermediate Level Use with Examples
 Intermediate level use of CSS can involve creating more complex layouts and styles, such as responsive designs, animations, and custom fonts. For example, to create a responsive layout in CSS, you can use media queries and CSS Grid or Flexbox. Here's an example:
-
 ```css
 @media screen and (min-width: 768px) {
   .container {
