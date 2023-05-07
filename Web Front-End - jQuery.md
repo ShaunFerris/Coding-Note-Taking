@@ -45,3 +45,34 @@ $(".well").addClass("animated shake"); //Targets elements with class="well"
 $("#target6").addClass("animated fadeOut"); // Targets elements with id="target6"
 ```
 
+You can also use jQuery functions to edit the CSS and non-CSS properties of a target element or class of elements:
+```html
+<script>
+	$(document).ready(function() {
+		$("#target1").css("color", "red");
+		$("#target1").prop("disabled", true);
+	});
+</script>
+```
+
+Using jQuery, you can change the text between the start and end tags of an element, or add additional HTML markup. The jQuery `.html()` function lets you add HTML tags and text within an element. Any content previously within the element will be completely replaced with the content you provide using this function.
+```js
+$("h3").html("<em>jQuery Playground</em>");
+```
+
+jQuery also has a similar function called `.text()` that only alters text without adding tags. In other words, this function will not evaluate any HTML tags passed to it, but will instead treat it as the text you want to replace the existing content with.
+
+To remove a targeted element or class of elements, use the `.remove()` function:
+```html
+<script>
+	$(document).ready(function() {
+		$("#target4").remove();
+	});
+</script>
+```
+
+The `appendTo()` jQuery function allows you to select HTML elements and append them to another element. For example, if we wanted to move a button with `id="target4"` from a div with `id=right-well` to a div with `id=left-well` we would use:
+```js
+$("#target4").appendTo("#left-well");
+```
+
