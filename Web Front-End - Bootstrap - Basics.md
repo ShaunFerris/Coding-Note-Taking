@@ -7,6 +7,8 @@ Part of designing a website is designing how different frames and menus are posi
 <blockquote style="font-weight: bold; color: cyan;">
 As a framework, Bootstrap is a collection of pre-written code chunks in CSS, HTML, and JavaScript that allows developers to create websites more quickly than if they had to create every bit of code from scratch. Bootstrap saves developers time so that they can focus on other things rather than coding CSS.</blockquote>
 
+For a omprehensive overview see the bootstrap docs [here](https://getbootstrap.com/docs/5.0/getting-started/introduction/).
+
 ## Using Bootstrap
 You can add bootstrap to an existing or new project in two ways:
 1. If you are using a package manager or need to download the source files, head to [getbootstrap.com](https://getbootstrap.com/docs/5.0/getting-started/download/) to download them. There are instructions at that web address to follow.

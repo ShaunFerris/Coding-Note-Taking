@@ -4,7 +4,8 @@ This note serves as the hub for front-end web design related topics, and as the 
 
 Related notes:
 	[[Web Front-End HTML and CSS Basics]]
-	[[Web Front-End - Bootstrap - Basics]]Web Front-End - Web Front-End - Web Front-End - 
+	[[Web Front-End - Bootstrap - Basics]]
+	[[Web Front-End - Font Awesome Icons]]
 	[[Web Front-End - jQuery]]
 
 ## How websites are loaded

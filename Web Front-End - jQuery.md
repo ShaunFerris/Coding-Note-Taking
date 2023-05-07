@@ -1,6 +1,6 @@
 #frontend #frontend-libs #webdevSpecific 
 
-**TLDR: jQuery lets you quickly and easily use prewritten JavaScript functions that achieve common or difficult tasks. **
+**TLDR: jQuery lets you quickly and easily use prewritten JavaScript functions that achieve common or difficult tasks.** See the jQuery docs [here](https://learn.jquery.com/).
 
 jQuery is the most popular JS tool of all time and was a foundational technology of the modern internet. These days it is on something of a slight decline in popularity, with tools like react being more in vouge to achieve what jQuery does, but it is nevertheless important to know: In 2022 jQuery was still used in 80 million websites, compared to Reacts 11 million.
 
