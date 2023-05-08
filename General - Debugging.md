@@ -1,4 +1,4 @@
-#debugging #python #javascript #skills #general
+#debugging #skills #general
 
 Debugging is the process of going through code to figure out and fix the reasons that it is not performing the way you want. The three main types of bug can be thought of as:
 1. Syntax errors. These prevent the code from running

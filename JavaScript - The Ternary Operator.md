@@ -1,3 +1,5 @@
+#javascript
+
 The ternary operator in JS, also called the conditional operator, is the only operator in the language that takes three operands. The format of conditional statements with the operator are of the form:
 `(a)condition ? (b)truthy expression : (c)falsy expression;`
 - (a) the condition to be checked

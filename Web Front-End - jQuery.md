@@ -18,6 +18,8 @@ Like bootstrap and Awesome Font, the easiest way to use jQuery in your projects 
 ```
 
 ## Basic use of jQuery
+This section will detail examples of basic use of jQuery selectors and functions to manipulate html elements and their css styling. These examples are adapted from the freeCodeCamp course on jQuery and refer loosely to the example that that course has you work through.
+
 When using jQuery in an html document, a good place to start is with a document ready function. This is simply a jQuery statement that will execute code in the function only once the page DOM has been constructed and the html rendered, which prevents bugs from occuring when JS tries to manipulate page elements before they load. Here is an example of a document ready function in an html docs header:
 ```html
 <html>
@@ -75,4 +77,22 @@ The `appendTo()` jQuery function allows you to select HTML elements and append t
 ```js
 $("#target4").appendTo("#left-well");
 ```
+
+In addition to moving elements, you can also copy them from one place to another using the `.clone()` function. For example, if we wanted to copy `target2` from the `left-well` div to the `right-well` div, we would use:
+```js
+$("#target2").clone().appendTo("#right-well");
+```
+Did you notice this involves sticking two jQuery functions together? This is called function chaining and it's a convenient way to get things done with jQuery.
+
+Every HTML element has a `parent` element from which it `inherits` properties. The `parent()` function allows you to access the parent of whichever element you've selected with your jQuery selector. Here's an example of how you would use the `parent()` function if you wanted to give the parent element of the `left-well` element a background color of blue:
+```js
+$("#left-well").parent().css("background-color", "blue")
+```
+
+Similarly the `children()` jQuery function lets you access the child elements of the selected element. In this case it applies to all direct children elements, or elements that are one level below the selected element. The below example shows use of this function to change the css of all children of a div element with `id="left-well"`:
+```js
+$("#left-well").children().css("color", "blue")
+```
+
+
 
