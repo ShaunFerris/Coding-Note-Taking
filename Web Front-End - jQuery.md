@@ -94,5 +94,8 @@ Similarly the `children()` jQuery function lets you access the child elements of
 $("#left-well").children().css("color", "blue")
 ```
 
-
+To target a specific child of a given element in a situation where you can't necessarily target it directly by an id, you can exploit the fact that jQuery targets elements using CSS selectors, and use the `target:nth-child(n)` CSS selector to select all the nth elements with the target class or element type. Here's how you would give the third element in each well the bounce class:
+```js
+$(".target:nth-child(3)").addClass("animated bounce");
+```
 
