@@ -1,5 +1,7 @@
 #frontend #frontend-libs #webdevSpecific 
 
+NOTE: These notes are from the free code camp course on bootstrap. This course turns out to have been written for bootstrap version 3, which is still supported, but not current. Version 4 is stable and has better ease of use and more modern features. Bootstrap 5 is out but not in heavy use yet. The bootstrap website currently reccomends starting with bootstrap 4 if your're learning it, I found this out after going through this BS3 course.
+
 ## What is BootStrap?
 Bootstrap is a free and open source front-end framework for building resposive web-pages and applications. In this context, responsive simply means that the page or app is capable of adapting to many different device sizes and viewports.
 
