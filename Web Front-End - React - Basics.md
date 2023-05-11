@@ -69,3 +69,4 @@ In JSX, the rules are a little different. Any JSX element can be written with a 
 This has been a basic overview of JSX, the foundational topic of react. The following notes continue down the React rabbit hole, starting with components, the core of React:
 	[[Web Front-End - React - Components]]
 	[[Web Front-End - React - Props]]
+	[[Web Front-End - React - State]]
