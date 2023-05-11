@@ -106,3 +106,4 @@ Here's how you would target all the odd elements with class `target` and give th
 $(".target:odd").addClass("animated shake");
 ```
 
+Finally, you can target the whole page by targeting the body element. Here's how we would make the entire body fade out: `$("body").addClass("animated fadeOut");`

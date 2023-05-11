@@ -8,15 +8,7 @@ Related notes:
 	[[Web Front-End - Font Awesome Icons]]
 	[[Web Front-End - jQuery]]
 	[[Web Front-End - SASS]]
-You can also target elements based on their positions using `:odd` or `:even` selectors.
 
-Note that jQuery is zero-indexed which means the first element in a selection has a position of 0. This can be a little confusing as, counter-intuitively, `:odd` selects the second element (position 1), fourth element (position 3), and so on.
-
-Here's how you would target all the odd elements with class `target` and give them classes:
-
-```js
-$(".target:odd").addClass("animated shake");
-```
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.
 
