@@ -101,3 +101,72 @@ And just like in JavaScript, the `@else if` and `@else` directives test for more
 }
 ```
 These add real function like power to sass mixins.
+
+Similarly, this logic can be extended to adding for loops to your sass mixins using the `@for` directive. `@for` is used in two ways: "start through end" or "start to end". The main difference is that the "start **to** end" _excludes_ the end number as part of the count, and "start **through** end" _includes_ the end number as part of the count.
+
+Here's a start **through** end example:
+```scss
+@for $i from 1 through 12 {
+  .col-#{$i} { width: 100%/12 * $i; }
+}
+```
+The `#{$i}` part is the syntax to combine a variable (`i`) with text to make a string. When the Sass file is converted to CSS, it looks like this:
+```scss
+.col-1 {
+  width: 8.33333%;
+}
+
+.col-2 {
+  width: 16.66667%;
+}
+
+...
+
+.col-12 {
+  width: 100%;
+}
+```
+This is a powerful way to create a grid layout. Now you have twelve options for column widths available as CSS classes.
+
+Sass also offers the `@each` directive which loops over each item in a list or map. On each iteration, the variable gets assigned to the current value from the list or map.
+```scss
+@each $color in blue, red, green {
+  .#{$color}-text {color: $color;}
+}
+```
+
+A map has slightly different syntax. Here's an example:
+```scss
+$colors: (color1: blue, color2: red, color3: green);
+
+@each $key, $color in $colors {
+  .#{$color}-text {color: $color;}
+}
+```
+Note that the `$key` variable is needed to reference the keys in the map. Otherwise, the compiled CSS would have `color1`, `color2`... in it. Both of the above code examples are converted into the following CSS:
+```scss
+.blue-text {
+  color: blue;
+}
+
+.red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+```
+
+The `@while` directive is an option with similar functionality to the JavaScript `while` loop. It creates CSS rules until a condition is met.
+
+The `@for` example given earlier created a simple grid system. This can also work with `@while`.
+```scss
+$x: 1;
+@while $x < 13 {
+  .col-#{$x} { width: 100%/12 * $x;}
+  $x: $x + 1;
+}
+```
+First, define a variable `$x` and set it to 1. Next, use the `@while` directive to create the grid system _while_ `$x` is less than 13. After setting the CSS rule for `width`, `$x` is incremented by 1 to avoid an infinite loop.
+
