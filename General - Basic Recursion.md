@@ -1,4 +1,4 @@
-#javascript #python #highlevelconcepts #general
+#highlevelconcepts #general
 
 **Notes on this topic are adapted  from the content in freeCodeCamps JavaScript algorithms and data structures course.**
 
