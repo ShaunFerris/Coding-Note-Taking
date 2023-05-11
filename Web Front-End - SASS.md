@@ -170,3 +170,35 @@ $x: 1;
 ```
 First, define a variable `$x` and set it to 1. Next, use the `@while` directive to create the grid system _while_ `$x` is less than 13. After setting the CSS rule for `width`, `$x` is incremented by 1 to avoid an infinite loop.
 
+## Split stylesheets using SASS partials
+Partials in Sass are separate files that hold segments of CSS code. These are imported and used in other Sass files. This is a great way to group similar code into a module to keep it organized.
+
+Names for partials start with the underscore (`_`) character, which tells Sass it is a small segment of CSS and not to convert it into a CSS file. Also, Sass files end with the `.scss` file extension. To bring the code in the partial into another Sass file, use the `@import` directive.
+
+For example, if all your mixins are saved in a partial named `"_mixins.scss"`, and they are needed in the "main.scss" file, this is how to use them in the main file:
+```scss
+@import 'mixins'
+```
+Note that the underscore and file extension are not needed in the `import` statement - Sass understands it is a partial. Once a partial is imported into a file, all variables, mixins, and other code are available to use.
+
+## Inherit previously written styles
+Sass has a feature called `extend` that makes it easy to borrow the CSS rules from one element and build upon them in another.
+
+For example, the below block of CSS rules style a `.panel` class. It has a `background-color`, `height` and `border`.
+```scss
+.panel{
+  background-color: red;
+  height: 70px;
+  border: 2px solid green;
+}
+```
+
+Now you want another panel called `.big-panel`. It has the same base properties as `.panel`, but also needs a `width` and `font-size`. It's possible to copy and paste the initial CSS rules from `.panel`, but the code becomes repetitive as you add more types of panels. The `extend` directive is a simple way to reuse the rules written for one element, then add more for another:
+```scss
+.big-panel{
+  @extend .panel;
+  width: 150px;
+  font-size: 2em;
+}
+```
+The `.big-panel` will have the same properties as `.panel` in addition to the new styles.
