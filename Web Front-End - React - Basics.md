@@ -67,4 +67,5 @@ In JSX, the rules are a little different. Any JSX element can be written with a 
 
 ## What's next
 This has been a basic overview of JSX, the foundational topic of react. The following notes continue down the React rabbit hole, starting with components, the core of React:
-	[[Web Front-End - React - Components]]https://open.spotify.com/track/3ZvEl3WmYzo9oYViKOzVeS?si=ac899045c8744ad8
+	[[Web Front-End - React - Components]]
+	[[Web Front-End - React - Props]]
