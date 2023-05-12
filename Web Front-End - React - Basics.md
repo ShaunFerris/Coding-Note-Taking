@@ -2,6 +2,10 @@
 
 React is a popular JavaScript library for building reusable, component-driven user interfaces for web pages or applications. It is an Open Source view library created and maintained by Facebook, and it's a great tool to render the User Interface (UI) of modern web applications.
 
+React is only responsible for rendering your User Interface (such as the text, text boxes, buttons, etc.) as well as **updating** the UI whenever it changes.
+
+React is not a framework, it is only a library for managing an apps view layer. For managing other things that an app will usually eventually need, it is recommended in the official React docs to use a React based framework like Next.js. Next is a full on framework that builds the backend too. A more light weight option would be a build tool like Vite, which is a good modern replacement for create-react-app, which was the built tool of choice for React for a long time but is widely considered a nightmare these days. See: [[Web Front-End - Vite]]
+
 ## JSX
 React uses a syntax extension of JS called JSX which allows you to write html directly in you JavaScript. This has several benefits. It lets you use the full programmatic power of JavaScript within HTML, and helps to keep your code readable.
 

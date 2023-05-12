@@ -7,8 +7,9 @@ Related notes:
 	[[Web Front-End - Bootstrap - Basics]]
 	[[Web Front-End - Font Awesome Icons]]
 	[[Web Front-End - jQuery]]
-	[[Web Front-End - SASS]]
+	[[Web Front-End - SASS]]javascript swc
 	[[Web Front-End - React - Basics]]
+	[[Web Front-End - Vite]]
 
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.
