@@ -56,3 +56,103 @@ One common way is to explicitly bind `this` in the constructor so `this` becomes
 
 NOTE: The this keyword is a confusing topic in JS, see the [mozilla docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) for a more thorough explaination.
 
+## Toggle elements by manipulating the state
+Sometimes you might need to know the previous state when updating the state. However, state updates may be asynchronous - this means React may batch multiple `setState()` calls into a single update. This means you can't rely on the previous value of `this.state` or `this.props` when calculating the next value. So, you should not use code like this:
+```jsx
+this.setState({
+  counter: this.state.counter + this.props.increment
+});
+```
+
+Instead, you should pass `setState` a function that allows you to access state and props. Using a function with `setState` guarantees you are working with the most current values of state and props. This means that the above should be rewritten as:
+```jsx
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+```
+You can also use a form without `props` if you need only the `state`:
+```jsx
+this.setState(state => ({
+  counter: state.counter + 1
+}));
+```
+
+Note that you have to wrap the object literal in parentheses, otherwise JavaScript thinks it's a block of code.
+
+## Example stateful component - counter
+Lets quickly run through an example from the free code camp React course. 
+
+We have a `Counter` component that keeps track of a `count` value in `state`. There are two buttons which call methods `increment()` and `decrement()`. We should write these methods so the counter value is incremented or decremented by 1 when the appropriate button is clicked. Also, create a `reset()` method so when the reset button is clicked, the count is set to 0. The finished component looks like this:
+```jsx
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+  increment() {
+    this.setState((state) => ({
+      count: state.count + 1
+    }));
+  }
+
+  decrement() {
+    this.setState((state) => ({
+      count: state.count - 1
+    }));
+  }
+
+  reset() {
+    this.setState((state) => ({
+      count: 0
+    }))
+  }
+  
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>
+        <button className='dec' onClick={this.decrement}>Decrement!</button>
+        <button className='reset' onClick={this.reset}>Reset</button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+    );
+  }
+};
+```
+
+## Controlled inputs and forms
+Your application may have more complex interactions between `state` and the rendered UI. For example, form control elements for text input, such as `input` and `textarea`, maintain their own state in the DOM as the user types. With React, you can move this mutable state into a React component's `state`. The user's input becomes part of the application `state`, so React controls the value of that input field. Typically, if you have React components with input fields the user can type into, it will be a controlled input form. Here is an example of a controlled input component:
+```jsx
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
+  
+  render() {
+    return (
+      <div>
+        <input value={this.state.input} onChange={this.handleChange}></input>
+        <h4>Controlled Input:</h4>
+        <p>{this.state.input}</p>
+      </div>
+    );
+  }
+};
+```
+When you type in the input box, that text is processed by the `handleChange()` method, set as the `input` property in the local `state`, and rendered as the value in the `input` box on the page. The component `state` is the single source of truth regarding the input data.
+
