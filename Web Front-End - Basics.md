@@ -1,4 +1,4 @@
-#webdevSpecific #HTML #CSS #frontend
+#webdevSpecific #HTML #CSS #frontend#frontend #frontend-libs #webdevSpecific #react 
 
 This note serves as the hub for front-end web design related topics, and as the jumping off point for learning about HTML, CSS and eventually front-end frameworks like react.js.
 

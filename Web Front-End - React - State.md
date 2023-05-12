@@ -9,6 +9,8 @@ this.state = {
 ```
 You have access to the `state` object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The `state` object can be as complex or as simple as you need it to be. Note that you must create a class component by extending `React.Component` in order to create `state` like this.
 
+NOTE: Using hooks, you can modify state from a functional component, where previously this was only possible from class components. See: [[Web Front - End - React - Hooks]].
+
 ## Render state in the UI
 Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in `state` in its `render()` method. You can access the data with `this.state`.
 
