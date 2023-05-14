@@ -1,5 +1,7 @@
 #frontend #frontend-libs #webdevSpecific #react 
 
+NOTE: This note will cover an introduction to the concept of state and stateful components in React, and how to manipulat state with stateful class components. It is worth noting that this is largely not how modern react apps are written, as version 16.8 introduced hooks. Using hooks, you can modify state from a functional component, where previously this was only possible from class components. See: [[Web Front - End - React - Hooks]]. It is however worth learning to use state with class components as this is how it was done prior to the introduction of hook and is necessary for maintaining legacy code.
+
 One of the most important topics in React is `state`. State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
 
 You create state in a React component by declaring a `state` property on the component class in its `constructor`. This initializes the component with `state` when it is created. The `state` property must be set to a JavaScript `object`. Declaring it looks like this:
@@ -8,8 +10,6 @@ this.state = {
 }
 ```
 You have access to the `state` object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The `state` object can be as complex or as simple as you need it to be. Note that you must create a class component by extending `React.Component` in order to create `state` like this.
-
-NOTE: Using hooks, you can modify state from a functional component, where previously this was only possible from class components. See: [[Web Front - End - React - Hooks]].
 
 ## Render state in the UI
 Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in `state` in its `render()` method. You can access the data with `this.state`.
