@@ -2,6 +2,32 @@
 
 React Hooks are simple JavaScript functions that we can use to isolate the reusable part from a functional component. Hooks can be stateful and can manage side-effects.
 
+A quick example that shows why using hooks to manipulate state or props can be much simpler than writing class components is below. The two components achieve the same thing, but the first uses a class component, and the second uses the useState hook:
+
+```jsx
+class oldButton extends React.component {
+	constructor (props) {
+		super(props);
+		this.state = {
+			count: 0
+		};
+	}
+
+	render() {
+		return(
+			<p>{this.state.count}</p>
+		);
+	}
+}
+```
+
+```jsx
+function newButton {
+	const [state] = useState({count: 0});
+	return <p>{state.count}</p>
+}
+```
+
 ## Stateful/stateless components
 Components in React can be stateful or stateless.
 -   A stateful component declares and manages local state in it.
