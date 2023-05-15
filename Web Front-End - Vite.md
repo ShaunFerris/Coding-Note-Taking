@@ -17,3 +17,5 @@ npm create vite@latest
 ```
 If create-vite is not yet installed you will be prompted to approve it. Then you simply follow a set of prompts in the CLI to decide what kind of project to make, be it vanilla, react, vue etc, and don't need to worry about installing any of that tooling.
 
+The last step of the process is to run npm install to set up the dependencies, then npm run dev to start a dev server.
+
