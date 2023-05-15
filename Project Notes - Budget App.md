@@ -4,7 +4,7 @@ This is a simple budget app built by following along with [this](https://www.you
 
 ## Technologies
 For the app itself
-- React/JSX
+- React/JSX - Specifically we will be using the context api to cotrol a central state to be used by components.
 - Vite
 - Bootstrap
 For dev
@@ -123,7 +123,7 @@ Now we will remove the boilerplate provided by vite that we don't need. Delete A
 
 Go into main.jsx and delete the import for index.css, then go into App.jsx an delete everything to start from scratch.
 
-## Starting to build
+## Starting to build - Mockup the components of the UI
 Start by importing react, and creating a basic App function that will render a bootstrap button with the beer logo again, just for testing. Don't forget to add the line `export default App;` to the end of the App.jsx file.
 
 Assuming this test has been passed and we were able to render a black page with a single button correctly styled with bootstrap and showing the icon, we will now delete these elements.
@@ -180,3 +180,44 @@ export default ExpenseItem;
 
 ### Mock up the Add Expense Component
 This time we won't list every detail of what was done, but the goal is to mock up the ui for a field that will accept a typed name and cost, then a button can be clicked to add that expense. Again the logic will come later, this is just a mock up. The finished component looked like:
+```jsx
+import React from "react";
+import { Button } from "react-bootstrap";
+
+const AddExpenseForm = () => {
+    return (
+        <form>
+            <div className="row">
+                <div className="col-sm">
+                    <label for="name">Name</label>
+                    <input
+                        className="form-control"
+                        required="required"
+                        type="text"
+                        id="name"
+                    ></input>
+                </div>
+                <div className="col-sm">
+                    <label for="cost">Cost</label>
+                    <input
+                        className="form-control"
+                        required="required"
+                        type="text"
+                        id="cost"
+                    ></input>
+                </div>
+                <div className="col-sm mt-auto">
+                    <Button variant="primary">Save</Button>
+                </div>
+            </div>
+        </form>
+    );
+};
+
+export default AddExpenseForm;
+```
+
+## Define the context
+Now that the UI has been split up into components, and those components have been mocked up with hard-coded placeholder data, we can begin to work on the context handling of our budget app.
+
+The context will hold the global state of the app which other components will use. Create a file called AppContext.jsx in a new directory called context under the src directory.
