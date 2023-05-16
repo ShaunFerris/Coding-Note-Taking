@@ -1,0 +1,19 @@
+#frontend #frontend-libs #webdevSpecific #react
+
+Much of this note is taken from the official React docs, a much better source of information than the React course on free code camp which was my primary source until I realised how out of date it is. The docs are found [here](https://react.dev/learn/passing-data-deeply-with-context). 
+
+For a look at a project that was made to help learn about context, see: [[Project Notes - Budget App]].
+
+Managing state is a crucial part of most React applications, and as discussed in other notes in this repo, is often done by passing props between components, from parent component to child. 
+
+However it quickly gets annoying and verbose when you need to pass props through many intermediary components, or if many components in your system need access to the same data. Context lets the parent component make information available to ANY components in the tree below it, without explicitly passing it as props through all of the intermediary child components.
+
+[Passing props](https://react.dev/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it. But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](https://react.dev/learn/sharing-state-between-components) that high can lead to a situation called “prop drilling”. 
+
+![](https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fpassing_data_prop_drilling.dark.png&w=640&q=75)
+<p style="font-style: italic; text-align: center; margin: auto;">Prop Drilling</p>
+
+The context API in React is a simple way of teleporting data to the components that need it, without explicitly passing props down long chains of components.
+
+## Creating context
+In order to make use of context we must create and export a context using the createContext() builtin function, and that context can then be consumed using the useContext() react hook.

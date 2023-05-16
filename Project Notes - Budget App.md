@@ -221,3 +221,71 @@ export default AddExpenseForm;
 Now that the UI has been split up into components, and those components have been mocked up with hard-coded placeholder data, we can begin to work on the context handling of our budget app.
 
 The context will hold the global state of the app which other components will use. Create a file called AppContext.jsx in a new directory called context under the src directory.
+
+Import the createContext builtin from react, intialize an initial state variable, and create a context. The code at this stage looks like this: 
+```jsx
+import { createContext } from "react";
+
+const initialState = {
+    budget: 2000,
+    expenses: [
+        {id: 12, name: shopping, cost: 40},
+        {id: 12, name: shopping, cost: 40},
+        {id: 12, name: shopping, cost: 40},
+    ]
+};
+
+export const AppContext = createContext();
+```
+
+Next we need to create provider, which is the entity that holds the state and passes it to our components. In order to hold the state, it needs to use the `useReducer()` hook, so we should at the to our imports. 
+
+A quick reminder, the `useReducer` hook is similar to the `useState` hook. It will provide us with the current state, and also a function to update the state. It needs to be passed a reducer funciton and the initial state. 
+
+The reducer function is responsible for creating the new state object from the initial state it is passed.  To write a reducer, write an arrow function that accepts the current global state passed to it by react, and an action, passed to it by our dispatch function. The reducer will use a switch statement to determine how to update the state based on the action type. For now, just give it a default case that returns the state unchanged. We will add new action cases to the reducer as we need them going forward.
+
+Now we just need to finish the AppProvider by having it return some state objects so that the connected components can have access to them.
+
+After importing useReducer, writing a reducer function, and writing an AppProvider function to which the reducer is connected, the AppContext.jsx file looks like this:
+```jsx
+import { createContext, useReducer } from "react";
+
+const AppReducer = (state, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+
+const initialState = {
+    budget: 2000,
+    expenses: [
+        { id: 12, name: shopping, cost: 40 },
+        { id: 12, name: shopping, cost: 40 },
+        { id: 12, name: shopping, cost: 40 },
+    ]
+};
+
+export const AppContext = createContext();
+
+export const AppProvider = (props) => {
+    const [state, dispatch] = useReducer(AppReducer, initialState);
+
+    return (
+        <AppContext.Provider value={{
+            budget: state.budget,
+            expenses: state.expenses,
+            dispatch
+        }}
+        >
+            {props.children}
+        </AppContext.Provider>
+    )
+};
+```
+
+Now that a basic context for our app has been set up, we need to connect it to the app, so import AppProvider into the App.jsx file, then wrap all the exisitng code in the App functions return statement in an `<AppProvider>` JSX element.
+
+Now all the components that we have created so far that are rendered in the return of our App function, like Budget, Remaining etc, have access to the context because they are children of the AppProvider. Now we can start connecting our components to the context to display the data we need from context in each component.
+
+## Using context in our components
