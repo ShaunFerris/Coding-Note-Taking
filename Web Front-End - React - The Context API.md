@@ -15,5 +15,17 @@ However it quickly gets annoying and verbose when you need to pass props through
 
 The context API in React is a simple way of teleporting data to the components that need it, without explicitly passing props down long chains of components.
 
-## Creating context
+## Creating context and consuming context
 In order to make use of context we must create and export a context using the createContext() builtin function, and that context can then be consumed using the useContext() react hook.
+
+The three steps we need to follow are: 
+1. Create a context
+2. Use that context from the component that needs that data
+3. Provide that context from the component that specifies that data
+
+1. The `createContext()` function takes 0 or one args, if an arg is provided it will be the default value, the significance of that will become clear later. You should create the context in it's own JSX file and import it into whichever components need it.
+
+2. Import the context, and the `useContext()` hook. Then call the hook on the context and assign that to a variable.
+
+3. Add a context provider around any children that need it.
+

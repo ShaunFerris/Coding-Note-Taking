@@ -421,3 +421,7 @@ export default Remaining;
 ```
 
 We will next do a similar process to add context to the ExpenseTotal component, but this won't be documented here as this note is already way too long.
+
+## Deleting expenses from the array in the global state object
+ALMOST DONE! Just a few more features to implement properly. One of the last ones is to allow the delete buttons on our list of expenses to acutally remove the corresponding expense object from the expenses array in the global state object, triggering a context change and a re-draw of the list element.
+
