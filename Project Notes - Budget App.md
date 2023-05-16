@@ -2,6 +2,8 @@
 
 This is a simple budget app built by following along with [this](https://www.youtube.com/watch?v=aeYxBd1it7I&list=PLlrrMbxpJkWxu6e6n5BvB3rMf5kJYNcgu&index=6) tutorial, and tweaked/re-written as I go along for study.
 
+NOTE: This ended up being a blow by blow of what the tutorial has you do, future Project notes will be more free form notes of thought process and design, but at this point I am still very much learning React so a thorough step by step seemed useful to have.
+
 ## Technologies
 For the app itself
 - React/JSX - Specifically we will be using the context api to cotrol a central state to be used by components.
@@ -100,7 +102,7 @@ function App() {
 export default App;
 ```
 
-## React-icons install
+### React-icons install
 Run `npm install react-icons --save` to install this package. To use the icons, import and deploy them with this syntax:
 ```jsx
 import { FaBeer } from "react-icons/fa";
@@ -289,3 +291,133 @@ Now that a basic context for our app has been set up, we need to connect it to t
 Now all the components that we have created so far that are rendered in the return of our App function, like Budget, Remaining etc, have access to the context because they are children of the AppProvider. Now we can start connecting our components to the context to display the data we need from context in each component.
 
 ## Using context in our components
+
+### Budget component
+Going back to our Budget component, we will replace the hardcoded data with context provided state data. This is what the component looks like before:
+```jsx
+import React from "react";
+
+const Budget = () => {
+    return (
+        <div className="alert alert-secondary">
+            <span>Budget $1000</span>
+        </div>
+    );
+};
+
+export default Budget;
+```
+First we need to import the AppContext from AppContext.jsx, and the useContext hook from React.
+Next, inside the budget component function, use destructuring to get the budget state value out of the context with the useContext hook, and assign it to a variable called budget. Finally, use this variable in the return statement of the budget component in place of the previously hardcoded value. The finished budget component with the budget data coming from the global state object through the context API looks like this:
+```jsx
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
+const Budget = () => {
+    const { budget } = useContext(AppContext);
+    return (
+        <div className="alert alert-secondary">
+            <span>Budget ${budget}</span>
+        </div>
+    );
+};
+
+export default Budget;
+```
+And now the value for budget set in the initial state  constant in the AppContext.jsx file will show properly on the web page.
+
+### ExpenseList component
+Again we import the AppContext from AppContext.jsx, and the useContext hook from React. Then we can simply replace the hardcoded expenses array with the expenses array in the global context object defined in AppContext.jsx, using a destructuring assignment to the useContext hook, like we did above. That's it for this component!
+
+## Adding to the global state object through context
+Now that we have updated the Budget and ExpenseList components to consume data from the global state object, we will look at the AddExpenseForm component, which by it's very nature will need to add data to the global state object through context, to be consumed in other components.
+
+This will involve **dispatching** an **action** into context and updating the expenses list that lives in there. 
+
+Before we can save the new expense to state we need to know which values the user has entered into the 'name' and 'cost' inputs on the form. We are going to use some local state objects which will hold the values for each of these fields. To do this we need to import the useState hook, and then use that to create local states for the name and cost:
+```jsx
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+
+const AddExpenseForm = () => {
+    const [name, setName] = useState('');
+    const [cost, setCost] = useState('');
+
+    return (...);
+};
+```
+Next we go to the name input and give it the name variable from the useState statement as a prop. Then also give it an onChange event handler prop that uses the setName function from useState to set name to the events target value. Do the same for the cost, and now the name and cost local state objects will update with the input fields. For clarity, the name input fields looks like this now:
+```jsx
+<input
+    className="form-control"
+    required="required"
+    type="text"
+    id="name"
+    value={name}
+    onChange={(event) => setName(event.target.value)}
+></input>
+```
+
+Next we need to add an onSubmit event function to the form that gets called whenever the button is clicked. For now just use a preventDefault() call to stop the page from being reloaded when the button fires, and then fire an alert that calls out the name and cost values. This will allow us to test that it is working as intended.
+```jsx
+    const onSubmit = (event) => {
+        event.preventDefault();
+        alert("name " + name + " cost" + cost);
+    };
+```
+Don't forget to add `onSubmit={onSubmit}` to the form tag.
+
+With the test version of the onSubmit function working properly, we can now update it to dispatch an action to tell the conext to update the expenses list. 
+
+Start by importing the context and useContext hook, then destructure the dispatch function from context with the useContext hook.  Then replace the alert line in the onSubmit function with an expense object that takes a name and cost property from the name and cost local state variables. Use parseInt() to turn the cost state variable to an integer, as it is a string when taken in by the form input. We will also add an id to the added expense by assigning the id property to uuidv4(), after importing v4 as uuidv4 from uuid. This will generate a random id for each expense object added. 
+
+Now, still in the onSubmit function, call the dispatch function with `{ type: ADD_EXPENSE and payload: expense }`. The type is what the reducer will use to decide which case to use to update the state, so we will need to go into AppContext.jsx and add a new case to the reducer.
+
+The new case in the reducer should trigger when action.type matches ADD_EXPENSE and should return a copy of the current state where expenses is overridden with a copy of expenses, plus the payload added to the end, like this:
+```jsx
+const AppReducer = (state, action) => {
+    switch (action.type) {
+        case 'ADD_EXPENSE':
+            return {
+                ...state,
+                expenses: [...state.expenses, action.payload]
+            };
+        default:
+            return state;
+    }
+};
+```
+TO RECAP: With this work done, when we enter a name and cost into the new expense form, and click the save button, the onSubmit() function is called. It creates a new expense object with name and cost equal to what was entered, and a random id generated by uuid. These are the three properties, id, name and cost that we need in state to display an expense. We then dispatch an action of type: "ADD_EXPENSE" with the newly created expense object as payload. The dispatch action goes off to AppContext where it is mapped to the action object taken by the reducer which returns an updated state. Whenever the reducer returns, it updates the state in the AppProvider. Because the state in the AppProvider has changed, the value that is given to the components has also changed, which tells the components to re-render.
+
+Go through the above, looking at the source code and make sense of it. It is good study to understand.
+
+## Calculating the remaining budget from state
+In the Remaining.jsx file we want to calculate the value to render on the ui. We can do this by getting expenses and budget from the global state through context, then reducing the expenses array to a total expenses cost, and subtracting this from budget in the span tag that renders the text an value.
+
+Finally, use a ternary expression to change the alert-success class to alert-danger if the value of remaining is below 0. Notice the template literal string used in the className.
+```jsx
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
+const Remaining = () => {
+    const { budget, expenses } = useContext(AppContext);
+    
+    const totalExpenses = expenses.reduce((total, expense) => {
+        return (total + expense.cost);
+    }, 0);
+
+    const alertType = totalExpenses > budget ? 
+        "alert-danger" :
+        "alert-success";
+
+    return (
+        <div className={`alert ${alertType}`}>
+            <span>Remaining: ${budget - totalExpenses}</span>
+        </div>
+    );
+};
+
+export default Remaining;
+```
+
+We will next do a similar process to add context to the ExpenseTotal component, but this won't be documented here as this note is already way too long.
