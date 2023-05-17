@@ -425,3 +425,11 @@ We will next do a similar process to add context to the ExpenseTotal component, 
 ## Deleting expenses from the array in the global state object
 ALMOST DONE! Just a few more features to implement properly. One of the last ones is to allow the delete buttons on our list of expenses to acutally remove the corresponding expense object from the expenses array in the global state object, triggering a context change and a re-draw of the list element.
 
+To achieve this we need to follow these steps:
+1. Import the context in ExpenseItem.jsx, and grab the dispatch function from it
+2. Create a new function inside the ExpenseItem exported function called handleDelete that calls dispatch to send a new action to the context reducer, with `{type: "DELETE_EXPENSE" and payload: props.id}`. The ExpenseItem component function takes props from the ExpenseList parent element so this is where we get the id from
+3. Add a new case to the reducer for actions of type DELETE_EXPENSE that filters the expenses list in state to include only entries without a matching ID.
+4. Add an onClick event handler to the delete button that calls handleDelete()
+
+## Extra Credit Features
+Add an edit button to the budget alert box that allows you to change the amount in budget.
