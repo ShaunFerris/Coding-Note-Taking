@@ -12,13 +12,43 @@ The site should have multiple pages that cover home organization and communicati
 
 ## Technologies
 - Next.js with React.js
-- MongoDB for database and Prisma for ORM
+- MongoDB for database and Mongoose for ODM management
 - Tailwind CSS for styling
 - NextAuth for user authentication
 
-## Process
+## Setup
 First steps will be the same for basically any Next.js project:
 1. Make a git repo - keep it private for now
 2. Scaffold the next repo with `npx create-next-app@latest`
-3. Git init the repo, connect to the remote, commit the contents and push the initial commits
+3. Next does the git init for us on project creation so just connect to remote and push
 4. Install dependancies
+5. Remove boilerplate
+
+### Install dependancies
+I installed mongodb, mongoose, nextAuth and a lib called bcrypt for hashing passwords by running:
+```bash
+npm install bcrypt mongodb mongoose next-auth
+```
+Later on I installed react-icons because I forgot to do it along with the others.
+
+### Remove boilerplate
+First go into app > page.tsx and remove the import for the next image. Then remove all the jsx in the return statement and replace it with a hello world div to check updates. Also use this as an opportunity to play with some tailwind CSS classes. 
+
+At this point it became clear that my tailwind intellisense was not working, which was a big problem because I was planning to rely on it to help me learn tailwind classes. After some google searching I fixed the issue by opening my vs code settings.json and adding:
+```json
+"editor.quickSuggestions": {  
+   "strings": true  
+},  
+"css.validate": false,  
+"editor.inlineSuggest.enabled": true
+```
+
+Next in the layout.js page in the app directory and add title and description metadata.
+
+Then in the globals.css file remove all the rules, leaving only the tailwind imports, then add a rule for html, body, :root that sets  height to 100%. Go to the tailwind config and remove the extend object that was used for the background image gradient in the demo page.
+
+Create new folder outside the app directory, ie top-level, called components, to house our re-useable components. Create top level folder called models for mogodb models and one called utils for utility functions. Then create a top-level file called .env and add it to the gitignore.
+
+At this point I also took the tailwind config and globals.css from [this](https://gist.github.com/adrianhajdin/6df61c6cd5ed052dce814a765bff9032) github gist to get started with some useful compound tailwind classes, and moved the globals.css to it's own top level styles folder.
+
+## Start building a main page
