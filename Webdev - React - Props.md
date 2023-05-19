@@ -76,5 +76,4 @@ A common pattern is to try to minimize statefulness and to create stateless func
 A _stateless functional component_ is any function you write which accepts props and returns JSX. A _stateless component_, on the other hand, is a class that extends `React.Component`, but does not use internal state (covered in the next challenge). Finally, a _stateful component_ is a class component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.
 
 A common pattern is to try to minimize statefulness and to create stateless functional components wherever possible. This helps contain your state management to a specific area of your application. In turn, this improves development and maintenance of your app by making it easier to follow how changes to state affect its behavior.
-Now we can learn about state in more detail: [[Webdev - React - State and Class components]]
 
