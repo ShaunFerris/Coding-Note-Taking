@@ -4,3 +4,6 @@ This note will serve as a hub moving forward to organise process and design note
 
 **Web Front-End Projects**
 - [[Project Notes - Budget App]]
+
+**Web Full-Stack Projects**
+- [[Project Notes - Home Organisation App]]

@@ -7,7 +7,7 @@ Related notes:
 	[[Webdev - Bootstrap - Basics]]
 	[[Webdev - Font Awesome Icons]]
 	[[Webdev - jQuery]]
-	[[Webdev - SASS]]javascript swc
+	[[Webdev - SASS]]
 	[[Webdev - React - Basics]]
 	[[Webdev - Vite]]
 
