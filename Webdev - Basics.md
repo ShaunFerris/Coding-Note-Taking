@@ -1,15 +1,15 @@
-#webdevSpecific #HTML #CSS #frontend#frontend #frontend-libs #webdevSpecific #react 
+#webdevSpecific #HTML #CSS #frontend #frontend-libs #webdevSpecific #react 
 
 This note serves as the hub for front-end web design related topics, and as the jumping off point for learning about HTML, CSS and eventually front-end frameworks like react.js.
 
 Related notes:
-	[[Web Front-End HTML and CSS Basics]]
-	[[Web Front-End - Bootstrap - Basics]]
-	[[Web Front-End - Font Awesome Icons]]
-	[[Web Front-End - jQuery]]
-	[[Web Front-End - SASS]]javascript swc
-	[[Web Front-End - React - Basics]]
-	[[Web Front-End - Vite]]
+	[[Webdev HTML and CSS Basics]]
+	[[Webdev - Bootstrap - Basics]]
+	[[Webdev - Font Awesome Icons]]
+	[[Webdev - jQuery]]
+	[[Webdev - SASS]]javascript swc
+	[[Webdev - React - Basics]]
+	[[Webdev - Vite]]
 
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.

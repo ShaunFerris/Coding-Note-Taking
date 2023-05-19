@@ -70,4 +70,4 @@ This button would take up 100% of the available width.
 
 ## More bootstrap
 For more notes on bootstrap see these entries:![[Pasted image 20230506130159.png]]
-[[Web Front-End - Bootstrap - The Grid System]]
+[[Webdev - Bootstrap - The Grid System]]

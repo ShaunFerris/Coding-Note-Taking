@@ -1,6 +1,6 @@
 #frontend #frontend-libs #webdevSpecific #react 
 
-The useState hook lets us manipulat state in a functional component, and it fills a similar use case as `this.setState()` does in class components.
+The useState hook lets us manipulate state in a functional component, and it fills a similar use case as `this.setState()` does in class components.
 
 Before you can use the hook you must import it:
 ```jsx

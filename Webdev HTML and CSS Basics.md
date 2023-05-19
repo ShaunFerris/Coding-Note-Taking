@@ -5,7 +5,7 @@ HTML stands for HperText Markup Language and is the standard markup language for
 
 CSS stands for Cascading Style Sheets, and is an accessory language to HTML, describing the presentation of the elements listed in the html document.
 
-Essentially, html is the main surface along which we interact with the browser, and is used to construct the DOM (see [[Web Front-End - Basics]]). The html includes a reference to the CSS document, which details the styling for classes of tag in the HTML doc.
+Essentially, html is the main surface along which we interact with the browser, and is used to construct the DOM (see [[Webdev - Basics]]). The html includes a reference to the CSS document, which details the styling for classes of tag in the HTML doc.
 
 ## Basic HTML syntax and tags
 HTML uses tags to define the structure of a web page. A tag consists of an opening and a closing tag, with content in between. The basic structure of an HTML document includes the `<!DOCTYPE>` declaration, the `<html>` element, the `<head>` element, and the `<body>` element.
