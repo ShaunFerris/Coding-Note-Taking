@@ -51,4 +51,11 @@ Create new folder outside the app directory, ie top-level, called components, to
 
 At this point I also took the tailwind config and globals.css from [this](https://gist.github.com/adrianhajdin/6df61c6cd5ed052dce814a765bff9032) github gist to get started with some useful compound tailwind classes, and moved the globals.css to it's own top level styles folder.
 
-## Start building a main page
+## Start building pages and components
+Setup some basic filler for the home page in the app > page.js file, use tailwind styiling and the compound styles set up in the github gist that I copied. Edited some of the gist styling too.
+
+Create component file for a navbar component.
+
+Create a folder in the components folder for the budget component and it's sub components, and start porting over the functionality for the budget app that I've already built. Create a budget folder under the app directory where the componenets will be imported and arranged.
+
+Create a top level contexts directory to manage the context providers for the various pages.
