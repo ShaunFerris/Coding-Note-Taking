@@ -52,10 +52,12 @@ Create new folder outside the app directory, ie top-level, called components, to
 At this point I also took the tailwind config and globals.css from [this](https://gist.github.com/adrianhajdin/6df61c6cd5ed052dce814a765bff9032) github gist to get started with some useful compound tailwind classes, and moved the globals.css to it's own top level styles folder.
 
 ## Start building pages and components
-Setup some basic filler for the home page in the app > page.js file, use tailwind styiling and the compound styles set up in the github gist that I copied. Edited some of the gist styling too.
+Setup some basic filler for the home page in the app > page.js file. a title, tag line and some introduction text. Use tailwind styiling and the compound styles set up in the github gist that I copied. Edited some of the gist styling too.
 
-Create component file for a navbar component.
+Create component file for a navbar component, give it a home themed logo from the react-icons library, and add the Nav comonent to the app > layout.js so that it will persist on any rendered page, not just the home page in app > page.jsx.
 
-Create a folder in the components folder for the budget component and it's sub components, and start porting over the functionality for the budget app that I've already built. Create a budget folder under the app directory where the componenets will be imported and arranged.
+Create a new components in the components directory for a login card, include it in the homepage under the intro text. Deleted the custom styling for a "Prompt card" in the styles from the gist, and added new ones from tailwinds examples website to make a horizontal card for the login card component.
+
+Create a folder in the components folder for the budget component and it's sub components, and start porting over the functionality for the budget app that I've already built. Create a budget folder under the app directory with a page.js file, where the componenets will be imported and arranged. Now we can go to localhost:3000/budget and see the layout for the budget app part of the application as we build it out. Do the same for the todo and shoppinglist pages.
 
 Create a top level contexts directory to manage the context providers for the various pages.
