@@ -1,4 +1,4 @@
-#frontend #frontend-libs #webdevSpecific #react
+function#frontend #frontend-libs #webdevSpecific #react
 
 React is a popular JavaScript library for building reusable, component-driven user interfaces for web pages or applications. It is an Open Source view library created and maintained by Facebook, and it's a great tool to render the User Interface (UI) of modern web applications.
 

@@ -29,3 +29,25 @@ The three steps we need to follow are:
 
 3. Add a context provider around any children that need it.
 
+### Creating context
+The create context function creates an object. The context object itself does not actually hold any information but rather represents which context other components read or provide. **This sentence is from the react docs and I still don't fully understand it**.
+
+The context object has to properties, .Provider and .Consumer, but .Consumer is rarely used. The .Provider property is used to provide the context value to components.
+
+### Providing Context - SomeContext.Provider
+Wrap your components into a context provider to specify the value of this context for all components inside:
+
+```jsx
+function App() {
+  const [theme, setTheme] = useState('light');
+  // ...
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Page />
+    </ThemeContext.Provider>
+  );
+}
+```
+The Provider takes a value as props. The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling useContext(SomeContext) inside of the provider receives the value of the innermost corresponding context provider above it.
+
+Context is also often used with the useReducer hook, to allow the global state to be changed through the context API in different ways depending on the payload of the action sent to the reducer.
