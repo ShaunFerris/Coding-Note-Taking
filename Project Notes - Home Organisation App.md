@@ -1,4 +1,4 @@
-#projects 
+ shadow-[ins#projects 
 
 This is my first attempt at a full-stack app that I will actually deploy and use in real life.
 
@@ -61,3 +61,11 @@ Create a new components in the components directory for a login card, include it
 Create a folder in the components folder for the budget component and it's sub components, and start porting over the functionality for the budget app that I've already built. Create a budget folder under the app directory with a page.js file, where the componenets will be imported and arranged. Now we can go to localhost:3000/budget and see the layout for the budget app part of the application as we build it out. Do the same for the todo and shoppinglist pages.
 
 Create a top level contexts directory to manage the context providers for the various pages.
+
+## Implement the budget tracker from previous project
+The previous budget tracking app project mentioned earlier will be implemented as part of this project. Eventually it will be hooked up to a database to give it persistence, but for now I am just looking at migrating the layout and clientside functionality.
+
+The styling will have to be completely overhauled, as this project is using tailwind css whereas the original implementation used bootstrap. Currently just worrying about the basic layout, next I will do the logic, then at then end do the styiling. Unless styling is needed to make it readable while I test the logic.
+
+### Basic layout and structure for budget component
+The budget functionality will be a discrete route. It will likely use the same global layout from the app directory. The app > budget > page.js file will fill the same role here as the App.jsx file in the original standalone implementation, dictating the tree of sub components. The sub components can basically be laid out the same way as the original, but in the top level components directory of this project.
