@@ -2,8 +2,6 @@
 
 Much of this note is taken from the official React docs, a much better source of information than the React course on free code camp which was my primary source until I realised how out of date it is. The docs are found [here](https://react.dev/learn/passing-data-deeply-with-context). 
 
-For a look at a project that was made to help learn about context, see: [[Project Notes - Budget App]].
-
 Managing state is a crucial part of most React applications, and as discussed in other notes in this repo, is often done by passing props between components, from parent component to child. 
 
 However it quickly gets annoying and verbose when you need to pass props through many intermediary components, or if many components in your system need access to the same data. Context lets the parent component make information available to ANY components in the tree below it, without explicitly passing it as props through all of the intermediary child components.
@@ -51,3 +49,8 @@ function App() {
 The Provider takes a value as props. The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling useContext(SomeContext) inside of the provider receives the value of the innermost corresponding context provider above it.
 
 Context is also often used with the useReducer hook, to allow the global state to be changed through the context API in different ways depending on the payload of the action sent to the reducer.
+
+## More advanced use of context
+More advanced use of context is tightly coupled to the `useReducer` hook. See [[Webdev - React - useReducer]].
+
+So, Context gives us a way to pass information to our whole application without using props, and Reducers give us predictable pattern for how our state will update.

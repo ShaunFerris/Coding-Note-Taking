@@ -33,3 +33,9 @@ const myReducer = (state, action) => {
 The most important thing about reducer functions is that they are **PURE**. Meaning that they never change the values of the args provided to them, and that a given input will always return the same output. You can see in the above example that when there is no match to a case, it will return the original state, and when there is a match, it **COPIES** the original state into a new object, and overwrites the part of state that needs to be updated by the action passed to it.
 
 ## useReducer
+This is the hook that actually enables the use this pattern, where changes to state can be different in response to different actions as laid out in a reducer function. When you call the useReducer hook you must provide the reducer function as the first argument, and the initial state as the second arg.
+
+When you call this hook, you are returned the current state and a dispatch function, The dispatch function is used to send an action to the reducer and change the state value. Note that useReducer is very similar to the useState hook, the difference being that useReducer gives us a state from outside the current component and a setter for that state, whereas useState gives us a local state and setter that is scoped to the current component and must be passed as props to be used in child components, down a chain.
+
+## dispatch
+When we use the `useReducer` hook, the second item we are given is a function called `dispatch`. The sole responsibility of dispatch is to take Actions, and send them to the Reducer. Dispatch is smart, so it will call the Reducer for us, with the correct state. All we need to do is pass the Action in.
