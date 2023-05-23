@@ -53,20 +53,9 @@ For example, the logic to fetch data and manage the data in a local variable is 
 React provides a bunch of standard in-built hooks:
 
 -   `useState`: To manage states. Returns a stateful value and an updater function to update it. See [[Webdev - React - The useState Hook]]
--   `useEffect`: To manage side-effects like API calls, subscription	const [filteredExpenses, setfilteredExpenses] = useState(expenses || []);
-
-	useEffect(() => {
-		setfilteredExpenses(expenses);
-	}, [expenses]);
-
-	const handleChange = (event) => {
-		const searchResults = expenses.filter((filteredExpense) =>
-			filteredExpense.name.toLowerCase().includes(event.target.value)
-		);
-		setfilteredExpenses(searchResults);
-	};s, timers, mutations, and more. See [[Webdev - React - The useEffect Hook]]
+-   `useEffect`: To manage side-effects like API calls, subscription. See [[Webdev - React - The useEffect Hook]]
 -   `useContext`: To return the current value for a context. See [[Webdev - React - The Context API]]
--   `useReducer`: A `useState` alternative to help with complex state management.
+-   `useReducer`: A `useState` alternative to help with complex state management. See [[Webdev - React - useReducer]]
 -   `useCallback`: It returns a memorized version of a callback to help a child component not re-render unnecessarily.
 -   `useMemo`: It returns a memoized value that helps in performance optimizations.
 -   `useRef`: It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively.

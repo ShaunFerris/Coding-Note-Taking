@@ -32,7 +32,7 @@ The three steps we need to follow are:
 ### Creating context
 The create context function creates an object. The context object itself does not actually hold any information but rather represents which context other components read or provide. **This sentence is from the react docs and I still don't fully understand it**.
 
-The context object has to properties, .Provider and .Consumer, but .Consumer is rarely used. The .Provider property is used to provide the context value to components.
+The context object has to properties, .Provider and .Consumer, but .Consumer is rarely used. The .Provider property is used to provide the context value to components. The .Consumer property is what was used before the addition of hooks to react, now we use the useContext hook in it's place.
 
 ### Providing Context - SomeContext.Provider
 Wrap your components into a context provider to specify the value of this context for all components inside:
