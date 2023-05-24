@@ -1,4 +1,4 @@
- shadow-[ins#projects 
+#projects 
 
 This is my first attempt at a full-stack app that I will actually deploy and use in real life.
 
@@ -79,3 +79,8 @@ The budget route is currently fully in line with the standalone in terms of func
 While I am planning to use the nextAuth module that I've already included as a dependency to handle user authentication and white listing eventually, I realised that I want the navbar, the login card and the component menu to all have access to the state of user authentication. To address this I have implemented a simple context file with a reducer that accepts login and logout action types, and sets a a boolean for the login status of the current user in a global state object. This allows the login card to query the context and either display itself or a component menu that will be like a homepage nav to the main function pages.
 
 The component menu will be implemented tonight as a module that will be imported into the login card and conditionally displayed as a child.
+
+### 25/5/23
+Implemented the components card menu and added it as a conditional child of the login card component, using the Next Link react element for routing to the component pages.
+
+Now I will link up the log out button to complete the placeholder authentication/navigation system, which will be used to get around the site for testing as I implement the mvp of the other features.
