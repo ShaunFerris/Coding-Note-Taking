@@ -69,3 +69,13 @@ The styling will have to be completely overhauled, as this project is using tail
 
 ### Basic layout and structure for budget component
 The budget functionality will be a discrete route. It will likely use the same global layout from the app directory. The app > budget > page.js file will fill the same role here as the App.jsx file in the original standalone implementation, dictating the tree of sub components. The sub components can basically be laid out the same way as the original, but in the top level components directory of this project.
+
+#### Update as of 24/5/23
+Ended up porting over all of the functionality of the standalone budget project pretty much as is, replacing bootstrap styling with basic placeholder tailwind styles. The functionality is all working and full style overhaul will come later when the rest of the sites functionality has been properly stood up and tested. 
+
+The budget route is currently fully in line with the standalone in terms of functionality, which means the next meaningful change will be the addition of permanence when the DB is up and running. 
+
+## Adding auth context
+While I am planning to use the nextAuth module that I've already included as a dependency to handle user authentication and white listing eventually, I realised that I want the navbar, the login card and the component menu to all have access to the state of user authentication. To address this I have implemented a simple context file with a reducer that accepts login and logout action types, and sets a a boolean for the login status of the current user in a global state object. This allows the login card to query the context and either display itself or a component menu that will be like a homepage nav to the main function pages.
+
+The component menu will be implemented tonight as a module that will be imported into the login card and conditionally displayed as a child.
