@@ -3,10 +3,10 @@
 This is my first attempt at a full-stack app that I will actually deploy and use in real life.
 
 ## Purpose and goals
-The site should verify user identity using an auth service, and only allow sign in for whitelisted credentials. This was the site can be hosted live on the open internet, but still only be accessible to memebers of the household.
+The site should verify user identity using an auth service, and only allow sign in for whitelisted credentials. This was the site can be hosted live on the open internet, but still only be accessible to members of the household.
 
 The site should have multiple pages that cover home organization and communication of shared tasks. Key features to implement are:
-- Todo list. This should feature a column for completed tasks and one for pending tasks, with the ability to mark a task as completed to move it, and the ability to clear the whole list. Tasks should be marked with the user that added them, and the user that marked them as complete. DB integration will give this component persistance.
+- Todo list. This should feature a column for completed tasks and one for pending tasks, with the ability to mark a task as completed to move it, and the ability to clear the whole list. Tasks should be marked with the user that added them, and the user that marked them as complete. DB integration will give this component persistence.
 - Budget Tracker. This page should allow for tracking of expenses against a given budget amount. Basically an implementation of the UI built in [[Project Notes - Budget App]].
 - Shopping list. This page should track items added, which user added them and when. It should allow the items to be marked as collected and allow for the list to be cleared.
 
@@ -21,10 +21,10 @@ First steps will be the same for basically any Next.js project:
 1. Make a git repo - keep it private for now
 2. Scaffold the next repo with `npx create-next-app@latest`
 3. Next does the git init for us on project creation so just connect to remote and push
-4. Install dependancies
+4. Install dependencies
 5. Remove boilerplate
 
-### Install dependancies
+### Install dependencies
 I installed mongodb, mongoose, nextAuth and a lib called bcrypt for hashing passwords by running:
 ```bash
 npm install bcrypt mongodb mongoose next-auth
@@ -47,12 +47,12 @@ Next in the layout.js page in the app directory and add title and description me
 
 Then in the globals.css file remove all the rules, leaving only the tailwind imports, then add a rule for html, body, :root that sets  height to 100%. Go to the tailwind config and remove the extend object that was used for the background image gradient in the demo page.
 
-Create new folder outside the app directory, ie top-level, called components, to house our re-useable components. Create top level folder called models for mogodb models and one called utils for utility functions. Then create a top-level file called .env and add it to the gitignore.
+Create new folder outside the app directory, ie top-level, called components, to house our re-usable components. Create top level folder called models for MongoDB models and one called utils for utility functions. Then create a top-level file called .env and add it to the gitignore.
 
 At this point I also took the tailwind config and globals.css from [this](https://gist.github.com/adrianhajdin/6df61c6cd5ed052dce814a765bff9032) github gist to get started with some useful compound tailwind classes, and moved the globals.css to it's own top level styles folder.
 
 ## Start building pages and components
-Setup some basic filler for the home page in the app > page.js file. a title, tag line and some introduction text. Use tailwind styiling and the compound styles set up in the github gist that I copied. Edited some of the gist styling too.
+Setup some basic filler for the home page in the app > page.js file. a title, tag line and some introduction text. Use tailwind styling and the compound styles set up in the github gist that I copied. Edited some of the gist styling too.
 
 Create component file for a navbar component, give it a home themed logo from the react-icons library, and add the Nav comonent to the app > layout.js so that it will persist on any rendered page, not just the home page in app > page.jsx.
 
