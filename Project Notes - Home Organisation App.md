@@ -1,6 +1,8 @@
 #projects 
 
-This is my first attempt at a full-stack app that I will actually deploy and use in real life.
+This is my first attempt at a full-stack app that I will actually deploy and use in real life. My previous set of project notes for a standalone react budget app were very detailed and step by step, like explicit instructions. This is because I was following a tutorial pretty closely. 
+
+This project however is almost entirely self directed so my notes on it here are likely to be much more chaotic and disordered.
 
 ## Purpose and goals
 The site should verify user identity using an auth service, and only allow sign in for whitelisted credentials. This was the site can be hosted live on the open internet, but still only be accessible to members of the household.
@@ -70,7 +72,7 @@ The styling will have to be completely overhauled, as this project is using tail
 ### Basic layout and structure for budget component
 The budget functionality will be a discrete route. It will likely use the same global layout from the app directory. The app > budget > page.js file will fill the same role here as the App.jsx file in the original standalone implementation, dictating the tree of sub components. The sub components can basically be laid out the same way as the original, but in the top level components directory of this project.
 
-#### Update as of 24/5/23
+#### Update on budget page as of 24/5/23
 Ended up porting over all of the functionality of the standalone budget project pretty much as is, replacing bootstrap styling with basic placeholder tailwind styles. The functionality is all working and full style overhaul will come later when the rest of the sites functionality has been properly stood up and tested. 
 
 The budget route is currently fully in line with the standalone in terms of functionality, which means the next meaningful change will be the addition of permanence when the DB is up and running. 
@@ -80,9 +82,28 @@ While I am planning to use the nextAuth module that I've already included as a d
 
 The component menu will be implemented tonight as a module that will be imported into the login card and conditionally displayed as a child.
 
-### 25/5/23
+## Update 25/5/23
 Implemented the components card menu and added it as a conditional child of the login card component, using the Next Link react element for routing to the component pages.
 
 Now I will link up the log out button to complete the placeholder authentication/navigation system, which will be used to get around the site for testing as I implement the mvp of the other features. This functionality is achieved by writing a function that calls dispatch with an action object containing the "LOGOUT" type, and setting that function as the onSubmit trigger of the logout button element.
 
-Also went back an edited the card menu component to include gifs representing each of the page routes, a piggy bank for the budget etc. I used gifs from giphy, and used ezgif.com to generate a version of the gif that is static and one that is animated. Then I used a local state variable to track wether the div containing the image and text is hovered, and when hovered display the animated one, else display the static. It makes for a cool effect where each menu item has a picture that starts moving when hovered.
+Also went back an edited the card menu component to include gifs representing each of the page routes, a piggy bank for the budget etc. I used gifs from giphy, and used ezgif.com to generate a version of the gif that is static and one that is animated. Then I used a local state variable to track whether the div containing the image and text is hovered, and when hovered display the animated one, else display the static. It makes for a cool effect where each menu item has a picture that starts moving when hovered.
+
+### Planning and skeletonising the todo list route
+The main page for the todo list should inherit from the global app directory layout, so that it shows the navbar and the main content conforms to the main element.
+
+Inside that page component should be a permanent title and full width input field, with placeholder text prompting the user to enter a todolist task.
+
+Below that will be a pending task list and completed task list, as separate components. Each of these components will make use of a todolist context that tracks list entries, and renders them if the flag matches theirs. Ie, the listitem objects in state will be something like this:
+```jsx
+const todoItems = {
+	{
+		id: uuidv4(),
+		name: "taskname",
+		pending: true,
+		user: "Admin",
+		timeStamp: new Date()
+	}
+};
+```
+The todoItem will be rendered in the pending component if it's pending property is set to true, and in the completed component if it is set to false.
