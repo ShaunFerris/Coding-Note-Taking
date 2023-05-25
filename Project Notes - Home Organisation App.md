@@ -83,4 +83,6 @@ The component menu will be implemented tonight as a module that will be imported
 ### 25/5/23
 Implemented the components card menu and added it as a conditional child of the login card component, using the Next Link react element for routing to the component pages.
 
-Now I will link up the log out button to complete the placeholder authentication/navigation system, which will be used to get around the site for testing as I implement the mvp of the other features.
+Now I will link up the log out button to complete the placeholder authentication/navigation system, which will be used to get around the site for testing as I implement the mvp of the other features. This functionality is achieved by writing a function that calls dispatch with an action object containing the "LOGOUT" type, and setting that function as the onSubmit trigger of the logout button element.
+
+Also went back an edited the card menu component to include gifs representing each of the page routes, a piggy bank for the budget etc. I used gifs from giphy, and used ezgif.com to generate a version of the gif that is static and one that is animated. Then I used a local state variable to track wether the div containing the image and text is hovered, and when hovered display the animated one, else display the static. It makes for a cool effect where each menu item has a picture that starts moving when hovered.
