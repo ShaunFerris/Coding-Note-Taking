@@ -107,3 +107,11 @@ const todoItems = {
 };
 ```
 The todoItem will be rendered in the pending component if it's pending property is set to true, and in the completed component if it is set to false.
+
+## Update 26/05/2023
+Continuing on with work on the todolist page route, I have divided the layout into three components so far, all of which are styled as cards on a flex layout:
+1. TodoAddForm - a simple card with full width of the section, holding a text input bar and submit button for adding tasks to the pending list
+2. PendingLIst - a half width vertical card that will display the pending tasks as they are added
+3. CompleteList - same styling as the pending list but will display the tasks that have been marked as complete, will have additional functionality to delete tasks permanently, either one by one or all at once.
+
+Functionality to add tasks to the list will be tied to the submit button of the todo add form component, and will go through context to update the pending list. Then the pending list will have the functionality to mark a task as complete which will re-render both list components moving the task to the complete list.
