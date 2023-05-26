@@ -115,3 +115,9 @@ Continuing on with work on the todolist page route, I have divided the layout in
 3. CompleteList - same styling as the pending list but will display the tasks that have been marked as complete, will have additional functionality to delete tasks permanently, either one by one or all at once.
 
 Functionality to add tasks to the list will be tied to the submit button of the todo add form component, and will go through context to update the pending list. Then the pending list will have the functionality to mark a task as complete which will re-render both list components moving the task to the complete list.
+
+At this point I realised that the initial state in the Todo context was set up to only represent a single todo item, so I rewrote it to hold two properties, a completed tasks list and a pending tasks list, both initialized to empty arrays.
+
+Next I decided to scaffold another component for the todo route, a task list element. Given that the pending and completed list elements will both need to be able to display items, it makes sense that the code to handle that be a reusable component.
+
+Took a little detour here to do some style fixes to the budget page. I liked the floating card menus used on the home page and for the layout of the TODO page so far, so I added a card around the expense list and it does look nicer. Wll come back to restyling it and to building the TODO list component tomorrow.
