@@ -1,6 +1,6 @@
-#webdevSpecific #HTML #CSS #frontend #frontend-libs #webdevSpecific #react 
+#webdevSpecific #HTML #CSS #frontend #frontend-libs 
 
-This note serves as the hub for front-end web design related topics, and as the jumping off point for learning about HTML, CSS and eventually front-end frameworks like react.js.
+This note serves as the hub for front-end web design related topics, and as the jumping off point for learning about HTML, CSS and eventually front-end frameworks like React.
 
 Related notes:
 	[[Webdev HTML and CSS Basics]]
@@ -10,6 +10,7 @@ Related notes:
 	[[Webdev - SASS]]
 	[[Webdev - React - Basics]]
 	[[Webdev - Vite]]
+	[[Webdev - Next.js 13 - Basic Introduction]]
 
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.
