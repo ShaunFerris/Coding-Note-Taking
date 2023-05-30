@@ -121,3 +121,47 @@ At this point I realised that the initial state in the Todo context was set up t
 Next I decided to scaffold another component for the todo route, a task list element. Given that the pending and completed list elements will both need to be able to display items, it makes sense that the code to handle that be a reusable component.
 
 Took a little detour here to do some style fixes to the budget page. I liked the floating card menus used on the home page and for the layout of the TODO page so far, so I added a card around the expense list and it does look nicer. Wll come back to restyling it and to building the TODO list component tomorrow.
+
+## Update 30/05/2023
+Took long weekend off and coming back into working on this project with a clearer head. 
+
+### DB Setup
+Today I have decided to work on getting the database sorted out and connected to the project, so that I can start learning how to work with MongoDB, Mongoose, and Mongo Atlas.
+
+Roughly following [this videos instructions at 1:25:26](https://www.youtube.com/watch?v=wm5gMKuwSYk&list=PLlrrMbxpJkWxPT2xOCCg0naboy_il9JvU&index=16) and also consulting the [docs](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/).
+
+First step was to create a file called database.js in the utils directory of the project. In this file we import mongoose from mongoose, and initialize a variable called `isConnected` to false. Then we need to export an async function for connecting to the database. At this point the database.js file looks like this:
+```js
+import mongoose from "mongoose";
+
+let isConnected = false;
+
+export const connectToDB = async () => {
+    mongoose.set("strictQuery", true);
+
+    if (isConnected) {
+        console.log("MongoDB is already connected");
+        return;
+    }
+
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            dbName: "homeHub",
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        isConnected = true;
+        console.log("MongoDB Connected");
+    } catch (error) {
+        console.log(error);
+    }
+};
+```
+
+Notice that I have pointed to the .env file for the URI that will be used to connect to the database, but we don't have that yet. I'm going to use MongoDB Atlas, a cloud hosting service with a forever free tier, to host an instance of MongoDB for this project. The next step then is to make an account there, get a DB instance and paste the URI into the projects .env file. The env should already be on the .gitignore so we shouldn't have to worry about leaking secrets.
+
+I made an account on MongoDB Atlas, and set up a free database instance. Added my own local IP address, as well as 0.0.0.0/0 so that connections to it can come from anywhere. Next I clicked connect on the db, went to drivers, and copied the URI that needs to go into the homeHub .env file.
+
+### Auth setup with NextAuth
+Next, I have decided to setup the authentication with nextAuth, which will make use of the DB instance we just setup to store sessions.
+
