@@ -276,3 +276,61 @@ const User = models.User || model("User", UserSchema);
 
 export default User;
 ```
+
+Going back to the route file in the auth api, import the user model and use the findOne method of the model object to check if the user exists, and the create method to make a User model entry in the database if they do not. 
+
+Now the signIn function is finished, and we need to flesh out the session function so that we can keep track of user sessions. We do this by implementing a variable called sessionUser set to an await function that uses the findOne method of the User object to match the email of the current user, and update the session.user.id, and return the new session. 
+
+At this point the auth route file is finished and looks like this:
+```js
+import NextAuth from "next-auth/next";
+import GoogleProvider from 'next-auth/providers/google';
+import { connectToDB } from "@/utils/database";
+import User from "@/models/user";
+
+const handler = NextAuth({
+    providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        })
+    ],
+    async session({ session }) {
+        const sessionUser = await User.findOne({
+            email: session.user.email
+        })
+
+        session.user.id = sessionUser._id.toString();
+        return session;
+    },
+    async signIn({ profile }) {
+        try {
+            await connectToDB();
+
+            //check if the user already exists
+            const userExists = User.findOne({
+                email: profile.email
+            });
+            //if not, add new user to the db
+            if (!userExists) {
+                await User.create({
+                    email: profile.email,
+                    username: profile.name.replace(" ", "").toLowercase(),
+                    image: profile.picture
+                })
+            }
+
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+});
+
+export { handler as GET, handler as POST };
+```
+
+Now before testing we need to setup some nextAuth env variables. The URLs will be set to local host for now and changed when we are ready to deploy. The secret is a random string generated with open ssl as described in the nextAuth docs. 
+
+At this point we can test the site out. We immediately see an error caused by the top-level-await experiment not being enabled, this can be fixed by enabling it in the next config file. At this point the app compiles and runs fine, but in order to actually test that the route and DB setup worked properly, we need to go back and use the real session data in our code wherever the logged in status is checked.
