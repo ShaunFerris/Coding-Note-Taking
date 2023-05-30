@@ -334,3 +334,10 @@ export { handler as GET, handler as POST };
 Now before testing we need to setup some nextAuth env variables. The URLs will be set to local host for now and changed when we are ready to deploy. The secret is a random string generated with open ssl as described in the nextAuth docs. 
 
 At this point we can test the site out. We immediately see an error caused by the top-level-await experiment not being enabled, this can be fixed by enabling it in the next config file. At this point the app compiles and runs fine, but in order to actually test that the route and DB setup worked properly, we need to go back and use the real session data in our code wherever the logged in status is checked.
+
+### Hooking up login functionality through NextAuth
+Going back to the LoginCard component that I wrote in the past, which conditionally renders a login prompt or the homepage card menu based on the AuthContext mockup, I now remove the import of that AuthContext, and the use context call and dispatch function. Then is use the NextAuth use session hook to get the session data, and replace to isLoggedIn conditional in the return function with a session?.user conditional.
+
+This appears to work, but the login button now shows an error, becuase we need to add an authorized route to the google oAuth settings. Under the authorised callback URI settings in the google cloud console we add the URI: `http://localhost:3000/api/auth/callback/google`
+
+Then wait a while and see if it worked, it did not work immediately but the console specifies that settings changes can take a few minutes to a few hours to be implemented. NOTE: It actually turned out that it wasn't working becuase I had used https instead of http in the redirect URI.
