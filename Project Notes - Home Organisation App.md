@@ -191,3 +191,37 @@ NextAuth doesn't just use the front end components of the app, it also uses the 
 app -> api -> auth -> [...nextauth]
 ```
 
+Inside the ...nextauth dynamic directory, I created a file called route.js. In this file I will setup the providers for authenticating users, in this case I will just be using google for now. In this file import NextAuth and GoogleProvider from next auth and create a handler by calling NextAuth as a function and giving it an options object. The options object we give it will have three entries, a providers array, a signIn async function and a session async function. Finally, the handler function should be exported as GET and again as POST. At this point the route file looks like this:
+```jsx
+import NextAuth from "next-auth/next";
+import GoogleProvider from 'next-auth/providers/google';
+
+const handler = NextAuth({
+    providers: [
+        GoogleProvider({
+            clientId: '',
+            clientSecret: ''
+        })
+    ],
+    async session({ session }) {
+
+    },
+    async signIn({ profile }) {
+
+    }
+});
+
+export { handler as GET, handler as POST };
+```
+
+At this point the next step is to go to google console and get credentials to add into the clientId and clientSecret properties in the GoogleProvider options object. After logging into console.cloud.google.com, I created a new project called homeHub and selected it, then went to APIs and services in the sidebar menu, and finally to oAuth consent screen. Then go through and fill in the form. 
+
+Go to credentials, create credentials, oAuth, clientId. Select web app as the type, and add `https://localhost:3000` as the authorized javascript origin and the authorized redirect URI and then click create.
+
+Now we can copy the clientId and client secret and add them to the .env file in the project, then include them in route file using `process.env.GOOGLE_ID/CLIENT_SECRET`. Then test that the credentials are being pulled from the .env file correctly by console logging them as an object from the route.js file, running the dev server and checking the browser console. The logs are not coming up in the browser console, but they are appearing every couple of seconds in the terminal from which the dev server is running. 
+
+At this point remove the console log of the credentials and continue developing the nextAuth route.
+
+### Auth setup - session and sign in functions
+
+
