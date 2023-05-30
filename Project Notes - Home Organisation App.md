@@ -223,5 +223,56 @@ Now we can copy the clientId and client secret and add them to the .env file in 
 At this point remove the console log of the credentials and continue developing the nextAuth route.
 
 ### Auth setup - session and sign in functions
+Because every next.js route is a serverless route, the sign in and session functions are Lambda functions that open up only when they get called. So every time it gets called the server will spin up and make a connection to the database. This is where the connectToDB function from the utils/database.js file from earlier will come into play. 
 
+Import the function and call it as an await inside a try block under the signIn function. Then we want to check if the user already exists, and if they don't then create a new user and add them to the DB, and then return true. Under the catch block we should console log the error, and return false. At this point the function looks like this:
+```js
+    async signIn({ profile }) {
+        try {
+            await connectToDB();
 
+            //check if the user already exists
+
+            //if not, add new user to the db
+
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+```
+
+To implement the add user function we need to implement a database model, based on which the user document will be created and added to the MongoDB document database. 
+
+Create a new file called user.js inside the models directory that was made at the outset of the project. Import schema, model and models from mongoose, and create a userSchema as a new instance of the schema class, with an options object passed in that defines the data we want associated with each user added to the DB.
+
+We want an email, a username and an image, with the email and username being required, the email being unique and the username being 8-20 alphanumeric characters and unique. This can be achieved with a regex.
+
+Finally we need to assign the User variable to a model called user and constructed from the userSchema, and export that variable. Because next api routes are serverless though, we need to check if a model named user already exists in the models object provided by mongoose so that we don't redefine it everytime the serverless route is called. The finished code in user.js looks like this:
+```js
+import { Schema, model, models } from 'mongoose';
+
+const UserSchema = new Schema({
+    email: {
+        type: String,
+        unique: [true, "Email already in use"],
+        required: [true, "An Email is required"]
+    },
+    username: {
+        type: String,
+        required: [true, "A username is required"],
+        match: [
+            /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+            "Username invalid, it should contain 8-20 alphanumeric letters and be unique!"
+        ]
+    },
+    image: {
+        type: String
+    }
+});
+
+const User = models.User || model("User", UserSchema);
+
+export default User;
+```
