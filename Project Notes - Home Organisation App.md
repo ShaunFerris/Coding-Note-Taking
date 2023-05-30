@@ -165,3 +165,29 @@ I made an account on MongoDB Atlas, and set up a free database instance. Added m
 ### Auth setup with NextAuth
 Next, I have decided to setup the authentication with nextAuth, which will make use of the DB instance we just setup to store sessions.
 
+First, I made a new component called AuthProvider.jsx, and set it up as a standard React functional component. Import SessionProvider from nextAuth, give the component a props object with children and session, and have the component return the session provider wrapped around the children. At this point the AuthProvider component looks like this:
+```jsx
+"use client";
+
+import { SessionProvider } from "next-auth/react";
+
+const AuthProvider = ({ children, session}) => {
+    return (
+        <SessionProvider session={session}>
+            {children}
+        </SessionProvider>
+    );
+};
+
+export default AuthProvider;
+```
+
+Next we need to go to layout and wrap the AuthProvider around everything in the body element, so that all content on all pages will be wrapped by it, and have access to the session status.
+
+At this point I realized that I already have a component called AuthProvider from my stand in authentication context. For now I am just going to rename the new component to NextAuthProvider and carry on, probably removing the stand in AuthProvider later once the NextAuth is properly set up.
+
+NextAuth doesn't just use the front end components of the app, it also uses the api backend endpoints. So this will be an opportunity to set this up and learn. In the app directory, I created an api directory, with an auth directory inside of that. Finally, inside the auth directory, create a dynamic directory called ...nextauth. So the file structure route looks like this:
+```
+app -> api -> auth -> [...nextauth]
+```
+
