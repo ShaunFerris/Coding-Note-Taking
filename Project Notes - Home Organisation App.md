@@ -347,3 +347,10 @@ With the login functionality working and hooked up to the button on the login ca
 The logout implementation was really easy, just setting up the useSession call the same way as in the login card, then adding the NextAuth sign out function to the onClick trigger of the sign out button, and replacing to isLoggedIn conditional as before. 
 
 To render the google accounts avatar image next to the sign out button, I used a next Link tag that points to a profile route (Made just now, currently empty), wrapping a next Image tag with source set to {session?.user.image}.
+
+## Update 31/05/2023
+Started of today by reworking some of the styling for the budget page, adding floating cards around the sections to bring it more in-line with the other pages on the site design wise.
+
+Wrote a basic mongoose schema for the budget data we want to keep track of.
+
+Discovered today that the user data is not persisting in the database, this is due to an error in the route, where the session and sign in functions are supposed to be in a callbacks object under the providers object, instead of out on their own as entries into the NextAuth options object. This fixed the problem that I had where nothing was being stored in the database, because the connection was never happening, but introduced another problem. The app is now connecting, and has created the user collection on the db, but login functionality is broken, and I'm getting a JWT error.
