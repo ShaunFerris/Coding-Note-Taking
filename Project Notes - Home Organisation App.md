@@ -353,4 +353,12 @@ Started of today by reworking some of the styling for the budget page, adding fl
 
 Wrote a basic mongoose schema for the budget data we want to keep track of.
 
-Discovered today that the user data is not persisting in the database, this is due to an error in the route, where the session and sign in functions are supposed to be in a callbacks object under the providers object, instead of out on their own as entries into the NextAuth options object. This fixed the problem that I had where nothing was being stored in the database, because the connection was never happening, but introduced another problem. The app is now connecting, and has created the user collection on the db, but login functionality is broken, and I'm getting a JWT error.
+Discovered today that the user data is not persisting in the database, this is due to an error in the route, where the session and sign in functions are supposed to be in a callbacks object under the providers object, instead of out on their own as entries into the NextAuth options object. This fixed the problem that I had where nothing was being stored in the database, because the connection was never happening, but introduced another problem. The app is now connecting, and has created the user collection on the db, but login functionality is broken, and I'm getting a JWT error:
+```
+[next-auth][error][JWT_SESSION_ERROR] 
+https://next-auth.js.org/errors#jwt_session_error Cannot read properties of null (reading '_id') 
+
+....traceback....
+```
+
+After tearing my hair out for ages I managed to debug this. The JWT error was coming from the session function in the auth api route, where it tried to write the session user id as the id of the user from the database. This was failing because when the call happened the user was not written to the database. The user was not being written to the database because the userExists variable was never null, and it was never null because the await statement was missing before the User.findOne() call, causing the userExists variable to be a query object, rather than null which it would be if the query was awaited for resolution.
