@@ -5,7 +5,7 @@ Debugging is the process of going through code to figure out and fix the reasons
 2. Runtime errors. These cause unexpected behaviour when the code does run.
 3. Logical errors. These cause the code to perform it's task but not as intended.
 
-In this note we will go ever general concepts around debugging. Specific notes about JS and python debuggers can be found here: [[Python - PDB The python debugger]]
+In this note we will go ever general concepts around debugging.
 
 ## Console debugging
 The most basic and useful tool for debugging is printing to the console (using print() in python or console.log() in JS). Adding these statements regurlarly throughout your code allows you to check the value of variables at different points in the code.
