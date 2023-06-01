@@ -9,9 +9,12 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [x] Finish Poetry notes
 - [x] Finish HTML and CSS basics
 - [ ] Finish notes on the DOM
+- [ ] Finish notes on React hooks
 
 ## TO COME
 - Start note on big O and time complexity
-- Basic JS project structure
 - HTML canvas tag animations
-- JS Front-end libraries
+- Next.js: routing, rendering, fetching, optimization, styling
+- Tailwind CSS
+- Async and the event loop in JS, maybe cover asyncio in python too
+- Expanded MongoDB notes
