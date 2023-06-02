@@ -362,3 +362,12 @@ https://next-auth.js.org/errors#jwt_session_error Cannot read properties of null
 ```
 
 After tearing my hair out for ages I managed to debug this. The JWT error was coming from the session function in the auth api route, where it tried to write the session user id as the id of the user from the database. This was failing because when the call happened the user was not written to the database. The user was not being written to the database because the userExists variable was never null, and it was never null because the await statement was missing before the User.findOne() call, causing the userExists variable to be a query object, rather than null which it would be if the query was awaited for resolution.
+
+## Update 02/06/2023
+Took yesterday mostly off from work on this project, the only work I did on it was to add a validator to the budget schema that allows either an array containing valid expense objects, or an empty array.
+
+Now seems like a good time to evaluate the project so far and what will come next. So far I have stood up the general design and layout of most of the site, properly integrated nextAuth for user authentication and session tracking, and connected to a MonogDB instance on Atlas for storing user data, and eventually budget/todo/shopping data. 
+
+The api for authentication and db interaction so far has been setup by closely following tutorials and docs, the next step is to learn how to hook up the db to the budget tracker and todolist - it was while researching this yesterday that I realised once again how much is left to learn. I suspect that the contexts set up for the budget/todo etc won't actually be neccessary, as the data willl be pulled on and off the db server instead. As I have not completed the context for the todo list I will be using that as my first learning attempt at writing my own API endpoint and route.
+
+Today I have setup a schema for todolist items in the models folder, and begun adding functionality to the todoAddForm component that will attempt to fetch data from an api route in the app > api > todo > newItem directory.
