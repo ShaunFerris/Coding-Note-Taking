@@ -371,3 +371,43 @@ Now seems like a good time to evaluate the project so far and what will come nex
 The api for authentication and db interaction so far has been setup by closely following tutorials and docs, the next step is to learn how to hook up the db to the budget tracker and todolist - it was while researching this yesterday that I realised once again how much is left to learn. I suspect that the contexts set up for the budget/todo etc won't actually be neccessary, as the data willl be pulled on and off the db server instead. As I have not completed the context for the todo list I will be using that as my first learning attempt at writing my own API endpoint and route.
 
 Today I have setup a schema for todolist items in the models folder, and begun adding functionality to the todoAddForm component that will attempt to fetch data from an api route in the app > api > todo > newItem directory.
+
+To give the TodoAddForm component the ability to create a new entry in the database when a todo is added, it needs to communicate with a POST route in the api endpoint. Todo this I added an async function that uses the fetch() web api to sent a POST request to the API route in the above mentioned directory, and used that function as an onsubmit for a form element wrapped around the return JSX of the component. Then I needed to define a POST route as an async function in the route.js file.
+
+The function for fetching data from the POST route looked like this: (It is defined inside the component, above the return).
+```jsx
+    const { data: session } = useSession();
+
+    const [todo, setTodo] = useState({ name: "", complete: false });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const createTodo = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch("/api/todo/newItem", {
+                method: POST,
+                body: JSON.stringify({
+                    task: todo.name,
+                    complete: todo.complete,
+                    userID: session?.user.id
+                })
+            });
+
+            if (response.ok) {
+                console.log("Todo task created!")
+            }
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+```
+
+And the POST route in the /api/todo/newItem directory looked like this:
+```jsx
+
+```
