@@ -409,5 +409,32 @@ The function for fetching data from the POST route looked like this: (It is defi
 
 And the POST route in the /api/todo/newItem directory looked like this:
 ```jsx
+import { connectToDB } from "@/utils/database";
+import Todo from "@/models/todo";
 
+export const POST = async (req) => {
+    const { task, complete, userID } = await req.json();
+
+    try {
+        await connectToDB();
+
+        const newTodo = new Todo({
+            creator: userID,
+            name: task,
+            complete: complete
+        });
+
+        await newTodo.save();
+        return new Response(JSON.stringify(newTodo), { status: 201 });
+
+    } catch (error) {
+        return new Response(
+            "Failed to create a new prompt", { status: 500 }
+        );
+    }
+};
 ```
+
+This worked great and I was able to add a test task to the database of tasks! 
+
+Next I want to work out how to delete tasks, and how to get tasks to display in either the pending or complete lists based on the boolean completed property.
