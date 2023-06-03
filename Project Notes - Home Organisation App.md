@@ -387,7 +387,7 @@ The function for fetching data from the POST route looked like this: (It is defi
 
         try {
             const response = await fetch("/api/todo/newItem", {
-                method: POST,
+                method: "POST",
                 body: JSON.stringify({
                     task: todo.name,
                     complete: todo.complete,
@@ -438,3 +438,14 @@ export const POST = async (req) => {
 This worked great and I was able to add a test task to the database of tasks! 
 
 Next I want to work out how to delete tasks, and how to get tasks to display in either the pending or complete lists based on the boolean completed property.
+
+### Displaying pending and completed tasks from the database
+Currently, the todo page is set up with the pending and completed task lists as seperate components, that conditionally render a statement when empty or a third TaskList component. This seems really clunky to me now so I have decided to refactor this.
+
+The new setup will be to write a tasklist component that takes a props object of this layout:
+```jsx
+const TaskList = ({ title, emptyMsg, renderCondition }) => {};
+```
+Where the render condition is a boolean, and the list items in the database will be rendered if their complete flag matches the render condition. Then I can reuse the tasklist component for both the pending and completed lists.
+
+I think I understand how to populate the tasklist with a fetch call to a GET api route, but I am not sure how to make it so that the list component notices when the database has had a new entry added to it and rerender. Perhaps using context and or the useEffect hook.
