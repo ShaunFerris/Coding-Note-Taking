@@ -455,4 +455,53 @@ Today I began the planned rework of the todo list components, and it was pretty 
 
 I may in future add a TodoItem component that contains the logic for updating a tasks complete status to move it between lists, but before that I want to implement the logic for fetching tasks from the server, and I think the best way to do this in such a way that all todolist components can see it is to make the api request in context, and store the list in state given to the context provider.
 
-Todays next task is to begin writing a function in context that makes this api request, and then also make the api route itself.
+Todays next task is to begin writing a function in context that makes this api request, and then also make the api route itself. 
+
+### Problems appear
+I wrote a GET api route on the backend for this and it appears to work, I am able to successfully fetch the tasks data from the database. However I am running into trouble using the data through context in the other components downstream of the provider, and I suspect that this is due to the fact that fetches to the GET endpoint return promises, and at somewhere along the way I am not awaiting the resolution of that promise. It currently looks like this:
+```jsx
+import { createContext, useReducer } from "react";
+
+const TodoReducer = (state, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+
+const fetchTasks = async () => {
+    try {
+        const response = await fetch("/api/todo");
+        const data = await response.json();
+        console.log("Successfully fetched: ", data);//LOOK HERE
+        return data;
+    } catch (error) {
+        console.log("Failed to fetch todotasks: ", error);
+    }
+};
+
+const initialState = fetchTasks().then(result => {
+    result;
+});
+
+export const TodoContext = createContext();
+
+export const TodoProvider = (props) => {
+    const [state, dispatch] = useReducer(TodoReducer, initialState);
+
+    return (
+        <TodoContext.Provider
+            value={{
+                todoTasks: state,
+                dispatch
+            }}
+        >
+            {props.children}
+        </TodoContext.Provider>
+    );
+};
+```
+The `LOOK HERE` comment in the above shows where the data is successfully printed as an array of objects, but the initial state value is still showing up as a promise object.
+
+### Possible solution to the problem
+Currently I am fetching the reponse as the initial state and then passing that into the useReducer hook in the Provider. After quite a lot of prompting and correction, chatGPT has suggested something that seems worth trying, where useEffect is called to fetch the data inside the provider, and dispatch to the reducer to set the state. I am going to rewrite the context to give this a go, currently I'm not actually using the context so it shouldn't cause too many problems, even if it does not work.
