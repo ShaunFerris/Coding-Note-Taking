@@ -449,3 +449,10 @@ const TaskList = ({ title, emptyMsg, renderCondition }) => {};
 Where the render condition is a boolean, and the list items in the database will be rendered if their complete flag matches the render condition. Then I can reuse the tasklist component for both the pending and completed lists.
 
 I think I understand how to populate the tasklist with a fetch call to a GET api route, but I am not sure how to make it so that the list component notices when the database has had a new entry added to it and rerender. Perhaps using context and or the useEffect hook.
+
+## Update 04/06/2023
+Today I began the planned rework of the todo list components, and it was pretty straight forward to begin with. I have consolidated the PendingTasks and CompletedTasks components into a single TodoTaskList component that takes props from the parent, and that is all working nicely.
+
+I may in future add a TodoItem component that contains the logic for updating a tasks complete status to move it between lists, but before that I want to implement the logic for fetching tasks from the server, and I think the best way to do this in such a way that all todolist components can see it is to make the api request in context, and store the list in state given to the context provider.
+
+Todays next task is to begin writing a function in context that makes this api request, and then also make the api route itself.
