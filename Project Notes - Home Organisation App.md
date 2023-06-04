@@ -505,3 +505,105 @@ The `LOOK HERE` comment in the above shows where the data is successfully printe
 
 ### Possible solution to the problem
 Currently I am fetching the reponse as the initial state and then passing that into the useReducer hook in the Provider. After quite a lot of prompting and correction, chatGPT has suggested something that seems worth trying, where useEffect is called to fetch the data inside the provider, and dispatch to the reducer to set the state. I am going to rewrite the context to give this a go, currently I'm not actually using the context so it shouldn't cause too many problems, even if it does not work.
+
+This seems to have kind of worked, I am now pulling down the data, putting it into context, and using it in the task list component! The context file now looks like this:
+```jsx
+import { createContext, useReducer, useEffect } from "react";
+
+const TodoReducer = (state, action) => {
+    switch (action.type) {
+        case "FETCH_SUCCESS":
+            return {
+                loading: false,
+                data: action.payload,
+                error: null
+            };
+        case "FETCH_FAILURE":
+            return {
+                loading: false,
+                data: null,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+const initialState = {
+    loading: true,
+    data: null,
+    error: null
+};
+
+export const TodoContext = createContext();
+
+export const TodoProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(TodoReducer, initialState);
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const response = await fetch("/api/todo");
+                const data = await response.json();
+
+                dispatch({ type: "FETCH_SUCCESS", payload: data });
+            } catch (error) {
+                dispatch({ type: "FETCH_FAILURE", payload: error.message });
+            }
+        };
+        fetchTasks();
+    }, []);
+
+    return (
+        <TodoContext.Provider
+            value={{
+                todoTasks: state,
+                dispatch
+            }}
+        >
+            {children}
+        </TodoContext.Provider>
+    );
+};
+```
+And the TaskList component where this context is used looks like this:
+```jsx
+import { useContext } from "react";
+import { TodoContext } from "@/context/TodoContext";
+
+const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
+    const { todoTasks, dispatch } = useContext(TodoContext);
+
+    console.log(todoTasks);
+
+    const tasksToDisplay = todoTasks.data === null ?
+        null : todoTasks.data.filter((task) => {
+            return task.complete === renderCondition;
+        });
+
+    return (
+        <div className='card_container_vert'>
+            <h1 className='subhead_text text-center'>
+                {title}
+            </h1>
+            {!tasksToDisplay ? (
+                <p className='desc_2 text-center'>
+                    {emptyMsg}
+                </p>
+            ) : (
+                <ul>
+                    {tasksToDisplay.map((task) => (
+                        <li key={task.name}>{task.name}</li>
+                    ))}
+                </ul>
+            )
+
+            }
+        </div>
+    );
+};
+
+export default TodoTaskList;
+```
+
+I think what I want to work on next is implementing a TodoItem component, that will take as props a task object from the map function at the `LOOK` comment in the above code, and display nicely the tasks name, status and creator, and maybe give the option to change the status of the task too using the reducer.
