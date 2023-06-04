@@ -552,7 +552,7 @@ export const TodoProvider = ({ children }) => {
             }
         };
         fetchTasks();
-    }, []);
+    }, [state]);
 
     return (
         <TodoContext.Provider
@@ -593,7 +593,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
             ) : (
                 <ul>
                     {tasksToDisplay.map((task) => (
-                        <li key={task.name}>{task.name}</li>
+                        <li key={task.name}>{task.name}</li>//LOOK
                     ))}
                 </ul>
             )
@@ -607,3 +607,8 @@ export default TodoTaskList;
 ```
 
 I think what I want to work on next is implementing a TodoItem component, that will take as props a task object from the map function at the `LOOK` comment in the above code, and display nicely the tasks name, status and creator, and maybe give the option to change the status of the task too using the reducer.
+
+### Update from late in the same day IMPORTANT
+I have got the TodoItem component up and running, and also got the function to toggle complete state and the PATCH api endpoint working! The todolist now has functinality for add todos and toggling them between the pending and completed lists. 
+
+I suspect I may not have done all of todays work in the best possible way though, as the connectToDB function is being called over and over again. I have determined that this is because I have put state as the variable to monitor in the useEffect call for Todo Context, but if I remove state as the dependancy to this useEffect call then the lists don't dynamically update. For now it's fine but this will likely be something that needs addressing later for performance.
