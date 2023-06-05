@@ -612,3 +612,9 @@ I think what I want to work on next is implementing a TodoItem component, that w
 I have got the TodoItem component up and running, and also got the function to toggle complete state and the PATCH api endpoint working! The todolist now has functinality for add todos and toggling them between the pending and completed lists. 
 
 I suspect I may not have done all of todays work in the best possible way though, as the connectToDB function is being called over and over again. I have determined that this is because I have put state as the variable to monitor in the useEffect call for Todo Context, but if I remove state as the dependancy to this useEffect call then the lists don't dynamically update. For now it's fine but this will likely be something that needs addressing later for performance.
+
+## Update 05/06/2023
+After hacking around for an hour and a half I have managed to eliminate the infinite loop that was caused the useEffect hook both updating state and having state as a dependancy. I eventually did this by creating a `stateChange` state variable, and passing it's setter down to the list components through context, where it could be called after awaiting the response from the PATCH API call.
+
+I'm starting to think that the context implementation I'm using now is pretty hacky and weird and will likely need refactoring later, but for now I am very happy to have solved the infinite loop issue, without sacrificing real-time reloading of the todo task lists.
+
