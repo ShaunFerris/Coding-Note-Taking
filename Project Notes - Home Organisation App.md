@@ -638,3 +638,13 @@ export const GET = async (req) => {
     }
 };
 ```
+
+### Shopinglist route
+Next I decided to work on the shopping list route, as the Todo route is basically finished at this point, which is exciting.
+
+I toyed with the idea of writing the whole thing as one component, but ended up deciding to structure is the same basic way that I did the Todo list, with the page displaying a form for adding items which posts to the db, and a list of those items pulled from the db. This keeps the logic for fetching the POST and GET routes seperate from each other.
+
+I started by laying down a section in the page.js file, giving it a heading pulling in the form component. In the future I should maybe look into reusing a single form component across pages.
+I then built a form component that looks very similar to the todolist one, but doesn't go full width, I want the shopping list to feel simpler and more compact. The logic for fetching the POST route was also pretty much the same as in the todolist. 
+
+At this point I'm going to stop noting down a blow by blow of what I did because I think building this will be pretty much just following what I did with the todo list route.
