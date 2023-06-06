@@ -621,3 +621,20 @@ I'm starting to think that the context implementation I'm using now is pretty ha
 Next I have restyled the toggle status buttons on the todo items, and also added a similarly styled delete button for each entry in the todo task lists. Both buttons are transparent, with the toggle buttons tuning green and the deletes turning red on hover, this was super easy with tailwind which I am finally really starting to get the hang of. 
 
 Next step will be to create an onClick function for deleting a task, and the corresponding DELETE api endpoint in the route. This ended up being pretty straightforward too! My first attempt did not work at all but after moving the endpoint for DELETE to a dynamic route and getting the task id from { params } it worked. I think I'm getting the hang of this too!
+
+## Update 06/06/2023
+First task today was to edit to TodoTaskItem component so that it displays the user who added it alongside the task name. The todo tasks in the database already have a reference to the `_id` field of the corresponding entry in the user collection, stored as the creator field. This is just the mongo id object though, not the actual entry from the user collection. What I had previously forgotten to do was call the populate method on the creator property when fetching the todos, which swaps out the id reference stored in creator with the actual object from the user collection, so that we can then get the username from the task with `task.creator.username`. Here's the edited GET route for reference:
+```jsx
+export const GET = async (req) => {
+    try {
+        console.log("GET req");
+        await connectToDB();
+
+        const tasks = await Todo.find({}).populate('creator');
+
+        return new Response(JSON.stringify(tasks), { status: 200 });
+    } catch (error) {
+        return new Response("Failed to fetch todo tasks", { status: 500 });
+    }
+};
+```
