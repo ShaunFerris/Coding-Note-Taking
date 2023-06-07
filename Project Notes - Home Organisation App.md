@@ -655,3 +655,22 @@ I did end up deciding to try and implement the shopping list slightly differentl
 This worked pretty well! It seems to perform about the same as the datafetching in the todolist, so still a little slow, but not worse. I think I should likely also pull out the reducer from the todo context and move the data fetching function into the list component itself, but I'll worry about that once i have finished the features for the shopping list. NOTE: After writing thing I actually did a little testing in the firefox console and it does look like the GET requests on the todo route are significantly slower than on the shopping list route, so I should definitely rewrite the context and fetching logic for the todos.
 
 Next to add is the ability to mark a task as complete and change it's rendered appearance accordingly, ie; cross it out. I should also add the ability to delete items. These will require me to write PATCH and DELETE endpoints, I'm going to try and do them both as dynamic endpoints this time instead of just the DELETE one. 
+
+Ran into an interesting problem when implementing the DELETE route for the shopping list. Despite the endpoint function not using the request body at all, it still fails if you don't include it as a param:
+```jsx
+import { connectToDB } from "@/utils/database";
+import ShoplistItem from "@/models/shoplist";
+
+export const DELETE = async (req, { params }) => {//REQ is needed here despite not being accessed anywhere in the function body.
+    try {
+        await connectToDB();
+
+        await ShoplistItem.findByIdAndRemove(params.id);
+
+        return new Response("Item deleted", { status: 200 });
+    } catch (error) {
+        return new Response("Item delete failed", { status: 500 });
+    }
+};
+```
+When I excluded req as an argument, every DELETE request fetch was resulting in failure.
