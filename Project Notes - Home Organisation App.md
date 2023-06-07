@@ -648,3 +648,10 @@ I started by laying down a section in the page.js file, giving it a heading pull
 I then built a form component that looks very similar to the todolist one, but doesn't go full width, I want the shopping list to feel simpler and more compact. The logic for fetching the POST route was also pretty much the same as in the todolist. 
 
 At this point I'm going to stop noting down a blow by blow of what I did because I think building this will be pretty much just following what I did with the todo list route.
+
+## Update 07/06/2023
+I did end up deciding to try and implement the shopping list slightly differently to the todolist, by doing the data fetching for the GET endpoint inside the list component itself. I implemented a context for the the shoppinglist, but without a reducer this time, simply making a boolean state value that tracks wether the db has been updated available to both the form and the list components. The form will set this to true when it adds an item, and the list will trigger a fetch inside a useeffect when it is changed.
+
+This worked pretty well! It seems to perform about the same as the datafetching in the todolist, so still a little slow, but not worse. I think I should likely also pull out the reducer from the todo context and move the data fetching function into the list component itself, but I'll worry about that once i have finished the features for the shopping list.
+
+Next to add is the ability to mark a task as complete and change it's rendered appearance accordingly, ie; cross it out. I should also add the ability to delete items. These will require me to write PATCH and DELETE endpoints, I'm going to try and do them both as dynamic endpoints this time instead of just the DELETE one.
