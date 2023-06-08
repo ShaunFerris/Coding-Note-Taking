@@ -674,3 +674,44 @@ export const DELETE = async (req, { params }) => {//REQ is needed here despite n
 };
 ```
 When I excluded req as an argument, every DELETE request fetch was resulting in failure.
+
+## Update 08/06/2023
+Wrote the PATCH endpoint for marking the shoppinglist items as collected as a dynamic endpoint, think I will rewrite the todo one to be dynamic too. Going to write non-dynamic DELETE endpoints too that clear all tasks/items for both the shoplist and todo routes.
+
+### Securing routes
+Also spending time today investigating the protection of routes with nextAuth. By this I mean making it so that no pages other than the home page are accessible to unauthorized users. I can then implement a user whitelist so that only the intended users can get in to the site.
+
+This turned out to acutally be really simple and easy. The routes I want to protect are the shoppinglist, budget, and todolist routes. This was as easy as importing the `useSession()` hook from nextAuth and returning an acess denied message if the session is unauthenticed. Here is the shoppinglist page jsx as an example:
+```jsx
+"use client";
+
+import ShopAddItem from "@/components/shoplist/ShopAddItem";
+import ShopList from "@/components/shoplist/ShopList";
+import { ShoplistProvider } from "@/context/ShoplistContext";
+import { useSession } from "next-auth/react";
+
+const Shoplist = () => {
+    const { data: session, status } = useSession();
+
+    if (status === "unauthenticated") {
+        return <p>Access Denied</p>;
+    }
+
+    return (
+        <section className='flex flex-col items-center justify-center
+        w-full'>
+            <h1 className='head_text text-center blue_gradient py-3'>
+                Shopping List
+            </h1>
+            <div className="card_container w-full">
+                <ShoplistProvider>
+                    <ShopAddItem />
+                    <ShopList />
+                </ShoplistProvider>
+            </div>
+        </section>
+    );
+};
+
+export default Shoplist;
+```
