@@ -715,3 +715,15 @@ const Shoplist = () => {
 
 export default Shoplist;
 ```
+
+### Deploying to vercel
+At this point, although the project is not fully complete, the todolist and shopping list routes are feature complete and run nicely, so I have decided to deploy the project so that we can start using it and testing in the realworld.
+
+Before deploying a manually added a second user account to the database, and then added a check to the sign in call back function in the nextAuth options object that checks a users existence in the db before allowing sign in. This will mean that only the two intended users can actually sign in.
+
+The next steps to follow were:
+1. Sign up to vercel with github so the accounts are linked
+2. Add a new project, import the git repo, add env variables and build
+3. Add the new URL of the built project as env variables for nextauth url and url internal
+4. Go to the google cloud console and add the new URL as an authorized JS origin and  redirect URL
+
