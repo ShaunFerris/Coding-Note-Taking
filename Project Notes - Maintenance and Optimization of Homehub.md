@@ -33,6 +33,8 @@ This turned out not to be possible becuase the condition for displaying the logi
 
 ### Tasks for next session
 Things to look at next time I work on the project:
-- Start re-writing the data fetching and routing for the todolist route. In particular, investigate making the components that do the fetching async server components with the no-cache option enabled. I suspect that this might make it possible to avoid using context and use effect to refetch the data when it is changed, and should also  make it possible to properly use suspense and the Loading.js special page.
+- Start re-writing the data fetching and routing for the todolist route. In particular, investigate making the components that do the fetching async server components. I think this will make it so that the component is not fully mounted until the data is fetched, which will allow the proper use of suspense and the Loading.js special page to improve UX. I can then experiement with wether it is better to revalidate the data, or continue using a context to track db changes and useEffect to re-fetch.
 - Put a footer component in the top level layout with my name and a github link
 - Start seriously thinking about the budget and profile routes
+
+Point one is the most important and interesting one but also the largest amount of work. Don't forget to look at the data fetching docs again and really try to figure out suspense/data streaming/caching.
