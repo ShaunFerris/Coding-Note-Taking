@@ -28,3 +28,5 @@ The first task for today and my first application of Git branching will be to fi
 
 ### Side quest
 Decided to investigate whether I could make the homepage/login experience a bit better by moving the conditional display of the card menu/login card to the page file itself.
+
+This turned out not to be possible becuase the condition for displaying the logincard or the cardmenu is the existence of a session token, and you can't use the getSession hook at the top level. What I did instead was to destructure the status as well as the data from the get session call in the loginCard component. Then I added a new condition to the ternary statement that renders the card/cardmenu which checks if status === "loading", and if so renders an animated loading spinner. It works great and really improved UX.
