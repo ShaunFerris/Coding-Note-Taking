@@ -10,7 +10,7 @@ When working on personal projects alone, you often don't have any need to work a
 ## Working with branches
 You can see all the branches in a project with the command `git branch`. To switch between branches you can use `git checkout <branch name>`, and you can create a branch and immediately switch to it by adding the -b flag to this command. 
 
-When you commit changes to your new branch, they will only be on that branch, the main branch remains in whatever state it was in before.
+When you commit changes to your new branch, they will only be on that branch, the main branch remains in whatever state it was in before. To push your branch to the remote for the first time after making it locally use `git push -u origin <branch name>`
 
 When you are done working on a branch, you will want to merge the changes made there into the main branch again. You do this by switching back to the main branch with checkout, and then running `git merge <feature branch name>`.
 
