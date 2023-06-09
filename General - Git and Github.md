@@ -80,3 +80,5 @@ git pull upstream
 
 Here is a diagram to clarify the situation slightly:
 ![](https://i.stack.imgur.com/cEJjT.png)
+
+For Further notes on git see: [[General - Git Branching]]
