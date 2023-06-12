@@ -38,3 +38,8 @@ Things to look at next time I work on the project:
 - Start seriously thinking about the budget and profile routes
 
 Point one is the most important and interesting one but also the largest amount of work. Don't forget to look at the data fetching docs again and really try to figure out suspense/data streaming/caching.
+
+## 12/06/2023
+Spent a frustrating amount of time looking at a site footer today, ended up just going for a simple one and only having it display on the main page, as including it in the layout made it a nightmare to manage the spacing aroun the different elements on each page at each screen size.
+
+Made a dev branch for the process of rewriting the todo api routes and experimenting with making the server components async so that they don't render untill the data has been fetched. This may take some time and experimentation so I wanted to be able to regularly commit my work without interrupting service of the site.
