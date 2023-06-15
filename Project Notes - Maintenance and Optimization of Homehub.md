@@ -5,7 +5,7 @@ Now that homehub is hosted and ready for use testing and further development, th
 ## 08/06/2023
 Current issues to track down:
 - [x] Next auth session callbacks failing due to failed GET endpoint request. Likely due to accessing the database in the callback to fetch userId. Look at the callback in the taxonomy git repos source code and see if you can pull the sessionUser Id from the token instead.
-- [ ] Google disallowed user agent issue. Only happend once and have not been able to reproduce. May be tied to the session callback issue but I am not sure. May require more devices/google accounts to test for this
+- [ ] OAuth disallowed user agent issue. Only happend once and have not been able to reproduce. May be tied to the session callback issue but I am not sure. May require more devices/google accounts to test for this
 
 ## 09/06/2023
 Todays tasks: 
@@ -40,8 +40,15 @@ Things to look at next time I work on the project:
 Point one is the most important and interesting one but also the largest amount of work. Don't forget to look at the data fetching docs again and really try to figure out suspense/data streaming/caching.
 
 ## 12/06/2023
-Spent a frustrating amount of time looking at a site footer today, ended up just going for a simple one and only having it display on the main page, as including it in the layout made it a nightmare to manage the spacing aroun the different elements on each page at each screen size.
+Spent a frustrating amount of time looking at a site footer today, ended up just going for a simple one and only having it display on the main page, as including it in the layout made it a nightmare to manage the spacing around the different elements on each page at each screen size.
 
 Made a dev branch for the process of rewriting the todo api routes and experimenting with making the server components async so that they don't render untill the data has been fetched. This may take some time and experimentation so I wanted to be able to regularly commit my work without interrupting service of the site.
 
-Most of todays experiments were failures and I ended up abandoning the dev branch. It seems that the interactivity I need between my data and the user makes server components kind of incompatible with this project.
+Most of todays experiments were failures and I ended up abandoning the dev branch. It seems that the interactivity I need between my data and the user makes server components kind of incompatible with this project. So for now I will keep the current system where in the page comonents for the todos and shoplist routes, and by inheritance their children, are client components. I may experiment with server side routing a little more with the budget route when I get on to that. However given that hooks are incompatible with server components and that there does not seem to be a way to refresh data in server components in response to an action, I'm not sure if this is reconcilable.
+
+## 15/06/2023
+Last couple days did not do too much work on the site, just a few minor cosmetic fixes and adjustments. Going to look at properly rewriting the todo data fetching logic today to remove the unneccessary reducer component in the context.
+
+Actually, does it need to be rewritten? There are two different list components, the pending and the completed lists, and they both need to have the same version of the data. If I move the data fetching outside of the context, won't that mean that every data fetch is happening twice?
+
+Hmmmmmm. I could fetch the data in the page component and pass it as props to the lists maybe?
