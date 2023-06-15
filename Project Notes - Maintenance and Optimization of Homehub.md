@@ -61,3 +61,8 @@ This turned out to be simple, future testing will determine if I gained any perf
 The most important thing to tackle next is getting the budget route up and running in some form. The specifics aren't important as they can be changed later, just get it connected to the database and working in terms of persisting the data.
 
 After that the next most important thing is probably properly securing the api routes, probably with useSession I guess? Need to look into that more because I'm not sure use session can even be used on the server side.
+
+### Continuing on the budget route
+I have decided to make it possible to have multiple seperate budgets for different periods. This has required me to move the exisitng budget page.js file into a new dynamic route that will be identified by it's ID, and build a new page.js that fetches existing budget data from the db and lists them, then routes you to a dynamic page when you select one. 
+
+Currently I have complete a rudimentary  page component that fetches a list of budgets from the database and shows them in a list, and below that give the ability to add a fresh budget with a chosen name and starting amount to the database. If you click on a budget from the list, you are routed to a dynamic page for that budget, where the url slug is the `_id` from that budgets database entry. Next I need to change the dynamic budget page so that it can pull the name, budget and expenses list from the database by getting the id from it's own dynamic URL slug.
