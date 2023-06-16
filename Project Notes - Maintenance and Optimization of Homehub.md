@@ -5,7 +5,7 @@ Now that homehub is hosted and ready for use testing and further development, th
 ## 08/06/2023
 Current issues to track down:
 - [x] Next auth session callbacks failing due to failed GET endpoint request. Likely due to accessing the database in the callback to fetch userId. Look at the callback in the taxonomy git repos source code and see if you can pull the sessionUser Id from the token instead.
-- [ ] OAuth disallowed user agent issue. Only happend once and have not been able to reproduce. May be tied to the session callback issue but I am not sure. May require more devices/google accounts to test for this
+- [x] OAuth disallowed user agent issue. Only happend once and have not been able to reproduce. May be tied to the session callback issue but I am not sure. May require more devices/google accounts to test for this
 
 ## 09/06/2023
 Todays tasks: 
@@ -66,3 +66,8 @@ After that the next most important thing is probably properly securing the api r
 I have decided to make it possible to have multiple seperate budgets for different periods. This has required me to move the exisitng budget page.js file into a new dynamic route that will be identified by it's ID, and build a new page.js that fetches existing budget data from the db and lists them, then routes you to a dynamic page when you select one. 
 
 Currently I have complete a rudimentary  page component that fetches a list of budgets from the database and shows them in a list, and below that give the ability to add a fresh budget with a chosen name and starting amount to the database. If you click on a budget from the list, you are routed to a dynamic page for that budget, where the url slug is the `_id` from that budgets database entry. Next I need to change the dynamic budget page so that it can pull the name, budget and expenses list from the database by getting the id from it's own dynamic URL slug.
+
+## 16/06/2023
+Yesterday I set up a rudimentary page for displaying a list of budgets and adding a new one, which then navigates to a dynamically routed budget page for that given budget.
+
+Today I will begin by tidying up the budget menu page so that it look reasonable and tidy. Then I will look into refactoring the budget componenet structure so that the componenets can recieve the budget data fetched at the dynamic page level. This is because currently there are too many components and the share data through context but don't get real data from anywhere yet.
