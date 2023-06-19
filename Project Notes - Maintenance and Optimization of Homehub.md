@@ -105,6 +105,6 @@ It's also worth noting that after adding this console.log to the endpoint, the e
 
 ### Moving forward from this annoying ass bug
 Next things to look at are:
-1. Re-writing/re-organizing the component structure of the dynamic budget page routes. There are too many fucking components rn, so I will consolidate some of them in a way that makes more sense.
-2. Wiring up the consolidated components to accept data passed to them as props from the initial fetch instead of using a clunky context
-3. Adding delete functionality to the main budget list page
+- [ ] Re-writing/re-organizing the component structure of the dynamic budget page routes. There are too many fucking components rn, so I will consolidate some of them in a way that makes more sense.
+- [ ] Wiring up the consolidated components to accept data passed to them as props from the initial fetch instead of using a clunky context
+- [x] Adding delete functionality to the main budget list page
