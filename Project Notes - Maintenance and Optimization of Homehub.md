@@ -84,4 +84,12 @@ I decided today to pull all of the actual functionality out of the page.js file 
 
 Next I tried adding the req argument to the get request in the API endpoint, because excluding it has caused me headaches in the past even when it does not appear to be required. This also did not work, AHHHHH. I guess on Monday I will dive into this more deeply, but I'm seriously running out of ideas for why it won't work the way I expect, like the TODO and shoplist routes that do a very similar thing.
 
+### NOTE FOR TOMORROW
 Looking again at the difference between the budget list and the shoplist, the only difference that I can see that might be responsible is that the shoplist passes the fetched data to a component that renders the the actual list item, whereas on the budget list I am just using list items mapped to the data as part of the components return. Tomorrow I will make a new component for the list items and see if that fixes it, becusae maybe when the list of budgets changes, it will trigger a re-render of the child components that are passed info from that list as props?
+
+## 19/06/2023
+So I am likely still going to try extracting the display of the budget list items into a component like I noted down yesterday, but I'm not at all sure that this is the solution to the problem.
+
+I think the problem is being caused because the fetch request to GET endpoint is being cached, and identical requests are served the same result from the cache , even if the database has changed. However I don't know why this caching is happening for this endpoint, but not for any of the others, I can't see any differences in the code that might cause it. Also, using the cache: no-store or revalidate options on the fetch does not seem to solve the problem either.
+
+In addition to this, when I look at the build summaries for the site on vercel, all the api routes are functions EXCEPT for api/budget/route.js, the problematic endpoint, which is showing as an ISR function. This would explain why the data fetch only ever properly reflects the database immediately after a build, but not why I can't seem to get it to revalidate.
