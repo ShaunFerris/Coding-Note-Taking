@@ -101,6 +101,8 @@ Found a stackoverflow entry about a workaround where accessing the request in th
 <h1 style="text-align: center;">IT WORKED</h1>
 So it was most likely a de-duping issue! Simply console logging the request.url from inside the endpoint code fixed this issue.
 
+It's also worth noting that after adding this console.log to the endpoint, the endpoint is now being built as a function and not an ISR function by vercel, so that difference was part of the problem, and the revalidation/cache: no-store options that should have made the ISR version work dynamically WERE BROKEN.
+
 ### Moving forward from this annoying ass bug
 Next things to look at are:
 1. Re-writing/re-organizing the component structure of the dynamic budget page routes. There are too many fucking components rn, so I will consolidate some of them in a way that makes more sense.
