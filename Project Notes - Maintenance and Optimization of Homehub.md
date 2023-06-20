@@ -105,6 +105,11 @@ It's also worth noting that after adding this console.log to the endpoint, the e
 
 ### Moving forward from this annoying ass bug
 Next things to look at are:
-- [ ] Re-writing/re-organizing the component structure of the dynamic budget page routes. There are too many fucking components rn, so I will consolidate some of them in a way that makes more sense.
-- [ ] Wiring up the consolidated components to accept data passed to them as props from the initial fetch instead of using a clunky context
+- [x] Re-writing/re-organizing the component structure of the dynamic budget page routes. There are too many fucking components rn, so I will consolidate some of them in a way that makes more sense.
+- [ ] Wiring up the consolidated components to interact with the database through context
 - [x] Adding delete functionality to the main budget list page
+
+## 20/06/2023
+Started off today by working on the component structure of the budget dynamic route. I have successfully combined the three alert components that were displaying the budget amount, spent so far and remaining values into one component that takes the budget data as props and displays the values.
+
+Next I started working on functionality to add an expense to the budget, and this is were I ran into a bunch of problems. I had been trying to pass the data fetched in the page components down to all the other components but neglected that if those components change the data, I can't throw it back upstream. This is a text book situation where it makes sense to use context. So I am going to next move the data fetching for the current budget out of the dynamic budget page and into the context, and use the reducer strategy that the non-persistent version of the route had, but just have the context make fetches to the API rather than it's own state.
