@@ -31,3 +31,4 @@ myPromise.catch(error => {
 ```
 `error` is the argument passed in to the `reject` method.
 
+The browser based fetch API for getting data from a remote server is a common example of working with promises, as it returns promise objects.
