@@ -24,3 +24,6 @@ The top line of the response contains a status code. Codes at the 200 level, eg 
 
 ## State
 An importat feature of this architecture that we have been describing is that it is stateless, meaning that neither party, the server or the client, need to store any information about each other, and every request response cycle is independant. This leads to web applications that are predictable and reliable. 
+
+## Writing a RESTful API
+Following on from these notes, go here to see a walkthrough for writing a simple API with express.js: [[Webdev - Express.js - A Simple API]]
