@@ -13,6 +13,8 @@ Related notes:
 	[[Webdev - Next.js 13 - Basic Introduction]]
 	[[Webdev - MongoDB]]
 	[[Webdev - The Event Loop and Async Programming]]
+	[[Webdev - Writing RESTful APIs]]
+	[[Webdev - HTTP Verbs]]
 
 ## How websites are loaded
 The term **front-end** refers simply to the parts of an applications code that encode the appearance layer of a web site or application. To get started learning about how to code this appearance layer we should first understand a little about how a website is loaded and displayed by a browser, the software for which websit code is written.
