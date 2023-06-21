@@ -147,3 +147,4 @@ For more advanced notes on topics in JS:
 - [[JavaScript - Immediately Invoked Function Expression]]
 - [[JavaScript - The Rest Function and Handling Multiple Function Args]]
 - [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]]
+- [[Javascript - Async Await]]
