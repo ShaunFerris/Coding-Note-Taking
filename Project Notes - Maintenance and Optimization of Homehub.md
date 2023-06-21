@@ -106,7 +106,7 @@ It's also worth noting that after adding this console.log to the endpoint, the e
 ### Moving forward from this annoying ass bug
 Next things to look at are:
 - [x] Re-writing/re-organizing the component structure of the dynamic budget page routes. There are too many fucking components rn, so I will consolidate some of them in a way that makes more sense.
-- [ ] Wiring up the consolidated components to interact with the database through context
+- [x] Wiring up the consolidated components to interact with the database through context
 - [x] Adding delete functionality to the main budget list page
 
 ## 20/06/2023
@@ -117,3 +117,6 @@ Next I started working on functionality to add an expense to the budget, and thi
 Did a rework of the data fetching so that is is done in a use effect with NO dependancies inside the context provider, and made available along with the dispatch function so that the add expense form component can modify the shared budget state.
 
 Next, I need to build a patch endpoint. The current set up has the user able to change every aspect of the budget data model except the name, on this one page. The components on the page share the current state of the budget data model through context, and when they operate they operate on the context itself, not the actual data on the db.  I think this is good, because it makes adding expenses or modifying the budget amount really snappy and independant on the network, but it's impermanent without the PATCH route.
+
+## 21/06/2023
+Following on form yesterdays note, todays task is to create one more component for the budget route, composed of a button that can pull the latest context for the current budget and then send it as a fetch to the PATCH endpoint to save the budget status to the database. Should be relatively straightforward, will note here if anything goes wrong or wierd.
