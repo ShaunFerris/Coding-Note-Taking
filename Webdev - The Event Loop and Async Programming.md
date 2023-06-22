@@ -2,7 +2,10 @@
 
 Java script is a single threaded programming language, and a lot of actions performed on the web with it are blocking or time consuming. This makes asynchronous programming essential for working on the web. 
 
-To understand async programming we first need to understand the javascript runtime event loop, callbacks and promises. Previous notes on using promises in js are here: [[JavaScript - Promises]]
+To understand async programming we first need to understand the javascript runtime event loop, callbacks and promises. Before ES6 added promises, callbacks were the only real way to handle asynchronous events, then later ES7 made promises more elegant with async await syntax.
+
+Previous notes on callbacks are here: [[Javascript - Callback functions]]
+Notes on promises in js are here: [[JavaScript - Promises]]
 and notes on the actual use of async await are here: [[Javascript - Async Await]]. This note will primarily focus on the theory of the event loop in a webbrowser or node.js runtime.
 
 ## JS runtimes and the event loop

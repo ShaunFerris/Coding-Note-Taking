@@ -148,3 +148,4 @@ For more advanced notes on topics in JS:
 - [[JavaScript - The Rest Function and Handling Multiple Function Args]]
 - [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]]
 - [[Javascript - Async Await]]
+- [[Javascript - Callback functions]]
