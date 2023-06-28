@@ -10,11 +10,11 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [x] Finish HTML and CSS basics
 - [ ] Finish notes on the DOM
 - [ ] Finish notes on React hooks
+- [ ] Typescript basic intro
+- [ ] Continue Next.js notes
+- [ ] Expand DSA notes using slither into DSA book
 
 ## TO COME
 - Start note on big O and time complexity
-- HTML canvas tag animations
 - Next.js: routing, rendering, fetching, optimization, styling
 - Tailwind CSS
-- Async and the event loop in JS, maybe cover asyncio in python too
-- Expanded MongoDB notes
