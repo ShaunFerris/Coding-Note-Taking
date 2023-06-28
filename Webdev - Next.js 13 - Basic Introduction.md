@@ -59,4 +59,5 @@ When you build your application, Next.js will transform your code into productio
 ## Further Reading on Next.js
 These have been the very basics of what next is, to continue, see topics below:
 
+- [[Webdev - Next.js 13 - Client and Server Rendering]]
 - [[Webdev - Next.js 13 - Routing]]
