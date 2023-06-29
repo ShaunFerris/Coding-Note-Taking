@@ -1,4 +1,4 @@
-#datastructures #mutabletypes #dictionaries #objects 
+#dsa #datastructures #mutabletypes #dictionaries #objects 
 
 These notes will cover the fundamentals of python dictionaries and JS objects. The terms dictionary, or dict, and object will be used interchagably here, despite the fact that in JS, objects can also refer to class definitions. See also: [[JavaScript - Objects]], [[JavaScript - ES6 Objects and the Class Keyword]].
 

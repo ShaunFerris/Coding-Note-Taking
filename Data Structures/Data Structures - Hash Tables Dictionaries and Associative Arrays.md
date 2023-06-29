@@ -1,4 +1,4 @@
-#datastructures #memory #optimization #highlevelconcepts 
+#dsa #datastructures #memory #optimization #highlevelconcepts 
 
 This note is intended to explain what hash tables are, how they work on a system level, and how they relate to dictionaries and associative arrays in the same way as the notes on linked lists and arrays and memory do: [[Data Structures - Linked Lists]] [[Data Structures - Memory and How Arrays Work]].
 

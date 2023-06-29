@@ -1,4 +1,4 @@
-#datastructures #memory #optimization #highlevelconcepts #arrays #linkedlists
+#dsa #datastructures #memory #optimization #highlevelconcepts #arrays #linkedlists
 
 The notes in this video start with a summary of [this video](https://www.youtube.com/watch?v=34ky600VTN0) by simon dev titled **Why linked lists vs arrays is not a real choice.**
 

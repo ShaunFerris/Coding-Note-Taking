@@ -7,3 +7,6 @@ This note will serve as the hub for notes related to DSA topics. I will attempt 
 - [[Data Structures - Objects and dictionaries]]
 - [[Data Structures - Memory and How Arrays Work]]
 - [[Data Structures - Hash Tables Dictionaries and Associative Arrays]]
+- [[Algorithms - Algorithmic Complexity]]
+- [[Algorithms - Big O Notation]]
+- [[Algorithms - Space Complexity]]

@@ -1,4 +1,4 @@
-#datastructures #arrays #lists #mutabletypes
+#dsa #datastructures #arrays #lists #mutabletypes
 
 For a more technical look at how arrays work in memory and a good lead in to [[Data Structures - Linked Lists]], see [[Data Structures - Memory and How Arrays Work]].
 
