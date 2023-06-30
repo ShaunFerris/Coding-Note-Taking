@@ -1,2 +1,0 @@
-#python #paradigms #objects #oop 
-

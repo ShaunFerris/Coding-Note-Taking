@@ -27,7 +27,7 @@ class Time:
 		print(f'The time is {self.hours} : {self.mins} : {self.secs}')
 ```
 
-Notice the use of the init method and the self keyword. The init method is an example of a special method or dunder method.
+Notice the use of the init method and the self keyword. The init method is an example of a special method or dunder method. These methods
 
 ### The str() method
 The `__str()__` method is another special function that dictates what is returned when the print() function is called on an object instance. When we call print on a built-in like string or list, we get a nice, human readable representation of the object. Under the hood, the list built in type implements the `__str()__` method to achieve this.

@@ -12,9 +12,9 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [ ] Finish notes on React hooks
 - [ ] Typescript basic intro
 - [ ] Continue Next.js notes
-- [ ] Expand DSA notes using slither into DSA book
+- [x] Expand DSA notes using slither into DSA book
+- [x] Big O and time complexity
 
 ## TO COME
-- Start note on big O and time complexity
 - Next.js: routing, rendering, fetching, optimization, styling
 - Tailwind CSS
