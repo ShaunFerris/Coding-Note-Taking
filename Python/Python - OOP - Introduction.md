@@ -54,4 +54,4 @@ Now if we call the built-in len() function on an instantiated point it will tell
 There are a tonne of special methods in python, and I won't cover them all in these notes, but the last aspect of special methods that will be useful for making our own data structures is operator overloading. See [[Python - OOP - Operator Overloading]].
 
 Or see other topics in Python OOP:
-[[Python - OOP - Instance vs Class Mehods]]
+[[Python - OOP - Instance vs Class Methods]]
