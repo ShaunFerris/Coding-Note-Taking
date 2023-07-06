@@ -64,3 +64,8 @@ Print(Time.COUNT)
 ```
 
 ## Static methods
+Static methods can be thought of as ordinary functions, and unlike instance and class methods, they don't need special args like `self` or `class`.
+
+Static  methods are functions that are in some way related to the class, but don't need to actually access or interact with any of the class specific data, or need an instance to be invoked. 
+
+We use the `@staticmethod` decorator to specify a static method, and this ensures that the method in question will not require a special parameter and will not be allowed to access the class or instance attributes.
