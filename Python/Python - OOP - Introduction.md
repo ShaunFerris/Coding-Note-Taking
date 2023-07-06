@@ -56,3 +56,4 @@ There are a tonne of special methods in python, and I won't cover them all in th
 Or see other topics in Python OOP:
 [[Python - OOP - Instance, Class and Static Methods]]
 [[Python - OOP - Encapsulation and Types of Attribute]]
+[[Python - OOP - Inheritance]]
