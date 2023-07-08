@@ -1,0 +1,3 @@
+#projects #possibleNextBug
+
+Implemented a component to save the budget data for the current budget to the database, ran into an issue that I have encountered before but not previously documented (I don't think), that may also actually be a bug in the Next framework. The problem occurs when fetching data from inside a dynamic route segement, eg: `domain.app/budget/[slug]`. If you have a function in a component on that dynamic page and you fetch to dynamic endpoint like `fetch(api/budget/${[slug]})` then the fetch request will get sent as a request to `domain.app/budget/api/budget/[slug]` instead of `domain.app/budget/api/budget/[slug]`. I fixed this by adding a preceding slash to the fetch, ie": `fetch(/api/budget/${[slug]})`.

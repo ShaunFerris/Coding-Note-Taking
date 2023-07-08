@@ -14,3 +14,4 @@ Current issues to track down:
 - [[Project notes - Homehub - 18.06.2023]]
 -  [[Project notes - Homehub - 19.06.2023]]
 -  [[Project notes - Homehub - 20.06.2023]]
+- [[Project Notes - Homehub - 8.07.2023]]
