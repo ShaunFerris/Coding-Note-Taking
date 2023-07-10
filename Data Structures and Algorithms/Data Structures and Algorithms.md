@@ -17,3 +17,4 @@ Algorithm Notes:
 - [[Algorithms - Algorithmic Complexity]]
 - [[Algorithms - Big O Notation]]
 - [[Algorithms - Space Complexity]]
+- [[Algorithms - The Matching Brackets Problem]]
