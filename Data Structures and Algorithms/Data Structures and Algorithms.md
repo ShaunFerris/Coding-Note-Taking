@@ -4,6 +4,7 @@ This note will serve as the hub for notes related to DSA topics. I will attempt 
 
 Data Structures notes:
 - [[Data Structures - Stacks]]
+- [[Data Structures - Queues]]
 - [[Data Structures - Memory and How Arrays Work]]
 - [[Data Structures - Using Arrays]]
 - [[Data Structures - Linked Lists]]
