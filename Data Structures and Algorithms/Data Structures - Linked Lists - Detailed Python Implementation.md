@@ -1,4 +1,4 @@
-#dsa #datastructures #memory #optimization #highlevelconcepts #arrays #linkedlists
+#dsa #datastructures #memory #optimization #arrays #linkedlists
 
 Here I will be going over a detailed look at the implemenation of a singly linked list in Python.
 
@@ -46,3 +46,49 @@ class LinkedList:
 ```
 
 ### Deleting from a linked list
+We have a few different options when implementing a delete function for a linked list, we could delete the first element, the last element or the first occurence of an element. In this instance, lets go for that last option, deleting the first instance of a given element.
+
+When deleting an element from a linked list we are essentially just re-routing the next pointer of the preceeding node to go around the deleted node:
+![[Pasted image 20230717113141.png]]
+Lets look at the implementation:
+```python
+class LinkedList:
+	def __init__(self):
+		self.head = None
+
+	def delete(sefl, val):
+		if self.head == None:
+			return
+		if self.head.elem == val:
+			self.head = self.head.next
+			return val
+			
+		curr = self.head
+		while curr.next != None and curr.next.elem != val:
+			curr = curr.next
+
+		if curr.next == None:
+			return
+		else:
+			curr.next = curr.next.next
+			return val
+```
+We have to cover a couple of cases here. The first is that the list is empty in which case return nothing. The second is that the head of the linked list is the element we want to delete. If it is then we make the head of the list the second `Node` in the list (Which may be `None` but thats ok, it just means the list only had one item). Finally, if it is neither of those cases we traverse the list using linear search until we find the first occurrence of the element then we 're-route' the `next` pointer of the `Node` that points to the `Node` we want to delete, to the `Node` the `next` pointer of the `Node` we want to delete points to.
+
+## Time complexity
+So far we have looked at adding and deleting from the linked list, so lets take a second to think about the time complexity of these operations.
+
+The run time complexity of the add method is O(n) in this case as we must iterate over each entry in the list to find the last element. The runtime complexity of the deletion method is also O(n). Although we don't always iterate over each element in the list, Big-O deals with the worst case, which is going through the entire list. There are optimizations we could make though so that the `add()` method is always O(1). In other words, it is constant. See below for the more efficient implementation of the add method:
+```python
+class LinkedList:
+	def __init__(self):
+		self.head = None
+
+	def add(self, elem):
+		if self.head == None:
+			self.head = Node(elem)
+		else:
+			new_head = Node(elem)
+			new_head.next = self.head
+			self.head = new_head
+```

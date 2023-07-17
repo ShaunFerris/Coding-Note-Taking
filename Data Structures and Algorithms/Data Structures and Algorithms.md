@@ -11,7 +11,7 @@ Data Structures notes:
 - [[Data Structures - Objects and dictionaries]]
 - [[Data Structures - Hash Tables Dictionaries and Associative Arrays]]
 
-Also, for constructing custom data structures, revise OOP in python starting from here:
+Also, for constructing custom data structures, revise OOP in python starting from here and following the links to further topics:
 - [[Python - OOP - Introduction]]
 
 Algorithm Notes:
@@ -19,3 +19,4 @@ Algorithm Notes:
 - [[Algorithms - Big O Notation]]
 - [[Algorithms - Space Complexity]]
 - [[Algorithms - The Matching Brackets Problem]]
+- [[Algorithms - Sliding Window Algorithms]]
