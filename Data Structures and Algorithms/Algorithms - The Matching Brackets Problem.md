@@ -1,4 +1,4 @@
-#dsa #algorithms #datastructures #stacks
+#dsa #algorithms #datastructures #stacks #problemsolutions 
 
 The matching brackets problem is a classic example of where to use stacks, and the application of stacks to this problem will make solving it very straightforward.
 

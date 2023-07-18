@@ -1,4 +1,4 @@
-#dsa #algorithms #arrays 
+#dsa #algorithms #arrays #problemsolutions
 
 The sliding window technique is a common strategy for algorithms that need to identify patterns in an array of data that relate to the relative order of elements in the array. It is a more optimal method for situations where the naive approach would involve nested for loops.
 

@@ -73,8 +73,8 @@ class Stack:
 	def is_empty(self):
 		if len(self.stack) ==0:
 			return True
-		return Flase
-
+		return False
+		
 	def top(self):
 		return self.stack[-1]
 ```

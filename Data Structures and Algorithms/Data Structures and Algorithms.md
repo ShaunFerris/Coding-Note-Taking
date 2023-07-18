@@ -15,8 +15,11 @@ Also, for constructing custom data structures, revise OOP in python starting fro
 - [[Python - OOP - Introduction]]
 
 Algorithm Notes:
-- [[Algorithms - Algorithmic Complexity]]
-- [[Algorithms - Big O Notation]]
-- [[Algorithms - Space Complexity]]
-- [[Algorithms - The Matching Brackets Problem]]
-- [[Algorithms - Sliding Window Algorithms]]
+	Algorithms Concepts:
+	- [[Algorithms - Algorithmic Complexity]]
+	- [[Algorithms - Big O Notation]]
+	- [[Algorithms - Space Complexity]]
+	Algorithms Problems/Examples:
+	- [[Algorithms - The Matching Brackets Problem]]
+	- [[Algorithms - Sliding Window Algorithms]]
+	- [[Algorithms - Three Sum]]
