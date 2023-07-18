@@ -4,7 +4,7 @@
 <blockquote style="color: cyan; font-weight: bold; font-style: italic;">Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
 
 Notice that the solution set must not contain duplicate triplets.</blockquote>
-Let's go through three solutions to this problem, starting with the most intuitive and easy to grasp, and slowly adding optimizations as we go. All of these solutions will have a time complexity of **On^2** in the worst case.
+Let's go through two solutions to this problem, starting with the most intuitive and easy to grasp, and following up with a more optimized version. Both of these solutions will have a time complexity of **On^2** in the worst case.
 
 ## Solution one
 This approach will use the two pointer approach, which simply means that for each element we are considering as a candidate for an output triplet, we set two other pointers that move through the array and check the sum of these three elements for our inclusion conditions (summing to 0).
