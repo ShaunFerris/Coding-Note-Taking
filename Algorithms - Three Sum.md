@@ -22,7 +22,7 @@ Here it is in code:
 ```python
 def three_sum(nums: List[int]) -> List[List[int]]:
 	nums.sort()
-	triplets = {}
+	triplets = set()
 
 	for i in range(len(nums) - 2):
 		first_number = nums[i]
@@ -41,5 +41,38 @@ def three_sum(nums: List[int]) -> List[List[int]]:
 				triplets.add((first_number, second_number, third_number))
 				j += 1
 				k -= 1
+	return triplets
+```
+
+## Solution two
+This solution is an **improved** version of the first solution, that implements additional checking steps to skip duplicate values for higher efficiency. Here is a run-down of the imporvements made in this version:
+1. Before executing any of the code in the for loop, check if the candidate value for this iteration is the same as the previous candidate, and if it is then continue out to the next iteration as all triplets with this candidate have already been computed
+2. Inside the else block where a triplet that matches the sum condition is found, use two more while loops to skip over duplicate values of the pointer values
+
+The time complexity here is improved overall, by skipping more duplicates. The formal time complexity is still O(n^2) because we consider the worst case, but the average case performance is much better. Here it is in code:
+```python
+def three_sum(nums: List[int]) -> List[List[int]]:
+	nums.sort()
+	triplets = set()
+
+	for i in range(len(nums) - 2):
+		if i != 0 and nums[i] == nums[i  - 1]:
+			continue
+		first = nums[i]
+		j, k = i + 1, len(nums) - 1
+		while j < k:
+			second, third = nums[j], nums[k]
+		curr_sum = first + second + third
+		if curr_sum > 0:
+			k -= 1
+		elif curr_sum < 0:
+			j += 1
+		else:
+			triplets.add(first, second, third)
+			j, k = j + 1, k - 1
+			while j < k and nums[j] == nums[j - 1]:
+				j += 1 #skip if the new j is the same as the last j
+			while j < k and nums[k] == nums[k + 1]:
+				k -= 1 #same skipping logic as above
 	return triplets
 ```
