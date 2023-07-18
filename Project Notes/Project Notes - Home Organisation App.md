@@ -731,4 +731,4 @@ This went off without any issues!
 
 I did encounter an issue with the images in the menu though, the browser was loading the smallest version of the still image, which made it look super blurry. I fixed this by swapping out the width/height props for a fill={true} prop. This may have impacted performance though, I will investigate that in the future.
 
-I think this will conclude the active process notes for this project. Development will continue, but the purpose of these notes were to record the learning process of the basics. Tweaking and optimization will be recorded in a seperate note here: [[Project Notes - Maintenance and Optimization of Homehub]]
+I think this will conclude the active process notes for this project. Development will continue, but the purpose of these notes were to record the learning process of the basics. Tweaking and optimization will be recorded in a seperate note here: [[Project Notes - HomeHub Version 1.0 Completion Diary]]

@@ -9,4 +9,4 @@ This note will serve as a hub moving forward to organise process and design note
 - [[Project Notes - Home Organisation App]]
 
 **Mainetenace Logs**
-- [[Project Notes - Maintenance and Optimization of Homehub]]
+- [[Project Notes - HomeHub Version 1.0 Completion Diary]]
