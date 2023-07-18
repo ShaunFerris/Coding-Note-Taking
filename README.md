@@ -18,3 +18,11 @@ Feel free to make use of these notes for your own study and learning. To view th
 ## TO COME
 - Next.js: routing, rendering, fetching, optimization, styling
 - Tailwind CSS
+- Lots of DSA topics
+
+## Hub pages
+This repo is organized with hub pages for broad topics that link to notes on sub-sections of that topics. Listed here for navigating around topics by interest:
+- [[Project Notes - Hub]]
+- [[Webdev - Hub]]
+- [[JavaScript - Basics]]
+- [[Data Structures and Algorithms]]

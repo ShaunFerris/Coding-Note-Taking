@@ -6,7 +6,8 @@ This note will serve as a hub moving forward to organise process and design note
 - [[Project Notes - Budget App]]
 
 **Web Full-Stack Projects**
-- [[Project Notes - Home Organisation App]]
+- [[Project Notes - HomeHub - Initial Planning and pre-Launch Development Diary]]
+- [[Project Notes - Homehub - Version 1.1 planning]]
 
 **Mainetenace Logs**
 - [[Project Notes - HomeHub Version 1.0 Completion Diary]]
