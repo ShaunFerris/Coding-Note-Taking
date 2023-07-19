@@ -149,7 +149,3 @@ For more advanced notes on topics in JS:
 - [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]]
 - [[Javascript - Async Await]]
 - [[Javascript - Callback functions]]
-
-## Typescript
-Once you have revised all the ins and outs of JavaScript, head to this note to begin exploring Typescript, a language extension of JS that adds support for a strong typing system:
-- [[Typescript - Introduction and Hub]]

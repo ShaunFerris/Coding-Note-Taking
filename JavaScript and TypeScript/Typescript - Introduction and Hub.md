@@ -15,4 +15,5 @@ TypeScript knows the JavaScript language and will generate types automatically w
 By understanding how JavaScript works, TypeScript can build a type-system that accepts JavaScript code but has types. This offers a type-system without needing to add extra characters to make types explicit in your code. That’s how TypeScript knows that `helloWorld` is a `string` in the above example. Most importantly, the Typescript compiler will scream at you if a function with typed args is given an input of the wrong type.
 
 ## Specific topics in typescript
- - [[Typescript - Defining Types]]
+ - [[Typescript - Defining Types With Interfaces]]
+ - [[Typescript - Defining Types With Custom Types]]
