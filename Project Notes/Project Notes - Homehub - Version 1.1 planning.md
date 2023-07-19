@@ -7,6 +7,10 @@ This note is for the planning and brainstorming of features for the first major 
 
 The current plan is to work on new major features and keep the files in the repo, but unrouted until they are tested and ready. This is maybe a little hacky, but I don't really need to use git branching as the only person working on this so I think just commiting un-routed code to main will be fine and keep it nice and tidy for me while developing.
 
+### Minor issues from current version that need addressing:
+- [ ] DELETE route for the budgets list/budget components
+- [ ] Standardising of layouts for all components that display a list of some kind
+
 ### Meta feature - Typescript
 Not really a feature per-se, but I want to convert the app to typescript over time. I need to learn it as it is becoming clear to me that it is an essential skill for modern web-dev. Rather than trying to convert the whole app in one go, especially since I don't know it yet, I will be adopting the strategy of writing new features/components in TS so that I can test and learn before integrating them into the actual build. After I feel like I have a good handle on it, I will then re-write the remaining original code to be typesafe.
 

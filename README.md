@@ -22,9 +22,10 @@ Feel free to make use of these notes for your own study and learning. To view th
 
 ## Hub pages
 This repo is organized with hub pages for broad topics that link to notes on sub-sections of that topics. Listed here for navigating around topics by interest:
-- [[Project Notes - Hub]]
+- [[General - Hub]]
 - [[Webdev - Hub]]
 - [[JavaScript - Basics]]
 - [[Typescript - Introduction and Hub]]
 - [[Python - Hub]]
 - [[Data Structures and Algorithms]]
+- [[Project Notes - Hub]]

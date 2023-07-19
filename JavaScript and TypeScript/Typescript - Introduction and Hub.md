@@ -16,4 +16,5 @@ By understanding how JavaScript works, TypeScript can build a type-system that a
 
 ## Specific topics in typescript
  - [[Typescript - Defining Types With Interfaces]]
- - [[Typescript - Defining Types With Custom Types]]
+ - [[Typescript - Custom Types by Composition]]
+ - [[Typescript - The Structural Type System]]

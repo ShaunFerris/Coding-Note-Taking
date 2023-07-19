@@ -72,4 +72,4 @@ In addition to defining interfaces, TS lets you define types.
 
 `Type aliases` and `interfaces` are very similar, and in many cases you can choose between them freely. Almost all features of an `interface` are available in `type`, the key distinction is that a `type` cannot be re-opened to add new properties vs an `interface` which is always extendable.
 
-See: [[Typescript - Defining Types With Custom Types]]
+See: [[Typescript - Custom Types by Composition]]
