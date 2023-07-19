@@ -25,4 +25,5 @@ This repo is organized with hub pages for broad topics that link to notes on sub
 - [[Project Notes - Hub]]
 - [[Webdev - Hub]]
 - [[JavaScript - Basics]]
+- [[Python - Hub]]
 - [[Data Structures and Algorithms]]
