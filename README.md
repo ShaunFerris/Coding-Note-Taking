@@ -10,7 +10,7 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [x] Finish HTML and CSS basics
 - [ ] Finish notes on the DOM
 - [ ] Finish notes on React hooks
-- [ ] Typescript basic intro
+- [x] Typescript basic intro
 - [ ] Continue Next.js notes
 - [x] Expand DSA notes using slither into DSA book
 - [x] Big O and time complexity
@@ -25,5 +25,6 @@ This repo is organized with hub pages for broad topics that link to notes on sub
 - [[Project Notes - Hub]]
 - [[Webdev - Hub]]
 - [[JavaScript - Basics]]
+- [[Typescript - Introduction and Hub]]
 - [[Python - Hub]]
 - [[Data Structures and Algorithms]]

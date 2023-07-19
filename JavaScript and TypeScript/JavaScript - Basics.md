@@ -152,4 +152,4 @@ For more advanced notes on topics in JS:
 
 ## Typescript
 Once you have revised all the ins and outs of JavaScript, head to this note to begin exploring Typescript, a language extension of JS that adds support for a strong typing system:
-- [[Typescript - Introduction]]
+- [[Typescript - Introduction and Hub]]
