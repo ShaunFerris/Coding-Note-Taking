@@ -1,7 +1,7 @@
 #projects 
 
 ## Feature planning - 18/07/2023
-This note is for the planning and brainstorming of features for the first major update to my home organization app HomeHub.
+This note is for the planning and brainstorming of features for the first major update to my home organization app HomeHub. This doc will outline the plans, and dev diary entries for work towards v1.1 will be linked at the bottom.
 
 <blockquote style="color: cyan; font-weight: bold; font-style: italic;">The objective of this update is to identify and implement in HomeHub, features that will show a level of complexity and poilsh that will set it apart from a generic todo/budget/shopping list app and make it more technically impressive to prospective future employers.</blockquote>
 
@@ -27,3 +27,6 @@ A general outline of what I think needs to be done to get this working:
 
 ### Feature priority #2 - Tests
 This is another feature that will impress potential portfolio viewers. Industry development environments always implement testing suites and if they don't then they should. I have no experience with this yet and it is a weak spot for me so this will help. Also if I do get more users once the walled garden opens the app up to use by more people, it will also be genuinely useful.
+
+## V1.1 Dev diaries
+- [[Project Notes - Homehub - 20.07.2023 - tsconfig Issue]]

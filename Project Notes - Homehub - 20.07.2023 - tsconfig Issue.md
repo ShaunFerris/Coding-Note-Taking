@@ -29,3 +29,5 @@ I went back through git history and got the contents of the jsconfig, which was 
 And suddenly everything made sense. Adding a tsconfig, building so that next populated it for me, and then adding the above to the compiler options fixed the issue. 
 
 It appears that when you start a project with ts, this option is added to the tsconfig, but not if you convert to ts midway through a project initialized as a js one.
+
+I ended up submitting a pull request to add a sentence to the docs, in the section that talks about using typescript in an existing next project, instructing users to copy over the paths compiler option. Hopefully it gets accepted as that would have saved me three hours or so.

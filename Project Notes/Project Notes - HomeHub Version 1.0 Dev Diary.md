@@ -15,7 +15,6 @@ Current issues to track down:
 - [[Project notes - Homehub - 19.06.2023]]
 - [[Project notes - Homehub - 20.06.2023]]
 - [[Project Notes - Homehub - 8.07.2023]]
-- [[Project Notes - Homehub - 20.07.2023 - tsconfig Issue]]
 
 At this point the app is pretty stable and working as intended as far as my inital vision for it was concerned. Now I am planning some more impressive new features and overhauls to really make sure that it is an impressive project for my resume.
 
