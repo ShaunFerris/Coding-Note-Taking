@@ -10,4 +10,4 @@ This note will serve as a hub moving forward to organise process and design note
 - [[Project Notes - Homehub - Version 1.1 planning]]
 
 **Mainetenace Logs**
-- [[Project Notes - HomeHub Version 1.0 Completion Diary]]
+- [[Project Notes - HomeHub Version 1.0 Dev Diary]]
