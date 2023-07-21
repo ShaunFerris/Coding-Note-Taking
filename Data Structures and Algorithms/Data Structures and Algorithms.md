@@ -23,3 +23,4 @@ Algorithm Notes:
 	- [[Algorithms - The Matching Brackets Problem]]
 	- [[Algorithms - Sliding Window Algorithms]]
 	- [[Algorithms - Three Sum]]
+	- [[Algorithms - Doubly Linked Lists for Browser Navigation]]

@@ -9,3 +9,5 @@ A fairly large portion of implementing the planned walled garden to allow many u
 - Ability to change username?
 
 ## Process notes
+<span style="color: cyan; font-weight: bold;">NOTE: Use the dashboard page from shadcn's taxonomy project for inspiration/guidance on building out the components for this route. This will be especially useful for the TS parts of this, and will be an interesting experiment in term sof utilizing the server-side components that next enables, which I really haven't got the hang of yet</span>
+

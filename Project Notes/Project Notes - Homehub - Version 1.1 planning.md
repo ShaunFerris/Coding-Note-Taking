@@ -29,5 +29,5 @@ A general outline of what I think needs to be done to get this working:
 This is another feature that will impress potential portfolio viewers. Industry development environments always implement testing suites and if they don't then they should. I have no experience with this yet and it is a weak spot for me so this will help. Also if I do get more users once the walled garden opens the app up to use by more people, it will also be genuinely useful.
 
 ## V1.1 Dev diaries
-- [[Project Notes - Homehubv1.1 - 20.07.2023 - tsconfig Issue]]
-- [[Project Notes - Homehubv1.1 - 21.07.2023 onward - Profile Route]]
+- [[Project Notes - HomehubV1.1 - 20.07.2023 - tsconfig Issue]]
+- [[Project Notes - HomehubV1.1 - 21.07.2023 onward - Profile Route]]
