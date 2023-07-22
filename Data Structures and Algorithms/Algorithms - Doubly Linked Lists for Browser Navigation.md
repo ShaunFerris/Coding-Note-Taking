@@ -72,5 +72,24 @@ class Browser_Navigation(Doubly_Linked_List):
 		else:
 			print("No page ahead")
 
-	def navigate(self):
+	def navigate(self, site):
+		if self.position is None:
+			self.insert(site)
+			self.position = self.tail
+			print(f`Visiting {self.position.elem}`)
+		elif:
+			self.position.next is None:
+				self.insert(site)
+				self.position = self.tail
+				print(f`Visiting {self.position.elem}`)
+		else:
+			#void everything after the current position
+			self.position.next = None
+			#set tail to where we are
+			self.tail = self.position
+			#add new site
+			self.insert(site)
+			#move the position forward to new site
+			self.position = self.tail
+			print(f`Visiting {self.position.elem}`)
 ```
