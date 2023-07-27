@@ -22,5 +22,11 @@ class BST:
 		return self.recursive_search(self.root, value)
 
 	def recursive_search(self, node, value):
-		
+		if node is None or node.elem == value:
+			return node
+		elif value < node.value:
+			return recursive_search(node.left, value)
+		else:
+			return recursive_search(node.right, value)
 ```
+This code looks very strange at first, but it is done like this for a good reason. <span style="color: cyan; font-weight: bold;">Why do we need two different search functions where one is just a wrapper for the other?</span> The `search()` method allows us to call the `recursive_search()` method and pass in the root node, which means that the function will be working on a copy of the root node and not the node itself. This prevents the function from entering a recursive infinite loop.
