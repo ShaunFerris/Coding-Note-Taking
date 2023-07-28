@@ -104,3 +104,23 @@ And there you have it: a short test in Cypress that visits a page, finds and cli
 6. _Get the input with the `action-email` data-testid_
 7. _Type `fake@email.com` into the input_
 8. _Assert the input reflects the new value_
+
+## Testing your own app
+To begin writing tests for your own app you need to run the dev server, and point the tests there using the same syntax that we used to point the example test at the Cypress example site:
+```typescript
+describe('The Home Page', () => {
+  it('successfully loads', () => {
+    cy.visit('http://localhost:8080') // change URL to match your dev URL
+  })
+})
+```
+Because you are going to be visiting this URL in every test, it is a good idea to add it to the config file as the base URL, which will allow relative URLs to be used in visit statements (ie "/" instead of "http://localhost:3000/"). Do this by adding the following to your config file:
+```typescript
+import { defineConfig } from 'cypress'
+
+export default defineConfig({
+  e2e: {
+    baseUrl: 'http://localhost:8080',
+  },
+})
+```
