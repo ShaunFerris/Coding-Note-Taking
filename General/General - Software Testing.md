@@ -27,4 +27,4 @@ This includes static tests and linting as the base upon which everything rests, 
 
 ## Testing tools
 Depending on the language or possibly the specific application, you will use different libraries and tools for testing. Here are links to the ones I have researched so far:
-- [[JavaScript - E2E and Component Testing with Cypress]]
+- [[JavaScript - Testing with Cypress - Intoduction]]
