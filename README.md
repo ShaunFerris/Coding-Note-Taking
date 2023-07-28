@@ -14,6 +14,9 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [ ] Continue Next.js notes
 - [x] Expand DSA notes using slither into DSA book
 - [x] Big O and time complexity
+- [ ] Notes on Cypress testing
+- [ ] Notes on the process of writing tests for HomeHub
+- [ ] Finish Notes on BST implementation
 
 ## TO COME
 - Next.js: routing, rendering, fetching, optimization, styling

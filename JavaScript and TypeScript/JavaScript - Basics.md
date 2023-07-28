@@ -149,3 +149,4 @@ For more advanced notes on topics in JS:
 - [[JavaScript - Higher Order Array Functions and Functions as First Class Objects]]
 - [[Javascript - Async Await]]
 - [[Javascript - Callback functions]]
+- [[JavaScript - E2E and Component Testing with Cypress]]
