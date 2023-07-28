@@ -16,7 +16,7 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [x] Big O and time complexity
 - [x] Notes on Cypress E2E testing
 - [ ] Notes on Cypress Component testing
-- [ ] Notes on the process of writing tests for HomeHub
+- [ ] Notes on the process of writing tests for HomeHub - Started
 - [ ] Finish Notes on BST implementation
 
 ## TO COME

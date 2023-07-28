@@ -11,8 +11,15 @@ The current plan is to work on new major features and keep the files in the repo
 - [ ] DELETE route for the budgets list/budget components
 - [ ] Standardising of layouts for all components that display a list of some kind
 
-### Meta feature - Typescript
+### Meta feature #1 - Typescript
 Not really a feature per-se, but I want to convert the app to typescript over time. I need to learn it as it is becoming clear to me that it is an essential skill for modern web-dev. Rather than trying to convert the whole app in one go, especially since I don't know it yet, I will be adopting the strategy of writing new features/components in TS so that I can test and learn before integrating them into the actual build. After I feel like I have a good handle on it, I will then re-write the remaining original code to be typesafe.
+
+### Meta Feature #2 - Tests
+This is another feature that will impress potential portfolio viewers. Industry development environments always implement testing suites and if they don't then they should. I have no experience with this yet and it is a weak spot for me so this will help. Also if I do get more users once the walled garden opens the app up to use by more people, it will also be genuinely useful.
+
+I am going to be using Cypress to build the testing suite, and will likely start by implementing E2E testing for UX on all the routes, then move on to Component Testing for unit and integration test coverage. 
+
+See the dev diary entry linked at the bottom of this note for current progress.
 
 ### Feature priority #1 - Walled garden architecture
 **This is the most important and impressive feature that I have been thinking about implementing so far.** 
@@ -23,11 +30,9 @@ This system works great within the original scope of the app, which was to perfo
 
 A general outline of what I think needs to be done to get this working:
 - New database schemas: Need a schema for user groups, and a new schema for users that ties them to a user group. Maybe every schema should have a user-group entry? This way I wouldn't need to spin up a new todo/budget/etc db instance for every user group, but rather store all the documents together and just pull by the user group of the logged in user
-- Bulid the user profile route properly so that users have a place to manage their user groups. This idea actually gives the user proile route a reason to exist which is nice
-
-### Feature priority #2 - Tests
-This is another feature that will impress potential portfolio viewers. Industry development environments always implement testing suites and if they don't then they should. I have no experience with this yet and it is a weak spot for me so this will help. Also if I do get more users once the walled garden opens the app up to use by more people, it will also be genuinely useful.
+- Bulid the user profile route properly so that users have a place to manage their user groups. This idea actually gives the user proile route a reason to exist which is nice. **There is a dev diary entry for this work below**.
 
 ## V1.1 Dev diaries
 - [[Project Notes - HomehubV1.1 - 20.07.2023 - tsconfig Issue]]
 - [[Project Notes - HomehubV1.1 - 21.07.2023 onward - Profile Route]]
+- [[Project Notes - HomehubV1.1 - 28.07.2023 onward - Backfilling Tests]]
