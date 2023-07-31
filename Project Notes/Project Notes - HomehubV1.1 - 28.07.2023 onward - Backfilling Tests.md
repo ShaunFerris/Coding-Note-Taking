@@ -19,3 +19,13 @@ cy.get("[data-test='homepage-footer']")
 	.and("contain", "Source code available on Github.");
 ```
 
+It occurred to me that I need to be able to test the loginflow, and that I need to be able to mockup a logged in state in order to test basically every page properly. This turned out to be a non-trivial task. First priority is to figure out how to mock up a logged in state so we can test the whole site from the perspective of a logged in user.
+
+**Some useful resources I looked at when figuring out tests for the login flow:**
+- [Good blog post](https://filiphric.com/use-session-instead-of-login-page-object-in-cypress)
+- [The next auth example](https://next-auth.js.org/tutorials/testing-with-cypress)
+- [A github thread, look for the post about mocking a user session token](https://github.com/nextauthjs/next-auth/discussions/2053)
+- [Pull request where someone is implementing the mocked user method from the above thread, but with useful updates](https://github.com/scientist-softserv/webstore/pull/197/files#diff-1b1a73ba561eab6738c8b62510feed5b10edcd25c56626ac79017752b806439d)
+
+Ended up using the method from the pull request above to implement user session mocking and allow me to test the pages requiring auth. [This resource](https://www.howtocode.io/posts/cypress/cypress-environment-variables) was also useful for understanding how the pull request in question got the valid token value from the hidden and uncommited .env into the cypress config's env section for use in the `Cypress.login` custom function.
+
