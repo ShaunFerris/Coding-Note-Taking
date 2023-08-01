@@ -22,3 +22,6 @@ On the next step, the Launchpad will scaffold out a set of configuration files a
 For a more in-depth guide on E2E testing with Cypress see: [[JavaScript - Testing with Cypress - E2E Tests]]
 
 For a guide to components testing with Cypress see: [[JavaScript - Testing with Cypress - Component Tests]]
+
+For more specific sub topics of testing with Cypress see:
+- [[JavaScript - Testing with Cypress - Stubbing and Spying]]
