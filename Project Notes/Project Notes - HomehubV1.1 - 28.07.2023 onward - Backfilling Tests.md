@@ -39,3 +39,27 @@ At this point I removed the wait-until lib as a dependancy, as the homepage test
 **At this point I discover that the tests don't actually pass everytime**.
 
 Seems likely to be down to the same issue as earlier, the test is timing out before the loading spinner is replaced with the conditional component. May need to look into calling session and waiting on it before running the test.
+
+**Fixed this issue** by intercepting the call to the session endpoint of the nextauth api and forcing a wait for it's return, the isolated stubbing tests look like this now:
+```typescript
+describe("Loads login prompt when unauthenticated", () => {
+  it("Visits the page and stubs logout", () => {
+    cy.logOut();
+    cy.visit("/");
+    cy.intercept("GET", "/api/auth/session").as("session");
+    cy.wait("@session").then(() => {
+      cy.get("[data-test='login-prompt']");
+    });
+  });
+
+  it("loads the menu when authenticated", () => {
+    cy.clearCookie("next-auth.session-token");
+    cy.login(process.env.TEST_USER, process.env.TEST_PASS);
+    cy.visit("/");
+    cy.intercept("GET", "/api/auth/session").as("session");
+    cy.wait("@session").then(() => {
+      cy.get("[data-test='card-menu']");
+    });
+  });
+});
+```
