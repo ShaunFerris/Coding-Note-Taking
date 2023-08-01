@@ -29,3 +29,13 @@ It occurred to me that I need to be able to test the loginflow, and that I need 
 
 Ended up using the method from the pull request above to implement user session mocking and allow me to test the pages requiring auth. [This resource](https://www.howtocode.io/posts/cypress/cypress-environment-variables) was also useful for understanding how the pull request in question got the valid token value from the hidden and uncommited .env into the cypress config's env section for use in the `Cypress.login` custom function.
 
+## 01.08.2023
+After successfully mocking the user session token yesterday, today I am continuing to write tests. The tests for the authenticated/un-authenticated versions of the card menu worked flawlessly before I pushed yesterday, but that turns out to not be reproducible. The amount of time that the loader hangs around is too unpredictable. Today I am starting out by looking into using the a package that extends Cypress with a [wait-until](https://www.npmjs.com/package/cypress-wait-until) command. This would allow me to tell it to wait until the loading spinner is gone before testing the content of the card menu. 
+
+Ended up having a fair amount of trouble with this. I initially thought I was just having issues with the wait-until package, but it turned out to  be more of a fundamental issue. I was writing assertions that relied on the wrong elements, i.e. I was asserting the content of the card menu in the logged in/out state when that is just a wrapper for the conditionally displayed components. I ended up fixing it by asserting about the conditional components themselves, not the wrapper. 
+
+At this point I removed the wait-until lib as a dependancy, as the homepage tests are now working withough using it.
+
+**At this point I discover that the tests don't actually pass everytime**.
+
+Seems likely to be down to the same issue as earlier, the test is timing out before the loading spinner is replaced with the conditional component. May need to look into calling session and waiting on it before running the test.
