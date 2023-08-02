@@ -6,23 +6,14 @@ Feel free to make use of these notes for your own study and learning. To view th
 
 ## TODO
 - [ ] Finish introduction to hash tables
-- [x] Finish Poetry notes
-- [x] Finish HTML and CSS basics
-- [ ] Finish notes on the DOM
-- [ ] Finish notes on React hooks
-- [x] Typescript basic intro
 - [ ] Continue Next.js notes
-- [x] Expand DSA notes using slither into DSA book
-- [x] Big O and time complexity
-- [x] Notes on Cypress E2E testing
 - [ ] Notes on Cypress Component testing
-- [x] Notes on the process of writing tests for HomeHub - Started
 - [ ] Finish Notes on BST implementation
+- [ ] Flesh out notes on common JS interview questions
 
 ## TO COME
 - Next.js: routing, rendering, fetching, optimization, styling
 - Tailwind CSS
-- Lots of DSA topics
 
 ## Hub pages
 This repo is organized with hub pages for broad topics that link to notes on sub-sections of that topics. Listed here for navigating around topics by interest:
@@ -33,3 +24,4 @@ This repo is organized with hub pages for broad topics that link to notes on sub
 - [[Python - Hub]]
 - [[Data Structures and Algorithms]]
 - [[Project Notes - Hub]]
+- [[Interview Prep Quickies - Hub]]

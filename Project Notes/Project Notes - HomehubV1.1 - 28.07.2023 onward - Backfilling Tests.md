@@ -63,3 +63,4 @@ describe("Loads login prompt when unauthenticated", () => {
   });
 });
 ```
+The resource that really helped me to crack this problem was [this](https://webtips.dev/webtips/cypress/wait-for-element-to-disappear) blogpost.
