@@ -64,3 +64,24 @@ describe("Loads login prompt when unauthenticated", () => {
 });
 ```
 The resource that really helped me to crack this problem was [this](https://webtips.dev/webtips/cypress/wait-for-element-to-disappear) blogpost.
+
+## 04.08.2023
+Have worked on this for the last few days with no major hurdles. Finished out tests for the homepage and started working on the shoppinglist route. I noticed that I was often repeating lines of code waiting for data resources to load before checking things that need the data to render, so alias'd that behaviour out to this custom command:
+```typescript
+Cypress.Commands.add("waitForData", (time: number) => {
+  cy.intercept("GET", "/api/**").as("pageload");
+  cy.wait("@pageload", { timeout: time });
+});
+```
+
+Similarly I put the code for navigating around next chunk errors into a reusable command. <span style="color: cyan; font-weight: bold; font-style: italic;">Remember that this is a workaround until I figure out and eliminate these webpack errors. This is only acceptable as they don't affect UX, they just cause all components to render client side instead of having some on the server.</span>
+```typescript
+Cypress.Commands.add("logChunkError", () => {
+  Cypress.on("uncaught:exception", (err) => {
+    console.log("Cypress detected uncaught exception: ", err);
+    return false;
+  });
+});
+```
+
+Planning to also extract out commands for waiting for the session token to come in and be checked.
