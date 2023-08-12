@@ -85,3 +85,8 @@ Cypress.Commands.add("logChunkError", () => {
 ```
 
 Planning to also extract out commands for waiting for the session token to come in and be checked.
+
+## 12.08.2023
+Back to work today on the end to end testing suite. Focussing for now on finishing the shopping list route tests, then complete similar e2e tests for the other routes. At this point, I think it will be a good time to return to working on the new content, likely starting with the profile route: [[Project Notes - HomehubV1.1 - 21.07.2023 onward - Profile Route]]
+
+**Side Note:** Also noticing today that there is some overall slopiness in the codebase still that could do with cleaning up. A good place to start would  be the console logs that are still in place on some of the API routes. I have better tech for debugging now and it looks sloppy.
