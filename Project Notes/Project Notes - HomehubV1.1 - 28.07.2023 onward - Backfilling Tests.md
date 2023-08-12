@@ -90,3 +90,10 @@ Planning to also extract out commands for waiting for the session token to come 
 Back to work today on the end to end testing suite. Focussing for now on finishing the shopping list route tests, then complete similar e2e tests for the other routes. At this point, I think it will be a good time to return to working on the new content, likely starting with the profile route: [[Project Notes - HomehubV1.1 - 21.07.2023 onward - Profile Route]]
 
 **Side Note:** Also noticing today that there is some overall slopiness in the codebase still that could do with cleaning up. A good place to start would  be the console logs that are still in place on some of the API routes. I have better tech for debugging now and it looks sloppy.
+
+Another thing to look at today or tomorrow is setting up a staging database instance that the local host version of the app uses, so that e2e tests don't fuck with the actual database entries evey time I want to run tests. Managed this without too much trouble in the end, the process was:
+1. login to atlas, go to my cluster and create a new database. Note that there are tight restrictions on naming for mongodb instances, ie no spaces allowed
+2. add the new testing databases name to the URI in the local env file like this: `...mongodb.net/your_db_name?retryWrites...` 
+3. update the env variable on vercel so that it includes the prod db name in the same place. 
+Done!
+
