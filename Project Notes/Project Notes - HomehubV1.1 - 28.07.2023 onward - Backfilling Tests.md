@@ -97,3 +97,7 @@ Another thing to look at today or tomorrow is setting up a staging database inst
 3. update the env variable on vercel so that it includes the prod db name in the same place. 
 Done!
 
+## 13.08.2023
+At this point I am still seeing problems with tests sometimes failing but usually passing. I think I have eliminated a lot of the inconsistency, but some still remains. I currently think that this remaining inconsistency is related to the dev server and caching of resoursces leading to inconsistent loading times on the routes. The tests seem more likely to fail due to a timing issue if the server has only recently been started. I will keep chipping away at this and trying to further optimize existing tests as I go, as this will need to be figured out before I implement the tests into a CI pipeline.
+
+I made some tweeks to the homepage tests and did some testing with a fresh restart of the dev server each time. The tweeks seemed to be positive, but I'm still not confident the tests will always pass.
