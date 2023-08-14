@@ -9,6 +9,7 @@ The current plan is to work on new major features and keep the files in the repo
 
 ### Minor issues from current version that need addressing:
 - [ ] DELETE route for the budgets list/budget components
+- [ ] Clear list functionality for the todo route so we can mass delete
 - [ ] Standardising of layouts for all components that display a list of some kind
 
 ### Meta feature #1 - Typescript

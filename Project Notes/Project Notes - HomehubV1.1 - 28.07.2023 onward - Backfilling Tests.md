@@ -48,7 +48,7 @@ describe("Loads login prompt when unauthenticated", () => {
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
     cy.wait("@session").then(() => {
-      cy.get("[data-test='login-prompt']");
+      cy.get("['data-test='login-prompt']");
     });
   });
 
@@ -58,7 +58,7 @@ describe("Loads login prompt when unauthenticated", () => {
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
     cy.wait("@session").then(() => {
-      cy.get("[data-test='card-menu']");
+      cy.get("['data-test='card-menu']");
     });
   });
 });
@@ -101,3 +101,6 @@ Done!
 At this point I am still seeing problems with tests sometimes failing but usually passing. I think I have eliminated a lot of the inconsistency, but some still remains. I currently think that this remaining inconsistency is related to the dev server and caching of resoursces leading to inconsistent loading times on the routes. The tests seem more likely to fail due to a timing issue if the server has only recently been started. I will keep chipping away at this and trying to further optimize existing tests as I go, as this will need to be figured out before I implement the tests into a CI pipeline.
 
 I made some tweeks to the homepage tests and did some testing with a fresh restart of the dev server each time. The tweeks seemed to be positive, but I'm still not confident the tests will always pass.
+
+## 14.08.2023
+Continuing the implementation of e2e tests on the todo list route, and tidying up features on the site as I go. Adding tests has been really helpful for identifying things that are a bit wierd or need work in the ux. No big problems so far today and don't really anticipate running into any either (touch wood). Planning to hopefully be done with tests for this route today, then bang out the budget tests before week end as well as fixing the small list of touch ups (see the V1.1 planning note), so that next week I can finally really start on new work.
