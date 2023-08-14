@@ -104,3 +104,5 @@ I made some tweeks to the homepage tests and did some testing with a fresh resta
 
 ## 14.08.2023
 Continuing the implementation of e2e tests on the todo list route, and tidying up features on the site as I go. Adding tests has been really helpful for identifying things that are a bit wierd or need work in the ux. No big problems so far today and don't really anticipate running into any either (touch wood). Planning to hopefully be done with tests for this route today, then bang out the budget tests before week end as well as fixing the small list of touch ups (see the V1.1 planning note), so that next week I can finally really start on new work.
+
+Finished the todo route fairly quick, decided to implement the clear list functionality on this route before moving onto doing the tests for the budget route. This is half so that I don't avoid coming back to add this functionality and half because I am realising that the budget route still needs a fair bit of tweaking and this will be done alongside the tests, so I want to close out work on the todo route before begginning that.
