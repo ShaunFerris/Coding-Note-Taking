@@ -65,5 +65,14 @@ This is useful when you want to implement a stop-gap feature, ie: if a request t
 ## The `this` keyword, environments contexts and scope
 This topic of the `this` keyword is significantly less important in the context of React and other modern frontend programming, as these frameworks all use a funtional programming style. However OOP with JS is still a foundational topic and is fair game for interview questions. Furthermore, **the related topics of lexical environment and execution context are very relevant to functional programming and are high level topics that will show a good grasp of the fundamentals of the language.**
 
-`this` refers to the current execution context. To fully understand this we need to discuss and define some more high level terms, <span style="color: cyan; font-weight: bold; font-style: italic;">lexical environment, execution context, call stack and scope.</span>
+`this` refers to the current execution context, whether that be the object/method it is called within, or the global execution context when called on a function. To fully understand this we need to discuss and define some more high level terms, <span style="color: cyan; font-weight: bold; font-style: italic;">lexical environment, execution context, call stack and scope.</span>
+
+- **Lexical environment**: JS cares about where you right your code and what surrounds it. What line the code is on, whether it is indented in a block and what other code is in the same environment is the lexical environment of that line of code.
+- **Execution context**: Your JS code will consist of multiple lexical environments, each with their own execution context. The execution context denotes the code to be run in a given lexical environment, what variables are available to it and what other code will be involved. This is also where scope comes into the equation. When code from one execution context uses surrounding code from a different lexical environment — like a helper function — it creates a new execution context, and adds it to the call stack.
+- **Execution/call stack**: JS manages the order of execution of different execution contexts using a stack data structure. The global execution goes onto the stack first and will be the last to complete execution.
+- **Scope**: To put it very simply, scope is where in your code a variable is available. JS initially only had the global scope and the function scope, until es6 introduced the block scope and the `const` and `let` keywords to go with it.
+	- **Global scope**: Anything defined here is available anywhere else in the code, ie it is visible in all other scopes. 
+	- **Function scope**: Anything declared within a function definition, is NOT visible to any code outside the function. NOTE: this does not apply to arrow functions.
+	- **Block scope**: anything defined between curly braces that do not belong to a functions definition.
+Scopes can be nested, and any nested scope has access to its parent scope. This is related to closure as discussed above.
 
