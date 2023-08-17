@@ -29,7 +29,6 @@ myCounter();
 myCounter();
 myCounter();
 myCounter();
-myCounter();
 console.log(myCounter());
 
 //Console output: 5
@@ -76,3 +75,23 @@ This topic of the `this` keyword is significantly less important in the context 
 	- **Block scope**: anything defined between curly braces that do not belong to a functions definition.
 Scopes can be nested, and any nested scope has access to its parent scope. This is related to closure as discussed above.
 
+A good way to demonstrate some of these concepts is with an example object. Remember from earlier that arrow functions, unlike functions, do not have function scope. They use the lexical environment of their parent and thus share scope with it. This means that arrow functions do not have their own binding to the `this` keyword, while functions do. Consider this example:
+```javascript
+const obj = {
+	name: bob
+	age: 10
+	birthday() {
+		setTimeout(function() {
+			this.age++
+		})
+	}
+}
+```
+In the above, the birthday function will not work. It will not increment the age of the obj because the this keyword invoked in the function is referring to the execution context of the callback functions lexical environment, not the parent object. If you console logged this from inside the callback, it would log the timeout function, not the object. **If you replace the function with an arrow function it will work as intended**.
+
+## Promises and async await
+This is a big topic obv and is related to things like the JS event loop, blocking vs non-blocking code, the single threaded nature of the language etc, but here we are just looking for snappy prompts to prime for an interview, so as simply as possible:
+- **Promises**: Create a new promise with the constructor `const p = new Promise((resolve, reject) => {})` Inside the promise run your async code and call resolve for a success, reject for a fail case. You can then chain statements to the promise with the `then(), catch()` and `finally()` methods. Finallys will always run, thens will run on promise resolutions and catchs will run on promise rejection.
+- **Async await**: this is essentially just syntactic sugar to allow us to do all the things we can do with promises but without all the chaining, because it can get messy and be hard to read quickly. Just put the async keyword infront of a function, then the await  in front of the response you are waiting for, and use try catch syntax in place of the then/catch chains.
+
+## Higher order functions
