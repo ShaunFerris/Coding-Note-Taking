@@ -95,3 +95,7 @@ This is a big topic obv and is related to things like the JS event loop, blockin
 - **Async await**: this is essentially just syntactic sugar to allow us to do all the things we can do with promises but without all the chaining, because it can get messy and be hard to read quickly. Just put the async keyword infront of a function, then the await  in front of the response you are waiting for, and use try catch syntax in place of the then/catch chains.
 
 ## Higher order functions
+In the simplest terms a higher order function is a function that returns another function, like the example used above to explain closures **OR** one that accepts one or more functions as arguments.
+
+## Classes vs objects
+A class is a blueprint for creating objects. You instantiate an object from the class blueprint with the `new` keyword. The object is the data structure with key: value pairs of properties and methods, while the class is the blueprint and constructor for objects of that configuration.
