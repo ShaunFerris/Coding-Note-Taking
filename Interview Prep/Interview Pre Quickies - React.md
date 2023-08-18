@@ -17,4 +17,9 @@ Mounting is when the new component is created and inserted into the DOM. This is
 The below diagram illustrates the life-cycle of a modern react component, including the lifecycle methods that run under the hood to confirm/control the mounting/unmounting and updating of components:
 ![[Pasted image 20230818144147.png]]
 
-Blech.
+[Here](https://medium.com/codex/the-lifecycle-of-a-react-component-8e01332a068d)is a good article on the details of comonent life cycle and the lifecycle methods.
+
+## The react virtual DOM vs the real DOM
+The DOM is the document object model. It describes the structure and content of a document (ie the HTML), and provides a way to access and manipulate the document. When a browser loads an HTML doc, it processes the markdown into a tree in which every node is an object representing an element of the document that can be manipulated to change the structure and content. 
+
+The rub is that when any element in the DOM is changed, the entire DOM is re-rendered at once, which is inefficient and puts more load on the server than is strictly necessary. The **virtual DOM** is a technology used by React to improve performance for reactive web views. <span style="color: cyan; font-weight: bold; font-style: italic;">The virtual DOM is a lightweight copy of the DOM for a web page that is created in memory.</span> When the component state changes, the virtual DOM is recalculated, compared to the previous iteration, and only the changed elements are re-rendered.
