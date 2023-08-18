@@ -8,3 +8,13 @@ Modern react is functional react, so we aren't storing state in class components
 [Here](https://stackoverflow.com/questions/37755997/why-cant-i-directly-modify-a-components-state-really) is a great stack overflow answer that covers some of the nuances of this topic.
 
 ## React lifecycle, methods, hooks
+The three phases of a React components life cycle are:
+1. Mounting
+2. Updating
+3. Unmounting
+Mounting is when the new component is created and inserted into the DOM. This is the start of it's life and only happens once. It is also called the initial render of the component. Updating is mutation or updating of the component, and unmounting is the removal of the component from the DOM. A react component may not always go through every part of this life cycle, as they do not always need to be updated and may not be unmounted.
+
+The below diagram illustrates the life-cycle of a modern react component, including the lifecycle methods that run under the hood to confirm/control the mounting/unmounting and updating of components:
+![[Pasted image 20230818144147.png]]
+
+Blech.
