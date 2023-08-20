@@ -37,4 +37,37 @@ The recursive search function itself is pretty straightforward. The base case re
 **NOTE**: I am not actually sure that the two search methods are necessary. This came from the "Slither into DSA with python" book. I think it's possible that it needs to be done this way if you want to return the actual node object, but may be unnecessary if you only want to return True when found and false when not found.
 
 ## Inserting into a BST
-Next we will look at inserting new data into the tree structure. This method witll traverse the tree in very much the same way as the search method. 
+Next we will look at inserting new data into the tree structure. This method will traverse the tree in very much the same way as the search method, except when we reach a leaf node we set the left or right pointer to a new node depending on it's value compared to the child node. 
+
+The base case: If the node we are at is `None` we insert here.
+The recursive case: If the insert value is lower than current go down the left tree, insert if none or call insert again. Do the same but down the right tree if insert is larger than current.
+
+Here is the method written out in python:
+```python
+class BST:
+	def __init__(self):
+		self.root = None
+
+	def insert(self, val):
+		if self.root is None:
+			self.root = Node.val
+		else:
+			self.recursive_insert(self.root, val)
+
+	def recursive_insert(self, node, val):
+		if val < node.elem:
+			if node.left is None:
+				node.left = Node(val)
+			else:
+				self.recursive_insert(node.left, val)
+
+		else:
+			if node.right is None:
+				node.right = Node(val)
+			else:
+				self.recursive_insert(node.right, val)
+```
+
+## Deleting from a BST
+This is a bit more difficult than inserting into the tree. When we insert we are always just inserting into a leaf on the tree but with deletions there are three distinct cases we need to cover:
+1. 
