@@ -8,8 +8,8 @@ This note is for the planning and brainstorming of features for the first major 
 The current plan is to work on new major features and keep the files in the repo, but unrouted until they are tested and ready. This is maybe a little hacky, but I don't really need to use git branching as the only person working on this so I think just commiting un-routed code to main will be fine and keep it nice and tidy for me while developing.
 
 ### Minor issues from current version that need addressing:
-- [ ] DELETE route for the budgets list/budget components
-- [ ] Clear list functionality for the todo route so we can mass delete
+- [x] DELETE route for the budgets list/budget components
+- [x] Clear list functionality for the todo route so we can mass delete
 - [ ] Standardising of layouts for all components that display a list of some kind
 
 ### Meta feature #1 - Typescript
