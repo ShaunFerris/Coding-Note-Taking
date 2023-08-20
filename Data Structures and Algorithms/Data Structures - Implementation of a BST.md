@@ -69,5 +69,21 @@ class BST:
 ```
 
 ## Deleting from a BST
-This is a bit more difficult than inserting into the tree. When we insert we are always just inserting into a leaf on the tree but with deletions there are three distinct cases we need to cover:
-1. 
+This is a bit more difficult than inserting into the tree. When we insert we are always just inserting into a leaf on the tree (a terminal node) but with deletions there are three distinct cases we need to cover:
+
+1. The node we are removing has no child nodes, ie it is a **leaf node**. This is the simplest case and we can just remove it. ![[Pasted image 20230820143215.png]]
+2. The node has one child. This is the next simplest case as we can just remove the node, and then patch it's parent node to point to it's child node. ![[Pasted image 20230820143242.png]]
+3. Finally there is the case where the node to be removed has two children. In this case we can consider that one set of values can be represented as a BST in more than one configuration. Fore example the set `{9, 11, 23, 30}` can be represented as the following two trees: ![[Pasted image 20230820143504.png]]
+The two trees are different, but both valid and  represent the same set. The transformation was achieved by starting from the root and searching the right subtree for the minimum element (11) replacing the root with that element and appending the old root to the left tree. This idea can be applied to a deletion method as follows:
+1. Find the node to delete
+2. Find the min of the BSTs right sub-tree
+3. Replace the element of the node to be deleted with the min we just found
+4. Recur this removal to the right subtree to remove the now duplicated element
+<span style="color: cyan; font-weight: bold; font-style: italic;">When we apply the recursion to remove the duplicate we can be sure that it will fall into case 1 or 2, not case three because it was the minimum of the right tree and thus cannot have two children.</span>
+
+To apply this in code we need two functions, a removal method and a method to find the min. Here it is in code:
+```python
+class BST:
+	def __init__(self):
+		
+```
