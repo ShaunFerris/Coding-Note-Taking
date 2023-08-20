@@ -22,6 +22,16 @@ The below diagram illustrates the life-cycle of a modern react component, includ
 ## The react virtual DOM vs the real DOM
 [This](https://medium.com/devinder/react-virtual-dom-vs-real-dom-23749ff7adc9)is a useful article for reference.
 
-The DOM is the document object model. It describes the structure and content of a document (ie the HTML), and provides a way to access and manipulate the document. When a browser loads an HTML doc, it processes the markdown into a tree in which every node is an object representing an element of the document that can be manipulated to change the structure and content. 
+The DOM is the document object model. It describes the structure and content of a document (ie the HTML), and provides a way to access and manipulate the document. When a browser loads an HTML doc, it processes the markdown into a tree in which every node is an object representing an element of the document that can be manipulated to change the structure and content. This model maintains the parent to child relationships of the HTML.
 
 The rub is that when any element in the DOM is changed, the entire DOM is re-rendered at once, which is inefficient and puts more load on the server than is strictly necessary. The **virtual DOM** is a technology used by React to improve performance for reactive web views. <span style="color: cyan; font-weight: bold; font-style: italic;">The virtual DOM is a lightweight copy of the DOM for a web page that is created in memory.</span> When the component state changes, the virtual DOM is recalculated, compared to the previous iteration, and only the changed elements are re-rendered.
+
+## Hooks
+Before hooks were introduced in React 16.8, class components were necessary for managing state. This is because functional components did not have access to the methods that class components did, like `setState()` or `constructor()`. Hooks were introduced as a way to get this React functionality into functional components, which have the benefit of being easier and faster to write, with less boilerplate. Simply put:
+<blockquote style="color: cyan; font-weight: bold; font-style: italic;">Prior to the introduction of React Hooks, functional components lacked an efficient built-in mechanism for managing state, handling side effects, and controlling component lifecycle.</blockquote>
+A simple summary of some of the built in hooks:
+- **useState**: Allows functional components to manage state
+- **useEffect**: Enables components to perform side effects and manage component life cycle
+- **useContext**: Simplifies accessing shared state data without deeply nested component hierarchies and excessive prop drilling
+- **useReducer**: An alternative to use state for managing complex state logic
+- **useMemo and useCallback**: Optimize  performance by memoizing values and functions
