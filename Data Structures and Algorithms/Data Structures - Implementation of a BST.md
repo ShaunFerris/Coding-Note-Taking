@@ -110,13 +110,13 @@ class BST:
 		else:
 			#Node is not the root node
 			if not parent is None:
-				if node.left is None and node.right is None:
+				if node.children() == 0:
 					#node has no children, case 1
 					if parent.left == node:
 						parent.left = None
 					else:
 						parent.right = None
-				elif node.left != None or node.right != None:
+				elif node.children() == 1:
 					#Node has one child, case 2
 					if node.left != None:
 						child = node.left
@@ -127,14 +127,27 @@ class BST:
 						parent.left = child
 					else:
 						parent.right = child
-				#Node has two childre, case 3
-				elif node.left != None and node.right != None:
+				#Node has two children, case 3
+				elif node.children() == 2:
 					smallest_node = min_node(node.right)
 					node.elem = smallest_node.elem
 					self.recursive_remove(node, parent, val)
 			#Node to delete is root node
 			else:
-				if node.left is None and node.right is None:
+				if node.children() == 0:
 					node = None
-				elif node.left != None or node.right != None
+				elif node.children() == 1:
+					if node.left != None:
+						self.root = node.left
+					else:
+						self.root = node.right
+				elif node.children() == 2:
+					smallest_node = min_node(node.right)
+					node.elem = smallest_node.elem
+					self.recursive_remove(node, None, val)
+		return node
 ```
+This is tough. Make sure you understand the delete operation, even if that means going
+through it over and over again. Use a pen and paper if you need! It is a good question for an
+employer to ask as it shows how someone approaches a tough problem (pointing out different
+scenarios, breaking the problem down, etc.)
