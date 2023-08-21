@@ -18,4 +18,4 @@ Current issues to track down:
 
 At this point the app is pretty stable and working as intended as far as my inital vision for it was concerned. Now I am planning some more impressive new features and overhauls to really make sure that it is an impressive project for my resume.
 
-- [[Project Notes - Homehub - Version 1.1 planning]]
+- [[Project Notes - Homehub - Version 1.1]]

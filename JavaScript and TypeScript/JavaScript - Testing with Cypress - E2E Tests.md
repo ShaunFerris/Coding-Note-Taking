@@ -125,4 +125,4 @@ export default defineConfig({
 })
 ```
 
-For my notes on the process of backfilling tests for my existing code on the homehub project, see here: [[Project Notes - HomehubV1.1 - 28.07.2023 onward - Backfilling Tests]]. **THESE NOTES WILL ALSO CONTAIN NEW SYNTAX THAT I LEARN ON THE WAY SO WILL BE VERY MUCH WORTH YOUR TIME TO REVIEW THEM, FUTURE ME**.
+For my notes on the process of backfilling tests for my existing code on the homehub project, see here: [[Project Notes - HomehubV1.1 - 28.07.2023 onward - Backfilling E2E Tests]]. **THESE NOTES WILL ALSO CONTAIN NEW SYNTAX THAT I LEARN ON THE WAY SO WILL BE VERY MUCH WORTH YOUR TIME TO REVIEW THEM, FUTURE ME**.

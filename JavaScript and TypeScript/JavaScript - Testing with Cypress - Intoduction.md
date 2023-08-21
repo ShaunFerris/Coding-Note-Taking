@@ -23,5 +23,7 @@ For a more in-depth guide on E2E testing with Cypress see: [[JavaScript - Testin
 
 For a guide to components testing with Cypress see: [[JavaScript - Testing with Cypress - Component Tests]]
 
+For notes on API testing and integration tests: [[JavaScript - Testing with Cypress - API and Integration tests]]
+
 For more specific sub topics of testing with Cypress see:
 - [[JavaScript - Testing with Cypress - Stubbing and Spying]]

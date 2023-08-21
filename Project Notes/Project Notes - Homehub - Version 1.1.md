@@ -34,7 +34,8 @@ A general outline of what I think needs to be done to get this working:
 - Bulid the user profile route properly so that users have a place to manage their user groups. This idea actually gives the user proile route a reason to exist which is nice. **There is a dev diary entry for this work below**.
 
 ## V1.1 Dev diaries
-- [[Project Notes - HomehubV1.1 - 20.07.2023 - tsconfig Issue]]
+- [[Project Notes - HomehubV1.1 - 20.07.2023 - tsConfig Issue]]
 - [[Project Notes - HomehubV1.1 - 21.07.2023 onward - Profile Route]]
-- [[Project Notes - HomehubV1.1 - 28.07.2023 onward - Backfilling Tests]]
-- [[Project Notes - HomeHub V1.1- 13.08.2023 - Dissapearing creator field on TODO tasks]]
+- [[Project Notes - HomehubV1.1 - 28.07.2023 onward - Backfilling E2E Tests]]
+- [[Project Notes - HomeHub V1.1- 13.08.2023 - Dissapearing Creator Field on TODO tasks]]
+- [[Project Notes - HomeHub V1.1 - 21.08.2023 Onward - Integration Tests and API Overhaul]]

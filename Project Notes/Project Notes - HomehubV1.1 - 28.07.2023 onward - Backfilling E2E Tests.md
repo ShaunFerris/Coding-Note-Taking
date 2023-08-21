@@ -111,3 +111,7 @@ Finished the todo route fairly quick, decided to implement the clear list functi
 Continuing the implentation of e2e tests same as yesterday. As planned I did manage to finish out the tests for the todo list route and have moved on to the budget route, implementing tests for the static titles and content with no issues whatsoever. Timing issues seem less of a problem now, and I think that may be due to just setting hard waits of 3seconds where needed instead of messing around with intercepting api calls, as sometimes the api call triggers before I start listening for it (this is mostly still a problem on the homepage tests, and even then only sometimes. Tricky to weed out.)
 
 On the way I have noticed a lot of issues with layout and logic on the todo route and have been fixing them as I go. A lot of these were identified while doing the conversion of the componenets and context to TS.
+
+## 21.08.2023
+At this point I have finished the e2e tests for the user experience across all pages and fixed up a bit of the functionality too. From here on out I will be moving on to implementing integrations tests along side going over the API routes of the app with a fine tooth comb to remove things that are dumb and ensure type safety best practices. See: [[Project Notes - HomeHub V1.1 - 21.08.2023 Onward - Integration Tests and API Overhaul]]
+
