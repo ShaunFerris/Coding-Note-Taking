@@ -85,5 +85,56 @@ To apply this in code we need two functions, a removal method and a method to fi
 ```python
 class BST:
 	def __init__(self):
-		
+		self.root = None
+
+	def remove(self, val):
+		return self.recursive_remove(self.root, None, val)
+
+	def recursive_remove(self, node, parent, val):
+		#helper function
+		def min_node(node):
+			curr = node
+			while curr.left != None:
+				curr = curr.left
+			return curr
+		#base case
+		if node == None:
+			return node
+		#left tree recursion case
+		if val < node.elem:
+			node.left = self.recursive_remove(node.left, node, val)
+		#right tree case
+		elif val > node.elem:
+			node.right = self.recursive_remove(node.right, node, val)
+		#case where node is the target
+		else:
+			#Node is not the root node
+			if not parent is None:
+				if node.left is None and node.right is None:
+					#node has no children, case 1
+					if parent.left == node:
+						parent.left = None
+					else:
+						parent.right = None
+				elif node.left != None or node.right != None:
+					#Node has one child, case 2
+					if node.left != None:
+						child = node.left
+					else:
+						child = node.right
+					#point the parent node to the child node of the one being removed
+					if parent.left == node:
+						parent.left = child
+					else:
+						parent.right = child
+				#Node has two childre, case 3
+				elif node.left != None and node.right != None:
+					smallest_node = min_node(node.right)
+					node.elem = smallest_node.elem
+					self.recursive_remove(node, parent, val)
+			#Node to delete is root node
+			else:
+				if node.left is None and node.right is None:
+					node = None
+				elif node.left != None or node.right != None
 ```
