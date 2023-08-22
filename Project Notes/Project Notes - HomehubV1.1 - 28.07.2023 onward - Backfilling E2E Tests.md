@@ -113,5 +113,5 @@ Continuing the implentation of e2e tests same as yesterday. As planned I did man
 On the way I have noticed a lot of issues with layout and logic on the todo route and have been fixing them as I go. A lot of these were identified while doing the conversion of the componenets and context to TS.
 
 ## 21.08.2023
-At this point I have finished the e2e tests for the user experience across all pages and fixed up a bit of the functionality too. From here on out I will be moving on to implementing integrations tests along side going over the API routes of the app with a fine tooth comb to remove things that are dumb and ensure type safety best practices. See: [[Project Notes - HomeHub V1.1 - 21.08.2023 Onward - Integration Tests and API Overhaul]]
+At this point I have finished the e2e tests for the user experience across all pages and fixed up a bit of the functionality too. From here on out I will be moving on to implementing integrations tests along side going over the API routes of the app with a fine tooth comb to remove things that are dumb and ensure type safety best practices. See: [[Project Notes - HomeHub V1.1 - 23.08.2023 Onward - Integration Tests and API Overhaul]]
 

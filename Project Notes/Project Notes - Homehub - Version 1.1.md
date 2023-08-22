@@ -38,4 +38,4 @@ A general outline of what I think needs to be done to get this working:
 - [[Project Notes - HomehubV1.1 - 21.07.2023 onward - Profile Route]]
 - [[Project Notes - HomehubV1.1 - 28.07.2023 onward - Backfilling E2E Tests]]
 - [[Project Notes - HomeHub V1.1- 13.08.2023 - Dissapearing Creator Field on TODO tasks]]
-- [[Project Notes - HomeHub V1.1 - 21.08.2023 Onward - Integration Tests and API Overhaul]]
+- [[Project Notes - HomeHub V1.1 - 23.08.2023 Onward - Integration Tests and API Overhaul]]
