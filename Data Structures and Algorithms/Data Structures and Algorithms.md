@@ -6,7 +6,8 @@ This note will serve as the hub for notes related to DSA topics. I will attempt 
 Arrays and array based linear data structures:
 - [[Data Structures - Memory and How Arrays Work]]
 - [[Data Structures - Using Arrays]]
-- [[Data Structures - Linked Lists]]
+- [[Data Structures - Linked Lists]] NOTE that this links to notes on variations like DLLs
+- [[Data Structures - The Positional List ADT]]
 
 Stacks and Queues:
 - [[Data Structures - Stacks]]
