@@ -1,2 +1,6 @@
 #projects 
 
+This dev diary will cover the implementation of integration tests to test the API route handlers in isolation, with a particular focus on testing the type safety that will be implemented alongside these tests. The route handlers are currently still written in JS, but I will be converting them to TS and implementing type interfaces for the data models. The integration tests will send data throught the route handlers and assert the correct responses for valid and invalid data.
+
+## 25.08.2023
+Just really getting started on this today, converted all the budget route handlers and added explicit typing with type interfaces that match the shape of the mongoose data models. In addition to this I removed the console.log statements in all route handlers as they are not needed and were hold outs from old debugging episodes. Tomorrow I should be able to carry this conversion out for all the other route handler files, and then look at moving onto the utility functions and other accessory back-end code. At that point I should finally have finished everything that needs to be tidied up before figuring out the new feature implementations.
