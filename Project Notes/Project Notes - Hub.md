@@ -8,6 +8,7 @@ This note will serve as a hub moving forward to organise process and design note
 **Web Full-Stack Projects**
 - [[Project Notes - HomeHub - Initial Planning and pre-Launch Development Diary]]
 - [[Project Notes - Homehub - Version 1.1]]
+- [[Project Notes - Kearns Collection Gallery]]
 
 **Mainetenace Logs**
 - [[Project Notes - HomeHub Version 1.0 Dev Diary]]
