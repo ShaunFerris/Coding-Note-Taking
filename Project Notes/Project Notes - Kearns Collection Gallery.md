@@ -16,13 +16,11 @@ The above outlines the initial design based on my first conversation with the cl
 4. A page detailing who the artist studied with and when. Could this be blended into a comprehensive bio page for the artist?
 
 ## Technical requirements
-The images need to load fast, reliably and be supported with accessibiltiy features. Will likely want to load every image in multiple sizes so the the transition between gallery thumbnail/carousel image/full size image with blurb is seemless.
+<span style="color: cyan; font-weight: bold;">The images need to load fast, reliably and be supported with accessibiltiy features.</span> Will likely want to load every image in multiple sizes so the the transition between gallery thumbnail/carousel image/full size image with blurb is seemless.
 
-Using cloudinary as a cdn to host the images and handle transformations. This is likely the only real backend functionality that the site will need. It's possible this will change in the future if the client wants to go further and implement mail lists and registration but for now image delivery and transformations is it.
+Using cloudinary as a CDN to host the images and handle transformations. This is likely the only real backend functionality that the site will need. It's possible this will change in the future if the client wants to go further and implement mail lists and registration but for now image delivery and transformations is it.
 
-Will likely also use the framer motion library to implement transitions for the images in the carousel modal.
-
-**CONTINUE THIS SECTION**
+Framer motion will be used for animation of image transitions in the carousel component, as well as general UX animations and transitions. Framer motion is crictical to this project for the handling of image presentation, but this also presents me with and opportunity to practice using it and to practice making a site look really polished and modern. I really didn't notice how many modern sites have animated UI until I started thinking about image carousels.
 
 ## Component design/heirarchy
 NOTE: diagrams in this section are NOT layout diagrams meant to represent the way the site looks. They are components diagrams mocking up plans for how the react components will be connected to each other in the vDOM tree structure.
@@ -31,3 +29,6 @@ NOTE: diagrams in this section are NOT layout diagrams meant to represent the wa
 Here is a diagram for the current idea of how the image gallery will be designed. ![[Pasted image 20230829184945.png]]The architecture is done this way so that image fetching is done client side for speed and security, and because the more we can do on the client side the better the SEO will be, and this is the first project I have done where SEO actually matters a bit.
 
 Actually ended up implementing this a little differently, I didn't use a component for the modal but instead used one client component that has the code for both the gallery grid and the modal, and uses framer motion to overlay the modal full-screen over the grid on click, then get rid of it again on a second click. I will eventually add a carousel to this so that you can click through the images, and at that point I may need to go back to the architecture in this diagram, but for now I am enjoying trying to lower the amount of code splitting and components that I usually tend to make.
+
+#### Adding page transitions to the gallery route
+Because the main page file for the gallery route was written as a React Server Component to take advantage of server side async fetching of the images, using framer motion functions or components directly inside it was impossible, which presented some problems as I wanted transitions between all the routes to animated for UX and for my own practice in making modern feeling sites.  This was eventually solved by writing a `<PageWrapper />` component that can wrap all the content of any route from within a client side component, and then that client side component can be a child of the RSC. This wrapper is reused on all the routes to provide the animation capability, but the gallery was where it's implementation was most tricky. The Component heriarchy for the gallery route at this point looks like this: 
