@@ -18,13 +18,16 @@ The above outlines the initial design based on my first conversation with the cl
 ## Technical requirements
 The images need to load fast, reliably and be supported with accessibiltiy features. Will likely want to load every image in multiple sizes so the the transition between gallery thumbnail/carousel image/full size image with blurb is seemless.
 
-Using cloudinary as a cdn to host the images and handle transformations. This is likely the only real backend functionality that the site is likely to need.
+Using cloudinary as a cdn to host the images and handle transformations. This is likely the only real backend functionality that the site will need. It's possible this will change in the future if the client wants to go further and implement mail lists and registration but for now image delivery and transformations is it.
 
 Will likely also use the framer motion library to implement transitions for the images in the carousel modal.
 
 **CONTINUE THIS SECTION**
 
-## Component design
+## Component design/heirarchy
 NOTE: diagrams in this section are NOT layout diagrams meant to represent the way the site looks. They are components diagrams mocking up plans for how the react components will be connected to each other in the vDOM tree structure.
 
+### Gallery route
 Here is a diagram for the current idea of how the image gallery will be designed. ![[Pasted image 20230829184945.png]]The architecture is done this way so that image fetching is done client side for speed and security, and because the more we can do on the client side the better the SEO will be, and this is the first project I have done where SEO actually matters a bit.
+
+Actually ended up implementing this a little differently, I didn't use a component for the modal but instead used one client component that has the code for both the gallery grid and the modal, and uses framer motion to overlay the modal full-screen over the grid on click, then get rid of it again on a second click. I will eventually add a carousel to this so that you can click through the images, and at that point I may need to go back to the architecture in this diagram, but for now I am enjoying trying to lower the amount of code splitting and components that I usually tend to make.
