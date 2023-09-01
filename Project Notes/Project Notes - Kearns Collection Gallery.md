@@ -22,6 +22,9 @@ Using cloudinary as a CDN to host the images and handle transformations. This is
 
 Framer motion will be used for animation of image transitions in the carousel component, as well as general UX animations and transitions. Framer motion is crictical to this project for the handling of image presentation, but this also presents me with and opportunity to practice using it and to practice making a site look really polished and modern. I really didn't notice how many modern sites have animated UI until I started thinking about image carousels.
 
+## Design notes
+**TODO**
+
 ## Component design/heirarchy
 NOTE: diagrams in this section are NOT layout diagrams meant to represent the way the site looks. They are components diagrams mocking up plans for how the react components will be connected to each other in the vDOM tree structure.
 
@@ -30,9 +33,11 @@ Here is a diagram for the current idea of how the image gallery will be designed
 
 Actually ended up implementing this a little differently, I didn't use a component for the modal but instead used one client component that has the code for both the gallery grid and the modal, and uses framer motion to overlay the modal full-screen over the grid on click, then get rid of it again on a second click. I will eventually add a carousel to this so that you can click through the images, and at that point I may need to go back to the architecture in this diagram, but for now I am enjoying trying to lower the amount of code splitting and components that I usually tend to make.
 
-#### Adding page transitions to the gallery route
+### Animated page transitions with a wrapper component
+In service of making the site smooth and modern, I wanted pages to animate in and out with a fade effect when the user navigates. This is fairly simple to do with framer motion by having an outer element on every page by a motion variant and then wrapping all pages in an `<AnimatePresence/>` element. However, all the framer motion logic is client side, which would make it necessary for EVERY page route in the app to be client side.
+
 Because the main page file for the gallery route was written as a React Server Component to take advantage of server side async fetching of the images, using framer motion functions or components directly inside it was impossible, which presented some problems as I wanted transitions between all the routes to animated for UX and for my own practice in making modern feeling sites.  This was eventually solved by writing a `<PageWrapper />` component that can wrap all the content of any route from within a client side component, and then that client side component can be a child of the RSC. This wrapper is reused on all the routes to provide the animation capability, but the gallery was where it's implementation was most tricky. The Component heriarchy for the gallery route at this point looks like this: 
 
 **SKETCH GOES HERE**
 
-The downside of doing the page transition animation like this is that I cannot use animate presence to animate the exit of the page when a route change occurs. This is because with the wrapper component set up the way it is, the wrapper un-mounts when the path changes, so the animate presence cannot use the path change as it's condition. To get it working, the `<animatePresence/>` element would have to be far enough up the DOM tree, like in the layout for example, that it was still mounted when the route changed (I'm pretty sure). I have not been able to think of a good way to have the `<animatePresence/>` element wrap the page transition logic in such a way that it doesn't un-mount on navigation without running up against the same issue from before with the RSC nature of the gallery component.
+The downside of doing the page transition animation like this is that I cannot use animate presence to animate the exit of the page when a route change occurs. This is because with the wrapper component set up the way it is, the wrapper un-mounts when the path changes, so the animate presence cannot use the path change as it's condition. To get it working, the `<AnimatePresence/>` element would have to be far enough up the DOM tree, like in the layout for example, that it was still mounted when the route changed (I'm pretty sure). I have not been able to think of a good way to have the `<AnimatePresence/>` element wrap the page transition logic in such a way that it doesn't un-mount on navigation without running up against the same issue from before with the RSC nature of the gallery component.
