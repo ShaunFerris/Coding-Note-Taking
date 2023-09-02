@@ -1,4 +1,4 @@
-#dsa 
+#dsa #algorithms #datastructures #problemsolutions
 
 A very common application of this data structure is in internet browsers, to implement the ability to go back and forwards to previously visited sites or pages.
 
