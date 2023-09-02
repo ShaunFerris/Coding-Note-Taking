@@ -41,3 +41,7 @@ Because the main page file for the gallery route was written as a React Server C
 **SKETCH GOES HERE**
 
 The downside of doing the page transition animation like this is that I cannot use animate presence to animate the exit of the page when a route change occurs. This is because with the wrapper component set up the way it is, the wrapper un-mounts when the path changes, so the animate presence cannot use the path change as it's condition. To get it working, the `<AnimatePresence/>` element would have to be far enough up the DOM tree, like in the layout for example, that it was still mounted when the route changed (I'm pretty sure). I have not been able to think of a good way to have the `<AnimatePresence/>` element wrap the page transition logic in such a way that it doesn't un-mount on navigation without running up against the same issue from before with the RSC nature of the gallery component.
+
+## Dev diaries
+For granular notes on my day to day process of working on getting this site up and running see these notes: 
+- [[Project Notes - Kerns Collection Gallery - 01 - 02.09.2023 - Current Status]]

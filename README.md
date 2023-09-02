@@ -9,7 +9,7 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [ ] Continue Next.js notes
 - [x] Notes on Cypress Component testing
 - [ ] Finish notes on styling components for testing with Cypress
-- [ ] Finish Notes on BST implementation
+- [x] Finish Notes on BST implementation
 - [x] Flesh out notes on common JS interview questions
 - [ ] Notes on tRPC and the t3 stack
 
