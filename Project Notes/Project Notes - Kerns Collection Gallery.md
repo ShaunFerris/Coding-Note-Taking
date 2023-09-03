@@ -44,4 +44,4 @@ The downside of doing the page transition animation like this is that I cannot u
 
 ## Dev diaries
 For granular notes on my day to day process of working on getting this site up and running see these notes: 
-- [[Project Notes - Kerns Collection Gallery - 01 - 02.09.2023 - Current Status]]
+- [[Project Notes - Kerns Collection Gallery - 03.09.2023 - Current Status]]
