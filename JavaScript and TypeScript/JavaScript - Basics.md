@@ -150,3 +150,4 @@ For more advanced notes on topics in JS:
 - [[Javascript - Async Await]]
 - [[Javascript - Callback functions]]
 - [[JavaScript - Testing with Cypress - Intoduction]]
+- [[JavaScript - Setting up a Basic Project with Eslint and NPM]]
