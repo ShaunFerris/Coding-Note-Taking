@@ -19,4 +19,4 @@ By understanding how JavaScript works, TypeScript can build a type-system that a
  - [[Typescript - Custom Types by Composition]]
  - [[Typescript - The Structural Type System]]
  - [[Typescript - The Declare Keyword]]
- - 
+ - [[Typescript - Basic Typing in React]]
