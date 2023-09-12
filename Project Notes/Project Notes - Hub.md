@@ -4,7 +4,7 @@
 
 **Web Front-End Projects**
 - [[Project Notes - Budget App]]
-- [[Project Notes - Kerns Collection Gallery]]
+- [[Project Notes - Art Collection Gallery - Plan]]
 
 **Web Back-End Projects
 - [[Project Notes - Spongecase Chrome Extension]]

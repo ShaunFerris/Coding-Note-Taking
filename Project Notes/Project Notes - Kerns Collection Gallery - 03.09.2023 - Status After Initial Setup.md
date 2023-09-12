@@ -7,4 +7,4 @@ The main tasks to going forward from here are:
 2. Work on the styling and design of the homepage (also the contact and about routes once they are made)
 3. Add slideshow functionality to the gallery route modal.
 
-Item three on the list is by far the most interesting technical problem and will also really add to the level of polish I am trying to achieve, so I will likely be doing this one first. Because this is the most interesting/difficult technical challenge of the site, I will keep a dev diary page that just discusses work on this aspect: [[Project Notes - Kerns Collection Gallery - Modal Slideshow Development]]
+Item three on the list is by far the most interesting technical problem and will also really add to the level of polish I am trying to achieve, so I will likely be doing this one first. Because this is the most interesting/difficult technical challenge of the site, I will keep a dev diary page that just discusses work on this aspect: [[Project Notes - Art Collection Gallery - Modal Slideshow Development]]
