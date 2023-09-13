@@ -8,3 +8,7 @@ The main tasks to going forward from here are:
 3. Add slideshow functionality to the gallery route modal.
 
 Item three on the list is by far the most interesting technical problem and will also really add to the level of polish I am trying to achieve, so I will likely be doing this one first. Because this is the most interesting/difficult technical challenge of the site, I will keep a dev diary page that just discusses work on this aspect: [[Project Notes - Art Collection Gallery - Modal Slideshow Development]]
+
+Some more things i have noticed that need attention:
+1. Responsiveness. Most routes look like shit on mobile currently, and the navbar does not work at all
+2. Investigate the long initial load of transitions to the gallery route, see if anything can be done about it or if it is just a dev server thing that will go away with a real build
