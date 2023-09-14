@@ -8,6 +8,7 @@
 
 **Web Back-End Projects
 - [[Project Notes - Spongecase Chrome Extension]]
+- [[Project Notes - Porting the Spongecase Extension to Firefox]]
 
 **Web Full-Stack Projects**
 - [[Project Notes - HomeHub - Initial Planning and pre-Launch Development Diary]]

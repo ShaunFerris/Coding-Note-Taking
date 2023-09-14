@@ -8,3 +8,5 @@ As of 12.09.2023 a working version of the art gallery route is completed. When o
 2. Consider converting from using state to store the current image ID to using query params. This will allow linking directly to a given place in the slideshow
 3. Write tests for the gallery route
 4. Consider adding a hover animation to the images in the gallery grid, perhaps showing a slightly zoomed in version
+5. Add keyboard navigation to the modal
+6. Look into tidying up the animations further, currently the exit animation when the modal is closed looks really wonky
