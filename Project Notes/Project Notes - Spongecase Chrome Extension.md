@@ -20,3 +20,6 @@ In this project I only needed to have a service worker for the background code, 
 The project uses manifest V3 to tell the browser what permissions it needs, and where the code is. you can read about it [here.](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
 All the logic is in a backround.js file and it uses the [chrome commands API](https://developer.chrome.com/docs/extensions/reference/commands/)to add an event listener for the hotkey command, the [chrome scripting API](https://developer.chrome.com/docs/extensions/reference/scripting/) to run the function that converts and copies text, and the [chrome notifications API](https://developer.chrome.com/docs/extensions/reference/notifications/) to send notifications based on the result. All of these APIs have equivalents for firefox and other browsers too.
+
+## Firefox port
+I also ported this extension to work with firefox too, details on that are here: [[Project Notes - Porting the Spongecase Extension to Firefox]]
