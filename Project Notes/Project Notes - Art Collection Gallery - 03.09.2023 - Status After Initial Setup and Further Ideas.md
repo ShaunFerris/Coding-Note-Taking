@@ -12,3 +12,5 @@ Item three on the list is by far the most interesting technical problem and will
 Some more things i have noticed that need attention:
 1. Responsiveness. Most routes look like shit on mobile currently, and the navbar does not work at all
 2. Investigate the long initial load of transitions to the gallery route, see if anything can be done about it or if it is just a dev server thing that will go away with a real build
+
+

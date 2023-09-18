@@ -5,8 +5,9 @@ As of 12.09.2023 a working version of the art gallery route is completed. When o
 
 ## Priorities for continued development
 1. Look into utilising suspense on the gallery route, taking advantage of the lengths gone to so far to utilise RSCs
-2. Consider converting from using state to store the current image ID to using query params. This will allow linking directly to a given place in the slideshow
-3. Write tests for the gallery route
-4. Consider adding a hover animation to the images in the gallery grid, perhaps showing a slightly zoomed in version
-5. Add keyboard navigation to the modal
-6. Look into tidying up the animations further, currently the exit animation when the modal is closed looks really wonky
+2. RESPONSIVENESS: The slideshow feature straight up does not work at mobile screen sizes
+3. Consider converting from using state to store the current image ID to using query params. This will allow linking directly to a given place in the slideshow
+4. Write tests
+5. Consider adding a hover animation to the images in the gallery grid, perhaps showing a slightly zoomed in version
+6. Add keyboard navigation to the modal
+7. Look into tidying up the animations further, currently the exit animation when the modal is closed looks really wonky
