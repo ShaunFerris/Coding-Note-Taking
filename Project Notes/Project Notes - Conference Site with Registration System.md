@@ -12,8 +12,11 @@ This site will be three things:
 - tRPC and tanstack-query for posting data to the user database, pulling data for admin access only
 - React-hook-form for the registration form, validate responses with zod
 - Prisma ORM/Planetscale: Will run a mySQL instance on planetscale and manage relations with prisma
+- Shadcn/UI for pre-made components: Use this to quickly get the bones of the site together and then take client feedback on customizing the look
 
 # Features
 - List of static informational pages can be pulled from the previous years site made available by the client
 - Based on example set by previous site all pages outside the registration can be simple static and informational. Features like map integration on the location page may be nice includes but not strictly required
-- Registration of interest page: Site users provide name, email, answers to survey questions about their interest in attending the conference, being emailed updates about the conference, presenting a poster/talk etc
+- Registration of interest page: Site users provide name, email, answers to survey questions about their interest in attending the conference, being emailed updates about the conference, presenting a poster/talk
+- Footer should be included on every page route with the logo, sponsor logos and links to relevant data protection policies
+- Including a dark/light mode toggle in the navbar/header. This is good for accessibility and also so that I do not have to look at a light mode website for hours while developing.
