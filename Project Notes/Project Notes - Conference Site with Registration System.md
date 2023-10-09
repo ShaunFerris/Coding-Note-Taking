@@ -9,6 +9,11 @@ This site will be three things:
 ## Tech stack breakdown
 - Next.js: React framework
 - Typescript for static tests and typesafety
-- tRPC? May be considered overkill for this project
-- Maybe react-hook-form for input validation on the registration of interest form
+- tRPC and tanstack-query for posting data to the user database, pulling data for admin access only
+- React-hook-form for the registration form, validate responses with zod
 - Prisma ORM/Planetscale: Will run a mySQL instance on planetscale and manage relations with prisma
+
+# Features
+- List of static informational pages can be pulled from the previous years site made available by the client
+- Based on example set by previous site all pages outside the registration can be simple static and informational. Features like map integration on the location page may be nice includes but not strictly required
+- Registration of interest page: Site users provide name, email, answers to survey questions about their interest in attending the conference, being emailed updates about the conference, presenting a poster/talk etc
