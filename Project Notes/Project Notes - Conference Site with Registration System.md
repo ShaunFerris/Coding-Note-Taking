@@ -24,7 +24,7 @@ This site will be three things:
 ## Notes for individual routes
 
 ### Home page
-Banner at the top with background image - using stock image from unsplash for now pending client feedback.
+Banner at the top with background image - using stock image from unsplash for now pending client feedback. Built this out into a reusable hero component that takes a bg-image and potentially two buttons for linking. Planning to resuse this component on multiple pages as the flashy intro to the content.
 
 ### Location page
 Will likely implement a slideshow component to display publicity images of the venue. Could do this using framer motion for the transition animations the same way that I did on the about page of the gallery site project. This would necessitate another dependancy but I think it would still be manageable.
