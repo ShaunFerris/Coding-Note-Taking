@@ -14,9 +14,20 @@ This site will be three things:
 - Prisma ORM/Planetscale: Will run a mySQL instance on planetscale and manage relations with prisma
 - Shadcn/UI for pre-made components: Use this to quickly get the bones of the site together and then take client feedback on customizing the look
 
-# Features
+## Features
 - List of static informational pages can be pulled from the previous years site made available by the client
 - Based on example set by previous site all pages outside the registration can be simple static and informational. Features like map integration on the location page may be nice includes but not strictly required
 - Registration of interest page: Site users provide name, email, answers to survey questions about their interest in attending the conference, being emailed updates about the conference, presenting a poster/talk
 - Footer should be included on every page route with the logo, sponsor logos and links to relevant data protection policies
 - Including a dark/light mode toggle in the navbar/header. This is good for accessibility and also so that I do not have to look at a light mode website for hours while developing.
+
+## Notes for individual routes
+
+### Home page
+Banner at the top with background image - using stock image from unsplash for now pending client feedback.
+
+### Location page
+Will likely implement a slideshow component to display publicity images of the venue. Could do this using framer motion for the transition animations the same way that I did on the about page of the gallery site project. This would necessitate another dependancy but I think it would still be manageable.
+
+### Programme/schedule route
+Have the outline of the schedule for the event as an excel spreadsheet. Currently thinking about displaying it in an accordian component where each day of the conference is a seperate collapsible. Will likely mock up a version of this and run it by the client for aproval.
