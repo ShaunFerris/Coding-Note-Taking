@@ -21,6 +21,13 @@ This site will be three things:
 - Footer should be included on every page route with the logo, sponsor logos and links to relevant data protection policies
 - Including a dark/light mode toggle in the navbar/header. This is good for accessibility and also so that I do not have to look at a light mode website for hours while developing.
 
+## Sticking points
+This site should be a relatively straight forward project, with the initial scope agreed upon with the client only requiring one route of the website to actually interact with a backend. This may and in fact is somewhat likely to change in the future depending on how the development process goes but the specs can't change without a renegotiation.
+
+The only part that is more complicated than static content communication is the <span style="font-weight: bold; font-style: italic; color: cyan;">Registration of interest form.</span>
+
+This might need to be expanded into a full on registration form with payment handling, but that is not in the initial agreement, which only covers a registration of **INTEREST** form. The form will simply collect name, email and survey answers about interest in presenting a poster or talk. This info needs to be stored in a db, somehow exportable to the client for use in a mailing list. All procedures involved in the handling of this data need to abide by GDPR and we need to write and display policies to this effect.
+
 ## Notes for individual routes
 
 ### Home page
