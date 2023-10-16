@@ -13,6 +13,7 @@ This site will be three things:
 - React-hook-form for the registration form, validate responses with zod
 - Prisma ORM/Planetscale: Will run a mySQL instance on planetscale and manage relations with prisma
 - Shadcn/UI for pre-made components: Use this to quickly get the bones of the site together and then take client feedback on customizing the look
+- Cypress: End to end testing - this is kind of an added bonus/dev experience inclusion. There will not be too much complexity to test but automated testing of the attendee data submission to db POST pipeline will be useful in development, good for peace of mind before launching the site, and very useful to any future contractor if the client wants to repurpose the code base in the future
 
 ## Features
 - List of static informational pages can be pulled from the previous years site made available by the client
