@@ -37,6 +37,8 @@ Banner at the top with background image - using stock image from unsplash for no
 ### Location page
 Will likely implement a slideshow component to display publicity images of the venue. Could do this using framer motion for the transition animations the same way that I did on the about page of the gallery site project. This would necessitate another dependancy but I think it would still be manageable.
 
+Another optional include depending on client feedback is an interactive google maps component with the location marked. This would require setting the client up with an account to access google apis and may come with some billing implications that will need to be discussed with the client before I do any work on the implementation.
+
 ### Programme/schedule route
 Have the outline of the schedule for the event as an excel spreadsheet. Currently thinking about displaying it in an accordian component where each day of the conference is a seperate collapsible. Will likely mock up a version of this and run it by the client for aproval.
 
