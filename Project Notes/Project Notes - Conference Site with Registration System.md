@@ -38,3 +38,10 @@ Will likely implement a slideshow component to display publicity images of the v
 
 ### Programme/schedule route
 Have the outline of the schedule for the event as an excel spreadsheet. Currently thinking about displaying it in an accordian component where each day of the conference is a seperate collapsible. Will likely mock up a version of this and run it by the client for aproval.
+
+## Database schema/seeding notes
+Using prisma as an ORM between the application and the planetscale instance of MySQL. My workflow for testing new versions of the schema is this:
+1. Edit the schema
+2. Make any necessary edits to the data in the seed script so that it conforms to the schema
+3. Run: `npx prisma db push --force-reset` to clear all data from the current db instance and migrate the new schema. The db is now empty and any new data will be matched against the new schema
+4. Run: `npx prisma db seed` to run the seed script and push new testing data
