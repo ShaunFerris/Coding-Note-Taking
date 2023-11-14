@@ -18,4 +18,4 @@ Related notes:
 	[[Webdev - HTTP Verbs]]
 	[[Webdev - Express.js - A Simple API]]
 	[[Webdev - The T3 Stack]]
-	[[Webdev - SQL]]	
+	[[Webdev - SQL and databases]]	
