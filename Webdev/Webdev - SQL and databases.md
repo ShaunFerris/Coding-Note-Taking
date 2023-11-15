@@ -22,3 +22,21 @@ It might seem wasteful to store the same data many times, but the relational mod
 proper for a single column to contain multiple pieces of information, such as a name column that contains both a person’s first and last names, or an address column that contains street, city, state, and zip code information. The process of refining a database design to ensure that each independent piece of information is in only one place (except for foreign keys) is known as normalization.
 
 ## What is SQL?
+SQL was originally called SEQUEL, and is a language for manipulating data in relational tables. SQL goes hand in hand with the relational model of data because the result of an SQL query is a table, also called in this context a *result set*.
+What this means in practice is that a new, _permanent_ table can be created in a relational databse simply by storing the result set of a query. Similarly, a query can use both permanent tables and the result sets from other queries as inputs. SQL is sometimes said to stand for Structured Query Language, but this is not actually true (according to the author of the textbook I am using for these notes.)
+
+### SQL statement classes
+SQL the language is divided into several distinct parts, including <span style="color: cyan; font-weight: bold; font-style: italic;"></span <span style="color: cyan; font-weight: bold; font-style: italic;"></span> <span style="color: cyan; font-weight: bold; font-style: italic;">schema statements, data statements and transaction statements.</span>
+
+Schema statements define data structures stored in the database, data statements manipulate that data and transaction statements are used to begin end and roll back transaction statements. For example to create a new table in your database you would uste the SQL schema statement `create table` whereas the process of populating your new table with data would require the SQL data statemnet `insert`.
+
+ Here is an example statement that creates a table called `corporation`:
+ ```sql
+CREATE TABLE corporation
+	(corp_id SMALLILNT,
+	name VARCHAR(30)
+	CONSTRAINT pk_corporation PRIMARY KEY (corp_id)
+);
+```
+
+This statement creates a table with two columns, `corp_id` and `name` with `corp_id` as the primary key.
