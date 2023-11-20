@@ -58,7 +58,7 @@ React provides a bunch of standard in-built hooks:
 -   `useReducer`: A `useState` alternative to help with complex state management. See [[Webdev - React - useReducer]]
 -   `useCallback`: It returns a memorized version of a callback to help a child component not re-render unnecessarily.
 -   `useMemo`: It returns a memoized value that helps in performance optimizations.
--   `useRef`: It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively.
+-   `useRef`: It returns a ref object with a `.current` property. The ref object is mutable. It is mainly used to access a child component imperatively. See [[Webdev - React - useRef]]
 -   `useLayoutEffect`: It fires at the end of all DOM mutations. It's best to use `useEffect` as much as possible over this one as the `useLayoutEffect` fires synchronously.
 -   `useDebugValue`: Helps to display a label in React DevTools for custom hooks.
 
