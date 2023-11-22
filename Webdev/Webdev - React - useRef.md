@@ -14,7 +14,6 @@ function myComponent() {
 ```
 
 The hook returns an object with a single property `{ current: 0 }`. Current is initially set to the initial value, and can later be set to something else. If you pass the Ref object to React as `ref` attribute on a JSX node, React will set it's `current` property. On the next re-render useRef will return the updated object.
-
 ## Usage and differences from useState
 `useRef` returns a ref object with a single `current` property initially set to the initial value you provided.
 
