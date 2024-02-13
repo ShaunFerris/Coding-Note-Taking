@@ -1,5 +1,6 @@
 #projects 
 
+This project was built for a client. I then decided to rebuild the bones of this project into a starter boilerplate generator for a marketing site that registers users interest in joining a mailing list/attending an event etc. See: [[Project Notes - Site with Registration Form Starter]]
 ## Simple outline
 This site will be three things:
 1. A marketing vehicle to inform potential conference attendees of the conference
