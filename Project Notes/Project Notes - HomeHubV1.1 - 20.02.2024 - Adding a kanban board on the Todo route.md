@@ -6,6 +6,7 @@ Returning to do some work on homeHub for the first time in a few months. Have de
 This started with building the actual component, the idea for which came from [this](https://www.youtube.com/watch?v=O5lZqqy7VQE) video. I followed the outline of the code in this video but re-wrote it using typescript and re-did the styling. As of today (feb 20th) the front-end is mostly done, but I still need to:
 - make it responsive and useable on mobile
 - connect it to the backend and implement database models for it's data
+- possibly re-factor it into multiple component files, all sub-components of the kanban board are currently co-located and the file is getting pretty big and un-wieldy
 - implement a page that comes off the todo route and allows creation/re-entrance to saved kanban boards for projects and leads to dynamically routed kanban board pages
 
 ## The new todo portal page
