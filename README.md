@@ -11,11 +11,14 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [ ] Finish notes on styling components for testing with Cypress
 - [x] Finish Notes on BST implementation
 - [x] Flesh out notes on common JS interview questions
-- [ ] Notes on tRPC and the t3 stack
+- [ ] Notes on tRPC and the t3 stack - half finished as of 24.02.2024
+- [ ] Continue algorithms - particularly implementations of common sorting and searching algos, maybe more in depth complexity notation notes
 
 ## TO COME
-- Next.js: routing, rendering, fetching, optimization, styling
-- Tailwind CSS
+- Tailwind CSS - focus on customizing the basic behavior, adding custom colors etc
+- More notes about React under the hood
+- SQL - raw queries and implementations like mySql
+- Kubernetes/docker
 
 ## Hub pages
 This repo is organized with hub pages for broad topics that link to notes on sub-sections of that topics. Listed here for navigating around topics by interest:
