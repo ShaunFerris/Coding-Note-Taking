@@ -80,3 +80,12 @@ for (var i = 1; i <= 100; i++) {
 ```
 When recalling these answers to the problem it is important that you remember the differences between the `map()` **function** in python and `Array.map()` **method** in JS, as well as the way that the join method works in python compared to JS.
 
+## A cool python one line solution
+Fizzbuzz can also be solved stylishly in one line with python by taking advantage of two nice cases in the way python handles type casting and arithmetic.
+1) Python treats allows concatenation with the overloading of the `+` operator, but it also treats allows multiplication of strings, and treats empty strings in arithmetic as 0
+2) Python allows boolean values in arithmetic, and treats them as 0 or 1, and this work vice versa so a 0 is treated as false when evaluted as a boolean
+
+This allows us to multiply the "fizz" and "buzz" strings by a boolean statement , and then concatenate the results to determine whether the output is "fizz" "buzz" or "fizzbuzz".
+```python
+print(*map(lambda x: "Fizz" * (not x % 3) + "Buzz" * (not x % 5) or x, range(1, 100)), sep="\n")
+```
