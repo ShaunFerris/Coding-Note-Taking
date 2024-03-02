@@ -40,3 +40,5 @@ Algorithms Problems/Examples:
 - [[Algorithms - The FizzBuzz Problem Solved Multiple Ways]]
 - [[Algorithms - Binary Search]]
 - [[Algorithms - Selection Sort]]
+- [[Algorithms - The Divide and Conquer Strategy]]
+- [[Algorithms - Quicksort]]
