@@ -39,3 +39,4 @@ Algorithms Problems/Examples:
 - [[Algorithms - Doubly Linked Lists for Browser Navigation]]
 - [[Algorithms - The FizzBuzz Problem Solved Multiple Ways]]
 - [[Algorithms - Binary Search]]
+- [[Algorithms - Selection Sort]]
