@@ -20,3 +20,38 @@ This is binary search , and in the case of guessing a number between 1 and 100, 
 <span style="color: cyan; font-weight: bold;">For any list of size _n_ simple search will take n steps in the worst case, where binary search will take log2 n steps in the worst case.</span>
 
 ## Implementation in python
+Given the sorted array to search and the target element to find, the first thing to do is keep track of which part of the array you still need to search in. At first this will be the entire array, so you mark the search range with a high and low pointer at the 0 and -1 indexes of the array:
+```python
+low = 0
+high = len(array) - 1
+```
+
+On each iteration of the search loop, you check the middle element of your low to high range against the target element:
+```python
+mid = (low + high) // 2
+guess = array[mid]
+```
+
+Then if the guess is too low, you update the low pointer to mid plus one, and vice versa if the guess is too high.
+
+Here is the full implementation:
+```python
+def binary_search(array, target):
+	low = 0
+	high = len(array) - 1
+
+	while(low < high):
+		mid = (low + high) // 2
+		guess = array[mid]
+		if guess == target:
+			return mid
+		if guess > target:
+			high = mid - 1
+		else:
+			low = mid + 1
+	return None
+```
+
+## Bin search running time
+Whenever we talk about an algorithms efficiency or want to compare two algoritms, we will compare their running time. Simple search runs in linear time O(n), that is in the worst case you will need to check n items for a list of n length. <span style="color: cyan; font-weight: bold;">Binary search runs in logarithmic time O(log2n)</span>
+
