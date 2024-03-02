@@ -30,7 +30,7 @@ Also, for constructing custom data structures, revise OOP in python starting fro
 Algorithms Concepts:
 - [[Algorithms - Algorithmic Complexity]]
 - [[Algorithms - Big O Notation]]
-- [[Algorithms - Space Complexity]]
+- [[Algorithms - Space Complexity - TODO]]
 
 Algorithms Problems/Examples:
 - [[Algorithms - The Matching Brackets Problem]]
@@ -38,3 +38,4 @@ Algorithms Problems/Examples:
 - [[Algorithms - Three Sum]]
 - [[Algorithms - Doubly Linked Lists for Browser Navigation]]
 - [[Algorithms - The FizzBuzz Problem Solved Multiple Ways]]
+- [[Algorithms - Binary Search]]
