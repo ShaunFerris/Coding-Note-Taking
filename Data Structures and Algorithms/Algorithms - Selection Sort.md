@@ -38,3 +38,20 @@ def selection_sort(arr):
 	return output
 ```
 
+The above implementation is from the book Grokking Algorithms mentioned above, but I have also played with the below implementation that uses the built-in min method provided by python, to get the index of the minimum element in the start array. Benchmarking of this approach vs the above textbook one is something I haven't done yet but do plan to.
+```python
+from typing import List
+import random
+
+# implement selection sort using the inbuilt python min function
+def select_sort(arr: List):
+    #use values.index(min(values))
+    output = []
+    for i in range(len(arr)):
+        small_idx = arr.index(min(arr))
+        output.append(arr.pop(small_idx))
+    return output
+
+test_arr = random.choices(range(1, 10000), k=15)
+print(select_sort(test_arr))
+```

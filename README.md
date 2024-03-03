@@ -13,6 +13,7 @@ Feel free to make use of these notes for your own study and learning. To view th
 - [x] Flesh out notes on common JS interview questions
 - [ ] Notes on tRPC and the t3 stack - half finished as of 24.02.2024
 - [ ] Continue algorithms - particularly implementations of common sorting and searching algos, maybe more in depth complexity notation notes
+- [ ] Benchmark selection sort textbook implmentation vs using the builtin min function
 
 ## TO COME
 - Tailwind CSS - focus on customizing the basic behavior, adding custom colors etc
