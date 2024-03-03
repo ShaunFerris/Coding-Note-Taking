@@ -13,6 +13,7 @@ To find the highest playcount in the list, you would have to touch every element
 
 <span style="color: cyan; font-weight: bold;">This means that the selection sort approach involves touching every element in the list to be sorte once for every element added to the output list, meaning the algorithm has O(n) * O(n) time complexity or O(n^2).</span>
 
+For a faster sorting algorithm with runtime of O(n log n), see quicksort: [[Algorithms - Quicksort]].
 ## An aside on run times an big O
 You might correctly point out at this point that the number of items you are checking gets smaller on each iteration of the loop, and this is true. You are not actually checking n items n times, but rather you check n, then n-1 then n-2 and so on. On average you really check a list that has 1/2n entries. This would give us a runtime of O(n * 1/2 * n),  but when we use big O notation for runtime, we discard constants, which 1/2 is, leaving us with O(n^2).
 
