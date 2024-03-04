@@ -38,3 +38,12 @@ def quicksort(arr: list):
 test_arr = random.choices(range(1, 10000), k=15)
 print(quicksort(test_arr))
 ```
+
+## Quicksort pivot picking and runtime
+Quicksort has a special quirk compared to other common algos, in that it's runtime is dependant on the pivot that is chosen for a given array. Before we get into the nitty gritty of why this is, lets quickly look at some common big O runtimes again:
+![[Pasted image 20240304140527.png]]
+The actual numbers here are not important, they are based on a theoretical slow ass computer that can only execute ten instructions per second, but just look at the relationship between time and array size.
+
+The other sorting algo we have looked at while I am writing this is selection sort, it is very slow with runtime of O(n^2). Soon we will look at merge sort, which is much faster at O(n log n). The diagram above shows quicksort to have runtime O(n log n) as well, but this is only partially true. <span style="color: cyan; font-weight: bold;">In the worst case, quicksort has the same runtime as the slow as balls selection sort, O(n^2). BUT in the average case, it has O(n log n).</span>
+
+So, if quicksort is only O(n log n) in the average case, but mergesort has that runtime always, why do we ever use quicksort? See this note for a quick overview of mergesort, and a discussion of why it is not always better than quicksort: [[Algorithms - Mergesort vs Quicksort and the Average Case vs the Worst]]

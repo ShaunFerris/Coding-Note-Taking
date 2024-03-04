@@ -17,6 +17,10 @@ An algorithms time complexity can be catagorized generally speaking in these cat
 - O(n^2):<span style="color: cyan;">Quadratic time</span>
 - O(2^n):<span style="color: cyan;">Exponential time</span>
 
+Here is a useful diagram from the book "Grokking Algorithms" that illustrates some common run times:
+![[Pasted image 20240304140350.png]]
+The actual numbers here are not important, they are based on a theoretical slow ass computer that can only execute ten instructions per second, but just look at the relationship between time and array size.
+
 ## Determining the big O of an algorithm
 Big O notation is a mathematically defined and derived system, but here we will not go over it in such depth, instead we will cover the important parts for programmers to understand and look at how to determine it from **inspection of an algorithm**.
 
