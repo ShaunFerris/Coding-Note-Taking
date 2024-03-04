@@ -42,5 +42,6 @@ Algorithms Problems/Examples:
 - [[Algorithms - Selection Sort]]
 - [[Algorithms - The Divide and Conquer Strategy]]
 - [[Algorithms - Quicksort]]
-- [[Algorithms - Mergesort vs Quicksort and the Average Case vs the Worst]]
+- [[Algorithms - Mergesort]]
+- [[Algorithms - Comparing Merge and Quicksort, the Average vs. the Worst Case]]
 - 

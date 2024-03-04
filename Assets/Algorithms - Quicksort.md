@@ -46,4 +46,5 @@ The actual numbers here are not important, they are based on a theoretical slow 
 
 The other sorting algo we have looked at while I am writing this is selection sort, it is very slow with runtime of O(n^2). Soon we will look at merge sort, which is much faster at O(n log n). The diagram above shows quicksort to have runtime O(n log n) as well, but this is only partially true. <span style="color: cyan; font-weight: bold;">In the worst case, quicksort has the same runtime as the slow as balls selection sort, O(n^2). BUT in the average case, it has O(n log n).</span>
 
-So, if quicksort is only O(n log n) in the average case, but mergesort has that runtime always, why do we ever use quicksort? See this note for a quick overview of mergesort, and a discussion of why it is not always better than quicksort: [[Algorithms - Mergesort vs Quicksort and the Average Case vs the Worst]]
+So, if quicksort is only O(n log n) in the average case, but mergesort has that runtime always, why do we ever use quicksort? See this note for a quick overview of mergesort: [[Algorithms - Mergesort]]
+And this note for a discussion of mergesort vs. quicksort and the average vs. worst cases: [[Algorithms - Comparing Merge and Quicksort, the Average vs. the Worst Case]]

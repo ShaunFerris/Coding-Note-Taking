@@ -54,4 +54,6 @@ The mergesort function itself is fairly similar to quicksort and a very straight
 
 The interesting stuff happens in the merge function, where we iterate along two arrays at the same time and because they are internally sorted, we know that the current element of one of the arrays will be the next logical element to add to the output array. We do this till one array is empty, and then we can be sure that the all remaining elements in the other array are larger, so we extend the output array with them and return.
 
-## Mergesort vs. quicksort
+## Runtime
+Mergesort runs in O(n log n) time, comparable to quicksort. However the average case for quicksort has a significantly lower time constant than mergesort so it is faster on average in practice. See here for a more in depth discussion of this: [[Algorithms - Comparing Merge and Quicksort, the Average vs. the Worst Case]]
+
