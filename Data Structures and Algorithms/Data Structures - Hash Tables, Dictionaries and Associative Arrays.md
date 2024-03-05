@@ -4,7 +4,7 @@ This note is intended to explain what hash tables are, how they work on a system
 
 These notes are adapted from [this video by simonDev](https://www.youtube.com/watch?v=S5NY1fqisSY&t=46s).
 
-This note is unfinished currently, see also notes on hash tables from the book "Grokking Algorithms" here: [[Data Structures - Hash Tables]].
+This note is unfinished currently, see also notes on use cases for hash tables from the book "Grokking Algorithms" here: [[Data Structures - Hash Tables]].
 
 ## What is a hash table?
 Hash tables are the next logical step after learning about arrays and linked lists, and we will start by looking at exactly what is the problem that they are meant to solve.
