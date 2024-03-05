@@ -17,8 +17,9 @@ Stacks and Queues:
 - [[Data Structures - Double Ended Queues]]
 
 Objects, dictionaries and hash maps:
+- [[Data Structures - Hash Tables]]
 - [[Data Structures - Objects and dictionaries]]
-- [[Data Structures - Hash Tables Dictionaries and Associative Arrays]]
+- [[Data Structures - Hash Tables, Dictionaries and Associative Arrays]]
 
 Trees and tree based ADTs
 - [[Data Structures - Binary Search Trees]]
