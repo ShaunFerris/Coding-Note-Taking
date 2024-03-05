@@ -26,3 +26,17 @@ For an example of this, think about simple search (stupid search) and binary sea
 So what actually are the average and worst cases for quicksort?
 
 ## Average vs. worst case - Pivot picking in quicksort
+The performance of quicksort relies very heavily on the choice of pivot. In my initial implementation of the quicksort algo ([[Algorithms - Quicksort]]), we always just picked the first element of the input array to use as the pivot. Now imagine that this algo is passed an array that is already sorted. Because it does not do any checks for this case, it will still try to sort it. 
+![[Pasted image 20240305121518.png]]
+In this case, you aren't partitioning the list into halves, or even getting  close to halves, which ends up in a really long call-stack. In fact there is one call on the stack for every element in the array. This is slow as heck.
+
+Now imagine that you take that same pre-sorted array and pick the middle element as the pivot.
+![[Pasted image 20240305132541.png]]
+Now you actually are partitioning into halves each time, and as a result the call stack is much shorter.
+
+<span style="color: cyan; font-weight: bold;">The first example above is the worst case scenario, and the second one is the best case. They have runtimes of O(n) and O (n log n) respectively.</span>
+
+Now look at the first step. You pick one element as the pivot, and divide all the other elements into partition arrays. This operation is O(n)elements as you are touching all 8 elements. **This operation is O(n) in both the best and worst case**.This is also the same on each level of the call stack. Every recursive call touches each element once to pick a pivot and then partition.
+![[Pasted image 20240305133148.png]]
+In the example where the pivot is in the middle, there are n log n levels, and each level takes O(n) time to complete, giving you O(n log n) in the best case. In the worst case there are n levels, hence O(n^2) in the worst case. <span style="color: cyan; font-weight: bold;">The important thing to remember though is that the best case is also the average case for quick sort. If you are always picking a random element as the pivot, then it will run in O(n log n) time on average.</span>
+
