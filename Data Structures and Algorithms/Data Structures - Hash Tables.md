@@ -49,3 +49,19 @@ To get into collisions, we need to expose a white lie in our initial explanation
 
 With this solution, searching for elements that did not have a collision is still very fast, O(1), and searching for elements that have had a collision is still pretty fast, but slightly slower as you have to traverse the linked list. The lesson here is that the hash function is very important, if it hashes everything to the same slot then your performance will be exactly the same as a linked list, ideally it will hash keys evenly across the whole array.
 
+### Performance
+Hash tables are fast, that is the whole point of them, but they can be slow depending on implementation and application. In the average case, hash tables have constant time runtime for every operation, but in the worst case they have O(n) for every operation, which is slow. Look at the below comparison of hash tables to arrays and linked lists.
+![[Pasted image 20240306113116.png]]
+In the average case, hash tables have the fast lookups of arrays and the fast inserts/deletes of linked lists, the best of both worlds! But, in the worst case, they are slow at all of these operations. The worst case is always down to collisions, so to avoid worst case performance we need to avoid collisions. <span style="color: cyan; font-weight: bold;">To avoid collisions you need two things:</span>
+1. A low **load factor**
+2. A good hash function
+
+#### Load factor
+The load factor of a hash table is calculated by dividing the number of items it contains by the total number of slots in it's underlying array.
+![[Pasted image 20240306114105.png]]
+If you have a load factor greater than one, then you have more items in the hash map then there are slots in the array, which in turn means you will have collided slots. When the load factor of a hash map gets too high, you need to add more slots to the underlying array, a process called **resizing**.
+
+Generally, when the load factor gets to around 0.7, the array will be resized by creating a new array that is twice the size and then passing all the elements throught the hash function into the new array. You will have fewer collisions now and the table will perform better. This process is expensive, and you don't want to do it too often, but on average hash tables will perform all operations with O(1) time when the cost of resizing is averaged out.
+
+#### A good hash function
+A good hash function will evenlly disperse elements in the underlying array, and a bad one will cause lots of collisions, leading to lots of linked list traversal to find items. You don't really need to know the specifics of implementing good hash functions, as that strays off topic into cryptography, but you can read about the SHA hash function [here](https://brilliant.org/wiki/secure-hashing-algorithms/) if interested.

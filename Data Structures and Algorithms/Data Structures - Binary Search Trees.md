@@ -1,4 +1,4 @@
-#dsa #trees
+#dsa #trees #graphs
 
 A binary search tree is different from the more basic data structures that you are likely already familiar with, because it is not a linear data structure. A BST is type of ordered data structure that stores items and allows for fast searching, addition and subtraction of items.
 
