@@ -31,3 +31,21 @@ Hash tables are also known as hash maps, maps, dictionaries, and associative arr
 You’ll probably never have to implement hash tables yourself. Any good language will have an implementation for hash tables. Python has hash tables; they’re called dictionaries. You can make a new hash table using the dict function.
 
 ## Use cases
+### Mapping sets of data
+Hash tables are also called hash maps, or simply maps, and as this implies, they are perfectly suited to mapping one set of data to another. A classic example of this kind of use-case is the contacts app in your phone, which maps names to phone numbers, or DNS servers, which map names of websites to IP addresses.
+
+### Preventing duplication of data
+Another use case for hash maps is to quickly lookup submitted data in a hashmap to prevent recording duplicates. Say for example you are running a voting both and don't want people to vote more than once. If check every prospective voter in a hash map and only let them vote when they aren't in it, then add them to it after they vote you can achieve this. This example is straight from "grokking", see the copied illustration:
+![[Pasted image 20240306100908.png]]
+
+### Caching
+The final example use case for hash maps is data caching. This application is commonly seen in webservers, where responses to requests to the same static page or data are cached in the browser to cut down on perceived latency and compute resources.![[Pasted image 20240306102325.png]]
+
+## Collisions and performance
+We've already touched on the fact that most if not all languages come with an implementation of hash maps, like Pythons dictionaries, so you won't need to implement your own. However you will still care about how they perform, and in order to understand hash map performance you first need to understand collisions.
+
+### Collisions
+To get into collisions, we need to expose a white lie in our initial explanation of hash functions. We said that the hash function should never assign two keys to the same slot in the underlying array, and while this would be ideal, it is almost impossible in practice. Say you have a 26 slot array and the hash function assigns slots based on alphabetical order of the first letter of the key. If you want to store the prices of apples, and avocados, you will get a collision where they are both assigned to index 0 of the array.  There are a few ways to handle collisions like this, the simplest way is this: <span style="color: cyan; font-weight: bold;">When you have a collision in a slot, store a linked list that points to the collided elements in that slot.</span>
+
+With this solution, searching for elements that did not have a collision is still very fast, O(1), and searching for elements that have had a collision is still pretty fast, but slightly slower as you have to traverse the linked list. The lesson here is that the hash function is very important, if it hashes everything to the same slot then your performance will be exactly the same as a linked list, ideally it will hash keys evenly across the whole array.
+
