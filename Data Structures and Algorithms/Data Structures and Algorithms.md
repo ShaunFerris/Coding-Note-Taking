@@ -23,6 +23,7 @@ Objects, dictionaries and hash maps:
 
 Graphs, trees and related data structures:
 - [[Data Structures - Introduction to Graphs]]
+- [[Data Structures - Weighted Graphs]]
 - [[Data Structures - Binary Search Trees]]
 
 Also, for constructing custom data structures, revise OOP in python starting from here and following the links to further topics:

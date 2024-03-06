@@ -12,8 +12,11 @@ graph = {}
 graph["pointA"] = ["pointB", "pointC", "pointD"]
 ```
 
+In practice it is probably more common to use an implementation of a graph like the one in the open source library networkX, [see their docs here](https://networkx.org/documentation/stable/reference/classes/index.html).
+
+There is also this great example that I found on stack overflow [here](https://stackoverflow.com/questions/19472530/representing-graphs-data-structure-in-python) where a user suggests building a graph class from a dictionary of sets, and implements methods for adding nodes, adding connections, removing nodes etc.
 ## Directed and undirected graphs
-In the above illustration of a graph for poker debts, the edges are represented as arrows. This is a directed graph, in which the edges are one way relationships. Adit has no neighbours, because he has an edge pointing to him but none pointing away from him. In an undirected graph, the edges are all two way relationships.
+In the above illustration of a graph for poker debts, the edges are represented as arrows. This is a directed graph, in which the edges are one way relationships. Adit has no neighbours, because he has an edge pointing to him but none pointing away from him. In an undirected graph, the edges are all two way relationships. Note that sometimes the terms arcs and edges are used, where arcs are directed connections and edges are un-directed two way connections.
 
 ## Applications
 There are a tonne of applications for graphs, because they can map so many different kinds of data. A good place to start is with the breadth first search algorithm, which is a search algo specifically for graphs. See here: [[Algorithms - Breadth First Search]]
