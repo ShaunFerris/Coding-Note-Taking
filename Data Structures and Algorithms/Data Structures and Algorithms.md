@@ -46,4 +46,5 @@ Algorithms Problems/Examples:
 - [[Algorithms - Quicksort]]
 - [[Algorithms - Mergesort]]
 - [[Algorithms - Comparing Merge and Quicksort, the Average vs. the Worst Case]]
+- [[Algorithms - Breadth First Search]]
 - 
