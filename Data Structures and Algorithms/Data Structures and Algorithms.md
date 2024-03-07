@@ -48,4 +48,5 @@ Algorithms Problems/Examples:
 - [[Algorithms - Mergesort]]
 - [[Algorithms - Comparing Merge and Quicksort, the Average vs. the Worst Case]]
 - [[Algorithms - Breadth First Search]]
+- [[Algorithms - Dijkstra's Algorithm]]
 - 
