@@ -59,3 +59,45 @@ console.log(novel.writer);
 Notice the syntax used to invoke the getter and setter. They do not even look like functions. Getters and setters are important because they hide internal implementation details.
 
 **Note:** It is convention to precede the name of a private variable with an underscore (`_`). However, the practice itself does not make a variable private.
+
+## Constructors and instancing
+When a class is instantiated using a constructor, anything that is declared in the constructor and assigned to the this object is considered to belong to that instance of the class. If you were to define a method as part of the constructor method, then for every instance of the class that you spin up, you will have one distinct version of that function assigned to memory. 
+
+By contrast, any methods or properties defined in **outside** the constructor method are handed down to the prototype object of the class, and thus only exist once  in memory no matter how many instances of the class have been instantiated.
+
+You can get the prototype of a given object with:
+```javascript
+Object.getPrototypeOf(classInstance)
+```
+
+For two instance of the Dog class:
+```javascript
+class Dog {
+	constructor(name) {
+		this.username = username;
+		this.wagTail = () => {
+			return "Wagging tail"
+		}
+	}
+	bark() {
+		return "Woof"
+	}
+}
+
+const dog1 = new Dog("Max", "Labrodor")
+const dog2 = new Dog("Spot", "Dalmatian")
+```
+All of these statements are true:
+```javascript
+dog1.wagTail() === dog2.wagTail()
+
+dog1.bark === dog2.bark
+
+Object.getPrototypeOf(dog1) === Object.getPrototypeOf(dog2)
+
+dog1.constructor === dog2.constructor
+```
+And this statement is not true:
+```javascript
+dog1.wagTail === dog2.wagTail
+```
