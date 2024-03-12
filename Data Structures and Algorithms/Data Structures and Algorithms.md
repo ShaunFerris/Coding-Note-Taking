@@ -49,4 +49,4 @@ Algorithms Problems/Examples:
 - [[Algorithms - Comparing Merge and Quicksort, the Average vs. the Worst Case]]
 - [[Algorithms - Breadth First Search]]
 - [[Algorithms - Dijkstra's Algorithm]]
-- 
+- [[Algorithms - Longest Common Substring]]
