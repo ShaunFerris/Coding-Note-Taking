@@ -123,3 +123,8 @@ The solution has O(m * n) complexity for both time and space. The space complexi
 - Keep only the last and current row of the DP table to save memory ( O ( min ( r , n ) ) ![{\displaystyle O(\min(r,n))}](https://wikimedia.org/api/rest_v1/media/math/render/svg/a65d323bed8f4bdf9d4e2a97265c76ac7a25361e) instead of O ( n r ) ![{\displaystyle O(nr)}](https://wikimedia.org/api/rest_v1/media/math/render/svg/6e4be7d00195041b16efc063d83a41f4262ce56f) )
 -  The last and current row can be stored on the same 1D array by traversing the inner loop backwards
 - Store only non-zero values in the rows. This can be done using hash-tables instead of arrays. This is useful for large alphabets.
+
+## Related problems
+A closely related problem to the longest common substring of two strings is the longest palindromic string on a single input string. See here for a discussion of that problem: [[Algorithms - Longest Palindromic Substring]].
+
+You might at first think that you could define a second string that is the reverse of the input string, and then run the same solution to this problem. That works in some cases but not all. For example with the input string: `"aacabdkacaa"`, the longest palindromic substring is `"aca"` but the longest common substring algo run on this string and it's reverse will retrun `"aaca"`.

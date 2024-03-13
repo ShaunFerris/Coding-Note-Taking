@@ -50,3 +50,4 @@ Algorithms Problems/Examples:
 - [[Algorithms - Breadth First Search]]
 - [[Algorithms - Dijkstra's Algorithm]]
 - [[Algorithms - Longest Common Substring]]
+ - [[Algorithms - Longest Palindromic Substring]]
