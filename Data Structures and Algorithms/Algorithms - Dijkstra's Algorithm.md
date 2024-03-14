@@ -13,7 +13,10 @@ This example is from "Grokking Algorithms".
 
 You are trying to trade a book for a piano. The below graph represents trades that have been offered in your friend network, the weights represent how much additional money  needs to be added to the item trade to make it agreed upon as fair. <span style="color: cyan; font-weight: bold;">How are you going to figure out how to trade your book for the piano whilst adding the smalles amount of additional cash?</span>
 ![[Pasted image 20240310100722.png]]
-
 Using the four steps to Dijkstra's algo, we start by setting up a table to store the cost of each node. The cost is how expensive it is to get to, and the nodes we have not reached yet are marked as infinitely expensive, until we reach them and update. The table will be updated as we go, and should also have a parent column to calculate the final path.
 ![[Pasted image 20240310100626.png]]
 ![[Pasted image 20240310100637.png]]
+**Step one:** Find the cheapest node. Given that the start node for this example is the book, the poster is the cheapest node because it costs $0. The key here is that the cheapest node we can reach from the start cannot be reached for cheaper by any other path.
+
+**Step two:** Figure out the cost to get to the neighbours of the cheapest node ( the poster).
+![[Pasted image 20240314095537.png]]
