@@ -36,3 +36,6 @@ The idea is that the algo **processes** nodes in order of cheapest to most costl
 To find the shortest path through a weighted graph that includes negative weights you need to use the Bellman-Ford algorithm, which I have not covered yet (if you're reading this maybe search the repo incase I have now covered it and not updated here.)
 
 ## Implementation
+For the purpose of this implementation example we will be using the following example graph from "Grokking Algorithms":
+![[Pasted image 20240322114509.png]]
+Before we can use dijkstras to find the shortest path from the start node to the fin node, we must represent the graph in code. We can do this using a dictionary keyed with nodes, where the values are a dictionary of adjacent node: edge weight k:v pairs.
