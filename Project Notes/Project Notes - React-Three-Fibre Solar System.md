@@ -10,6 +10,7 @@ Most of the dependancies I plan to use in this project are ones I have used a lo
 Some relevant resources are found in these docs pages:
 - [Three.js docs](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
 - [React-three-fiber docs](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- [Drei docs](https://drei.pmnd.rs/?path=/docs/controls-orbitcontrols--docs)
 - [Live preview of a demo of what I am going for that someone else built](https://codesandbox.io/p/sandbox/animated-solarsystem-with-react-three-fiber-2-1-w821r?file=%2Fpackage.json)
 
 ## Initial setup
