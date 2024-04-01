@@ -18,3 +18,59 @@ Nothing new or interesting is expected here, scaffolding the project with vite a
 
 After that will set up an initial "scene" using RTF and start experimenting with adding objects before making a real start on the solar system.
 
+Something I unexpectedly ran into while getting this up and running was that I actually needed to install tailwind this time. I have gotten so used to spinning up new projects with next that I completely forgot that it is normal to set it up yourself lmao. Useful docs are here: [tailwind setup docs](https://tailwindcss.com/docs/guides/vite)
+
+After getting rid of all the boilerplate in App.tsx and the css files, I setup a canvas to host and render the 3D scene, and styled it to take the full screen. The canvas object is the the component where you define the scene and pass child elements to be rendered in the scene. It can also take args to pass down to the renderer, camera and lighting in the scene. Docs for the canvas element are [here](https://docs.pmnd.rs/react-three-fiber/api/canvas)
+
+## Layout of the app
+Ultimately I want the app to have a 3d rendered scene of a solar system type style, with spheres orbiting around a central point. I would also like to have some amount of control exposed to the user to add/remove orbiting objects, and possibly atler orbital properties of the objects. 
+
+Before getting into the nitty gritty of animating such a scene and exposing controls to the user I need to get the basic layout sorted. I want a tranparent header and footer bar with basics like a title in the header and a copyright notice in the footer. I want some kind of control panel that can be shown or hidden for user control, and I want the canvas to take up all available space with the header/footer/control panel overlayed on top. 
+
+I set up the bones of this using tailwind classes by setting the div that wraps the App component to relative display, then setting all of its children (AnimationCanvas, Header, Footer etc) to absolute and pinning them in the proper places, like this:
+```tsx
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import "./index.css";
+import Footer from "./components/footer";
+import Header from "./components/header";
+
+export default function App() {
+  return (
+    <div className="relative h-screen">
+      <Header />
+      <AnimationScene />
+      <Footer />
+    </div>
+  );
+}
+
+function AnimationScene() {
+  return (
+    <Canvas className="absolute top-0 left-0 w-full h-full z-0">
+      <Sol />
+      <OrbitControls />
+      <MainLighting />
+    </Canvas>
+  );
+}
+
+function Sol() {
+  return (
+    <mesh>
+      <sphereGeometry args={[2.5, 32, 32]} />
+      {/* meshStandardMaterial is a lit mesh, its black unless you add a light */}
+      <meshStandardMaterial color="#E1DC59" />
+    </mesh>
+  );
+}
+
+function MainLighting() {
+  return (
+    <>
+      <ambientLight />
+      <pointLight position={[0, 0, 0]} />
+    </>
+  );
+}
+```
