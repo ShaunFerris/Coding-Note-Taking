@@ -5,6 +5,7 @@
 **Web Front-End Projects**
 - [[Project Notes - Budget App]]
 - [[Project Notes - Art Collection Gallery - Plan]]
+- [[Project Notes - React-Three-Fibre Solar System]]
 
 **Web Back-End Projects
 - [[Project Notes - Spongecase Chrome Extension]]
