@@ -4,6 +4,7 @@ This project is a small toy project to fill time and keep my skills sharp while 
 
 Also taking the opportunity to get more experience using vite rather than next to scaffold the project.
 
+The project can be found  [here](https://github.com/ShaunFerris/threesol)(it may be privated).
 ## Dependancies and new tech
 Most of the dependancies I plan to use in this project are ones I have used a lot, like typescript, shadcnUI etc, the spicy new additions that I do not at all know how to use yet are react-three-fiber (RTF going forward) and drei, two libraries for using the Three.js webGL library within a react project. 
 
@@ -74,3 +75,8 @@ function MainLighting() {
   );
 }
 ```
+
+## Completed scene - Ready to add controls
+At time of writing the scene is complete with a hard-coded number of planets generated with random sizes and colors orbiting a central "sun" which is also the light source for the scene. See [this](https://github.com/ShaunFerris/threesol/commit/7e556450390cbd613c4b49d46e7e959e6f0e8ba2) commit to see the project at this stage.
+
+Moving the project forward from here will involve adding control panels for the user to modify the number/size/orbit paths of the planets in the system. I am at this  point not sure wether I will actually do any more work on the project but I will try to update the notes here if I bother.
