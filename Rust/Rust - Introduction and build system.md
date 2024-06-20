@@ -32,3 +32,12 @@ cargo --version
 ```
 
 ### Scaffolding a project with cargo
+To create a new project run: `cargo new {project-name}`. This will scaffold out the standard Rust project structure. Note that by standard, the project will be a .git repo. You can change this behaviour by using the `--vcs` flag to either sub it for a different version control system or use none at all.
+
+The cargo.toml file created will be the config file to store your custom cargo settings, and the main code-base entry-point will be in `src/main.rs`.
+
+`cargo build` will compile the code into an executable. By default it will be a debug build so the source executable will be in `./target/debug/{project-name}`. If you are ready to build the project for release then you should run `cargo build --release`.
+
+`cargo run` will buld or rebuild and run the project as one action.
+
+Finally `cargo check` will check that the project compiles but not actually recompile or run the code.
