@@ -67,3 +67,51 @@ Writing HTML amid the javascript code like this is not generally a good idea (un
 <div style="font-weight: bold; color: cyan;">In traditional web apps, the browser is "dumb" and only renders HTML sent by the server. A server can be created with Python flask, ruby on rails or java spring (among many others). The example app uses Express and Node. </div>
 
 ## Running application logic in the browser
+When you go the /notes route on the example app, and refresh with the network tab open, you see four GET requests going out from the browser:
+![[Pasted image 20240716112248.png]]You can see in the screenshot that each GET request is retrieving a different document, and they all have different types. The first request is of type "document" and is the html for the page:
+![[Pasted image 20240716112443.png]]
+This time the html does not contain the list of notes. Instead the head section includes a script, which does the GET request for the notes list in the last two lines. Note that scripts included in html this way are executed immediately after the browser fetches the script. Here is the js code, examined from the browser devtools:
+![[Pasted image 20240716112707.png]]
+You can see that the last two lines use the XMLHttpRequest() method to send a GET request to the data.json resource on the server. If you were to navigate directly to this address in the browser you would see the raw json data. Alternatively, you could use curl to fetch this resource in the terminal, and if you were feeling spicy could pipe the output into jq or bat to make it all pretty.
+
+Looking at the `.onreadystatechange` methods callback function above, you can see that if the response code for the GET request is a 200 (200 means success), then the script will parse the JSON response and create an unordered list from the returned JSON data, then get the notes element from the base HTML and append the list to it. This is how the list of notes gets rendered from the json data after the page loads.
+
+## Event handlers and callbacks
+Looking again at the above code, the structure is a little strange, with the request being sent to the server in the last lines, but the handling of the response being described above that line. This is because the `onreadystatechange` is an <span style='font-weight: bold; color: cyan'>event handler.</span> It is defined on the object `xhttp`, so whenever this object changes ready state, the code in the handlers callback function will run. Note that ready state 4 indicates that the operation is complete. The callback function is called that because the application code does not execute the function itself, but rather the browser does at an approprite time when the event to which it is a callback has happened.
+
+## Document object model (DOM)
+We can think of HTML pages as trees:
+```html
+html
+  head
+    link
+    script
+  body
+    div
+      h1
+      div
+        ul
+          li
+          li
+          li
+      form
+        input
+        input
+```
+Browsers are based on the idea of depicting html elements as a tree. The DOM is an API that enables programmatic modification of the <span style="font-weight: bold; color: cyan">element trees</span> corresponding to a web page.
+
+The call to `document.createElement()` in the above js script is an example of using the DOM api to add content to the html tree.
+
+## Manipulating the document object from the console
+The topmost node of the DOM tree of an HTML document is called the `document`. You can access it by typing `document` into the console.
+![[Pasted image 20240716114740.png]]
+You can run js code in real time in the console, so we can add a new item to the list by running the following:
+```javascript
+list = document.getElementsByTagName('ul')[0]
+newElement = document.createElement('li')
+newElement.textContent = 'Page manipulation from console is easy'
+list.appendChild(newElement)
+```
+This obviously only updates the page for the current session, the changes will disappear when you refresh because nothing on the server has changed.
+
+## CSS
