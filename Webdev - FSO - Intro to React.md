@@ -34,6 +34,8 @@ export default App
 They briefly mention that you could also use "create-react-app" for this course, but fuck that because it is deprecated and bad.
 
 ## Components
+Note right off the bat that React components must be named with the first letter capitalized. They also usually need to have one root element, i.e: one html element or react component that wraps all the others. If you need to, you can always wrap your parallel level elements in a fragment `<></>`.
+
 The file `App.jsx` now defines a single React component named "App". The command on the final line of `main.jsx` renders the contents of the "App" component into the div element defined in the file `index.html` that has the id attribute "root".
 ```jsx
 ReactDOM.createRoot(document.getElementById('root')).render(<App />)
@@ -136,3 +138,100 @@ but when writing JSX, the tag needs to be closed:
 
 
 ## Working with multiple components
+Componenets can be used multiple times, and can include other components in their returns, provided that the child component is either imported or defined in the same file.
+```jsx
+const Hello = () => {  
+  return (    
+    <div>
+      <p>Hello world</p>    
+    </div>  
+  )
+}
+
+const App = () => {
+  return (
+    <div>
+      <h1>Greetings</h1>
+      <Hello />    </div>
+  )
+}
+```
+Writing components with React is easy, and by combining components, even a more complex application can be kept fairly maintainable. Indeed, a core philosophy of React is composing applications from many specialized reusable components.
+
+Another strong convention is the idea of a _root component_ called _App_ at the top of the component tree of the application. Nevertheless, as we will learn in [part 6](https://fullstackopen.com/en/part6), there are situations where the component _App_ is not exactly the root, but is wrapped within an appropriate utility component.
+
+## Props: passing data to components
+Props are properties that the component takes as an attribute when it's element is used in JSX, and are defined by giving the functional component definition an object as a parameter.
+```jsx
+const Hello = (props) => {  return (
+    <div>
+      <p>Hello {props.name}</p>    </div>
+  )
+}
+```
+
+The props parameter that the "Hello" functional component takes is an object, which has fields corresponding to all the "props" the user of the component defines.
+
+There can be an arbitrary number of props and their values can be hard-coded strings or the results of js expressions. An example of using two props in the "Hello" component would look like this:
+```jsx
+const Hello = (props) => {
+  console.log(props)  
+  return (
+    <div>
+      <p>
+        Hello {props.name}, you are {props.age} years old
+      </p>
+    </div>
+  )
+}
+
+const App = () => {
+  const name = 'Peter'  
+  const age = 10
+  return (
+    <div>
+      <h1>Greetings</h1>
+      <Hello name='Maya' age={26 + 10} />      
+      <Hello name={name} age={age} />    
+    </div>
+  )
+}
+```
+
+Note that the component receiving props can also destructure the props needed directly out of the props object like this:
+```jsx
+const Hello = ({name, age}) => {
+  console.log(props)  
+  return (
+    <div>
+      <p>
+        Hello {name}, you are {age} years old
+      </p>
+    </div>
+  )
+}
+```
+
+## Do not render objects
+Objects are not valid as react children! The following code will not render and will error out:
+```jsx
+const App = () => {
+  const friends = [
+    { name: 'Peter', age: 4 },
+    { name: 'Maya', age: 10 },
+  ]
+
+  return (
+    <div>
+      <p>{friends[0]}</p>
+      <p>{friends[1]}</p>
+    </div>
+  )
+}
+
+export default App
+```
+
+In React, the individual things rendered in braces must be primitive values, or expressions that evaluate to primitives. The above code is trying to render objects within `<p>` tags. The fix is to use `{friends[0].name} {friends[0]}.age` instead.
+
+Also note that React does allow arrays to be rendered, IF the contents of the array are all primitives and thus eligible for rendering.
