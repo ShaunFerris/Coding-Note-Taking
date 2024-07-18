@@ -208,6 +208,8 @@ What if we tried to define the event handlers in a simpler form?
 
 This would break the application. This is because an event handler is supposed to be either a function or a function reference, in the above we have tried to set the handler to a function call. This breaks the app because the setCounter call is executed on render, causing infinite re-renders. Putting it in a function stops it being directly evaluated on render. 
 
+The caveat to this is that event handlers can actually be set to function calls, IF the function call in question returns a function or a reference to a function.
+
 ## Passing state to child components
 It's recommended to write React components that are small and reusable across the application and even across projects. Let's refactor our application so that it's composed of three smaller components, one component for displaying the counter and two components for buttons.
 
