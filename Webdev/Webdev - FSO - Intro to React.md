@@ -235,3 +235,6 @@ export default App
 In React, the individual things rendered in braces must be primitive values, or expressions that evaluate to primitives. The above code is trying to render objects within `<p>` tags. The fix is to use `{friends[0].name} {friends[0]}.age` instead.
 
 Also note that React does allow arrays to be rendered, IF the contents of the array are all primitives and thus eligible for rendering.
+
+## Next
+This is the end of the React intro section of FSO. The next section is a javacript crash course, which I will not take notes for in this vault, as I don't feel the need to revise JS basics at this point. I will continue with the revision of React concepts with the next section of fso, [[Webdev- FSO - State and event handlers]]

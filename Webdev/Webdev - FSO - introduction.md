@@ -17,9 +17,11 @@ There are exercises associated with the material, and my solutions to the exerci
 ## Taking the course
 The course is fourteen parts, starting at part 0 which is an introduction. The notes taken so far in this document are from part 0. One part of the course is supposed to courespond roughly to one week of study, comprised of approx. 15 to 20 hours. I will be trying to complete the course faster than that, but I'll see how it goes. 
 
-Thats' about as much of the introductory/taking the course material as I can be bothered summarising here. For the full intro section see the course site [here](https://fullstackopen.com/en/part0/general_info#parts-and-completion).
+That's about as much of the introductory/taking the course material as I can be bothered summarising here. For the full intro section see the course site [here](https://fullstackopen.com/en/part0/general_info#parts-and-completion).
 
 For the start of the actual content of the course, see this note: [[Webdev - FSO - fundamentals of web apps]]
 
 Other entries in the course are:
 [[Webdev - FSO - Intro to React]]
+[[Webdev- FSO - State and event handlers]]
+[[Webdev - FSO - More complex React state and debugging React apps]]
