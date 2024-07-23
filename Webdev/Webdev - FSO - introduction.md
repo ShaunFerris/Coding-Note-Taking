@@ -22,6 +22,10 @@ That's about as much of the introductory/taking the course material as I can be 
 For the start of the actual content of the course, see this note: [[Webdev - FSO - fundamentals of web apps]]
 
 Other entries in the course are:
-[[Webdev - FSO - Intro to React]]
-[[Webdev- FSO - State and event handlers]]
-[[Webdev - FSO - More complex React state and debugging React apps]]
+Part One - Intro to React:
+	[[Webdev - FSO - Intro to React]]
+	[[Webdev- FSO - State and event handlers]]
+	[[Webdev - FSO - More complex React state and debugging React apps]]
+Part Two - Communicating with the server:
+	[[Webdev - FSO - Rendering collections]]
+	
