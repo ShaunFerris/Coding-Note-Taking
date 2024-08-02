@@ -19,7 +19,7 @@ The course is fourteen parts, starting at part 0 which is an introduction. The n
 
 That's about as much of the introductory/taking the course material as I can be bothered summarising here. For the full intro section see the course site [here](https://fullstackopen.com/en/part0/general_info#parts-and-completion).
 
-For the start of the actual content of the course, see this note: [[Webdev - FSO - fundamentals of web apps]]
+For the start of the actual content of the course, see this note (referred to in the content as part 0): [[Webdev - FSO - fundamentals of web apps]]
 
 Other entries in the course are:
 Part One - Intro to React:
@@ -30,3 +30,5 @@ Part Two - Communicating with the server:
 	[[Webdev - FSO - Rendering collections]]
 	[[Webdev - FSO - Forms]]
 	[[Webdev - FSO - Getting data from the server]]
+	[[Webdev - FSO - Altering data on the server]]
+	
