@@ -87,3 +87,93 @@ Once the data returned by the server starts to have an effect on the behaviour o
 It's beneficial to inspect the state of the backend server, e.g. through the browser by visiting `https://localhost:3001/notes`.
 
 ## Updating the importance of notes
+In the notes example, we can add a button to toggle the importance of the individual notes, by modifying the `Note` components like this:
+```jsx
+const Note = ({ note, toggleImportance }) => {
+  const label = note.important
+    ? 'make not important' : 'make important'
+
+  return (
+    <li>
+      {note.content} 
+      <button onClick={toggleImportance}>{label}</button>
+    </li>
+  )
+}
+```
+
+We now have a button that switches its label depending on if the note is currently marked important or not. It also has a bound `onClick` event handler passed as props. This handler should be defined in the `App` component and passed to every `Note`.
+```jsx
+const App = () => {
+  const [notes, setNotes] = useState([]) 
+  const [newNote, setNewNote] = useState('')
+  const [showAll, setShowAll] = useState(true)
+
+  // ...
+
+
+  const toggleImportanceOf = (id) => {
+    console.log('importance of ' + id + ' needs to be toggled')
+  }
+
+  // ...
+
+  return (
+    <div>
+      <h1>Notes</h1>
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          show {showAll ? 'important' : 'all' }
+        </button>
+      </div>      
+      <ul>
+        {notesToShow.map(note => 
+          <Note
+            key={note.id}
+            note={note} 
+
+            toggleImportance={() => toggleImportanceOf(note.id)}
+          />
+        )}
+      </ul>
+      // ...
+    </div>
+  )
+}
+```
+
+Notice that each individual note recieves it's own version of the `toggleImportance` handler, because they each have a differen id. E.g., if _note.id_ is 3, the event handler function returned by _toggleImportance(note.id)_ will be:
+```js
+() => { console.log('importance of 3 needs to be toggled') }
+```
+
+When modifying data on the server, like changing the importance of a note, we can do it using either a PATCH or a PUT request. The PUT request will replace the entire note, whereas the PATCH request will directly mutate some properties of the existing note object. 
+
+The final form of the `toggleImportanceOf` handler would look something like this:
+```jsx
+const toggleImportanceOf = id => {
+  const url = `http://localhost:3001/notes/${id}`
+  const note = notes.find(n => n.id === id)
+  const changedNote = { ...note, important: !note.important }
+
+  axios.put(url, changedNote).then(response => {
+    setNotes(notes.map(n => n.id !== id ? n : response.data))
+  })
+}
+```
+
+The unique URL of the resource to modify is defined using a template string, then we save the note to modify into a variable with the `Array.find()` method. Next the note is updated by spreading a copy  into a new variable with updated `important` property. Finally, we use a PUT request to replace the old object with the modified one, and then update the state.
+
+Why did we make a copy of the note object we wanted to modify when the following code also appears to work?
+```js
+const note = notes.find(n => n.id === id)
+note.important = !note.important
+
+axios.put(url, note).then(response => {
+  // ...
+```
+This is not recommended because the variable _note_ is a reference to an item in the _notes_ array in the component's state, and as we recall we must [never mutate state directly](https://react.dev/learn/updating-objects-in-state#why-is-mutating-state-not-recommended-in-react) in React.
+
+It's also worth noting that the new object _changedNote_ is only a so-called [shallow copy](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy), meaning that the values of the new object are the same as the values of the old object. If the values of the old object were objects themselves, then the copied values in the new object would reference the same objects that were in the old object.
+
+## Extracting backend communication into a seperate module
