@@ -177,3 +177,244 @@ This is not recommended because the variable _note_ is a reference to an item in
 It's also worth noting that the new object _changedNote_ is only a so-called [shallow copy](https://en.wikipedia.org/wiki/Object_copying#Shallow_copy), meaning that the values of the new object are the same as the values of the old object. If the values of the old object were objects themselves, then the copied values in the new object would reference the same objects that were in the old object.
 
 ## Extracting backend communication into a seperate module
+The `App` component in the notes example is becoming bloated. In line with the "single responsibility" principle, we should consider moving the communication with the server out of the `App` component and into it's own module.
+
+Lets create a `src/services` directory and add a file there called `notes.js`:
+```js
+import axios from 'axios'
+const baseUrl = 'http://localhost:3001/notes'
+
+const getAll = () => {
+  return axios.get(baseUrl)
+}
+
+const create = newObject => {
+  return axios.post(baseUrl, newObject)
+}
+
+const update = (id, newObject) => {
+  return axios.put(`${baseUrl}/${id}`, newObject)
+}
+
+export default { 
+  getAll: getAll, 
+  create: create, 
+  update: update 
+}
+```
+
+This module returns an object containing three functions as it's properties which all deal with notes operations. The functions directly return the promises returned by the axios methods.
+
+This module is then imported into the `App` component:
+```jsx
+import noteService from './services/notes'
+
+const App = () => {
+```
+And now the functions returned by it can be used from the imported module variable like this:
+```jsx
+const App = () => {
+  // ...
+
+  useEffect(() => {
+
+    noteService
+      .getAll()
+      .then(response => {
+        setNotes(response.data)
+      })
+  }, [])
+
+  const toggleImportanceOf = id => {
+    const note = notes.find(n => n.id === id)
+    const changedNote = { ...note, important: !note.important }
+
+    noteService
+      .update(id, changedNote)
+      .then(response => {
+        setNotes(notes.map(note => note.id !== id ? note : response.data))
+      })
+  }
+
+  const addNote = (event) => {
+    event.preventDefault()
+    const noteObject = {
+      content: newNote,
+      important: Math.random() > 0.5
+    }
+
+    noteService
+      .create(noteObject)
+      .then(response => {
+        setNotes(notes.concat(response.data))
+        setNewNote('')
+      })
+  }
+
+  // ...
+}
+
+export default App
+```
+Notice the calls to `noteService.getAll()` etc.
+
+We could take our implementation a step further. When the _App_ component uses the functions, it receives an object that contains the entire response for the HTTP request:
+```js
+noteService
+  .getAll()
+  .then(response => {
+    setNotes(response.data)
+  })
+```
+
+The _App_ component only uses the _response.data_ property of the response object.
+
+The module would be much nicer to use if, instead of the entire HTTP response, we would only get the response data. Using the module would then look like this:
+```js
+noteService
+  .getAll()
+  .then(initialNotes => {
+    setNotes(initialNotes)
+  })
+```
+
+We can achieve this by changing the code in the module as follows (the current code contains some copy-paste, but we will tolerate that for now):
+```js
+import axios from 'axios'
+const baseUrl = 'http://localhost:3001/notes'
+
+const getAll = () => {
+  const request = axios.get(baseUrl)
+  return request.then(response => response.data)
+}
+
+const create = newObject => {
+  const request = axios.post(baseUrl, newObject)
+  return request.then(response => response.data)
+}
+
+const update = (id, newObject) => {
+  const request = axios.put(`${baseUrl}/${id}`, newObject)
+  return request.then(response => response.data)
+}
+
+export default { 
+  getAll: getAll, 
+  create: create, 
+  update: update 
+}
+```
+
+We no longer return the promise returned by axios directly. Instead, we assign the promise to the _request_ variable and call its _then_ method:
+```js
+const getAll = () => {
+  const request = axios.get(baseUrl)
+  return request.then(response => response.data)
+}
+```
+
+The last row in our function is simply a more compact expression of the same code as shown below:
+```js
+const getAll = () => {
+  const request = axios.get(baseUrl)
+  return request.then(response => {    return response.data  })}
+```
+
+The modified _getAll_ function still returns a promise, as the _then_ method of a promise also [returns a promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
+
+After defining the parameter of the _then_ method to directly return _response.data_, we have gotten the _getAll_ function to work like we wanted it to. When the HTTP request is successful, the promise returns the data sent back in the response from the backend.
+
+We have to update the _App_ component to work with the changes made to our module. We have to fix the callback functions given as parameters to the _noteService_ object's methods so that they use the directly returned response data:
+```js
+const App = () => {
+  // ...
+
+  useEffect(() => {
+    noteService
+      .getAll()
+      .then(initialNotes => {setNotes(initialNotes)})
+  }, [])
+
+  const toggleImportanceOf = id => {
+    const note = notes.find(n => n.id === id)
+    const changedNote = { ...note, important: !note.important }
+
+    noteService
+      .update(id, changedNote)
+      .then(returnedNote => {
+	    setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+	})
+  }
+
+  const addNote = (event) => {
+    event.preventDefault()
+    const noteObject = {
+      content: newNote,
+      important: Math.random() > 0.5
+    }
+
+    noteService
+      .create(noteObject)
+      .then(returnedNote => {
+	      setNotes(notes.concat(returnedNote))
+	      setNewNote('')
+      })
+  }
+
+  // ...
+}
+```
+
+## Cleaner syntax for defining object literals
+The module defining note-related services currently exports and object with the functions to make note changes in an object like this:
+```js
+export default { 
+  getAll: getAll, 
+  create: create, 
+  update: update 
+}
+```
+
+We can use a feature of ES6 to instead define it like this:
+```js
+{ 
+  getAll, 
+  create, 
+  update 
+}
+```
+
+## Promises and errors
+If our application had implemented functionality to allow users to delete notes, then we could run into issues where a user tries to update the importance of a note that no longer exists. In this situation we would get a  404 response to the PUT request to replace a note that does not exist. 
+
+The application should be able to handle these error situations gracefully, as users don't usually have the console open to see the error and will not know what happened. 
+
+We had previously mentioned that promises can have three states, pending, fulfilled or rejected. Our example notes app does not handle rejected promises in any way. 
+
+We can handle rejections by chaining the `.then()` method to a `catch()` method with a callback for an error state:
+```jsx
+axios
+  .get('http://example.com/probably_will_fail')
+  .then(response => {
+    console.log('success!')
+  })
+  .catch(error => {
+    console.log('fail')
+  })
+```
+
+If the request fails, the event handler registered to the `catch` method will be called, and in the body of this callback we can add code to notify the user of what happened. 
+
+We often add the catch method to the end of promise chains, and define it's callback to handle the situation where any of the promises in that chain fail and become rejected.
+```jsx
+axios
+  .put(`${baseUrl}/${id}`, newObject)
+  .then(response => response.data)
+  .then(changedNote => {
+    // ...
+  })
+  .catch(error => {
+    console.log('fail')
+  })
+```
+
