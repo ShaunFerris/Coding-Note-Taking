@@ -317,7 +317,10 @@ The last row in our function is simply a more compact expression of the same cod
 ```js
 const getAll = () => {
   const request = axios.get(baseUrl)
-  return request.then(response => {    return response.data  })}
+  return request.then(response => {
+	  return response.data  
+  })
+}
 ```
 
 The modified _getAll_ function still returns a promise, as the _then_ method of a promise also [returns a promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
