@@ -32,7 +32,7 @@ Points 3, 4 and 7 from the reqs list
 1. Problem solution statement for the business
 2. Introduction to the owner/operator and their philosophy
 3. Service explanation/summary
-Going from the copy on the existing site, the through line in the branding is built around creating a sense of place. I think this is great and the copy can be streamlined around this concept. It is currently a little too verbose.
+Going from the copy on the existing site, the through line in the branding is built around creating a sense of place. I think this is great and the copy can be streamlined around this concept. It is currently a little too verbose. The current sections explaining the "sense of place"  concept and the problem/solution statement could be combined.
 
 ### Visual reqs
 Points 1, 5, 11
@@ -50,3 +50,6 @@ Points 2, 6, 8, 9, 10
 
 Addressing point 2, these are the industry examples I think are worth looking at:
 https://www.charlotterowe.com/
+https://www.camerongardens.co.uk/
+https://www.alistairwbaldwin.co.uk/
+https://www.andysturgeon.com/
