@@ -6,6 +6,7 @@
 - [[Project Notes - Budget App]]
 - [[Project Notes - Art Collection Gallery - Plan]]
 - [[Project Notes - React-Three-Fibre Solar System]]
+- [[Project Notes - Refresh and polish on existing squarespace site]]
 
 **Web Back-End Projects
 - [[Project Notes - Spongecase Chrome Extension]]
