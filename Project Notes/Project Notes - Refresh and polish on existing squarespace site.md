@@ -25,3 +25,28 @@ My approach to this project will start with a fairly simple first actionable ste
 2. Compile a small number of successful sites that fill the same purpose in the same or similar industry
 3. Present answers to design questions in the requirements based on successful comparison sites
 
+Addressing point 1, I think it makes sense to recategorize the requirements into three classes, copywriting, visual design and functionality. Note that for the sake of brevity, I will reword some of the requirements .
+
+### Copy reqs
+Points 3, 4 and 7 from the reqs list
+1. Problem solution statement for the business
+2. Introduction to the owner/operator and their philosophy
+3. Service explanation/summary
+Going from the copy on the existing site, the through line in the branding is built around creating a sense of place. I think this is great and the copy can be streamlined around this concept. It is currently a little too verbose.
+
+### Visual reqs
+Points 1, 5, 11
+1. Brand consistency
+2. Work showcase - carousels/gallery/portfolio page etc
+3. Landing pages
+
+### Functionality reqs
+Points 2, 6, 8, 9, 10
+1. Design standards and accessibility
+2. Contact form - make this interactive??
+3. Mobile optimization
+4. Blog functionality
+5. Instagram plugin integration
+
+Addressing point 2, these are the industry examples I think are worth looking at:
+https://www.charlotterowe.com/
