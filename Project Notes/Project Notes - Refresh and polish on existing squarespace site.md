@@ -32,8 +32,16 @@ Points 3, 4 and 7 from the reqs list
 1. Problem solution statement for the business
 2. Introduction to the owner/operator and their philosophy
 3. Service explanation/summary
-Going from the copy on the existing site, the through line in the branding is built around creating a sense of place. I think this is great and the copy can be streamlined around this concept. It is currently a little too verbose. The current sections explaining the "sense of place"  concept and the problem/solution statement could be combined.
 
+Going from the copy on the existing site, the through line in the branding is built around creating a sense of place. I think this is great and the copy can be streamlined around this concept. It is currently a little too verbose. 
+
+The current sections explaining the "sense of place" concept and the problem/solution statement could be combined, and placed immediately below the splash image.
+
+The services explanation on the main page could be removed as it is a little redundant. All three of the blocks have a “learn more” button that links to the same page, where the services are re-explained with images.
+
+I see the new main page layout something like below (note that this diagram is meant to communicate the order of pieces of copy, not the scale or positioning of the layout):
+![[Pasted image 20240820140858.png]]
+This would lower the amount of copy text on the main page by a lot, keeping focussed on communicating the info potential clients would want with as little friction as possible. A stream lined progression from “my unique selling point” (sense of place) to “services I offer” (summarised with a longer explanation on a separate page) to “learn more or get in touch”.
 ### Visual reqs
 Points 1, 5, 11
 1. Brand consistency
@@ -53,3 +61,4 @@ https://www.charlotterowe.com/
 https://www.camerongardens.co.uk/
 https://www.alistairwbaldwin.co.uk/
 https://www.andysturgeon.com/
+
