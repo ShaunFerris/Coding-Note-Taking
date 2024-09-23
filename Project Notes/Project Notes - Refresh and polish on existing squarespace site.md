@@ -1,5 +1,8 @@
 #projects 
 
+
+NOTE: This project turned out to be heavily focussed on design, with little to no engineering involved. I decided that it was incongruent with my skill set and refferred it on to a colleague with a skillset that fit better.
+
 This project is undertaken for a client, so notes here will be annonymised like previous client projects.
 
 ## General brief
