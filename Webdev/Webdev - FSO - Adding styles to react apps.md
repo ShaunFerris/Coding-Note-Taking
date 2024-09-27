@@ -60,3 +60,81 @@ Then you can hit them with a rule like this:
 This method will avoid styling `<li>` elements that are not notes.
 
 ## Improved error messages
+In previous work on the example notes app for FSO content, we implemented an error msg that was displayed when the user tried to toggle the importance of an already deleted note.
+
+This functionality could be pulled out into it's own component:
+```jsx
+const Notification = ({ message }) => {
+	if (message === null) {
+		return null	
+	}
+
+	return (
+		<div className='error'>
+			{message}	
+		</div>	
+	)
+}
+```
+If the value of the `message` prop is `null`, then nothing is rendered to the screen by this component, as `null` is returned. If it is not `null`, then the message is rendered in a `<div>`.
+
+We can then add an `errorMessage` state to the main `App` component, and pass this as props to the Notification component:
+```jsx
+const App = () => {
+  const [notes, setNotes] = useState([]) 
+  const [newNote, setNewNote] = useState('')
+  const [showAll, setShowAll] = useState(true)
+
+  const [errorMessage, setErrorMessage] = useState('some error happened...')
+
+  // ...
+
+  return (
+    <div>
+      <h1>Notes</h1>
+      <Notification message={errorMessage} />
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          show {showAll ? 'important' : 'all' }
+        </button>
+      </div>      
+      // ...
+    </div>
+  )
+}
+```
+The notification can then be given a style that is appropriate for an error msg:
+```css
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+```
+Finally, edit the `toggleImportanceOf` function to set an error message if the call to `noteService.update()` fails:
+```jsx
+  const toggleImportanceOf = id => {
+    const note = notes.find(n => n.id === id)
+    const changedNote = { ...note, important: !note.important }
+
+    noteService
+      .update(id, changedNote).then(returnedNote => {
+        setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+      })
+      .catch(error => {
+        setErrorMessage(
+          `Note '${note.content}' was already removed from server`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+        setNotes(notes.filter(n => n.id !== id))
+      })
+  }
+```
+
+## Inline styles
