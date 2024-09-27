@@ -138,3 +138,68 @@ Finally, edit the `toggleImportanceOf` function to set an error message if the c
 ```
 
 ## Inline styles
+React also allows you to write styles directly in the code (inline) in the same way that you can with HTML elements in a vanilla site.
+
+Css rules are defined differently in JS than in normal CSS files, see below for an example:
+```css
+// styles in a CSS files
+{
+  color: green;
+  font-style: italic;
+  font-size: 16px;
+}
+```
+```CSS
+// the same styles as above applied inline in JS
+{
+  color: 'green',
+  fontStyle: 'italic',
+  fontSize: 16
+}
+```
+
+Every CSS property is defined as a separate property of the JavaScript object. Numeric values for pixels can be simply defined as integers. One of the major differences compared to regular CSS, is that hyphenated (kebab case) CSS properties are written in camelCase.
+
+We could make a Footer component for the example notes app and add inline styles to it using a JS object, like this:
+```jsx
+const Footer = () => {
+  const footerStyle = {
+    color: 'green',
+    fontStyle: 'italic',
+    fontSize: 16
+  }
+  return (
+    <div style={footerStyle}>
+      <br />
+      <em>Note app, Department of Computer Science, University of Helsinki 2024</em>
+    </div>
+  )
+}
+
+const App = () => {
+  // ...
+
+  return (
+    <div>
+      <h1>Notes</h1>
+
+      <Notification message={errorMessage} />
+
+      // ...  
+
+
+      <Footer />
+    </div>
+  )
+}
+```
+
+Inlines styles come with some limitations. For instance, so-called pseudo-classes can't be used in a straightforward way.
+
+(Below taken verbatim from FSO notes:)
+Inline styles and some of the other ways of adding styles to React components go completely against the grain of old conventions. Traditionally, it has been considered best practice to entirely separate CSS from the content (HTML) and functionality (JavaScript). According to this older school of thought, the goal was to write CSS, HTML, and JavaScript into their separate files.
+
+The philosophy of React is, in fact, the polar opposite of this. Since the separation of CSS, HTML, and JavaScript into separate files did not seem to scale well in larger applications, React bases the division of the application along the lines of its logical functional entities.
+
+The structural units that make up the application's functional entities are React components. A React component defines the HTML for structuring the content, the JavaScript functions for determining functionality, and also the component's styling; all in one place. This is to create individual components that are as independent and reusable as possible.
+
