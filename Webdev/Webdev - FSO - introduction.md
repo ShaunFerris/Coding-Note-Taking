@@ -31,6 +31,7 @@ Part Two - Communicating with the server:
 	[[Webdev - FSO - Forms]]
 	[[Webdev - FSO - Getting data from the server]]
 	[[Webdev - FSO - Altering data on the server]]
-	[[Webdev - FSO - Adding styles to react apps]]
-	
+	[[Webdev - FSO - Basic styling and some notes on rendering]]
+Part Three - Full stack:
+	[[Webdev - FSO - Node and Express]]
 	
