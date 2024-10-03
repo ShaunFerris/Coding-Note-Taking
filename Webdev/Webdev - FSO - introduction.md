@@ -34,4 +34,5 @@ Part Two - Communicating with the server:
 	[[Webdev - FSO - Basic styling and some notes on rendering]]
 Part Three - Full stack:
 	[[Webdev - FSO - Node and Express]]
+	[[Webdev - FSO - Http request types and middlewares]]
 	

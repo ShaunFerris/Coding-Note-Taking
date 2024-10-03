@@ -234,4 +234,150 @@ Now any HTTP GET requests to a URL of the general form `/api/notes/{something}` 
 ```js
 const id = request.params.id
 ```
+Then the `.find()` array method is used to find the note with a matching id and return it to the request sender in the response object.
 
+Going to `localhost:3001/api/notes/1` will now render the content of the first note as a json formatted string.
+
+The problem with this version of the api is that if we search for a note that does not exist, the server still responds with a 200 HTTP status code. There will be no data sent back with the response, as the `note` variable is `undefined` if no matching note is found. We should handle this better, and send a 404 if the resource cannot be found. Lets do that like this:
+```js
+app.get('/api/notes/:id', (request, response) => {
+  const id = request.params.id
+  const note = notes.find(note => note.id === id)
+  
+  if (note) {
+    response.json(note)
+  } else {
+    response.status(404).end()
+  }
+})
+```
+The `if (note)` condition here leverages the fact that JS objects are truthy, meaning that the evealuate to true in comparison operations, while `undefined` and `null` are falsy.
+
+In this state, the app works, and sends a 404 on missing resource. It does not however, display anything is the browser in the case of a 404. This is fine as this is an API, and is an interface intended for programmatic use. The front end can handle serving the user an appropriate view in the case of a 404.
+
+## Deleting resources
+We can implement a route for deleting resources in Express like this:
+```js
+app.delete('/api/notes/:id', (request, response) => {
+  const id = request.params.id
+  notes = notes.filter(note => note.id !== id)
+  
+  response.status(204).end()
+})
+```
+If deleting the resource is successful, meaning that the note exists and is removed, we respond to the request with the status code [204 no content](https://www.rfc-editor.org/rfc/rfc9110.html#name-204-no-content) and return no data with the response.
+
+There's no consensus on what status code should be returned to a DELETE request if the resource does not exist. The only two options are 204 and 404. For the sake of simplicity, our application will respond with 204 in both cases.
+
+## Postman
+How can we test that our delete operation worked successfully? HTTP GET requests are easy to make from the browser console. We could write some js for testing deletion, but writing test code is not always the best solution. 
+
+Postman is a tool that exists to make testing backends easier. Curl is useful in a similar way, but for the FSO content we will be looking at postman.
+
+You can install the Postman desktop client [from here](https://www.postman.com/downloads/) if you want to try it out.
+
+Using it is easy, just define the URL and then select the request type, in this case DELETE. You will see the backend example server respond correctly with 204:
+![[Pasted image 20241003111459.png]]You will also see that the note with ID 2 is no longer in the list.
+
+**Personally I use curl for sending test requests at the moment. I may look into postman if it is an important part of course materials here, but if I can just use curl I might.**
+
+## The vscode REST client
+There is also a rest client extension for vs code that you can use instead of postman. Once installed, make a directory at the root of the app named "requests". We save all the REST client requests in the directory as files ending with a .rest extension. In the files you can define a request like this:
+```bash
+GET http://localhost:3001/api/notes/
+
+###
+POST http://localhost:3001/api/notes/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+```
+The extension will create text saying "send request" that sends on click, and the response will open in a new editor tab.
+## Receiving data
+Next, let's make it possible to add a new note to the notes server. This is done by sending a POST request to the address "http://localhost:3001/api/notes", which makes intuitive sense from a restful thinking perspective. The info for the new note in the request body should be sent in JSON format.
+
+To access the sent data, we will use the Express built-in json parser with the `.use()` method of the express app object. An initial handler for POST requests using the json parser might look like this:
+```js
+const express = require('express')
+const app = express()
+
+app.use(express.json())
+//...
+
+app.post('/api/notes', (request, response) => {
+  const note = request.body
+  console.log(note)
+  response.json(note)
+})
+```
+
+The POST event handler can access the sent data from the body property of the `request` object. Without the json parser, the body prop would be undefined. The parser takes the JSON data, turns it into a JavaScript object and reattaches it to the body property of the request object before the route handler is called.
+
+For the time being, the handler only logs the note content to console. We can test it works at this point by sending a post request with postman and verifying the log.
+
+Note that you could use curl for this test instead of postman. You would however have to make sure that you set the headers for the curl request properly. It would look something like this:
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"username":"xyz","password":"xyz"}' \
+  http://localhost:3000/api/login
+```
+In postman you can also have problems if the body type and content-type header don't match. The server will not even try and parse the body if it is not the correct type for the header.
+
+The vscode rest client extension is probably the most useful tool for this kind of endpoint testing as the test files are included at the project root and can be easily shared over version control software.
+
+Returning to the example notes backend, it's time to finalize the handling of the POST request for adding a note:
+```js
+app.post('/api/notes', (request, response) => {
+  const maxId = notes.length > 0
+    ? Math.max(...notes.map(n => Number(n.id))) 
+    : 0
+
+  const note = request.body
+  note.id = String(maxId + 1)
+
+  notes = notes.concat(note)
+
+  response.json(note)
+})
+```
+We need a unique id for the note. First, we find out the largest id number in the current list and assign it to the _maxId_ variable. The id of the new note is then defined as _maxId + 1_ as a string. This method is not recommended, but we will live with it for now as we will replace it soon enough.
+
+The current version still has the problem that the HTTP POST request can be used to add objects with arbitrary properties. Let's improve the application by defining that the _content_ property may not be empty. The _important_ property will be given a default value of false. All other properties are discarded:
+```js
+const generateId = () => {
+  const maxId = notes.length > 0
+    ? Math.max(...notes.map(n => Number(n.id)))
+    : 0
+  return String(maxId + 1)
+}
+
+app.post('/api/notes', (request, response) => {
+  const body = request.body
+
+  if (!body.content) {
+    return response.status(400).json({ 
+      error: 'content missing' 
+    })
+  }
+
+  const note = {
+    content: body.content,
+    important: Boolean(body.important) || false,
+    id: generateId(),
+  }
+
+  notes = notes.concat(note)
+
+  response.json(note)
+})
+```
+The logic for generating the new id number for notes has been extracted into a separate _generateId_ function.
+
+If the received data is missing a value for the _content_ property, the server will respond to the request with the status code [400 bad request](https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request).
+
+## Next
+After the notes here, I did exercises 3.1 to 3.6. The notes following those exercises are about HTTP request types and middleware, and I have split them from the notes on express and node. Those notes are here: [[Webdev - FSO - Http request types and middlewares]]
