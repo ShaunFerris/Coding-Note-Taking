@@ -296,6 +296,10 @@ content-type: application/json
 }
 ```
 The extension will create text saying "send request" that sends on click, and the response will open in a new editor tab.
+
+Note that the GET and POST requests are seperated by `###`. This is necessary to have the extension read them as seperate request descriptions.
+
+**I installed this and I like it so far, currently using this over curl and postman because curling post requests can be annoying and I don't want to install postman if I can avoid it.**
 ## Receiving data
 Next, let's make it possible to add a new note to the notes server. This is done by sending a POST request to the address "http://localhost:3001/api/notes", which makes intuitive sense from a restful thinking perspective. The info for the new note in the request body should be sent in JSON format.
 
