@@ -55,3 +55,5 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint)
 ```
 
+## Next
+The next section of FSO course content continues the full-stack theme for part three, and focuses on combining a backend and front end for a project, and hosting them on the internet. See here: [[Webdev - FSO - Connecting backend to front and deploying an App]]

@@ -35,4 +35,5 @@ Part Two - Communicating with the server:
 Part Three - Full stack:
 	[[Webdev - FSO - Node and Express]]
 	[[Webdev - FSO - Http request types and middlewares]]
+	[[Webdev - FSO - Connecting backend to front and deploying an App]]
 	
