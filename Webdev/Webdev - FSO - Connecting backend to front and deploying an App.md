@@ -182,3 +182,6 @@ Now the frontend is also fine, working with the server both in development and p
 A negative aspect of our approach is how complicated it is to deploy the frontend. Deploying a new version requires generating a new production build of the frontend and copying it to the backend repository. This makes creating an automated [deployment pipeline](https://martinfowler.com/bliki/DeploymentPipeline.html) more difficult. Deployment pipeline means an automated and controlled way to move the code from the computer of the developer through different tests and quality checks to the production environment. Building a deployment pipeline is the topic of [part 11](https://fullstackopen.com/en/part11) of this course. There are multiple ways to achieve this, for example, placing both backend and frontend code in the same repository but we will not go into those now.
 
 In some situations, it may be sensible to deploy the frontend code as its own application.
+
+## Next
+The next step is to look at adding a database to our fullstack apps to persist data between application restarts. See here: [[Webdev - FSO - MongoDB in full stack apps]]
