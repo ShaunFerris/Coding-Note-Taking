@@ -79,3 +79,106 @@ Fill out the options for server location etc, and note that for a mono-repo, you
 After filling this all out and selecting that you want it to run on a free instance, the app will run and render will give you the URL. Any updates pushed to the main branch of the repo will automatically cause a rebuild and redeploy.
 
 ## Frontend production build
+So far, the frontend code for the phonebook/notes apps used as examples has been running in developer mode. This is configured to give human readable error messages, imediately re-render on code change etc. 
+
+For deployment, we don't want to use dev mode, as we want to bundle up the code into the  smallest, most efficient package possible, and it does not need to be human readable, or include dev dependancies. **This is why we create a production build**.
+
+A prod build for a vite app can be created by running `npm run build`. This command will create a `dist` directory at the project root which will contain the HTML entry point and a minified version of the projects js and css.
+
+## Serving static files from the backend
+One option for deploying the front-end of an app, is to copy the production build of it to the root of the backend repository and configure the backend to serve the front-ends main page (`dist/index.html`) as it's main page.
+
+In unix you can use the `cp` bash built in for this:
+```bash
+cp -r dist ../backend
+```
+Note the `-r` flag to recursively copy all the content.
+
+Once you have copied the `dist` directory, we need to use a middleware to allow express to serve static content, the static middleware is built-in to express.
+```
+app.use(express.static('dist))
+```
+With the inclusion of the above line in our express code, whenever the server receives and HTTP GET, it will first check if the `dist` directory contains the file corresponding to the requests address, and return the file if it does. So now, GET requests to http://serversaddress.com/index.html, or http://serversaddress.com will show the React front end, while get requests to http://serversaddress.com/api/notes will be handled by the express route handlers.
+
+In this situation, with both front and back ends at the same address, we can declare the `baseURL` in the frontend code as a relative address:
+```js
+import axios from 'axios'
+const baseUrl = '/api/notes'
+
+const getAll = () => {
+  const request = axios.get(baseUrl)
+  return request.then(response => response.data)
+}
+
+// ...
+```
+Note that any change to frontend code, including this one, will necessitate re-building the frontend and copying the dist over again.
+
+Our app now works exactly like the Single Page Application (SPA) discussed in part 0 of the FSO course.
+
+When a user visits http://localhost:3001 the server returns the `index.html` file, which fetches the CSS sheet and the JS file from the `dist/assets` directory. The react code, minified into the JS file, fetches the data from the express app at http://localhost:3001/api/notes and renders them to the screen. You can see this in the network tab of the browser dev tools.
+
+This setup is how you would prepare the notes/phonebook app for deployment. It can be diagrammed out like this:
+![[Pasted image 20241008125110.png]]
+
+## Deploying the full app to Render
+After ensuring that the production version of the application works locally, commit the production build of the frontend to the backend repository, and push the code to GitHub again.
+
+Make sure the directory _dist_ is not ignored by git on the backend.
+
+Using Render a push to GitHub _might_ be enough. If the automatic deployment does not work, select the "manual deploy" from the Render dashboard.
+
+Our application saves the notes to a variable. If the application crashes or is restarted, all of the data will disappear.
+
+The application needs a database. Before we introduce one, let's go through a few things.
+
+The setup now looks like as follows:
+![[Pasted image 20241008125324.png]]
+
+## Streamlining the frontend deployment
+To create a new production build of the frontend without extra manual work, let's add some npm-scripts to the _package.json_ of the backend repository.
+
+Because Render automatically deploys when changes are pushed to the git repos main branch, our scripts can look like this:
+```json
+{
+  "scripts": {
+    //...
+    "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
+  }
+}
+```
+
+## Proxy
+When we changed the baseURL in the frontend code to a relative path, we broke the development mode of the React app. 
+
+Because in development mode the frontend is at the address _localhost:5173_, the requests to the backend go to the wrong address _localhost:5173/api/notes_. The backend is at _localhost:3001_.
+
+If the project was created with Vite, this problem is easy to solve. It is enough to add the following declaration to the _vite.config.js_ file of the frontend repository.
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    }
+  },
+})
+```
+After a restart, the React development environment will work as a [proxy](https://vitejs.dev/config/server-options.html#server-proxy). If the React code does an HTTP request to a server address at _[http://localhost:5173](http://localhost:5173)_ not managed by the React application itself (i.e. when requests are not about fetching the CSS or JavaScript of the application), the request will be redirected to the server at _[http://localhost:3001](http://localhost:3001)_.
+
+Note that with the vite-configuration shown above, only requests that are made to paths starting with _/api_-are redirected to the server.
+
+Now the frontend is also fine, working with the server both in development and production mode.
+
+A negative aspect of our approach is how complicated it is to deploy the frontend. Deploying a new version requires generating a new production build of the frontend and copying it to the backend repository. This makes creating an automated [deployment pipeline](https://martinfowler.com/bliki/DeploymentPipeline.html) more difficult. Deployment pipeline means an automated and controlled way to move the code from the computer of the developer through different tests and quality checks to the production environment. Building a deployment pipeline is the topic of [part 11](https://fullstackopen.com/en/part11) of this course. There are multiple ways to achieve this, for example, placing both backend and frontend code in the same repository but we will not go into those now.
+
+In some situations, it may be sensible to deploy the frontend code as its own application.
