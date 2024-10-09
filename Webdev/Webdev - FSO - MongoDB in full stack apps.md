@@ -264,3 +264,45 @@ We should go with the `dotenv` method as it is more elegant. Note that you must 
 
 It is important that the dotenv require statement is imported before the `note` model is imported to ensure that the variables from the `.env` file are globally available as early as possible.
 
+## Updating the other route handlers
+Now let's change the rest of the backend functionality to use the database instead of the `notes` variable. Creating a new note is handled like this:
+```js
+app.post('/api/notes', (request, response) => {
+  const body = request.body
+
+  if (body.content === undefined) {
+    return response.status(400).json({ error: 'content missing' })
+  }
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  })
+
+  note.save().then(savedNote => {
+    response.json(savedNote)
+  })
+})
+```
+The note objects are created with the `Note` constructor function that we imported from our module. The reponse is sent inside the callback function for the `save` method call, ensuring the response is only sent if the operation is successful. We will discuss error handling later on. 
+
+The `savedNote` parameter in the callback function is the saved and newly created note. The data sent back in the response is the formatted version created automaticaally with the `toJSON` method, which we have earlier modified. 
+
+Using mongooses `findBy` method which is inherited by our `Note` model, fetching an individual note can be done with a handler like this:
+```js
+app.get('/api/notes/:id', (request, response) => {
+  Note.findById(request.params.id).then(note => {
+    response.json(note)
+  })
+})
+```
+
+## Verifying the integration
+Don't forget to test that newly re-written endpoints. Using the vsCode rest client or postman is a good way to do this. 
+
+Only once everything has been verified to work in the backend, is it a good idea to test that the frontend works with the backend. It is highly inefficient to test things exclusively through the frontend.
+
+It's probably a good idea to integrate the frontend and backend one functionality at a time. First, we could implement fetching all of the notes from the database and test it through the backend endpoint in the browser. After this, we could verify that the frontend works with the new backend. Once everything seems to be working, we would move on to the next feature.
+
+Once we introduce a database into the mix, it is useful to inspect the state persisted in the database, e.g. from the control panel in MongoDB Atlas. Quite often little Node helper programs like the _mongo.js_ program we wrote earlier can be very helpful during development.
+
