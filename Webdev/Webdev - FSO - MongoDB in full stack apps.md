@@ -76,3 +76,73 @@ and run the script again, we will see that we now have a database named `noteApp
 You can also create databases directly on the Atlas dashboard, but this is not necessary as a new database will be auto created when a non-existent db is referenced in the connection string as above.
 
 ## Schema
+After establishing the connection to the database, we define the schema for a note and the matching Model:
+```js
+const noteSchema = new mongoose.Schema({
+  content: String,
+  important: Boolean,
+})
+
+const Note = mongoose.model('Note', noteSchema)
+```
+The schema tells Mongoose how the note objects are to be stored in the database. In the `Note` model definition, the first argument is the singular name for the model. The name of hte collection will be the lowercase plural `notes`. This is by Mongoose convention, that Upercase singular is models have lower case plural collections.
+
+Document databases like Mongo are _schemaless_, meaning that the database itself does not care about the structure of the data that is stored in the database. It is possible to store documents with completely different fields in the same collection.
+
+The idea behind Mongoose is that the data stored in the database is given a _schema at the level of the application_ that defines the shape of the documents stored in any given collection.
+
+## Creating and saving objects to Mongo
+After defining the schema and model for notes, the above code creates a new note object using the `Note` model:
+```js
+const note = new Note({
+  content: 'HTML is Easy',
+  important: false,
+})
+```
+Models are constructor functions that create new JS objects based on the provided parameters. Since the objects are created with the models constructor function, they have all the properties of the model, which include methods for saving the object to the database.
+
+Saving the object to the db happens when you call the `save` method. This method returns a promise you can give it a callback by chaining it to the `then` method, like this:
+```js
+note.save().then(result => {
+  console.log('note saved!')
+  mongoose.connection.close()
+})
+```
+Doing it like this ensures that the connection to the db will only be closed after the save operation is finished. If you try to close the connection outside of a callback, the you may close the connection before the save operation has finished.
+
+The result of the save operation is in the _result_ parameter of the event handler. The result is not that interesting when we're storing one object in the database. You can print the object to the console if you want to take a closer look at it while implementing your application or during debugging.
+
+Let's also save a few more notes by modifying the data in the code and by executing the program again.
+
+**NB:** Unfortunately the Mongoose documentation is not very consistent, with parts of it using callbacks in its examples and other parts, other styles, so it is not recommended to copy and paste code directly from there. Mixing promises with old-school callbacks in the same code is not recommended.
+
+## Fetching objects from the db
+Let's comment out the code for generating a new note and replace it with this:
+```js
+Note.find({}).then(result => {
+  result.forEach(note => {
+    console.log(note)
+  })
+  mongoose.connection.close()
+})
+```
+Now when the program is executed, it will print all the notes stored in the db.
+
+The objects are retrieved from the db using the `find` method of the `Note` model. The parameter of the `find` method is an object expressing search conditions, so when we give it an empty object like we have done, it will match every note. The search conditions for this param follow the Mongo search query syntax, [read about it here](https://www.mongodb.com/docs/manual/tutorial/query-documents/). A quick example would be if you wanted to find only notes with the content "HTML is easy", you would do it like this:
+```js
+Note.find({content: "HTML is easy"}).then(result => {
+  result.forEach(note => {
+    console.log(note)
+  })
+  mongoose.connection.close()
+})
+```
+Or if you wanted to get every note marked important:
+```js
+Note.find({important: true}).then(result => {
+  result.forEach(note => {
+    console.log(note)
+  })
+  mongoose.connection.close()
+})
+```
