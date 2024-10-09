@@ -146,3 +146,121 @@ Note.find({important: true}).then(result => {
   mongoose.connection.close()
 })
 ```
+
+## Connecting the app backend to a mongoDB
+Now that we have covered the basics of querying and posting to our mongoDB instance from node.js code, lets start looking at how to intgrate the db into our notes/phonebook apps.
+
+We could start doing this by pasting the definitions for our connection string, the mongoose connection, and our schemas and models into the `index.js` of the notes app:
+```js
+const mongoose = require('mongoose')
+
+const password = process.argv[2]
+
+// DO NOT SAVE YOUR PASSWORD TO GITHUB!!
+const url =
+  `mongodb+srv://fullstack:${password}@cluster0.o1opl.mongodb.net/?retryWrites=true&w=majority`
+
+mongoose.set('strictQuery',false)
+mongoose.connect(url)
+
+const noteSchema = new mongoose.Schema({
+  content: String,
+  important: Boolean,
+})
+
+const Note = mongoose.model('Note', noteSchema)
+```
+However this code is still trying to take the password from command line variables. To avoid issue with auth we need to instead take the password from an environment variable that we will not commit to source control. What we can do is install the `dotenv` module from npm in our express app, then create a `.env` file at the root of the project and place the full connection string including the password into it, like this:
+```js
+MONGODB_URI="mongodb+srv://fullstack:password@db.gwcmebp.mongodb.net/?retryWrites=true&w=majority&appName=db"
+```
+Next, add `.env` to the projects `.gitignore` to prevent it from being leaked.
+
+Then in `index.js` you can remove the line trying to take the password from `argv` and replace the url definition like this:
+```js
+const url = process.env.MONGODB_URI;
+```
+Now that we have a way to connect to the database, we can change the route handler for fetching all the notes to this:
+```js
+app.get('/api/notes', (request, response) => {
+  Note.find({}).then(notes => {
+    response.json(notes)
+  })
+})
+```
+At this point we can verify that the backend works post these changes by going to the `/api/notes/` route in the browser, where you would see something like this:
+![[Pasted image 20241009141432.png]]This is almost perfect, but the front-end is expecting each note to have a unique id under an `id` field, not an `_id` field, and we also do not want to include the `__v` field which is the mongo versioning field.
+
+One way to format the objects returned by Mongoose is to modify the `toJSON` method of the schema, which is used on all instances of the models produced with that schema.
+
+To modify the method we need to change the configurable options of the schema, options can be changed using the set method of the schema, see here for more info on this method: [https://mongoosejs.com/docs/guide.html#options](https://mongoosejs.com/docs/guide.html#options). See [https://mongoosejs.com/docs/guide.html#toJSON](https://mongoosejs.com/docs/guide.html#toJSON) and [https://mongoosejs.com/docs/api.html#document_Document-toObject](https://mongoosejs.com/docs/api.html#document_Document-toObject) for more info on the _toJSON_ option. Also see [https://mongoosejs.com/docs/api/document.html#transform](https://mongoosejs.com/docs/api/document.html#transform) for more info on the _transform_ function.
+
+A call to the set method to modify the `toJSON` method might look like this:
+```js
+noteSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+```
+Note that we are editing the `transform` property of the `toJSON` option object.
+Even though the `_id` property of Mongoose objects looks like a string, it is in fact an object. The _toJSON_ method we defined transforms it into a string just to be safe. If we didn't make this change, it would cause more harm to us in the future once we start writing tests.
+
+No changes need to be made to the handler above, the code will automatically used the re-defined `toJSON` method when formatting notes for the response. This shit can get confusing so remember to refer to the docs if you need to.
+
+## Moving db config to it's own module
+Keeping all this database specific code in `index.js` is annoying and will get messy fast, especially if the app gets bigger and we add a large number of route handlers. So, before refactoring the other route handlers we already have, let's extract the mongoose related code into a module. Let's create a `models` directory in the project root and add a `note.js` file to it, containing the relevant code:
+```js
+const mongoose = require('mongoose')
+
+mongoose.set('strictQuery', false)
+
+const url = process.env.MONGODB_URI
+
+console.log('connecting to', url)
+
+mongoose.connect(url)
+
+  .then(result => {
+    console.log('connected to MongoDB')
+  })
+  .catch(error => {
+    console.log('error connecting to MongoDB:', error.message)
+  })
+
+const noteSchema = new mongoose.Schema({
+  content: String,
+  important: Boolean,
+})
+
+noteSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
+module.exports = mongoose.model('Note', noteSchema)
+```
+Note that we have defined this module using the common.js standard, which is different to what we did when working with React apps where we used ES6 module definitions. New versions of Node do support ES6 modules, but when the FSO course content was written that support was not mature yet so the course uses common modules.
+
+Using common.js module definitions, the public interface of the module is defined by setting a value to the _module.exports_ variable. We will set the value to be the _Note_ model. The other things defined inside of the module, like the variables _mongoose_ and _url_ will not be accessible or visible to users of the module.
+
+Importing the module happens by adding the following line to _index.js_:
+```js
+const Note = require('./models.note')
+```
+And now the `Note` variable in `index.js` will correspond to the `Note` model object defined in the module file.
+
+Note that we are getting the connection string from an ENV variable. This can either be from a .env file using the `dotenv` npm package discussed earlier, or it can be provided at run time by starting the program like this:
+```bash
+MONGODB_URI=address_here npm run dev
+```
+
+We should go with the `dotenv` method as it is more elegant. Note that you must also add `require('dotenv').config()` to the `index.js` file to use the variables. **Also worth noting that node versions past 20.6.0** have support for .env files without needing the `dotenv` package. You can read about that [here](https://nodejs.org/en/blog/release/v20.6.0).
+
+It is important that the dotenv require statement is imported before the `note` model is imported to ensure that the variables from the `.env` file are globally available as early as possible.
+
