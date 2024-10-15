@@ -306,3 +306,46 @@ It's probably a good idea to integrate the frontend and backend one functionalit
 
 Once we introduce a database into the mix, it is useful to inspect the state persisted in the database, e.g. from the control panel in MongoDB Atlas. Quite often little Node helper programs like the _mongo.js_ program we wrote earlier can be very helpful during development.
 
+## Error handling for backends with a database
+If we try to visit the URL for a specific note in the current version of the notes app, and the id we use in the URL does not match a note in the database, then the response to our request will be null, and the browser will display a blank page.
+
+Let's change this behavior so that if a note with a given id is non-existant, the server will respond with a 404. On top of this we should also add a catch block to handle the case where the promise returned by the `findById` call is rejected:
+```js
+app.get('/api/notes/:id', (request, response) => {
+  Note.findById(request.params.id)
+    .then(note => {
+      if (note) {
+        response.json(note)
+      } else {
+        response.status(404).end()
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      response.status(500).end()
+    })
+})
+```
+If no matching object is found in the db, the value of `note` will be null and the `else` statement will fire, sending the 404 response. If the promise is rejected, the `.then` callback will *not* fire, and the `.catch` block will, resulting in a 500 "internal server error" response.
+
+There is one more error case that we should handle for the single note route, which is the case of a user supplying an invalid id. All the entires in our db are keyed with an id string in the Mongo identifier format, and if you try to use a URL with an id that is not in the same format, you will get this error:
+![[Pasted image 20241015115815.png]]
+Given an improper id as an argument, the `findById` method will throw an error causing the returned promise to be rejected. This will trigger the catch blocks callback to trigger.
+
+Let's make some small adjustments to the response in the _catch_ block:
+```js
+app.get('/api/notes/:id', (request, response) => {
+  Note.findById(request.params.id)
+    .then(note => {
+      if (note) {
+        response.json(note)
+      } else {
+        response.status(404).end() 
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      response.status(400).send({ error: 'malformatted id' })
+    })
+})
+```
