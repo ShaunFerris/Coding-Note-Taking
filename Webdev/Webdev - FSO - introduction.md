@@ -33,7 +33,7 @@ Part Two - Communicating with the server:
 	[[Webdev - FSO - Altering data on the server]]
 	[[Webdev - FSO - Basic styling and some notes on rendering]]
 Part Three - Full stack:
-	[[Webdev - FSO - Node and Express]]
+	[[Webdev - FSO - Node and Express]] See side note not from FSO also: [[Webdev - Node and Express with Typescript]]
 	[[Webdev - FSO - Http request types and middlewares]]
 	[[Webdev - FSO - Connecting backend to front and deploying an App]]
 	[[Webdev - FSO - MongoDB in full stack apps]]

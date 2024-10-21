@@ -3,6 +3,8 @@
 Before I get started, the official Mongo docs are [here](https://www.mongodb.com/docs/manual/introduction/).
 
 An Example set of steps to use MongoDB with Mongoose to give persistence to a budget tracking app can be found here: [[Webdev - MongoDB and Mongoose Example Steps]]
+Also see the FSO content on mongo starting from here: [[Webdev - FSO - MongoDB in full stack apps]].
+
 
 ## What is MongoDB?
 MongoDB is a noSQL (Not Only SQL) document database that stores data in flexible, JSON like documents. Fields can vary from document to document and the data structure can change over time. 
