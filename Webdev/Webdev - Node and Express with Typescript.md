@@ -15,7 +15,7 @@ npm install typescript ts-node @types/node @tsconfig/node20 --save-dev
 ```
 The ts-node package will allow us to run the project with Just In Time compiling (JIT) so we don't have to recompile inbetween tests.  The tsconfig/node20 is a base config file for typescript that is a good starting point to extend from.
 
-Next, run `tsconfig --init` to generate a `tsconfig.json` file. Open it, delete the default content and paste in the below set up which  extends the installed node20 base config:
+Next, run `tsc --init` to generate a `tsconfig.json` file. Open it, delete the default content and paste in the below set up which  extends the installed node20 base config:
 ```json
 {
   "extends": "@tsconfig/node20/tsconfig.json",
