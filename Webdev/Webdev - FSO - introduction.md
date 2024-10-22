@@ -38,3 +38,7 @@ Part Three - Full stack:
 	[[Webdev - FSO - Connecting backend to front and deploying an App]]
 	[[Webdev - FSO - MongoDB in full stack apps]]
 	[[Webdev - FSO - Validation and ESLint]]
+Part Four - Testing and implementing auth:
+	[[Webdev - FSO - Structuring a backend project]]
+	[[Webdev - FSO - Intro to testing]]
+	

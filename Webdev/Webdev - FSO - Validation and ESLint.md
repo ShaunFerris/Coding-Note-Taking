@@ -356,3 +356,6 @@ export default [
 ![terminal output from npm run lint](https://fullstackopen.com/static/07f46b5e48a00a479880e6625fcf342f/5a190/lint2.png)
 
 If there is something wrong in your configuration file, the lint plugin can behave quite erratically.
+
+## Next
+This is the end of part three of FSO. Part four covers testing node applications and implementing auth, and begins here: [[Webdev - FSO - Structuring a backend project]]
