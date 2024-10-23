@@ -24,7 +24,7 @@ module.exports = {
 }
 ```
 
-## Test libs
+## Test libs and a basic intro to writing tests
 There are a lot of options for testing libraries out there in the js ecosystem. Mocha was on top for a very long time, unitl it was replaced with jest. Currently jest is losing favor somewhat to [Vitest](https://vitest.dev/), which bills itself as a new generation of test libraries. **Vitest is my current favourite personally.** 
 
 The point being that the test library in vogue may change over time but the concepts discssed here will mostly translate to all of them (for unit and integration tests, not end to end tests).
@@ -152,3 +152,6 @@ test('of empty array is zero', () => {
   assert.strictEqual(average([]), 0)
 })
 ```
+
+## Next
+Next, the FSO course moves into a more serious look at writing unit tests for express backends: [[Webdev - FSO - Testing express.js backends seriously]]
