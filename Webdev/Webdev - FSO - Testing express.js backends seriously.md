@@ -179,10 +179,10 @@ assert.strictEqual(response.body.length, 2)
 The middleware that outputs information about the HTTP requests is obstructing the test execution output. Let us modify the logger so that it does not print to the console in test mode:
 ```js
 const info = (...params) => {
-  if (process.env.NODE_ENV !== 'test') {     console.log(...params)  }}
+  if (process.env.NODE_ENV !== 'test') { console.log(...params)  }}
 
 const error = (...params) => {
-  if (process.env.NODE_ENV !== 'test') {     console.error(...params)  }}
+  if (process.env.NODE_ENV !== 'test') { console.error(...params)  }}
 
 module.exports = {
   info, error
@@ -190,3 +190,750 @@ module.exports = {
 ```
 
 ## Initializing the database before tests
+Testing seems very easy so far, but our tests so far are also bad, as they rely on the state of the database. To make the tests more robust, we need to reset the database and generate the needed test data in a controled manner before starting the tests each run.
+
+Our tests are already using the `after` function to close the connection to the database after the tests are finished executing. The node testing library offers many other functions that can be used for executing operations once before any test is run  or every time before a test is run.
+
+Let's initialize the database before every test with the `beforeEach` function:\
+```js
+const { test, after, beforeEach } = require('node:test')
+const Note = require('../models/note')
+
+const initialNotes = [
+  {
+    content: 'HTML is easy',
+    important: false,
+  },
+  {
+    content: 'Browser can execute only JavaScript',
+    important: true,
+  },
+]
+
+// ...
+
+beforeEach(async () => {
+  await Note.deleteMany({})
+  let noteObject = new Note(initialNotes[0])
+  await noteObject.save()
+  noteObject = new Note(initialNotes[1])
+  await noteObject.save()
+})
+// ...
+```
+The database is cleared out at the beginning, and after that, we save the two notes stored in the _initialNotes_ array to the database. By doing this, we ensure that the database is in the same state before every test is run.
+
+Let's also make the following changes to the last two tests:
+```js
+test('there are two notes', async () => {
+  const response = await api.get('/api/notes')
+
+  assert.strictEqual(response.body.length, initialNotes.length)
+})
+
+test('the first note is about HTTP methods', async () => {
+  const response = await api.get('/api/notes')
+
+  const contents = response.body.map(e => e.content)
+  assert(contents.includes('HTML is easy'))
+})
+```
+
+## Running tests one by one
+The _npm test_ command executes all of the tests for the application. When we are writing tests, it is usually wise to only execute one or two tests. There are a few different ways of accomplishing this, one of which is the [only](https://nodejs.org/api/test.html#testonlyname-options-fn) method. With this method we can define in the code what tests should be executed:
+```js
+test.only('notes are returned as json', async () => {
+  await api
+    .get('/api/notes')
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+})
+
+test.only('there are two notes', async () => {
+  const response = await api.get('/api/notes')
+
+  assert.strictEqual(response.body.length, 2)
+})
+```
+
+When tests are run with option _--test-only_, that is, with the command:
+```text
+npm test -- --test-only
+```
+
+only the _only_ marked tests are executed.
+
+The danger of _only_ is that one forgets to remove those from the code.
+
+Another option is to specify the tests that need to be run as arguments of the _npm test_ command.
+
+The following command only runs the tests found in the _tests/note_api.test.js_ file:
+```js
+npm test -- tests/note_api.test.js
+```
+
+The [--tests-by-name-pattern](https://nodejs.org/api/test.html#filtering-tests-by-name) option can be used for running tests with a specific name:
+```js
+npm test -- --test-name-pattern="the first note is about HTTP methods"
+```
+
+The provided argument can refer to the name of the test or the describe block. It can also contain just a part of the name. The following command will run all of the tests that contain _notes_ in their name:
+```js
+npm run test -- --test-name-pattern="notes"
+```
+
+## Async await
+Before we write more tests let's take a look at the _async_ and _await_ keywords.
+
+The async/await syntax that was introduced in ES7 makes it possible to use _asynchronous functions that return a promise_ in a way that makes the code look synchronous.
+
+As an example, the fetching of notes from the database with promises looks like this:
+```js
+Note.find({}).then(notes => {
+  console.log('operation returned the following notes', notes)
+})
+```
+
+The _Note.find()_ method returns a promise and we can access the result of the operation by registering a callback function with the _then_ method.
+
+All of the code we want to execute once the operation finishes is written in the callback function. If we wanted to make several asynchronous function calls in sequence, the situation would soon become painful. The asynchronous calls would have to be made in the callback. This would likely lead to complicated code and could potentially give birth to a so-called [callback hell](http://callbackhell.com/).
+
+By [chaining promises](https://javascript.info/promise-chaining) we could keep the situation somewhat under control, and avoid callback hell by creating a fairly clean chain of _then_ method calls. We have seen a few of these during the course. To illustrate this, you can view an artificial example of a function that fetches all notes and then deletes the first one:
+```js
+Note.find({})
+  .then(notes => {
+    return notes[0].deleteOne()
+  })
+  .then(response => {
+    console.log('the first note is removed')
+    // more code here
+  })
+```
+
+The then-chain is alright, but we can do better. The [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) introduced in ES6 provided a [clever way](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch4.md#iterating-generators-asynchronously) of writing asynchronous code in a way that "looks synchronous". The syntax is a bit clunky and not widely used.
+
+The _async_ and _await_ keywords introduced in ES7 bring the same functionality as the generators, but in an understandable and syntactically cleaner way to the hands of all citizens of the JavaScript world.
+
+We could fetch all of the notes in the database by utilizing the [await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) operator like this:
+```js
+const notes = await Note.find({})
+
+console.log('operation returned the following notes', notes)
+```
+
+The code looks exactly like synchronous code. The execution of code pauses at _const notes = await Note.find({})_ and waits until the related promise is _fulfilled_, and then continues its execution to the next line. When the execution continues, the result of the operation that returned a promise is assigned to the _notes_ variable.
+
+The slightly complicated example presented above could be implemented by using await like this:
+```js
+const notes = await Note.find({})
+const response = await notes[0].deleteOne()
+
+console.log('the first note is removed')
+```
+
+Thanks to the new syntax, the code is a lot simpler than the previous then-chain.
+
+There are a few important details to pay attention to when using async/await syntax. To use the await operator with asynchronous operations, they have to return a promise. This is not a problem as such, as regular asynchronous functions using callbacks are easy to wrap around promises.
+
+The await keyword can't be used just anywhere in JavaScript code. Using await is possible only inside of an [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) function.
+
+This means that in order for the previous examples to work, they have to be using async functions. Notice the first line in the arrow function definition:
+```js
+const main = async () => {  const notes = await Note.find({})
+  console.log('operation returned the following notes', notes)
+
+  const response = await notes[0].deleteOne()
+  console.log('the first note is removed')
+}
+
+main()
+```
+
+The code declares that the function assigned to _main_ is asynchronous. After this, the code calls the function with `main()`.
+
+## async/await on the backend
+Let's start to change the backend to async and await. As all of the asynchronous operations are currently done inside of a function, it is enough to change the route handler functions into async functions.
+
+The route for fetching all notes gets changed to the following:
+```js
+notesRouter.get('/', async (request, response) => { 
+  const notes = await Note.find({})
+  response.json(notes)
+})
+```
+
+We can verify that our refactoring was successful by testing the endpoint through the browser and by running the tests that we wrote earlier.
+
+## Adding new tests and refactoring the backend
+When code gets refactored, there is always the risk of [regression](https://en.wikipedia.org/wiki/Regression_testing), meaning that existing functionality may break. Let's refactor the remaining operations by first writing a test for each route of the API.
+
+Let's start with the operation for adding a new note. Let's write a test that adds a new note and verifies that the number of notes returned by the API increases and that the newly added note is in the list.
+```js
+test('a valid note can be added ', async () => {
+  const newNote = {
+    content: 'async/await simplifies making async calls',
+    important: true,
+  }
+
+  await api
+    .post('/api/notes')
+    .send(newNote)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/notes')
+
+  const contents = response.body.map(r => r.content)
+
+  assert.strictEqual(response.body.length, initialNotes.length + 1)
+
+  assert(contents.includes('async/await simplifies making async calls'))
+})
+```
+
+The test fails because we accidentally returned the status code _200 OK_ when a new note is created. Let us change that to the status code _201 CREATED_:
+```js
+notesRouter.post('/', (request, response, next) => {
+  const body = request.body
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  })
+
+  note.save()
+    .then(savedNote => {
+      response.status(201).json(savedNote)    })
+    .catch(error => next(error))
+})
+```
+
+Let's also write a test that verifies that a note without content will not be saved into the database.
+```js
+test('note without content is not added', async () => {
+  const newNote = {
+    important: true
+  }
+
+  await api
+    .post('/api/notes')
+    .send(newNote)
+    .expect(400)
+
+  const response = await api.get('/api/notes')
+
+  assert.strictEqual(response.body.length, initialNotes.length)
+})
+```
+
+Both tests check the state stored in the database after the saving operation, by fetching all the notes of the application.
+```js
+const response = await api.get('/api/notes')
+```
+
+The same verification steps will repeat in other tests later on, and it is a good idea to extract these steps into helper functions. Let's add the function into a new file called _tests/test_helper.js_ which is in the same directory as the test file.
+```js
+const Note = require('../models/note')
+
+const initialNotes = [
+  {
+    content: 'HTML is easy',
+    important: false
+  },
+  {
+    content: 'Browser can execute only JavaScript',
+    important: true
+  }
+]
+
+const nonExistingId = async () => {
+  const note = new Note({ content: 'willremovethissoon' })
+  await note.save()
+  await note.deleteOne()
+
+  return note._id.toString()
+}
+
+const notesInDb = async () => {
+  const notes = await Note.find({})
+  return notes.map(note => note.toJSON())
+}
+
+module.exports = {
+  initialNotes, nonExistingId, notesInDb
+}
+```
+
+The module defines the _notesInDb_ function that can be used for checking the notes stored in the database. The _initialNotes_ array containing the initial database state is also in the module. We also define the _nonExistingId_ function ahead of time, which can be used for creating a database object ID that does not belong to any note object in the database.
+
+Our tests can now use the helper module and be changed like this:
+```js
+const { test, after, beforeEach } = require('node:test')
+const assert = require('node:assert')
+const supertest = require('supertest')
+const mongoose = require('mongoose')
+const helper = require('./test_helper')const app = require('../app')
+const api = supertest(app)
+
+const Note = require('../models/note')
+
+beforeEach(async () => {
+  await Note.deleteMany({})
+
+  let noteObject = new Note(helper.initialNotes[0])  await noteObject.save()
+
+  noteObject = new Note(helper.initialNotes[1])  await noteObject.save()
+})
+
+test('notes are returned as json', async () => {
+  await api
+    .get('/api/notes')
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+})
+
+test('all notes are returned', async () => {
+  const response = await api.get('/api/notes')
+
+   assert.strictEqual(response.body.length, helper.initialNotes.length)})
+
+test('a specific note is within the returned notes', async () => {
+  const response = await api.get('/api/notes')
+
+  const contents = response.body.map(r => r.content)
+
+  assert(contents.includes('Browser can execute only JavaScript'))
+})
+
+test('a valid note can be added ', async () => {
+  const newNote = {
+    content: 'async/await simplifies making async calls',
+    important: true,
+  }
+
+  await api
+    .post('/api/notes')
+    .send(newNote)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const notesAtEnd = await helper.notesInDb()  assert.strictEqual(notesAtEnd.length, helper.initialNotes.length + 1)
+  const contents = notesAtEnd.map(n => n.content)  assert(contents.includes('async/await simplifies making async calls'))
+})
+
+test('note without content is not added', async () => {
+  const newNote = {
+    important: true
+  }
+
+  await api
+    .post('/api/notes')
+    .send(newNote)
+    .expect(400)
+
+  const notesAtEnd = await helper.notesInDb()
+  assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)})
+
+after(async () => {
+  await mongoose.connection.close()
+})
+```
+
+The code using promises works and the tests pass. We are ready to refactor our code to use the async/await syntax.
+
+We make the following changes to the code that takes care of adding a new note (notice that the route handler definition is preceded by the _async_ keyword):
+```js
+notesRouter.post('/', async (request, response, next) => {
+  const body = request.body
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  })
+
+  const savedNote = await note.save()
+  response.status(201).json(savedNote)
+})
+```
+
+There's a slight problem with our code: we don't handle error situations. How should we deal with them?
+
+## Error handling and async/await
+If there's an exception while handling the POST request we end up in a familiar situation:
+![terminal showing unhandled promise rejection warning](https://fullstackopen.com/static/58f3a7f3fa30d1a45c4330ee6f0c83d8/5a190/6.png)
+In other words, we end up with an unhandled promise rejection, and the request never receives a response. With async/await the recommended way of dealing with exceptions is the old and familiar _try/catch_ mechanism:
+```js
+notesRouter.post('/', async (request, response, next) => {
+  const body = request.body
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  })
+  try {    const savedNote = await note.save()    response.status(201).json(savedNote)  } catch(exception) {    next(exception)  }})
+```
+The catch block simply calls the _next_ function, which passes the request handling to the error handling middleware.
+
+After making the change, all of our tests will pass once again.
+
+Next, let's write tests for fetching and removing an individual note:
+```js
+test('a specific note can be viewed', async () => {
+  const notesAtStart = await helper.notesInDb()
+
+  const noteToView = notesAtStart[0]
+
+  const resultNote = await api    .get(`/api/notes/${noteToView.id}`)    .expect(200)    .expect('Content-Type', /application\/json/)
+  assert.deepStrictEqual(resultNote.body, noteToView)
+})
+
+test('a note can be deleted', async () => {
+  const notesAtStart = await helper.notesInDb()
+  const noteToDelete = notesAtStart[0]
+
+  await api    .delete(`/api/notes/${noteToDelete.id}`)    .expect(204)
+  const notesAtEnd = await helper.notesInDb()
+
+  const contents = notesAtEnd.map(r => r.content)
+  assert(!contents.includes(noteToDelete.content))
+
+  assert.strictEqual(notesAtEnd.length, helper.initialNotes.length - 1)
+})
+```
+
+Both tests share a similar structure. In the initialization phase, they fetch a note from the database. After this, the tests call the actual operation being tested, which is highlighted in the code block. Lastly, the tests verify that the outcome of the operation is as expected.
+
+There is one point worth noting in the first test. Instead of the previously used method [strictEqual](https://nodejs.org/api/assert.html#assertstrictequalactual-expected-message), the method [deepStrictEqual](https://nodejs.org/api/assert.html#assertdeepstrictequalactual-expected-message) is used:
+```js
+assert.deepStrictEqual(resultNote.body, noteToView)
+```
+
+The reason for this is that _strictEqual_ uses the method [Object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) to compare similarity, i.e. it compares whether the objects are the same. In our case, it is enough to check that the contents of the objects, i.e. the values of their fields, are the same. For this purpose _deepStrictEqual_ is suitable.
+
+The tests pass and we can safely refactor the tested routes to use async/await:
+```js
+notesRouter.get('/:id', async (request, response, next) => {
+  try {
+    const note = await Note.findById(request.params.id)
+    if (note) {
+      response.json(note)
+    } else {
+      response.status(404).end()
+    }
+  } catch(exception) {
+    next(exception)
+  }
+})
+
+notesRouter.delete('/:id', async (request, response, next) => {
+  try {
+    await Note.findByIdAndDelete(request.params.id)
+    response.status(204).end()
+  } catch(exception) {
+    next(exception)
+  }
+})
+```
+## Eliminating the try-catch
+Async/await unclutters the code a bit, but the 'price' is the _try/catch_ structure required for catching exceptions. All of the route handlers follow the same structure
+```js
+try {
+  // do the async operations here
+} catch(exception) {
+  next(exception)
+}
+```
+
+One starts to wonder if it would be possible to refactor the code to eliminate the _catch_ from the methods?
+
+The [express-async-errors](https://github.com/davidbanham/express-async-errors) library has a solution for this. Let's install the library
+```bash
+npm install express-async-errors
+```
+
+Using the library is _very_ easy. You introduce the library in _app.js_, _before_ you import your routes:
+```js
+const config = require('./utils/config')
+const express = require('express')
+require('express-async-errors')const app = express()
+const cors = require('cors')
+const notesRouter = require('./controllers/notes')
+const middleware = require('./utils/middleware')
+const logger = require('./utils/logger')
+const mongoose = require('mongoose')
+
+// ...
+
+module.exports = app
+```
+
+The 'magic' of the library allows us to eliminate the try-catch blocks completely. For example the route for deleting a note
+```js
+notesRouter.delete('/:id', async (request, response, next) => {
+  try {
+    await Note.findByIdAndDelete(request.params.id)
+    response.status(204).end()
+  } catch (exception) {
+    next(exception)
+  }
+})
+```
+becomes
+```js
+notesRouter.delete('/:id', async (request, response) => {
+  await Note.findByIdAndDelete(request.params.id)
+  response.status(204).end()
+})
+```
+
+Because of the library, we do not need the _next(exception)_ call anymore. The library handles everything under the hood. If an exception occurs in an _async_ route, the execution is automatically passed to the error-handling middleware.
+
+The other routes become:
+```js
+notesRouter.post('/', async (request, response) => {
+  const body = request.body
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  })
+
+  const savedNote = await note.save()
+  response.status(201).json(savedNote)
+})
+
+notesRouter.get('/:id', async (request, response) => {
+  const note = await Note.findById(request.params.id)
+  if (note) {
+    response.json(note)
+  } else {
+    response.status(404).end()
+  }
+})
+```
+
+## Optimizing the beforeEach function
+Let's return to writing our tests and take a closer look at the _beforeEach_ function that sets up the tests:
+```js
+beforeEach(async () => {
+  await Note.deleteMany({})
+
+  let noteObject = new Note(helper.initialNotes[0])
+  await noteObject.save()
+
+  noteObject = new Note(helper.initialNotes[1])
+  await noteObject.save()
+})
+```
+
+The function saves the first two notes from the _helper.initialNotes_ array into the database with two separate operations. The solution is alright, but there's a better way of saving multiple objects to the database:
+```js
+beforeEach(async () => {
+  await Note.deleteMany({})
+  console.log('cleared')
+
+  helper.initialNotes.forEach(async (note) => {
+    let noteObject = new Note(note)
+    await noteObject.save()
+    console.log('saved')
+  })
+  console.log('done')
+})
+
+test('notes are returned as json', async () => {
+  console.log('entered test')
+  // ...
+}
+```
+
+We save the notes stored in the array into the database inside of a _forEach_ loop. The tests don't quite seem to work however, so we have added some console logs to help us find the problem.
+
+The console displays the following output:
+```bash
+cleared
+done
+entered test
+saved
+saved
+```
+Despite our use of the async/await syntax, our solution does not work as we expected it to. The test execution begins before the database is initialized!
+
+The problem is that every iteration of the forEach loop generates an asynchronous operation, and _beforeEach_ won't wait for them to finish executing. In other words, the _await_ commands defined inside of the _forEach_ loop are not in the _beforeEach_ function, but in separate functions that _beforeEach_ will not wait for.
+
+Since the execution of tests begins immediately after _beforeEach_ has finished executing, the execution of tests begins before the database state is initialized.
+
+One way of fixing this is to wait for all of the asynchronous operations to finish executing with the [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) method:
+```js
+beforeEach(async () => {
+  await Note.deleteMany({})
+
+  const noteObjects = helper.initialNotes
+    .map(note => new Note(note))
+  const promiseArray = noteObjects.map(note => note.save())
+  await Promise.all(promiseArray)
+})
+```
+
+The solution is quite advanced despite its compact appearance. The _noteObjects_ variable is assigned to an array of Mongoose objects that are created with the _Note_ constructor for each of the notes in the _helper.initialNotes_ array. The next line of code creates a new array that _consists of promises_, that are created by calling the _save_ method of each item in the _noteObjects_ array. In other words, it is an array of promises for saving each of the items to the database.
+
+The [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) method can be used for transforming an array of promises into a single promise, that will be _fulfilled_ once every promise in the array passed to it as an argument is resolved. The last line of code _await Promise.all(promiseArray)_ waits until every promise for saving a note is finished, meaning that the database has been initialized.
+
+> The returned values of each promise in the array can still be accessed when using the Promise.all method. If we wait for the promises to be resolved with the _await_ syntax _const results = await Promise.all(promiseArray)_, the operation will return an array that contains the resolved values for each promise in the _promiseArray_, and they appear in the same order as the promises in the array.
+
+Promise.all executes the promises it receives in parallel. If the promises need to be executed in a particular order, this will be problematic. In situations like this, the operations can be executed inside of a [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) block, that guarantees a specific execution order.
+```js
+beforeEach(async () => {
+  await Note.deleteMany({})
+
+  for (let note of helper.initialNotes) {
+    let noteObject = new Note(note)
+    await noteObject.save()
+  }
+})
+```
+The asynchronous nature of JavaScript can lead to surprising behavior, and for this reason, it is important to pay careful attention when using the async/await syntax. Even though the syntax makes it easier to deal with promises, it is still necessary to understand how promises work!
+
+## Refactoring tests
+Our test coverage is currently lacking. Some requests like _GET /api/notes/:id_ and _DELETE /api/notes/:id_ aren't tested when the request is sent with an invalid id. The grouping and organization of tests could also use some improvement, as all tests exist on the same "top level" in the test file. The readability of the test would improve if we group related tests with _describe_ blocks.
+
+Below is an example of the test file after making some minor improvements:
+```js
+const { test, after, beforeEach, describe } = require('node:test')
+const assert = require('node:assert')
+const mongoose = require('mongoose')
+const supertest = require('supertest')
+const app = require('../app')
+const api = supertest(app)
+
+const helper = require('./test_helper')
+
+const Note = require('../models/note')
+
+describe('when there is initially some notes saved', () => {
+  beforeEach(async () => {
+    await Note.deleteMany({})
+    await Note.insertMany(helper.initialNotes)
+  })
+
+  test('notes are returned as json', async () => {
+    await api
+      .get('/api/notes')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+  })
+
+  test('all notes are returned', async () => {
+    const response = await api.get('/api/notes')
+
+    assert.strictEqual(response.body.length, helper.initialNotes.length)
+  })
+
+  test('a specific note is within the returned notes', async () => {
+    const response = await api.get('/api/notes')
+
+    const contents = response.body.map(r => r.content)
+    assert(contents.includes('Browser can execute only JavaScript'))
+  })
+
+  describe('viewing a specific note', () => {
+
+    test('succeeds with a valid id', async () => {
+      const notesAtStart = await helper.notesInDb()
+
+      const noteToView = notesAtStart[0]
+
+      const resultNote = await api
+        .get(`/api/notes/${noteToView.id}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+
+      assert.deepStrictEqual(resultNote.body, noteToView)
+    })
+
+    test('fails with statuscode 404 if note does not exist', async () => {
+      const validNonexistingId = await helper.nonExistingId()
+
+      await api
+        .get(`/api/notes/${validNonexistingId}`)
+        .expect(404)
+    })
+
+    test('fails with statuscode 400 id is invalid', async () => {
+      const invalidId = '5a3d5da59070081a82a3445'
+
+      await api
+        .get(`/api/notes/${invalidId}`)
+        .expect(400)
+    })
+  })
+
+  describe('addition of a new note', () => {
+    test('succeeds with valid data', async () => {
+      const newNote = {
+        content: 'async/await simplifies making async calls',
+        important: true,
+      }
+
+      await api
+        .post('/api/notes')
+        .send(newNote)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+      const notesAtEnd = await helper.notesInDb()
+      assert.strictEqual(notesAtEnd.length, helper.initialNotes.length + 1)
+
+      const contents = notesAtEnd.map(n => n.content)
+      assert(contents.includes('async/await simplifies making async calls'))
+    })
+
+    test('fails with status code 400 if data invalid', async () => {
+      const newNote = {
+        important: true
+      }
+
+      await api
+        .post('/api/notes')
+        .send(newNote)
+        .expect(400)
+
+      const notesAtEnd = await helper.notesInDb()
+
+      assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)
+    })
+  })
+
+  describe('deletion of a note', () => {
+    test('succeeds with status code 204 if id is valid', async () => {
+      const notesAtStart = await helper.notesInDb()
+      const noteToDelete = notesAtStart[0]
+
+      await api
+        .delete(`/api/notes/${noteToDelete.id}`)
+        .expect(204)
+
+      const notesAtEnd = await helper.notesInDb()
+
+      assert.strictEqual(notesAtEnd.length, helper.initialNotes.length - 1)
+
+      const contents = notesAtEnd.map(r => r.content)
+      assert(!contents.includes(noteToDelete.content))
+    })
+  })
+})
+
+after(async () => {
+  await mongoose.connection.close()
+})
+```
+
+The test output in the console is grouped according to the _describe_ blocks:
+
+![node:test output showing grouped describe blocks](https://fullstackopen.com/static/c69d88a0c00288a7e60bb6ace415dc6a/5a190/7new.png)
+
+There is still room for improvement, but it is time to move forward.
+
+This way of testing the API, by making HTTP requests and inspecting the database with Mongoose, is by no means the only nor the best way of conducting API-level integration tests for server applications. There is no universal best way of writing tests, as it all depends on the application being tested and available resources.
+
+## Next
+The next block of FSO content looks at User administration in web apps: [[Webdev - FSO - User administration]]
