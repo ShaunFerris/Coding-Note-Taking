@@ -685,7 +685,8 @@ Using the library is _very_ easy. You introduce the library in _app.js_, _before
 ```js
 const config = require('./utils/config')
 const express = require('express')
-require('express-async-errors')const app = express()
+require('express-async-errors')
+const app = express()
 const cors = require('cors')
 const notesRouter = require('./controllers/notes')
 const middleware = require('./utils/middleware')
