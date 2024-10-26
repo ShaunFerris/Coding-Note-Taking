@@ -86,7 +86,7 @@ Document databases also offer a radically different way of organizing the data: 
         important: false,
       },
       {
-        content: 'The most important operations of HTTP protocol are GET and POST',
+        content: 'The most important operations of HTTP are GET and POST',
         important: true,
       },
     ],
@@ -169,3 +169,203 @@ const noteSchema = new mongoose.Schema({
 In stark contrast to the conventions of relational dbs, **references are now stored in both documents**. The note references the user who created it, and the user has an array of references to all the notes created by them.
 
 ## Creating users
+Let's implement a route for creating new users. Users have a unique _username_, a _name_ and something called a _passwordHash_. The password hash is the output of a [one-way hash function](https://en.wikipedia.org/wiki/Cryptographic_hash_function) applied to the user's password. It is never wise to store unencrypted plain text passwords in the database!
+
+To hash passwords, we will install bcrypt:
+```
+npm install bcrypt
+```
+Creating a new user in compliance with REST conventions happens by sending a POST request to the `/api/users` route. We should define a new router, seperate from the `notesRouter` object, to contain the route handlers for the users route:
+```js
+// app.js
+const usersRouter = require("./controllers/users')
+// ...
+app.use("/api/users", usersRouter)
+
+```
+The contents of the `./controllers/users` file can then be someting like this:
+```js
+const bcrypt = require('bcrypt')
+const usersRouter = require('express').Router()
+const User = require('../models/user')
+
+usersRouter.post('/', async (request, response) => {
+  const { username, name, password } = request.body
+
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(password, saltRounds)
+
+  const user = new User({
+    username,
+    name,
+    passwordHash,
+  })
+
+  const savedUser = await user.save()
+
+  response.status(201).json(savedUser)
+})
+
+module.exports = usersRouter`
+```
+You can see that the user provides a password to create their user record with, but this is **NEVER** saved to our database. Instead we immediately hash it, and save the hash to the db. The fundamentals of [storing passwords](https://codahale.com/how-to-safely-store-a-password/) are outside the scope of this course material. We will not discuss what the magic number 10 assigned to the [saltRounds](https://github.com/kelektiv/node.bcrypt.js/#a-note-on-rounds) variable means, but you can read more about it in the linked material.
+
+Our current code does not contain any error handling or input validation for verifying that the username and password are in the desired format.
+
+The new feature can and should initially be tested manually with a tool like Postman. However testing things manually will quickly become too cumbersome, especially once we implement functionality that enforces usernames to be unique.
+
+It takes much less effort to write automated tests, and it will make the development of our application much easier.
+
+Our initial tests could look like this:
+```js
+const bcrypt = require('bcrypt')
+const User = require('../models/user')
+
+//...
+
+describe('when there is initially one user in db', () => {
+  beforeEach(async () => {
+    await User.deleteMany({})
+
+    const passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({ username: 'root', passwordHash })
+
+    await user.save()
+  })
+
+  test('creation succeeds with a fresh username', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      username: 'mluukkai',
+      name: 'Matti Luukkainen',
+      password: 'salainen',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await helper.usersInDb()
+    assert.strictEqual(usersAtEnd.length, usersAtStart.length + 1)
+
+    const usernames = usersAtEnd.map(u => u.username)
+    assert(usernames.includes(newUser.username))
+  })
+})
+```
+The tests use the `usersInDB()` helper function to help verify the state of the database after a user is created.
+```js
+const User = require('../models/user')
+
+// ...
+
+const usersInDb = async () => {
+  const users = await User.find({})
+  return users.map(u => u.toJSON())
+}
+
+module.exports = {
+  initialNotes,
+  nonExistingId,
+  notesInDb,
+  usersInDb,
+}
+```
+The _beforeEach_ block adds a user with the username _root_ to the database. We can write a new test that verifies that a new user with the same username can not be created:
+```js
+describe('when there is initially one user in db', () => {
+  // ...
+
+  test('creation fails with proper statuscode and message if username already taken', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      username: 'root',
+      name: 'Superuser',
+      password: 'salainen',
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await helper.usersInDb()
+    assert(result.body.error.includes('expected `username` to be unique'))
+
+    assert.strictEqual(usersAtEnd.length, usersAtStart.length)
+  })
+})
+```
+The test case obviously will not pass at this point. We are essentially practicing [test-driven development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development), where tests for new functionality are written before the functionality is implemented.
+
+Mongoose validations do not provide a direct way to check the uniqueness of a field value. However, it is possible to achieve uniqueness by defining [uniqueness index](https://mongoosejs.com/docs/schematypes.html) for a field. The definition is done as follows:
+```js
+const mongoose = require('mongoose')
+
+const userSchema = mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true // this ensures the uniqueness of username
+  },
+  name: String,
+  passwordHash: String,
+  notes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Note'
+    }
+  ],
+})
+
+// ...
+```
+However, we want to be careful when using the uniqueness index. If there are already documents in the database that violate the uniqueness condition, [no index will be created](https://dev.to/akshatsinghania/mongoose-unique-not-working-16bf). So when adding a uniqueness index, make sure that the database is in a healthy state! The test above added the user with username _root_ to the database twice, and these must be removed for the index to be formed and the code to work.
+
+Mongoose validations do not detect the index violation, and instead of _ValidationError_ they return an error of type _MongoServerError_. We therefore need to extend the error handler for that case:
+```js
+const errorHandler = (error, request, response, next) => {
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' })
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+
+  } else if (error.name === 'MongoServerError' && error.message.includes('E11000 duplicate key error')) {
+    return response.status(400).json({ error: 'expected `username` to be unique' })
+  }
+
+  next(error)
+}
+```
+
+After these changes, the tests will pass.
+
+We could also implement other validations into the user creation. We could check that the username is long enough, that the username only consists of permitted characters, or that the password is strong enough. Implementing these functionalities is left as an optional exercise.
+
+Before we move onward, let's add an initial implementation of a route handler that returns all of the users in the database:
+```js
+usersRouter.get('/', async (request, response) => {
+  const users = await User.find({})
+  response.json(users)
+})
+```
+
+For making new users in a production or development environment, you may send a POST request to `/api/users/` via Postman or REST Client in the following format:
+```js
+{
+    "username": "root",
+    "name": "Superuser",
+    "password": "salainen"
+}
+```
+
+The list looks like this:
+![browser api/users shows JSON data with notes array](https://fullstackopen.com/static/485f61a7db35371fea0db42b2bcc1cda/5a190/9.png)
+
+
+## Creating a new note
