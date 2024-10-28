@@ -369,3 +369,107 @@ The list looks like this:
 
 
 ## Creating a new note
+The code as it stands right now in the example app needs to be updated so that new notes are assigned to the user who created them. Let's expand the implementation in `controllers/notes.js` file to add the id of the user to the note and add the id of the note to the users note id array:
+```js
+const User = require('../models/user')
+
+//...
+
+notesRouter.post('/', async (request, response) => {
+  const body = request.body
+
+  const user = await User.findById(body.userId)
+
+  const note = new Note({
+    content: body.content,
+    important: body.important === undefined ? false : body.important,
+
+    user: user.id
+  })
+
+  const savedNote = await note.save()
+  user.notes = user.notes.concat(savedNote._id)
+  await user.save()
+  
+  response.status(201).json(savedNote)
+})
+```
+
+Let's try to create a new note
+![Postman creating a new note](https://fullstackopen.com/static/a562436685978cc842c89a5d157a2938/5a190/10e.png)
+
+The operation appears to work. Let's add one more note and then visit the route for fetching all users:
+![api/users returns JSON with users and their array of notes](https://fullstackopen.com/static/c60c79686add78ebf57de1711c47fb47/5a190/11e.png)
+
+We can see that the user has two notes.
+
+Likewise, the ids of the users who created the notes can be seen when we visit the route for fetching all notes:
+![api/notes shows ids of users in JSON](https://fullstackopen.com/static/6798064b6620269dd272d7ee515aa4a9/5a190/12e.png)
+
+## Populate
+We would like our API to work in such a way, that when an HTTP GET request is made to the `/api/users` route, the user objects would also contain the contents of the user's notes and not just their id. In a relational database, this functionality would be implemented with a _join query_.
+
+As previously mentioned, document databses do not properly support join queries between collecitons, but the Mongoose library can do some of these joins for us. Mongoose acomplishes the join by doing multiple queries, which is different from join queries in relational dbs which are transactional, meaning that the state of the database does not change during the time that the query is made. **With join queries in Mongoose, nothing can guarantee that the state between collections being joined is consistent, meaning that if we make a query that joins the user and notes collections, the state of the collections may change during the query.**
+
+The mongoos join is done with the [populate](http://mongoosejs.com/docs/populate.html) method. Let's update the route that returns all users first in `controllers/users.js` file:
+```js
+usersRouter.get('/', async (request, response) => {
+
+  const users = await User
+    .find({}).populate('notes')
+
+  response.json(users)
+})
+```
+The [populate](http://mongoosejs.com/docs/populate.html) method is chained after the _find_ method making the initial query. The argument given to the populate method defines that the _ids_ referencing _note_ objects in the _notes_ field of the _user_ document will be replaced by the referenced _note_ documents.
+
+The result is almost exactly what we wanted:
+![JSON data showing populated notes and users data with repetition](https://fullstackopen.com/static/ca7c3b6c859225179712112462a7c2b7/5a190/13new.png)
+We can use the populate method for choosing the fields we want to include from the documents. In addition to the field _id_ we are now only interested in _content_ and _important_.
+
+The selection of fields is done with the Mongo [syntax](https://www.mongodb.com/docs/manual/tutorial/project-fields-from-query-results/#return-the-specified-fields-and-the-_id-field-only):
+```js
+usersRouter.get('/', async (request, response) => {
+  const users = await User
+    .find({}).populate('notes', { content: 1, important: 1 })
+
+  response.json(users)
+})
+```
+
+The result is now exactly like we want it to be:
+![combined data showing no repetition](https://fullstackopen.com/static/e526a27a1953221b1f00ef911436eb8b/5a190/14new.png)
+
+Let's also add a suitable population of user information to notes in the _controllers/notes.js_ file:
+```js
+notesRouter.get('/', async (request, response) => {
+  const notes = await Note
+    .find({}).populate('user', { username: 1, name: 1 })
+
+  response.json(notes)
+})
+```
+
+Now the user's information is added to the _user_ field of note objects.
+![notes JSON now has user info embedded too](https://fullstackopen.com/static/6f9441d387d1a6e6e90ec2c42aa88813/5a190/15new.png)
+
+It's important to understand that the database does not know that the ids stored in the _user_ field of the notes collection reference documents in the user collection.
+
+The functionality of the _populate_ method of Mongoose is based on the fact that we have defined "types" to the references in the Mongoose schema with the _ref_ option:
+```js
+const noteSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true,
+    minlength: 5
+  },
+  important: Boolean,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
+})
+```
+
+## Next
+The next section of FSO covers Token Auth: [[Webdev - FSO - Token Authentiaction]]
