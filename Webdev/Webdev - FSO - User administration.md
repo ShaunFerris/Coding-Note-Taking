@@ -472,4 +472,4 @@ const noteSchema = new mongoose.Schema({
 ```
 
 ## Next
-The next section of FSO covers Token Auth: [[Webdev - FSO - Token Authentiaction]]
+The next section of FSO covers Token Auth: [[Webdev - FSO - Token Authentication]]
