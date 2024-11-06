@@ -411,7 +411,7 @@ We would like our API to work in such a way, that when an HTTP GET request is ma
 
 As previously mentioned, document databses do not properly support join queries between collecitons, but the Mongoose library can do some of these joins for us. Mongoose acomplishes the join by doing multiple queries, which is different from join queries in relational dbs which are transactional, meaning that the state of the database does not change during the time that the query is made. **With join queries in Mongoose, nothing can guarantee that the state between collections being joined is consistent, meaning that if we make a query that joins the user and notes collections, the state of the collections may change during the query.**
 
-The mongoos join is done with the [populate](http://mongoosejs.com/docs/populate.html) method. Let's update the route that returns all users first in `controllers/users.js` file:
+The mongoose join is done with the [populate](http://mongoosejs.com/docs/populate.html) method. Let's update the route that returns all users first in `controllers/users.js` file:
 ```js
 usersRouter.get('/', async (request, response) => {
 
