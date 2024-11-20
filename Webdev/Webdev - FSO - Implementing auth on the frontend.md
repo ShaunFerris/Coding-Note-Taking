@@ -442,3 +442,6 @@ It has been suggested that the identity of a signed-in user should be saved as [
 However, it is good to notice that even the use of httpOnly cookies does not guarantee anything. It has even been suggested that httpOnly cookies are [not any safer than](https://academind.com/tutorials/localstorage-vs-cookies-xss/) the use of local storage.
 
 So no matter the used solution the most important thing is to [minimize the risk](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html) of XSS attacks altogether.
+
+## Next
+The next section looks more closely at conditionally rendering components in the frontend. See here: [[Webdev -FSO - Props, Children and Prototypes]]

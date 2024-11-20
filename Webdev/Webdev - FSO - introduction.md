@@ -44,5 +44,7 @@ Part Four - Testing and implementing auth:
 	[[Webdev - FSO - Testing express.js backends seriously]]
 	[[Webdev - FSO - User administration]]
 	[[Webdev - FSO - Token Authentication]]
+Part Five - Unifying more complex full stack apps
 	[[Webdev - FSO - Implementing auth on the frontend]]
+	[[Webdev -FSO - Props, Children and Prototypes]]
 	
