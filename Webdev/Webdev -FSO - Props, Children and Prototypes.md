@@ -285,7 +285,8 @@ const App = () => {
   // ...
   const noteFormRef = useRef()
   const noteForm = () => (
-    <Togglable buttonLabel='new note' ref={noteFormRef}>      <NoteForm createNote={addNote} />
+    <Togglable buttonLabel='new note' ref={noteFormRef}>      
+	  <NoteForm createNote={addNote} />
     </Togglable>
   )
 
@@ -298,7 +299,9 @@ The [useRef](https://react.dev/reference/react/useRef) hook is used to create a 
 We also make the following changes to the _Togglable_ component:
 ```js
 import { useState, forwardRef, useImperativeHandle } from 'react'
-const Togglable = forwardRef((props, refs) => {  const [visible, setVisible] = useState(false)
+
+const Togglable = forwardRef((props, refs) => {  
+  const [visible, setVisible] = useState(false)
 
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
@@ -376,3 +379,4 @@ And use it like this:
 We create _three separate instances of the component_ that all have their separate state:
 ![browser of three togglable components](https://fullstackopen.com/static/c7355696281ca0c4d8d1e734a1d81a26/5a190/12e.png)
 The _ref_ attribute is used for assigning a reference to each of the components in the variables _togglable1_, _togglable2_ and _togglable3_.
+
