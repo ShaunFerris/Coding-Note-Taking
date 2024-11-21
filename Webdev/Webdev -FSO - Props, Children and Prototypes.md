@@ -271,4 +271,108 @@ const App = () => {
 We could do the same for the log in form, but we'll leave that for an optional exercise.
 
 ## References to components with 'ref'
+The current implementation is good, but it could be improved.
 
+After a new note is created, it would make sense to hide the new note form. Currently, the form stays visible. There is a slight problem with hiding it, the visibility is controlled with the `visible` state variable inside the `Togglable` component. One solution to this would be to move control of the `Togglable` components state outside of the component itself. However, we won't do that here, because we want the component to be responsible for it's own state.
+So we have to find another solution, and find a mechanism to change the state of the component externally.
+
+There are several different ways to implement access to a component's functions from outside the component, but let's use the [ref](https://react.dev/learn/referencing-values-with-refs) mechanism of React, which offers a reference to the component.
+
+Let's make the following changes to the _App_ component:
+```js
+import { useState, useEffect, useRef } from 'react'
+const App = () => {
+  // ...
+  const noteFormRef = useRef()
+  const noteForm = () => (
+    <Togglable buttonLabel='new note' ref={noteFormRef}>      <NoteForm createNote={addNote} />
+    </Togglable>
+  )
+
+  // ...
+}
+```
+
+The [useRef](https://react.dev/reference/react/useRef) hook is used to create a _noteFormRef_ reference, that is assigned to the _Togglable_ component containing the creation note form. The _noteFormRef_ variable acts as a reference to the component. This hook ensures the same reference (ref) that is kept throughout re-renders of the component.
+
+We also make the following changes to the _Togglable_ component:
+```js
+import { useState, forwardRef, useImperativeHandle } from 'react'
+const Togglable = forwardRef((props, refs) => {  const [visible, setVisible] = useState(false)
+
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const toggleVisibility = () => {
+    setVisible(!visible)
+  }
+
+  useImperativeHandle(refs, () => {    return {      toggleVisibility    }  })
+  return (
+    <div>
+      <div style={hideWhenVisible}>
+        <button onClick={toggleVisibility}>{props.buttonLabel}</button>
+      </div>
+      <div style={showWhenVisible}>
+        {props.children}
+        <button onClick={toggleVisibility}>cancel</button>
+      </div>
+    </div>
+  )
+})
+export default Togglable
+```
+
+The function that creates the component is wrapped inside of a [forwardRef](https://react.dev/reference/react/forwardRef) function call. This way the component can access the ref that is assigned to it.
+
+The component uses the [useImperativeHandle](https://react.dev/reference/react/useImperativeHandle) hook to make its _toggleVisibility_ function available outside of the component.
+
+We can now hide the form by calling _noteFormRef.current.toggleVisibility()_ after a new note has been created:
+```js
+const App = () => {
+  // ...
+  const addNote = (noteObject) => {
+    noteFormRef.current.toggleVisibility()    noteService
+      .create(noteObject)
+      .then(returnedNote => {     
+        setNotes(notes.concat(returnedNote))
+      })
+  }
+  // ...
+}
+```
+
+To recap, the [useImperativeHandle](https://react.dev/reference/react/useImperativeHandle) function is a React hook, that is used for defining functions in a component, which can be invoked from outside of the component.
+
+This trick works for changing the state of a component, but it looks a bit unpleasant. We could have accomplished the same functionality with slightly cleaner code using "old React" class-based components. We will take a look at these class components during part 7 of the course material. So far this is the only situation where using React hooks leads to code that is not cleaner than with class components.
+
+There are also [other use cases](https://react.dev/learn/manipulating-the-dom-with-refs) for refs than accessing React components.
+
+## One point about components
+When we define a component in React:
+```js
+const Togglable = () => ...
+  // ...
+}
+```
+
+And use it like this:
+```js
+<div>
+  <Togglable buttonLabel="1" ref={togglable1}>
+    first
+  </Togglable>
+
+  <Togglable buttonLabel="2" ref={togglable2}>
+    second
+  </Togglable>
+
+  <Togglable buttonLabel="3" ref={togglable3}>
+    third
+  </Togglable>
+</div>
+```
+
+We create _three separate instances of the component_ that all have their separate state:
+![browser of three togglable components](https://fullstackopen.com/static/c7355696281ca0c4d8d1e734a1d81a26/5a190/12e.png)
+The _ref_ attribute is used for assigning a reference to each of the components in the variables _togglable1_, _togglable2_ and _togglable3_.
