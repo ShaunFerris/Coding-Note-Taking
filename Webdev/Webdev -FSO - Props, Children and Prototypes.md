@@ -310,7 +310,12 @@ const Togglable = forwardRef((props, refs) => {
     setVisible(!visible)
   }
 
-  useImperativeHandle(refs, () => {    return {      toggleVisibility    }  })
+  useImperativeHandle(refs, () => {    
+    return { 
+      toggleVisibility
+    }  
+  })
+  
   return (
     <div>
       <div style={hideWhenVisible}>
@@ -335,7 +340,8 @@ We can now hide the form by calling _noteFormRef.current.toggleVisibility()_ aft
 const App = () => {
   // ...
   const addNote = (noteObject) => {
-    noteFormRef.current.toggleVisibility()    noteService
+    noteFormRef.current.toggleVisibility()    
+    noteService
       .create(noteObject)
       .then(returnedNote => {     
         setNotes(notes.concat(returnedNote))
