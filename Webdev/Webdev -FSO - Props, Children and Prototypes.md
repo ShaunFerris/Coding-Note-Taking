@@ -386,3 +386,154 @@ We create _three separate instances of the component_ that all have their separa
 ![browser of three togglable components](https://fullstackopen.com/static/c7355696281ca0c4d8d1e734a1d81a26/5a190/12e.png)
 The _ref_ attribute is used for assigning a reference to each of the components in the variables _togglable1_, _togglable2_ and _togglable3_.
 
+## Prop types
+The _Togglable_ component assumes that it is given the text for the button via the _buttonLabel_ prop. If we forget to define it to the component:
+```js
+<Togglable> buttonLabel forgotten... </Togglable>
+```
+
+The application works, but the browser renders a button that has no label text. We would like to enforce that when the _Togglable_ component is used, the button label text prop must be given a value. **NOTE: this obviously wouldn't be a problem if you just used typescript**.
+
+The expected and required props of a component can be defined with the [prop-types](https://github.com/facebook/prop-types) package. Let's install the package:
+```shell
+npm install prop-types
+```
+
+We can define the _buttonLabel_ prop as a mandatory or _required_ string-type prop as shown below:
+```js
+import PropTypes from 'prop-types'
+
+const Togglable = React.forwardRef((props, ref) => {
+  // ..
+})
+
+Togglable.propTypes = {
+  buttonLabel: PropTypes.string.isRequired
+}
+```
+
+The console will display the following error message if the prop is left undefined:
+![console error stating buttonLabel is undefined](https://fullstackopen.com/static/7a239ed6d3ad6721a65ae3ac24eb29b5/5a190/15.png)
+
+The application still works and nothing forces us to define props despite the PropTypes definitions. Mind you, it is extremely unprofessional to leave _any_ red output in the browser console.
+
+Let's also define PropTypes to the _LoginForm_ component:
+```js
+import PropTypes from 'prop-types'
+
+const LoginForm = ({
+   handleSubmit,
+   handleUsernameChange,
+   handlePasswordChange,
+   username,
+   password
+  }) => {
+    // ...
+  }
+
+LoginForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleUsernameChange: PropTypes.func.isRequired,
+  handlePasswordChange: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired
+}
+```
+
+If the type of a passed prop is wrong, e.g. if we try to define the _handleSubmit_ prop as a string, then this will result in the following warning:
+
+![console error saying handleSubmit expected a function](https://fullstackopen.com/static/ec732518823c5e2921d46285e5549bf3/5a190/16.png)
+
+## ESlint
+In part 3 we configured the [ESlint](https://fullstackopen.com/en/part3/validation_and_es_lint#lint) code style tool to the backend. Let's take ESlint to use in the frontend as well.
+
+Vite has installed ESlint to the project by default, so all that's left for us to do is define our desired configuration in the _.eslintrc.cjs_ file.
+
+Let's create a _.eslintrc.cjs_ file with the following contents:
+```js
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es2020: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  settings: { react: { version: '18.2' } },
+  plugins: ['react-refresh'],
+  rules: {
+    "indent": [
+        "error",
+        2  
+    ],
+    "linebreak-style": [
+        "error",
+        "unix"
+    ],
+    "quotes": [
+        "error",
+        "single"
+    ],
+    "semi": [
+        "error",
+        "never"
+    ],
+    "eqeqeq": "error",
+    "no-trailing-spaces": "error",
+    "object-curly-spacing": [
+        "error", "always"
+    ],
+    "arrow-spacing": [
+        "error", { "before": true, "after": true }
+    ],
+    "no-console": 0,
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": 0,
+    "no-unused-vars": 0    
+  },
+}
+```
+NOTE: If you are using Visual Studio Code together with ESLint plugin, you might need to add a workspace setting for it to work. If you are seeing `Failed to load plugin react: Cannot find module 'eslint-plugin-react'` additional configuration is needed. Adding the line `"eslint.workingDirectories": [{ "mode": "auto" }]` to settings.json in the workspace seems to work. See [here](https://github.com/microsoft/vscode-eslint/issues/880#issuecomment-578052807) for more information.
+
+Let's create [.eslintignore](https://eslint.org/docs/latest/use/configure/ignore#the-eslintignore-file) file with the following contents to the repository root
+
+```bash
+node_modules
+dist
+.eslintrc.cjs
+vite.config.js
+```
+
+Now the directories _dist_ and _node_modules_ will be skipped when linting.
+
+As usual, you can perform the linting either from the command line with the command
+```bash
+npm run lint
+```
+or using the editor's Eslint plugin.
+
+Component _Togglable_ causes a nasty-looking warning _Component definition is missing display name_:
+![vscode showing component definition error](https://fullstackopen.com/static/f61843245205294dd4fbf50d8b864dd7/5a190/25x.png)
+
+The react-devtools also reveals that the component does not have a name:
+
+![react devtools showing forwardRef as anonymous](https://fullstackopen.com/static/1fc750ed2c0c78b8736615837a6be1a0/5a190/26ea.png)
+
+Fortunately, this is easy to fix
+```js
+import { useState, useImperativeHandle } from 'react'
+import PropTypes from 'prop-types'
+
+const Togglable = React.forwardRef((props, ref) => {
+  // ...
+})
+
+Togglable.displayName = 'Togglable'
+export default Togglable
+```
