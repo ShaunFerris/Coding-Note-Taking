@@ -537,3 +537,6 @@ const Togglable = React.forwardRef((props, ref) => {
 Togglable.displayName = 'Togglable'
 export default Togglable
 ```
+
+## Next
+The next section, 5c covers testing frontend apps: [[Webdev - FSO - Testing react apps]]
