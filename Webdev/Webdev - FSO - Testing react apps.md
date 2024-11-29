@@ -187,3 +187,73 @@ test('renders content', () => {
 **NB:** A more consistent way of selecting elements is using a [data attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*) that is specifically defined for testing purposes. Using _react-testing-library_, we can leverage the [getByTestId](https://testing-library.com/docs/queries/bytestid/) method to select elements with a specified _data-testid_ attribute.
 
 ## Debugging tests
+There are a lot of problems you can run into when testing on the front-end, it is a complicated system. The object `screen` from react testing library provides a [debug](https://testing-library.com/docs/dom-testing-library/api-debugging#screendebug) method that can be used to print the HTML of a component to the terminal. If we add it to our test like this:
+```js
+import { render, screen } from '@testing-library/react'
+import Note from './Note'
+
+test('renders content', () => {
+  const note = {
+    content: 'Component testing is done with react-testing-library',
+    important: true
+  }
+
+  render(<Note note={note} />)
+
+
+  screen.debug()
+
+  // ...
+
+})
+```
+the html will print to the console like this:
+```html
+console.log
+  <body>
+    <div>
+      <li
+        class="note"
+      >
+        Component testing is done with react-testing-library
+        <button>
+          make not important
+        </button>
+      </li>
+    </div>
+  </body>
+```
+
+It is also possible to use the same method to print a wanted element to console:
+```js
+import { render, screen } from '@testing-library/react'
+import Note from './Note'
+
+test('renders content', () => {
+  const note = {
+    content: 'Component testing is done with react-testing-library',
+    important: true
+  }
+
+  render(<Note note={note} />)
+
+  const element = screen.getByText('Component testing is done with react-testing-library')
+
+  screen.debug(element)
+  expect(element).toBeDefined()
+})
+```
+
+Now the HTML of the wanted element gets printed:
+```html
+  <li
+    class="note"
+  >
+    Component testing is done with react-testing-library
+    <button>
+      make not important
+    </button>
+  </li>
+```
+
+## Clicking buttons in tests
