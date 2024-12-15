@@ -1,4 +1,4 @@
-#webdevSpecific 
+	#webdevSpecific 
 
 Adding on from the FSO course content, here is a quick note on how to scaffold a simple express project that wants to use typescript instead of raw js. We will also use a little async/await syntax in our code rather than the promised chaining used in th FSO content examples.
 
