@@ -4,4 +4,5 @@ This note serves as a the hub page for interview prep notes which will contain t
 
 - [[Interview Prep Quickies - JS Focus]]
 - [[Interview Prep Quickies - Web Dev Related]]
-- [[Interview Pre Quickies - React]]
+- [[Interview Prep Quickies - React]]
+- [[Interview Prep Quickies - Prep for Informatics specialist role]]
