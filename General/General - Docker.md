@@ -139,3 +139,4 @@ CMD ["node", "server.js"]
 ## Building an image from the dockerfile
 To build the image that we will run as a container, run `docker build -t <app-name>:<app-version-tag> <location-of-dockerfile>`. For example: `docker build -t my-app:1.0 .`
 
+Often you will want to run multiple services from docker images to make up your app. To do this you can use docker compose, which was originally a plugin for docker but is now built into the engine. See this note for an LLM produced summary of docker compose: [[General - Docker Compse]]
